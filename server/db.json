@@ -1,0 +1,9 @@
+{
+  "profiles": [],
+  "users": [],
+  "warehouses": [{
+    "id": 1,
+    "name": "Pepe"
+  }],
+  "products": []
+}
