@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { LoginComponent} from './authentication/login/login.component';
+import { RegisterComponent} from './authentication/register/register.component';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [RegisterComponent],
+  template: `<app-register></app-register>`
 })
-export class AppComponent {
-  title = 'stocksip-front-end-application';
-}
+export class AppComponent {}
