@@ -17,7 +17,9 @@
       </mat-form-field>
 
       <div class="remember-me">
-        <mat-checkbox>Remember me</mat-checkbox>
+        <mat-checkbox>
+          <a> Remember me</a>
+        </mat-checkbox>
       </div>
 
       <button mat-raised-button color="primary" class="sign-in-button">
@@ -48,7 +50,7 @@
         <mat-option value="supplier">Supplier</mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="primary" class="register-button">Register</button>
+    <button mat-raised-button color="primary" class="register-button" (click)="goToRegister()">Register</button>
 
     <div class="security-logos">
       <img src="assets/ssl-icon.svg" alt="SSL" />

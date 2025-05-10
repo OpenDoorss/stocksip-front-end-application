@@ -47,6 +47,15 @@
       mat-form-field-underline {
         background-color: #8E24AA;
       }
+
+      mat-form-field-outline {
+        color: #8E24AA;
+      }
+
+      Input {
+        padding: 0.5rem;
+        color: #4E4E4E;
+      }
     }
 
     h2 {
@@ -62,18 +71,24 @@
       font-family: 'Inter', sans-serif;
     }
 
-    .remember-me {
+    .remember-me{
       display: flex;
       align-items: center;
       margin-top: 1rem;
 
-      mat-checkbox {
-        margin-right: 0.5rem;
+      a {
+        color: #4E4E4E;
+        text-decoration: none;
       }
 
-      .forgot-password {
+      mat-checkbox {
+        margin-right: 0.5rem;
         color: #8E24AA;
       }
+    }
+
+    .forgot-password a{
+      color: #8E24AA;
     }
 
     .sign-in-button {
