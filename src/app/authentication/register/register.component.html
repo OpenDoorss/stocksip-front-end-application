@@ -6,13 +6,13 @@
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Select your role</mat-label>
-      <mat-select [(value)]="selectedRole">
+      <mat-select>
         <mat-option value="store_owner">Liquor Store Owner</mat-option>
         <mat-option value="supplier">Supplier</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" class="sign-in-button">
+    <button mat-raised-button color="primary" class="sign-in-button" (click)="goToSignIn()">
       Sign up
     </button>
 
@@ -38,19 +38,20 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" />
-        <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Confirm Password</mat-label>
-        <input matInput [type]="hideConfirm ? 'password' : 'text'" />
-        <button mat-icon-button matSuffix type="button" (click)="hideConfirm = !hideConfirm">
+        <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirm your password" />
+        <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" type="button">
           <mat-icon>{{ hideConfirm ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
       </mat-form-field>
+
 
       <button mat-raised-button color="primary" class="register-button">
         Create account
