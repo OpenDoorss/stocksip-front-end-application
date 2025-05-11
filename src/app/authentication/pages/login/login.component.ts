@@ -29,4 +29,13 @@ export class LoginComponent {
   goToRegister() {
     this.router.navigate(['/register']);
   }
+
+@Component({
+  selector: 'app-login',
+  imports: [],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
+})
+export class LoginComponent {
+
 }
