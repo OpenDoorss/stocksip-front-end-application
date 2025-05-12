@@ -1,9 +1,26 @@
 {
-  "profiles": [],
+  "profiles": [{
+      "id": 1,
+      "name": "Farid"
+    },
+    {
+      "id": 2,
+      "name": "Sebastian"
+    }
+  ],
   "users": [],
   "warehouses": [{
     "id": 1,
-    "name": "Pepe"
+    "name": "Warehouse 1",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSquj51zG9vvY2Lo59PDb1Z4ljcoNNMnysmAQ&s",
+    "location": "Av. Sol 123",
+    "capacity": 1000
+  },{
+    "id": 2,
+    "name": "Warehouse 2",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSquj51zG9vvY2Lo59PDb1Z4ljcoNNMnysmAQ&s",
+    "location": "Av. Micaela Bastidas 123",
+    "capacity": 500
   }],
   "products": []
 }
