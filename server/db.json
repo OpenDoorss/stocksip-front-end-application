@@ -8,19 +8,30 @@
       "name": "Sebastian"
     }
   ],
-  "users": [],
   "warehouses": [{
     "id": 1,
     "name": "Warehouse 1",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSquj51zG9vvY2Lo59PDb1Z4ljcoNNMnysmAQ&s",
+    "image": "",
     "location": "Av. Sol 123",
-    "capacity": 1000
-  },{
+    "capacity": 1000,
+    "userId": 1
+  },
+  {
     "id": 2,
     "name": "Warehouse 2",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSquj51zG9vvY2Lo59PDb1Z4ljcoNNMnysmAQ&s",
+    "image": "",
     "location": "Av. Micaela Bastidas 123",
-    "capacity": 500
-  }],
+    "capacity": 500,
+    "userId": 2
+  },
+  {
+    "id": 3,
+    "name": "Warehouse 3",
+    "image": "",
+    "location": "Av. Sol 456",
+    "capacity": 1900,
+    "userId": 1
+  }
+  ],
   "products": []
 }
