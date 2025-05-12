@@ -7,9 +7,10 @@ export class WarehouseAssembler {
     return {
       id: resource.id,
       name: resource.name,
-      image: resource.image,
+      imageUrl: resource.imageUrl,
       location: resource.location,
-      capacity: resource.capacity
+      capacity: resource.capacity,
+      profileId: resource.profileId
     }
   }
 

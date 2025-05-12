@@ -8,13 +8,14 @@
       "name": "Sebastian"
     }
   ],
-  "warehouses": [{
+  "warehouses": [
+  {
     "id": 1,
     "name": "Warehouse 1",
     "image": "",
     "location": "Av. Sol 123",
     "capacity": 1000,
-    "userId": 1
+    "profileId": 1
   },
   {
     "id": 2,
@@ -22,7 +23,7 @@
     "image": "",
     "location": "Av. Micaela Bastidas 123",
     "capacity": 500,
-    "userId": 2
+    "profileId": 2
   },
   {
     "id": 3,
@@ -30,7 +31,7 @@
     "image": "",
     "location": "Av. Sol 456",
     "capacity": 1900,
-    "userId": 1
+    "profileId": 1
   }
   ],
   "products": []

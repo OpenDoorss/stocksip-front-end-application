@@ -1,7 +1,8 @@
 export interface WarehouseResource {
   id: number;
   name: string;
-  image: string;
+  imageUrl: string;
   location: string;
   capacity: number;
+  profileId: number;
 }
