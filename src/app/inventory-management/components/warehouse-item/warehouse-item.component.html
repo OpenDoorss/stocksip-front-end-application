@@ -1,0 +1,16 @@
+<mat-card class="card-size" appearance="outlined">
+  <mat-card-header>
+    {{warehouse.name}}
+  </mat-card-header>
+  <mat-card-header>
+    <img [src]="warehouse.imageUrl">
+  </mat-card-header>
+  <mat-card-content>
+    <p>Location: {{warehouse.location}}</p>
+    <p>Capacity: {{warehouse.capacity}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Create</button>
+    <button mat-button>Show</button>
+  </mat-card-actions>
+</mat-card>
