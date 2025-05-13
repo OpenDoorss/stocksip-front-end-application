@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-
+import {RecoverPasswordComponent} from './authentication/pages/password-recover/password-recover.component';
+import { ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
+import { ProfileEditComponent } from './profile-management/pages/profile-edit/profile-edit.component';
 @Component({
   selector: 'app-root',
-  standalone: true,
+  template: '<app-profile-edit></app-profile-edit>',
   imports: [
-    RouterOutlet
+    RecoverPasswordComponent
+    , ConfirmationCodeComponent,
+    ProfileEditComponent
   ],
-  template: `<router-outlet></router-outlet>`,
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {}
