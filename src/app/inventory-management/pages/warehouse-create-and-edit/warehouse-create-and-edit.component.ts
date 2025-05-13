@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-warehouse-create-and-edit',
@@ -39,5 +40,7 @@ export class WarehouseCreateAndEditComponent {
     postalCode: this.postalCodeFormControl,
     capacity: this.capacityFormControl,
   });
+
+  constructor(private router: Router) {}
 
 }
