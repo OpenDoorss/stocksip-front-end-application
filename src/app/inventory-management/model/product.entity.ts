@@ -21,6 +21,7 @@ export class Product {
   unitPrice: Money | null;
   content: number; // Amount of milliliters of the product.
   expirationDate: DateTime;
+  imageUrl: string;
   productType: string;
   currentStock: number;
   minimumStock: number; // Minimum of stock that this product can have before sending an alert.
@@ -36,6 +37,7 @@ export class Product {
     unitPrice?: Money,
     content?: number,
     expirationDate?: DateTime,
+    imageUrl?: string,
     productType?: string,
     currentStock?: number,
     minimumStock?: number,
@@ -71,6 +73,7 @@ export class Product {
     this.unitPrice = product.unitPrice || null;
     this.content = product.content || 0;
     this.expirationDate = product.expirationDate || new DateTime();
+    this.imageUrl = product.imageUrl || '';
     this.productType = product.productType || '';
     this.currentStock = product.currentStock || 0;
     this.minimumStock = product.minimumStock || 5;
