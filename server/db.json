@@ -1,5 +1,13 @@
 {
-  "profiles": [],
+  "profiles": [
+    {
+      "id": 1,
+      "name": "Usuario",
+      "email": "usuario@email.com",
+      "businessName": "Mi Empresa",
+      "phone": "123456789"
+    }
+  ],
   "users": [],
   "warehouses": [{
     "id": 1,
