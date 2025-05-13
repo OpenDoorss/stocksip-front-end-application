@@ -1,7 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {MatCard, MatCardActions, MatCardContent, MatCardHeader} from '@angular/material/card';
+import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardModule} from '@angular/material/card';
 import {Warehouse} from '../../model/warehouse.entity';
-import {MatButton} from '@angular/material/button';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-warehouse-item',
@@ -10,7 +11,9 @@ import {MatButton} from '@angular/material/button';
     MatCardHeader,
     MatCardContent,
     MatCardActions,
-    MatButton
+    MatButtonModule,
+    MatCardModule,
+    MatIcon,
   ],
   templateUrl: './warehouse-item.component.html',
   styleUrl: './warehouse-item.component.css'
