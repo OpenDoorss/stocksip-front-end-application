@@ -30,9 +30,33 @@
     "name": "Warehouse 3",
     "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
     "location": "Av. Sol 456",
-    "capacity": 1900,
+    "capacity": 1000,
     "profileId": 1
-  }
+  },
+    {
+      "id": 4,
+      "name": "Warehouse 4",
+      "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "location": "Av. Sol 456",
+      "capacity": 1900,
+      "profileId": 1
+    },
+    {
+      "id": 5,
+      "name": "Warehouse 5",
+      "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "location": "Av. Sol 456",
+      "capacity": 1900,
+      "profileId": 1
+    },
+    {
+      "id": 6,
+      "name": "Warehouse 6",
+      "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "location": "Av. Sol 456",
+      "capacity": 1900,
+      "profileId": 1
+    }
   ],
   "products": []
 }
