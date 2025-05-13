@@ -25,6 +25,7 @@
 
 .action-button {
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
   flex: 1;
   min-width: 120px;
   max-width: 200px;
