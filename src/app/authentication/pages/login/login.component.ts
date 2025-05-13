@@ -29,4 +29,7 @@ export class LoginComponent {
   goToRegister() {
     this.router.navigate(['/register']);
   }
+  goToConfirmation() {
+    this.router.navigate(['/confirmation-code']);
+  }
 }
