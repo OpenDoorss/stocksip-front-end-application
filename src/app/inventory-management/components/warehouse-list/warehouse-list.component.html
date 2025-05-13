@@ -1,3 +1,7 @@
-@for (warehouse of warehouses; track warehouse) {
-  <app-warehouse-item [warehouse]="warehouse"/>
-}
+<mat-grid-list cols="5" rowHeight="2:2.5">
+  @for (warehouse of warehouses; track warehouse) {
+    <mat-grid-tile>
+      <app-warehouse-item [warehouse]="warehouse"/>
+    </mat-grid-tile>
+  }
+</mat-grid-list>
