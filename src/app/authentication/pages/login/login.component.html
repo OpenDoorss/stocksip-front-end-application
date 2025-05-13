@@ -1,0 +1,61 @@
+<div class="auth-container">
+  <!-- Login Section -->
+  <div class="login-section">
+    <h2>Sign In</h2>
+    <form>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="tucorreo@example.com" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="remember-me">
+        <mat-checkbox>
+          <a> Remember me</a>
+        </mat-checkbox>
+      </div>
+
+      <button mat-raised-button color="primary" class="sign-in-button" (click)="goToConfirmation()">
+        Sign In
+      </button>
+
+      <div class="forgot-password">
+        <a href="#">Forgot your password?</a>
+      </div>
+
+      <div class="divider">or</div>
+
+      <div class="social-login">
+        <button mat-icon-button><img src="../../../../assets/google-icon.png" alt="Google" width="48" height="48" /></button>
+        <button mat-icon-button><mat-icon>key</mat-icon></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Register Section -->
+  <div class="register-section">
+    <h2>Hello, user</h2>
+    <p>Create your personal account to access all the features of the platform</p>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Account type</mat-label>
+      <mat-select>
+        <mat-option value="store-owner">Liquor store owner</mat-option>
+        <mat-option value="supplier">Supplier</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="register-button" (click)="goToRegister()">Register</button>
+
+    <div class="security-logos">
+      <img src="../../../../assets/ssl-icon.svg" alt="SSL" />
+      <img src="../../../../assets/recaptcha.svg" alt="reCAPTCHA" />
+    </div>
+  </div>
+</div>
+
