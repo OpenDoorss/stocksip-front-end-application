@@ -12,7 +12,7 @@
   {
     "id": 1,
     "name": "Warehouse 1",
-    "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157277/stocksipImages/iuj3ac91phua3kcrittk.jpg",
     "location": "Av. Sol 123",
     "capacity": 1000,
     "profileId": 1
@@ -28,7 +28,7 @@
   {
     "id": 3,
     "name": "Warehouse 3",
-    "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+    "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157361/stocksipImages/ggm2wesomwwm29icu5og.jpg",
     "location": "Av. Sol 456",
     "capacity": 1000,
     "profileId": 1
@@ -36,7 +36,7 @@
     {
       "id": 4,
       "name": "Warehouse 4",
-      "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157759/stocksipImages/z1h378mlpzlyjdug7vxx.jpg",
       "location": "Av. Sol 456",
       "capacity": 1900,
       "profileId": 1
@@ -44,7 +44,7 @@
     {
       "id": 5,
       "name": "Warehouse 5",
-      "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157430/stocksipImages/lw8vne0hty8w2s1fyevp.jpg",
       "location": "Av. Sol 456",
       "capacity": 1900,
       "profileId": 1
@@ -52,7 +52,7 @@
     {
       "id": 6,
       "name": "Warehouse 6",
-      "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157543/stocksipImages/ptpzzssype89xe5ryguh.jpg",
       "location": "Av. Sol 456",
       "capacity": 1900,
       "profileId": 1
