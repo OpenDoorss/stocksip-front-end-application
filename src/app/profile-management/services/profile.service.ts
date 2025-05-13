@@ -8,10 +8,11 @@ import { Profile } from '../models/profile.entity';
 export class ProfileService {
   constructor() {}
 
-  createProfile(profile: Profile): Observable<Profile> {
+  editProfile(profile: Profile): Observable<Profile> {
     console.log('Perfil enviado al backend:', profile);
 
     return of(profile);
   }
+
 }
 
