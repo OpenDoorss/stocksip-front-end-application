@@ -15,3 +15,4 @@ export class ProductService extends BaseService<Product> {
     this.resourceEndpoint = productsResourceEndpointPath;
   }
 }
+
