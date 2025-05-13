@@ -12,7 +12,7 @@
   {
     "id": 1,
     "name": "Warehouse 1",
-    "image": "",
+    "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
     "location": "Av. Sol 123",
     "capacity": 1000,
     "profileId": 1
@@ -20,7 +20,7 @@
   {
     "id": 2,
     "name": "Warehouse 2",
-    "image": "",
+    "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
     "location": "Av. Micaela Bastidas 123",
     "capacity": 500,
     "profileId": 2
@@ -28,7 +28,7 @@
   {
     "id": 3,
     "name": "Warehouse 3",
-    "image": "",
+    "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
     "location": "Av. Sol 456",
     "capacity": 1900,
     "profileId": 1
