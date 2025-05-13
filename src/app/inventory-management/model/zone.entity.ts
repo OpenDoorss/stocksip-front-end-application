@@ -1,7 +1,7 @@
 import {v4 as uuid } from 'uuid';
 
 /**
- * Represents a Zone in the system. A Zone is like an inventory that is assigned to different locations in the liquor store.
+ * Represents a Zone in the system. A Zone is like an inventory assigned to different locations in the liquor store.
  */
 export class Zone {
   id: string;

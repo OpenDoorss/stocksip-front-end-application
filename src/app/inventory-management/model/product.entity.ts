@@ -1,6 +1,7 @@
 import {v4 as uuid } from 'uuid';
 import {Money} from '../../shared/model/money';
 import {DateTime} from '../../shared/model/date-time';
+import {Currency} from '../../shared/model/currency';
 
 /**
  * Represents the State of the Product.
@@ -12,6 +13,9 @@ export type ProductState = "IN-INVENTORY" | "BOUGHT" | "DONATED" | "LOST" | "CON
  */
 const ProductTypes: string[] = ["RUM", "WHISKY", "GIN", "VODKA", "TEQUILA", "COGNAC", "BRANDY", "CREAMY", "HERBAL", "FRUIT", "SPECIAL"]
 
+const penCurrencyCode = "PEN" as const;
+const penCurrency = new Currency(penCurrencyCode);
+
 /**
  * Represents a Product in the system.
  */
@@ -19,13 +23,13 @@ export class Product {
   id: string;
   name: string;
   unitPrice: Money | null;
-  content: number; // Amount of milliliters of the product.
+  content: number; // Number of milliliters of the product.
   expirationDate: DateTime;
   imageUrl: string;
   productType: string;
   currentStock: number;
   minimumStock: number; // Minimum of stock that this product can have before sending an alert.
-  state: ProductState; // State of product, it can change in future for the product movement
+  state: ProductState; // State of the product, it can change in the future for the product movement
   providerId: string;
 
   /**
@@ -34,7 +38,7 @@ export class Product {
    */
   constructor(product: {
     name?: string,
-    unitPrice?: Money,
+    unitPriceAmount?: number,
     content?: number,
     expirationDate?: DateTime,
     imageUrl?: string,
@@ -68,9 +72,13 @@ export class Product {
       throw new Error("Product current stock must be non-negative or not null.");
     }
 
+    if (product.unitPriceAmount != null) {
+      let unitPrice = new Money(product.unitPriceAmount, penCurrency);
+    }
+
     this.id = uuid();
     this.name = product.name || '';
-    this.unitPrice = product.unitPrice || null;
+    //this.unitPrice = ;
     this.content = product.content || 0;
     this.expirationDate = product.expirationDate || new DateTime();
     this.imageUrl = product.imageUrl || '';
@@ -87,7 +95,7 @@ export class Product {
    * Method to update the basic info of the Product
    * @param name {string} - Name of the product
    * @param unitPrice {Money} - Unit price of the product
-   * @param content {number} - The amount of milliliters of content of the product.
+   * @param content {number} - The number of milliliters of content of the product.
    */
   public updateInfo(name: string, unitPrice: Money, content: number): void {
     if (!(name.trim() === '')) {
@@ -130,10 +138,18 @@ export class Product {
   }
 
   public alterCurrentStock(stock: number): void {
-    if (stock && stock > 0 && stock >= this.currentStock) {
-      this.currentStock = this.minimumStock - stock;
+    if (stock && stock !== 0) {
+      if (stock <= this.currentStock) {
+        if (stock > 0) {
+          this.currentStock = this.currentStock + stock;
+        } else if (stock < 0) {
+          this.currentStock = this.currentStock - stock;
+        }
+      } else {
+        throw new Error("Product stock is less than the amount to update.");
+      }
     } else {
-      throw new Error("Invalid stock number.");
+      throw new Error("Stock to update must be negative or positive.");
     }
   }
 

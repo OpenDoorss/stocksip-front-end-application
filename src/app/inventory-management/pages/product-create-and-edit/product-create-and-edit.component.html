@@ -1,1 +1,12 @@
-<p>product-create-and-edit works!</p>
+<h2> {{ editMode ? 'Edit Product' : 'New Product' }} </h2>
+
+<div class="form-section">
+  <form #productForm="ngForm" (submit)="onSubmit()" class="form-row">
+    <mat-form-field id="name-form-field">
+      <input [(ngModel)]="product.name" matInput name="name" placeholder="Product Name" required>
+    </mat-form-field>
+    <mat-form-field id="unit-price-form-field">
+      <input [(ngModel)]="product.unitPrice" matInput name="unitPrice" placeholder="Unit Price" required>
+    </mat-form-field>
+  </form>
+</div>

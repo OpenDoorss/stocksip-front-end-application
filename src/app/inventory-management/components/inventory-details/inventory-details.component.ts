@@ -14,6 +14,9 @@ import {
 import {NgClass} from '@angular/common';
 import {MatIcon} from '@angular/material/icon';
 import {ProductService} from '../../services/product.service';
+import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
+import {ProductCreateAndEditComponent} from '../../pages/product-create-and-edit/product-create-and-edit.component';
+import {Inventory} from '../../model/inventory.entity';
 
 @Component({
   selector: 'app-inventory-details',
@@ -33,12 +36,16 @@ import {ProductService} from '../../services/product.service';
     MatHeaderRow,
     MatRow,
     MatSortHeader,
-    MatIcon
+    MatIcon,
+    ToolbarContentComponent,
+    ProductCreateAndEditComponent
   ],
   templateUrl: './inventory-details.component.html',
   styleUrl: './inventory-details.component.css'
 })
 export class InventoryDetailsComponent {
+
+  pageTitle: string = 'Inventory';
 
   protected productData!: Product;
 
@@ -58,7 +65,77 @@ export class InventoryDetailsComponent {
 
   constructor() {
     this.editMode = false;
-    this.productData = new Product({});
 
+    this.productData = new Product({});
+    this.dataSource = new MatTableDataSource();
+    console.log(this.productData);
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  ngOnInit(): void {
+    this.getAllProducts();
+  }
+
+  protected onEdition(item: Product) {
+    this.editMode = true;
+    this.productData = item;
+  }
+
+  protected onDeleteItem(item: Product) {
+    this.deleteProduct(item.id);
+  }
+
+  protected onCancelRequested() {
+    this.resetEditState();
+    this.getAllProducts();
+  }
+
+  protected onProductAddRequested(item: Product) {
+    this.productData = item;
+    this.createProduct();
+    this.resetEditState();
+  }
+
+  protected onProductUpdateRequested(item: Product) {
+    this.productData = item;
+    this.updateProduct();
+    this.resetEditState();
+  }
+
+  private resetEditState(): void {
+    this.productData = new Product({});
+    this.editMode = false;
+  }
+
+  private getAllProducts(): void {
+    this.productService.getAll().subscribe((response: Array<Product>) => {
+      this.dataSource.data = response;
+    })
+  }
+
+  private createProduct(): void {
+    this.productService.create(this.productData).subscribe((response: Product) => {
+      this.dataSource.data.push(response);
+      this.dataSource.data = this.dataSource.data;
+    })
+  }
+
+  private updateProduct(): void {
+    let productToUpdate = this.productData;
+    this.productService.update(productToUpdate.id, productToUpdate).subscribe((response: Product) => {
+      let index = this.dataSource.data.findIndex((product: Product) => product.id === response.id);
+      this.dataSource.data[index] = response;
+      this.dataSource.data = this.dataSource.data;
+    })
+  }
+
+  private deleteProduct(id: string): void {
+    this.productService.delete(id).subscribe(() => {
+      this.dataSource.data = this.dataSource.data.filter((product: Product) => product.id !== id);
+    })
   }
 }

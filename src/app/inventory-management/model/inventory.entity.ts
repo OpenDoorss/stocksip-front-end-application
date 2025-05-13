@@ -62,8 +62,7 @@ export class Inventory {
     minimumStock: number,
     providerId: string): void {
 
-    const unitPrice = new Money(unitPriceAmount, penCurrency);
-    const product: Product = new Product({name, unitPrice, content, expirationDate, productType, currentStock, minimumStock, providerId});
+    const product: Product = new Product({name, unitPriceAmount, content, expirationDate, productType, currentStock, minimumStock, providerId});
     this.products.push(product);
     this.totalQuantity++;
   }
@@ -83,12 +82,16 @@ export class Inventory {
   }
 
   //
-  public deleteProduct(productId: string): void {
-    if (productId) {
+  public updateProductStock(productId: string, amount: number): void {
+    if (productId && amount) {
       for (let i = 0; i < this.products.length; i++) {
         if (this.products[i].id == productId) {
-          this.products.splice(i, 1);
-          this.totalQuantity--;
+          if (this.products[i].currentStock >= amount) {
+            this.products[i].alterCurrentStock(amount);
+            this.totalQuantity -= amount;
+          } else {
+            throw new Error("Product stock is less than the amount to delete.");
+          }
         } else {
           throw new Error("Product not found.");
         }
