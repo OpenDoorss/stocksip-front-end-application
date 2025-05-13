@@ -3,13 +3,16 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProfileService } from '../../services/profile.service';
 import { Profile } from '../../models/profile.entity';
-import { MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { MapDialogComponent } from '../map-dialog/map-dialog.component';
+
 function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const newPassword = control.get('newPassword')?.value;
@@ -24,6 +27,7 @@ function passwordMatchValidator(): ValidatorFn {
   selector: 'app-profile-edit',
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.css'],
+  standalone: true,
   imports: [
     MatIconModule,
     MatInputModule,
@@ -31,12 +35,13 @@ function passwordMatchValidator(): ValidatorFn {
     MatFormFieldModule,
     MatCardModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MapDialogComponent,
   ],
 })
 export class ProfileEditComponent {
-  form: FormGroup;
 
+  form: FormGroup;
   hideActual = true;
   hideNew = true;
   hideConfirm = true;
@@ -44,13 +49,16 @@ export class ProfileEditComponent {
   constructor(
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private dialog: MatDialog
+
   ) {
     this.form = this.fb.group(
       {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         businessName: ['', Validators.required],
+        businessAddress: ['', Validators.required], // <-- agregado
         phone: ['', Validators.required],
         currentPassword: [''],
         newPassword: [''],
@@ -61,11 +69,18 @@ export class ProfileEditComponent {
   }
 
   save(): void {
+
+    if (this.form.hasError('passwordMismatch')) {
+      this.snackBar.open('Las contraseñas no coinciden', 'Cerrar', {
+        duration: 3000
+      });
+      return;
+    }
+
     if (this.form.valid) {
       const profile: Profile = this.form.value;
-
-      this.profileService.createProfile(profile).subscribe(() => {
-        this.snackBar.open('Profile saved successfully', 'Close', {
+      this.profileService.editProfile(profile).subscribe(() => {
+        this.snackBar.open('Perfil guardado correctamente', 'Cerrar', {
           duration: 3000
         });
         this.form.reset();
@@ -78,5 +93,12 @@ export class ProfileEditComponent {
   cancel(): void {
     this.form.reset();
   }
-}
 
+  openMap(): void {
+    const address = this.form.get('businessAddress')?.value || '';
+    this.dialog.open(MapDialogComponent, {
+      data: address,
+      width: '600px'
+    });
+  }
+}
