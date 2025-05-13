@@ -1,5 +1,4 @@
 import {v4 as uuid } from 'uuid';
-import {Money} from '../../shared/model/money';
 import {DateTime} from '../../shared/model/date-time';
 
 const Types: string[] = ["Purchase", "Donation", "Loss", "Internal-Consumption"]
