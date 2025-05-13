@@ -6,7 +6,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-warehouse-create-and-edit',
@@ -40,7 +39,5 @@ export class WarehouseCreateAndEditComponent {
     postalCode: this.postalCodeFormControl,
     capacity: this.capacityFormControl,
   });
-
-  constructor(private router: Router) {}
 
 }
