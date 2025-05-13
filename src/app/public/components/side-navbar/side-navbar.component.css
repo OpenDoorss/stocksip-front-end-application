@@ -1,0 +1,27 @@
+.sidenav-container {
+  height: 100%;
+  color: #273238;
+}
+
+.sidenav {
+  width: 64px;
+  background-color: #273238;
+  border-radius: 0;
+
+}
+
+mat-icon {
+  font-size: 25px;
+  transition: color 0.3s ease;
+}
+
+mat-nav-list a:hover mat-icon {
+  color: #880E4F;
+}
+
+mat-nav-list a {
+  padding: 40px 1vw;
+}
+
+
+
