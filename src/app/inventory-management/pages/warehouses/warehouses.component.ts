@@ -3,11 +3,13 @@ import {WarehouseListComponent} from '../../components/warehouse-list/warehouse-
 import {Warehouse} from '../../model/warehouse.entity';
 import {ActivatedRoute} from '@angular/router';
 import {WarehouseService} from '../../services/warehouse.service';
+import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
 
 @Component({
   selector: 'app-warehouses',
   imports: [
-    WarehouseListComponent
+    WarehouseListComponent,
+    ToolbarContentComponent,
   ],
   templateUrl: './warehouses.component.html',
   styleUrl: './warehouses.component.css'
@@ -15,8 +17,10 @@ import {WarehouseService} from '../../services/warehouse.service';
 export class WarehousesComponent implements OnInit {
   profileId: number = 0;
   warehouses: Warehouse[] = [];
+  pageTitle: string = 'Warehouses';
 
   constructor(private route: ActivatedRoute, private warehouseService: WarehouseService) {}
+
   ngOnInit(): void {
 
     const idParam = this.route.snapshot.paramMap.get('profileId');
