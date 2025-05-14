@@ -1,5 +1,5 @@
 <mat-grid-list cols="4" rowHeight="3:3" gutterSize="10px">
-  @for (warehouse of warehouses; track warehouse.id) {
+  @for (warehouse of warehouses; track warehouse.warehouseId) {
     <mat-grid-tile>
       <app-warehouse-item [warehouse]="warehouse"/>
     </mat-grid-tile>
