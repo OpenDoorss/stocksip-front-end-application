@@ -27,4 +27,8 @@ export class WarehouseItemComponent {
   navigateToCreate(): void {
     void this.router.navigate(['/warehouse', this.warehouse.profileId, 'edit', this.warehouse.warehouseId]);
   }
+
+  navigateToZones(): void {
+    void this.router.navigate(['/warehouse', this.warehouse.profileId, 'zones', this.warehouse.warehouseId]);
+  }
 }

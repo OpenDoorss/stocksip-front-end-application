@@ -18,7 +18,7 @@ export const routes: Routes = [
       { path: 'warehouse/:profileId',                         loadComponent: WarehouseComponent,              data: { title: 'Warehouses' } },
       { path: 'warehouse/:profileId/create',                  loadComponent: CreateAndEditWarehouseComponent, data: { title: 'Create Warehouse' } },
       { path: 'warehouse/:profileId/edit/:warehouseId',       loadComponent: CreateAndEditWarehouseComponent, data: {title: 'Edit Warehouse'} },
-      { path: 'warehouse/:profileId/show/:warehouseId/zones', loadComponent: ZoneComponent,                   data: { title: 'Zones' } },
+      { path: 'warehouse/:profileId/zones/:warehouseId',     loadComponent: ZoneComponent,                   data: { title: 'Zones' } },
     ]
   }
 ];
