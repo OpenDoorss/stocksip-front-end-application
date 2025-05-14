@@ -25,6 +25,6 @@ export class WarehouseItemComponent {
   constructor(private router: Router) {}
 
   navigateToCreate(): void {
-    void this.router.navigate(['/warehouse', this.warehouse.profileId, 'edit', this.warehouse.id]);
+    void this.router.navigate(['/warehouse', this.warehouse.profileId, 'edit', this.warehouse.warehouseId]);
   }
 }
