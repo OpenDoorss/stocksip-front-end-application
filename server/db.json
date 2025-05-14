@@ -76,5 +76,22 @@
       "profileId": 1
     }
   ],
+  "zones": [
+    {
+      "id": 1,
+      "warehouseId": 1,
+      "name": "Principal warehouse"
+    },
+    {
+      "id": 2,
+      "warehouseId": 1,
+      "name": "Cold zone"
+    },
+    {
+      "id": 3,
+      "warehouseId": 2,
+      "name": "Exhibition zone"
+    }
+  ],
   "products": []
 }
