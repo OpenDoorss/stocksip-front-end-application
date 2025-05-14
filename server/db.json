@@ -78,20 +78,55 @@
   ],
   "zones": [
     {
-      "id": 1,
+      "zoneId": 1,
       "warehouseId": 1,
-      "name": "Principal warehouse"
+      "name": "Principal warehouse",
+      "type": "Wines",
+      "description": "Recommended temperature: 16 - 20 °C..."
     },
     {
-      "id": 2,
+      "zoneId": 2,
       "warehouseId": 1,
-      "name": "Cold zone"
+      "name": "Cold zone",
+      "type": "Wines",
+      "description": "Recommended temperature: 1 - 15 °C..."
     },
     {
-      "id": 3,
+      "zoneId": 3,
       "warehouseId": 2,
-      "name": "Exhibition zone"
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C..."
     }
   ],
-  "products": []
+  "products": [
+    {
+      "name": "Vino Tinto Malbec",
+      "type": "Destilado",
+      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "imageUrl": "",
+      "id": "7ca4"
+    },
+    {
+      "name": "Vino Blanco",
+      "type": "Destilado",
+      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "imageUrl": "",
+      "id": "c52b"
+    },
+    {
+      "name": "Ron Cartavio",
+      "type": "Ron",
+      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "imageUrl": "",
+      "id": "aa97"
+    },
+    {
+      "name": "Absolut Vodka",
+      "type": "Vodka",
+      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "imageUrl": "",
+      "id": "1f2e"
+    }
+  ]
 }
