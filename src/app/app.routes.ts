@@ -5,6 +5,7 @@ import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.c
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
 const CreateAndEditWarehouseComponent  = () => import('./inventory-management/pages/warehouse-create-and-edit/warehouse-create-and-edit.component').then(m => m.WarehouseCreateAndEditComponent);
+const ZoneComponent  = () => import('./inventory-management/pages/zones/zones.component').then(m => m.ZonesComponent);
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,9 +15,10 @@ export const routes: Routes = [
     path: '',
     component: SideNavbarComponent,
     children: [
-      { path: 'warehouse/:profileId', loadComponent: WarehouseComponent, data: { title: 'Warehouses' } },
-      { path: 'warehouse/:profileId/create', loadComponent: CreateAndEditWarehouseComponent, data: { title: 'Create Warehouse' } },
-      { path: 'warehouse/:profileId/edit/:warehouseId', loadComponent: CreateAndEditWarehouseComponent, data: {title: 'Edit Warehouse'} },
+      { path: 'warehouse/:profileId',                         loadComponent: WarehouseComponent,              data: { title: 'Warehouses' } },
+      { path: 'warehouse/:profileId/create',                  loadComponent: CreateAndEditWarehouseComponent, data: { title: 'Create Warehouse' } },
+      { path: 'warehouse/:profileId/edit/:warehouseId',       loadComponent: CreateAndEditWarehouseComponent, data: {title: 'Edit Warehouse'} },
+      { path: 'warehouse/:profileId/show/:warehouseId/zones', loadComponent: ZoneComponent,                   data: { title: 'Zones' } },
     ]
   }
 ];
