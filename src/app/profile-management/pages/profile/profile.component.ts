@@ -8,7 +8,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {Component, OnInit} from '@angular/core';
 import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
-
+import {PlanDetailsComponent} from '../../components/plan-details/plan-details.component';
+import {PlanBenefitsComponent} from '../../components/plan-benefits/plan-benefits.component';
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -23,7 +24,9 @@ import {ToolbarContentComponent} from '../../../public/components/toolbar-conten
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
-    ToolbarContentComponent
+    ToolbarContentComponent,
+    PlanDetailsComponent,
+    PlanBenefitsComponent
   ]
 })
 export class ProfileComponent implements OnInit {
