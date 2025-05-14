@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SideNavbarComponent } from './side-navbar.component';
 
 describe('SideNavbarComponent', () => {
