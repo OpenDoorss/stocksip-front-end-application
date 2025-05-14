@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {Component, OnInit} from '@angular/core';
+import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,8 @@ import {Component, OnInit} from '@angular/core';
     MatListModule,
     MatIconModule,
     MatTooltipModule,
-    MatButtonModule
+    MatButtonModule,
+    ToolbarContentComponent
   ]
 })
 export class ProfileComponent implements OnInit {

@@ -3,7 +3,9 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 20px;
+  background-color: #F4EDE3;
+  min-height: 100vh;
+  padding-bottom: 40px;
 }
 
 .profile-left {
