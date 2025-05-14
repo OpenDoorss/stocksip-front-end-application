@@ -32,4 +32,11 @@ export class WarehouseService {
       })
     );
   }
+
+  createWarehouse(warehouse: Warehouse): Observable<Warehouse> {
+    return this.http.post<Warehouse>(
+      `${this.apiUrl}${this.warehousesEndpoint}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
+      map(resource => WarehouseAssembler.toEntityFromResource(resource))
+    )
+  }
 }
