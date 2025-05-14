@@ -16,6 +16,7 @@ import { ReportService } from '../../services/report.service';
 import { Report } from '../../model/report.entity';
 import { ReportItemComponent } from '../report-item/report-item.component';
 import { formatDate } from '@angular/common';
+import { ReportCreateAndEditComponent } from "../../pages/report-create-and-edit/report-create-and-edit.component";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -41,8 +42,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    ReportItemComponent
-  ],
+    ReportItemComponent,
+    ReportCreateAndEditComponent
+],
   providers: [provideNativeDateAdapter()],
 })
 export class ReportListComponent implements OnInit {
@@ -52,8 +54,8 @@ export class ReportListComponent implements OnInit {
   searchTextTotal = '';
   Control = new FormControl('', [Validators.required, Validators.email]);
   matcher = new MyErrorStateMatcher();
-
   reports: Report[] = [];
+  
 
   constructor(private router: Router, private reportService: ReportService) {}
 
@@ -112,6 +114,7 @@ export class ReportListComponent implements OnInit {
   onCancel(url: string): void {
     this.router.navigate([url]);
   }
+
   private addTableHeaders(doc: jsPDF, y: number): void {
     doc.setFontSize(11);
     const headers = [
@@ -131,49 +134,5 @@ export class ReportListComponent implements OnInit {
     doc.text(report.price.toString(), 100, y);
     doc.text(report.amount.toString(), 135, y);
     doc.text(report.lost.toString(), 170, y);
-  }
-
-  onGenerateReport(): void {
-    const doc = new jsPDF();
-    doc.setFont('helvetica');
-
-    doc.setFontSize(16);
-    doc.text('REPORTE DE PRODUCTOS', 105, 20, { align: 'center' });
-    doc.line(20, 25, 190, 25);
-
-    doc.setFontSize(12);
-    doc.text(`Fecha del reporte: ${this.formatDate(new Date())}`, 20, 35);
-    doc.text('LISTA DE REPORTES:', 20, 50);
-
-    //table of reports, is a prototype
-    this.addTableHeaders(doc, 60);
-    let yPos = 73;
-    doc.setFontSize(10);
-
-    this.reports.forEach(report => {
-      if (yPos > 250) {
-        doc.addPage();
-        this.addTableHeaders(doc, 20);
-        yPos = 33;
-      }
-      this.addReportRow(doc, report, yPos);
-      yPos += 10;
-    });
-
-    const totales = this.reports.reduce((acc, report) => ({
-      productos: acc.productos + report.amount,
-      perdida: acc.perdida + report.lost
-    }), { productos: 0, perdida: 0 });
-
-    yPos += 5;
-    doc.line(20, yPos, 190, yPos);
-    yPos += 10;
-    doc.setFontSize(12);
-    doc.text(`Total de Productos: ${totales.productos}`, 20, yPos);
-    doc.text(`Pérdida Total: S/. ${totales.perdida}`, 120, yPos);
-
-    doc.setFontSize(10);
-    doc.text('Generado por StockSip', 105, 280, { align: 'center' });
-    doc.save(`reporte-productos-${this.formatDate(new Date())}.pdf`);
   }
 }
