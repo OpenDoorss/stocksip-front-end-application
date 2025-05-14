@@ -5,5 +5,34 @@
     "id": 1,
     "name": "Pepe"
   }],
-  "products": []
+  "products": [
+    {
+      "name": "Vino Tinto Malbec",
+      "type": "Destilado",
+      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "imageUrl": "",
+      "id": "7ca4"
+    },
+    {
+      "name": "Vino Blanco",
+      "type": "Destilado",
+      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "imageUrl": "",
+      "id": "c52b"
+    },
+    {
+      "name": "Ron Cartavio",
+      "type": "Ron",
+      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "imageUrl": "",
+      "id": "aa97"
+    },
+    {
+      "name": "Absolut Vodka",
+      "type": "Vodka",
+      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "imageUrl": "",
+      "id": "1f2e"
+    }
+  ]
 }
