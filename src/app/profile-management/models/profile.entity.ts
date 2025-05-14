@@ -1,10 +1,10 @@
-export class Profile {
-  constructor(
-    public id: string | null = null,
-    public name: string = '',
-    public email: string = '',
-    public businessName: string = '',
-    public phone: string = '',
-    public password: string | null = null
-  ) {}
+export interface Profile {
+  id: number;
+  name: string;
+  email: string;
+  businessName: string;
+  phone: string;
+  currentPassword?: string;
+  newPassword?: string;
+  confirmPassword?: string;
 }

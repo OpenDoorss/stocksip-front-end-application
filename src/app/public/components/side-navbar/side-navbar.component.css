@@ -1,0 +1,49 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  background-color: #273238;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  width: 64px;
+  border-radius: 0;
+}
+
+.sidenav.expanded {
+  width: 200px;
+}
+
+  mat-nav-list a {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding: 40px 1vw;
+    color: #fff;
+  }
+
+  mat-nav-list a mat-icon {
+    font-size: 25px;
+    margin-right: 16px;
+    transition: color 0.3s ease;
+  }
+
+  mat-nav-list a:hover mat-icon {
+    color: #880E4F;
+  }
+
+.toggle-btn {
+  margin: 16px 0 0 8px;
+  color: white;
+}
+
+.toggle-btn:hover mat-icon {
+  color: #880E4F;
+}
+
+.toggle-btn mat-icon {
+  font-size: 25px;
+  transition: color 0.3s ease;
+}
+
+
