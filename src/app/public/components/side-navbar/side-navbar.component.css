@@ -7,7 +7,6 @@
   width: 64px;
   background-color: #273238;
   border-radius: 0;
-
 }
 
 mat-icon {
@@ -21,6 +20,23 @@ mat-nav-list a:hover mat-icon {
 
 mat-nav-list a {
   padding: 40px 1vw;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-title {
+  padding-left: 2rem;
+  color: #6F0082;
+  font-family: popins;
+  font-weight: Bold;
+  font-size: 50px
+}
+
+.background {
+  background-color: #F4EDE3;
+  padding: 1rem;
 }
 
 
