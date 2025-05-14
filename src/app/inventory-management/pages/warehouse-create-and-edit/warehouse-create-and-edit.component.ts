@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
@@ -76,6 +76,13 @@ export class WarehouseCreateAndEditComponent implements OnInit {
         },
         error: (err) => console.error('Error loading warehouse', err)
       });
+    }
+  }
+
+  onCancel(): void {
+    const profileId = this.route.snapshot.paramMap.get('profileId');
+    if (profileId) {
+      void this.router.navigate(['/warehouse', profileId])
     }
   }
 

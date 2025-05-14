@@ -67,12 +67,12 @@
       </div>
 
       <div class="form-actions">
-        <button mat-stroked-button type="button">
+        <button mat-stroked-button type="button" (click)="onCancel()">
           Cancel
         </button>
-        <button mat-flat-button color="primary" type="submit">
+        <button mat-flat-button color="primary" type="submit" [disabled]="warehouseForm.invalid">
           <mat-icon>save</mat-icon>
-          Save
+          {{ isEditMode ? 'Update' : 'Save' }}
         </button>
       </div>
     </form>
