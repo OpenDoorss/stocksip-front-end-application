@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './plan-benefits.component.html',
   styleUrls: ['./plan-benefits.component.css']
 })
+
 export class PlanBenefitsComponent {}
+
