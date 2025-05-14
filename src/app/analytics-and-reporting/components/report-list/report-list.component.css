@@ -68,20 +68,6 @@
     color: #666;
 }
 
-.generate-report {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-}
-.generate-report button.mat-flat-button {
-    background-color: #8D1454;
-    color: #fff;
-    border-radius: 24px;
-    padding: 12px 24px;
-    font-weight: 600;
-    text-transform: none;
-}
-
 .enter-information-product,
 .enter-information-products {
     margin: 20px 40px;
