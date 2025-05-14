@@ -1,19 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {WarehouseListComponent} from '../../components/warehouse-list/warehouse-list.component';
 import {Warehouse} from '../../model/warehouse.entity';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WarehouseService} from '../../services/warehouse.service';
-import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
 import {MatFabButton} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {ToolbarTitleService} from '../../../public/services/toolbar-title.service';
 
 @Component({
   selector: 'app-warehouses',
   imports: [
     WarehouseListComponent,
-    ToolbarContentComponent,
     MatIconModule,
-    MatFabButton
+    MatFabButton,
   ],
   templateUrl: './warehouses.component.html',
   styleUrl: './warehouses.component.css'
@@ -21,12 +20,10 @@ import {MatIconModule} from '@angular/material/icon';
 export class WarehousesComponent implements OnInit {
   profileId: number = 0;
   warehouses: Warehouse[] = [];
-  pageTitle: string = 'Warehouses';
 
   constructor(private route: ActivatedRoute, private warehouseService: WarehouseService, private router: Router) {}
 
   ngOnInit(): void {
-
     const idParam = this.route.snapshot.paramMap.get('profileId');
     this.profileId = idParam ? parseInt(idParam, 10) : 0;
     this.loadWarehouses();
