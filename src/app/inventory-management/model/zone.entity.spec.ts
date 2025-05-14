@@ -1,7 +1,7 @@
-import { ZoneEntity } from './zone.entity';
+import { Zone } from './zone.entity';
 
 describe('ZoneEntity', () => {
   it('should create an instance', () => {
-    expect(new ZoneEntity()).toBeTruthy();
+    expect(new Zone()).toBeTruthy();
   });
 });

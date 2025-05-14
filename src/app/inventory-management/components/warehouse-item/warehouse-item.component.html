@@ -10,7 +10,7 @@
     <p>Capacity: {{warehouse.capacity}} m³</p>
   </mat-card-content>
   <mat-card-actions class="action-buttons">
-    <button mat-flat-button class="action-button"> <mat-icon>edit</mat-icon> Edit</button>
+    <button mat-flat-button class="action-button" (click)="navigateToCreate()"> <mat-icon>edit</mat-icon> Edit</button>
     <button mat-flat-button class="action-button">Show</button>
   </mat-card-actions>
 </mat-card>

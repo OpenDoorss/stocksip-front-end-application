@@ -20,4 +20,23 @@ export class WarehouseService {
       map(resources => WarehouseAssembler.toEntitiesFromResources(resources))
     );
   }
+
+  getWarehouseById(warehouseId: string): Observable<Warehouse> {
+    return this.getWarehouses().pipe(
+      map(warehouses => warehouses.find(w => w.warehouseId === +warehouseId)),
+      map(warehouse => {
+        if (!warehouse) {
+          throw new Error('Warehouse not found');
+        }
+        return warehouse;
+      })
+    );
+  }
+
+  createWarehouse(warehouse: Warehouse): Observable<Warehouse> {
+    return this.http.post<Warehouse>(
+      `${this.apiUrl}${this.warehousesEndpoint}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
+      map(resource => WarehouseAssembler.toEntityFromResource(resource))
+    )
+  }
 }

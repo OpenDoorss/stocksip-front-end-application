@@ -10,9 +10,9 @@
         <mat-icon>list</mat-icon>
         <span *ngIf="isExpanded">Dashboard</span>
       </a>
-      <a mat-list-item routerLink="/prueba" matTooltip="Inventory">
+      <a mat-list-item routerLink="/warehouses" matTooltip="Warehouse">
         <mat-icon>inventory</mat-icon>
-        <span *ngIf="isExpanded">Inventory</span>
+        <span *ngIf="isExpanded">warehouses</span>
       </a>
       <a mat-list-item routerLink="/alerts" matTooltip="Alerts">
         <mat-icon>warning</mat-icon>
@@ -41,9 +41,20 @@
     </mat-nav-list>
 
   </mat-sidenav>
-  <mat-sidenav-content>
+
+  <mat-sidenav-content class="background">
+
+    <mat-toolbar class="background">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title"> {{ pageTitle$ | async }}</span>
+      <span class="spacer"></span>
+      <span> Profile </span>
+    </mat-toolbar>
+
     <div class="content">
-      <ng-content></ng-content>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
