@@ -1,10 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" [opened]="true" class="sidenav" [class.expanded]="isExpanded">
-
-    <button mat-icon-button class="toggle-btn" (click)="toggleSidebar()" matTooltip="Expandir/Contraer">
-      <mat-icon>menu</mat-icon>
-    </button>
-
+  <mat-sidenav mode="push" [opened]="isExpanded" class="sidenav" [class.expanded]="isExpanded">
     <mat-nav-list>
       <a mat-list-item routerLink="/" matTooltip="Dashboard">
         <mat-icon>list</mat-icon>
@@ -39,7 +34,6 @@
         <span *ngIf="isExpanded">Profile</span>
       </a>
     </mat-nav-list>
-
   </mat-sidenav>
 
   <mat-sidenav-content class="background">

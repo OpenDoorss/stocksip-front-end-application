@@ -36,7 +36,6 @@ function passwordMatchValidator(): ValidatorFn {
     MatCardModule,
     ReactiveFormsModule,
     CommonModule,
-    MapDialogComponent,
   ],
 })
 export class ProfileEditComponent {

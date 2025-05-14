@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatButton} from '@angular/material/button';
 import {MatFormField, MatInput} from '@angular/material/input';
 
 @Component({
@@ -10,7 +9,6 @@ import {MatFormField, MatInput} from '@angular/material/input';
     ReactiveFormsModule,
     MatFormField,
     MatFormField,
-    MatButton,
     MatInput,
     MatFormField
   ],
