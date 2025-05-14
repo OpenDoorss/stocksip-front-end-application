@@ -9,7 +9,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
-import { LanguageSwitcherComponent } from '../../../public/components/language-switcher/language-switcher.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Report } from '../../model/report.entity';
 import { ReportService } from '../../services/report.service';
@@ -49,7 +48,7 @@ export class ReportCreateAndEditComponent implements OnInit {
   private addTableHeaders(doc: jsPDF, y: number): void {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
-    
+
     const headers = [
       { text: 'Producto', x: 20, width: 40 },
       { text: 'Tipo', x: 65, width: 30 },
@@ -57,7 +56,7 @@ export class ReportCreateAndEditComponent implements OnInit {
       { text: 'Cantidad', x: 135, width: 30 },
       { text: 'Pérdida (S/.)', x: 170, width: 30 }
     ];
-    
+
     headers.forEach(h => doc.text(h.text, h.x, y));
     doc.line(20, y + 3, 190, y + 3);
     doc.setFont('helvetica', 'normal');
@@ -65,7 +64,7 @@ export class ReportCreateAndEditComponent implements OnInit {
 
   private addReportRow(doc: jsPDF, report: Report, y: number): void {
     if (!report) return;
-    
+
     doc.text(report.products?.substring(0, 20) || '-', 20, y);
     doc.text(report.type?.substring(0, 15) || '-', 65, y);
     doc.text(report.price?.toFixed(2).toString() || '0.00', 100, y);
