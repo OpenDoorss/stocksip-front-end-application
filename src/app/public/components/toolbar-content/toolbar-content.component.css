@@ -5,7 +5,8 @@
 .toolbar-title {
   padding-left: 2rem;
   color: #6F0082;
-  font-family: popins;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 1rem;
   font-weight: Bold;
   font-size: 50px
 }
