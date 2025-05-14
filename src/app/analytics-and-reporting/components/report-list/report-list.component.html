@@ -22,9 +22,7 @@
             <p>{{ 'info.form' | translate }}</p>
             <p>{{ 'info.regist' | translate }}</p>
         </div>
-        <div class="generate-report">
-            <button mat-flat-button (click)="onGenerateReport()">{{ 'button.report' | translate }}</button>
-        </div>
+        <app-report-create-and-edit></app-report-create-and-edit>
     </div>
     <div class="enter-information-product">
         <mat-form-field appearance="outline" class="search-bar">
