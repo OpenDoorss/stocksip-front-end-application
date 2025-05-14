@@ -1,4 +1,4 @@
-import {Component, HostListener, Input} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {MatSidenav, MatSidenavContainer} from '@angular/material/sidenav';
 import {MatListItem, MatNavList} from '@angular/material/list';
 import {MatIcon} from '@angular/material/icon';

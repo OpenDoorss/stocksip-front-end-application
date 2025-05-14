@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WarehouseService} from '../../services/warehouse.service';
 import {MatFabButton} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {ToolbarTitleService} from '../../../public/services/toolbar-title.service';
 
 @Component({
   selector: 'app-warehouses',
