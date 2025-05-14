@@ -10,7 +10,6 @@ import {Component, OnInit} from '@angular/core';
 import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
 import {PlanDetailsComponent} from '../../components/plan-details/plan-details.component';
 import {PlanBenefitsComponent} from '../../components/plan-benefits/plan-benefits.component';
-
 @Component({
   selector: 'app-profile',
   standalone: true,
