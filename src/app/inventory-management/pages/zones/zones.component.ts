@@ -177,12 +177,5 @@ export class ZonesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // Método para simular búsqueda
-  searchProduct(query: string) {
-    // Aquí implementarías la lógica real de búsqueda
-    console.log('Buscando:', query);
-    // this.selectedProduct = resultadoDeBusqueda;
-  }
-
   //#endregion
 }
