@@ -1,0 +1,134 @@
+body {
+    background-color: #F4EDE3;
+    color: #3c3c3c;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.page-container {
+    padding: 40px 20px;
+    margin-left: 50rem;
+    margin-top: 15rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #650078;
+}
+
+.search-user {
+    display: inline-flex;
+    align-items: center;
+}
+
+.search-user mat-form-field {
+    width: 250px;
+    background-color: #fff;
+    border-radius: 12px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    gap: 10px;
+    margin: 10px 20px;
+    border-radius: 25px;
+}
+
+.search-bar mat-form-field {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 12px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+}
+
+.search-filter {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.search-filter h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.table-container {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 100%;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+thead th {
+    text-align: left;
+    padding: 20px 50px 20px 50px;
+    background-color: #fafafa;
+    font-weight: 600;
+    color: #555;
+    margin-right: 100px;
+}
+
+tbody tr {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.tabla{
+    margin-left: 50px;
+}
+
+tbody td {
+    padding: 12px 20px;
+    vertical-align: middle;
+}
+
+tbody td img {
+    width: 40px;
+    height: auto;
+    display: block;
+}
+
+button.mat-flat-button {
+    background-color: #650078;
+    color: #fff;
+    border-radius: 24px;
+    padding: 0 20px;
+    font-weight: 500;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.save-cancel-button {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 40px;
+}

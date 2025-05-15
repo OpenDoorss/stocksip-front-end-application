@@ -47,4 +47,28 @@ export abstract class BaseService<T> {
     return this.http.get<T>(`${this.resourcePath()}/${id}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  getAllReport(): Observable<T[]> {
+    const url = `${this.serverBaseUrl}${this.resourceEndpoint}`;
+    return this.http.get<T[]>(url, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error:', error);
+          return throwError(() => new Error('Something bad happened; please try again later.'));
+        })
+      );
+  }
+
+  createReport(data: T): Observable<T> {
+    const url = `${this.serverBaseUrl}${this.resourceEndpoint}`;
+    return this.http.post<T>(url, data, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error:', error);
+          return throwError(() => new Error('Something bad happened; please try again later.'));
+        })
+      );
+  }
 }

@@ -6,6 +6,11 @@ import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.c
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
 const CreateAndEditWarehouseComponent  = () => import('./inventory-management/pages/warehouse-create-and-edit/warehouse-create-and-edit.component').then(m => m.WarehouseCreateAndEditComponent);
+const ReportListComponent = () => import('./analytics-and-reporting/components/report-list/report-list.component').then(m=>m.ReportListComponent)
+const CareGuideListComponent = () => import('./analytics-and-reporting/components/care-guide-list/care-guide-list.component').then(m=>m.CareGuideListComponent)
+const CareGuideCreateComponent = () => import('./analytics-and-reporting/pages/care-guide-create-and-edit/care-guide-create/care-guide-create.component').then(m=>m.CareGuideCreateComponent)
+const CareGuideEditComponent = () => import('./analytics-and-reporting/pages/care-guide-create-and-edit/care-guide-edit/care-guide-edit.component').then(m=>m.CareGuideEditComponent)
+const PageNotFoundComponent = () => import('./public/pages/page-not-found/page-not-found.component').then(m=>m.PageNotFoundComponent)
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,6 +25,12 @@ export const routes: Routes = [
       { path: 'warehouse/:profileId', loadComponent: WarehouseComponent, data: { title: 'Warehouses' } },
       { path: 'warehouse/:profileId/create', loadComponent: CreateAndEditWarehouseComponent, data: { title: 'Create Warehouse' } },
       { path: 'warehouse/:profileId/edit/:warehouseId', loadComponent: CreateAndEditWarehouseComponent, data: {title: 'Edit Warehouse'} },
+      {path: '', redirectTo: 'report-list',pathMatch: 'full'},
+      {path: 'report-list', loadComponent: ReportListComponent, data: { title: `${baseTitle} | Report List`}},
+      {path: 'care-guide-list', loadComponent: CareGuideListComponent, data: { title: `${baseTitle} | Care Guide List`}},
+      {path: 'care-guide-create',loadComponent: CareGuideCreateComponent, data: { title: `${baseTitle} | Care Guide Create`}},
+      {path: 'care-guide-edit',loadComponent: CareGuideEditComponent, data: { title: `${baseTitle} | Care Guide Edit`}},
+      {path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}}
     ]
   },
 ];
