@@ -12,6 +12,8 @@ const CareGuideCreateComponent = () => import('./analytics-and-reporting/pages/c
 const CareGuideEditComponent = () => import('./analytics-and-reporting/pages/care-guide-create-and-edit/care-guide-edit/care-guide-edit.component').then(m=>m.CareGuideEditComponent)
 const PageNotFoundComponent = () => import('./public/pages/page-not-found/page-not-found.component').then(m=>m.PageNotFoundComponent)
 
+const baseTitle = 'StockSip'
+
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -25,12 +27,12 @@ export const routes: Routes = [
       { path: 'warehouse/:profileId', loadComponent: WarehouseComponent, data: { title: 'Warehouses' } },
       { path: 'warehouse/:profileId/create', loadComponent: CreateAndEditWarehouseComponent, data: { title: 'Create Warehouse' } },
       { path: 'warehouse/:profileId/edit/:warehouseId', loadComponent: CreateAndEditWarehouseComponent, data: {title: 'Edit Warehouse'} },
-      {path: '', redirectTo: 'report-list',pathMatch: 'full'},
-      {path: 'report-list', loadComponent: ReportListComponent, data: { title: `${baseTitle} | Report List`}},
-      {path: 'care-guide-list', loadComponent: CareGuideListComponent, data: { title: `${baseTitle} | Care Guide List`}},
-      {path: 'care-guide-create',loadComponent: CareGuideCreateComponent, data: { title: `${baseTitle} | Care Guide Create`}},
-      {path: 'care-guide-edit',loadComponent: CareGuideEditComponent, data: { title: `${baseTitle} | Care Guide Edit`}},
-      {path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}}
+      { path: 'report-list', loadComponent: ReportListComponent, data: { title: 'Report list' } },
+      { path: 'care-guide-list', loadComponent: CareGuideListComponent, data: { title: 'Care Guide List'}},
+      { path: 'care-guide-create',loadComponent: CareGuideCreateComponent, data: { title: 'Care Guide Create'}},
+      { path: 'care-guide-edit',loadComponent: CareGuideEditComponent, data: { title: 'Care Guide Edit'}},
     ]
   },
+
+  { path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}},
 ];
