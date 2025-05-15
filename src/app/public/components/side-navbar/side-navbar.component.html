@@ -5,7 +5,7 @@
         <mat-icon>list</mat-icon>
         <span *ngIf="isExpanded">Dashboard</span>
       </a>
-      <a mat-list-item routerLink="/warehouses" matTooltip="Warehouse">
+      <a mat-list-item routerLink="/warehouse" matTooltip="Warehouse">
         <mat-icon>inventory</mat-icon>
         <span *ngIf="isExpanded">warehouses</span>
       </a>
@@ -13,7 +13,7 @@
         <mat-icon>warning</mat-icon>
         <span *ngIf="isExpanded">Alerts</span>
       </a>
-      <a mat-list-item routerLink="/" matTooltip="Reports">
+      <a mat-list-item routerLink="/report-list" matTooltip="Reports">
         <mat-icon>receipt</mat-icon>
         <span *ngIf="isExpanded">Reports</span>
       </a>
@@ -25,14 +25,16 @@
         <mat-icon>warehouse</mat-icon>
         <span *ngIf="isExpanded">Storage</span>
       </a>
-      <a mat-list-item routerLink="/" matTooltip="Settings">
-        <mat-icon>settings</mat-icon>
-        <span *ngIf="isExpanded">Settings</span>
-      </a>
-      <a mat-list-item routerLink="/" matTooltip="Profile">
-        <mat-icon>person</mat-icon>
-        <span *ngIf="isExpanded">Profile</span>
-      </a>
+      <div class="nav-bottom">
+        <a mat-list-item routerLink="/" matTooltip="Settings">
+          <mat-icon>settings</mat-icon>
+          <span *ngIf="isExpanded">Settings</span>
+        </a>
+        <a mat-list-item routerLink="/" matTooltip="Profile">
+          <mat-icon>person</mat-icon>
+          <span *ngIf="isExpanded">Profile</span>
+        </a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
 
