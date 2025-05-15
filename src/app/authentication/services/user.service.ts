@@ -45,13 +45,4 @@ export class UserService {
     }
     return this.currentUser;
   }
-
-  logout() {
-    this.currentUser = null;
-    localStorage.removeItem('currentUser');
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.getCurrentUser();
-  }
 }
