@@ -6,6 +6,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {ReactiveFormsModule, FormBuilder, Validators, FormGroup} from '@angular/forms';
+import {UserService} from '../../services/user.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -18,18 +21,43 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ReactiveFormsModule
   ]
 })
 export class LoginComponent {
   hide = true;
+  loginForm: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private fb: FormBuilder, private userService: UserService, private snackBar: MatSnackBar) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      rememberMe: [false]
+    });
+  }
 
   goToRegister() {
-    this.router.navigate(['/register']);
+    void this.router.navigate(['/register']);
   }
+
   goToConfirmation() {
-    this.router.navigate(['/confirmation-code']);
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      console.log('Logging in with:', email, password);
+
+      this.userService.login(email, password).subscribe(success => {
+        console.log('Login response:', success);
+        if (success) {
+          this.router.navigate(['warehouse']);
+        } else {
+          this.snackBar.open('Invalid email or password', 'Close', {
+            duration: 3000,
+          });
+        }
+      });
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
   }
 }
