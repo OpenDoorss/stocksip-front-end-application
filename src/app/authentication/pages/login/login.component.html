@@ -22,12 +22,12 @@
         </mat-checkbox>
       </div>
 
-      <button mat-raised-button color="primary" class="sign-in-button" (click)="goToConfirmation()">
+      <button mat-raised-button color="primary" class="sign-in-button">
         Sign In
       </button>
 
       <div class="forgot-password">
-        <a href="#">Forgot your password?</a>
+        <a (click)="goToPassword()">Forgot your password?</a>
       </div>
 
       <div class="divider">or</div>
