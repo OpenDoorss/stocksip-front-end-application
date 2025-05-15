@@ -13,3 +13,4 @@ export class ToolbarContentComponent {
 
   @Input() pageTitle: string = '';
 }
+

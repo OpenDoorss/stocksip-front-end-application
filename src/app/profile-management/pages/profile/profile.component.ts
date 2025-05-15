@@ -39,6 +39,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {}
 
+
   uploadNewPhoto(): void {
     console.log('Subir nueva foto');
   }
