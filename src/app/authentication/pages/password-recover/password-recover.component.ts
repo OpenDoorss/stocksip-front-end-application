@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatFormField, MatInput} from '@angular/material/input';
 
@@ -17,7 +18,7 @@ import {MatFormField, MatInput} from '@angular/material/input';
 export class RecoverPasswordComponent {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
@@ -25,9 +26,15 @@ export class RecoverPasswordComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      const email = this.form.value.email;
-      // Aquí iría la lógica para enviar el correo de recuperación
-      console.log('Sending password recovery email to:', email);
+      this.goToConfirmation();
+    } else {
+      console.log('Form is invalid');
     }
+  }
+
+  goToConfirmation() {
+    const email = this.form.value.email;
+    console.log('Sending password recovery email to:', email);
+    this.router.navigate(['/confirmation-code']);
   }
 }
