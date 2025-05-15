@@ -10,6 +10,7 @@ import {MatIconButton} from '@angular/material/button';
 import {Observable} from 'rxjs';
 import {ToolbarTitleService} from '../../services/toolbar-title.service';
 import {MatToolbar} from '@angular/material/toolbar';
+import {LanguageSwitcherComponent} from '../language-switcher/language-switcher.component';
 
 
 @Component({
@@ -23,7 +24,8 @@ import {MatToolbar} from '@angular/material/toolbar';
     MatIconModule,
     MatTooltipModule,
     MatIconButton,
-    MatToolbar
+    MatToolbar,
+    LanguageSwitcherComponent
   ],
   templateUrl: './side-navbar.component.html',
   styleUrls: ['./side-navbar.component.css']
