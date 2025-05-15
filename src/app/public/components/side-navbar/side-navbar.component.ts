@@ -12,7 +12,6 @@ import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-side-navbar',
-  standalone: true,
   imports: [
     MatSidenavContainer,
     MatSidenav,
@@ -28,7 +27,7 @@ import {Observable} from 'rxjs';
     AsyncPipe,
   ],
   templateUrl: './side-navbar.component.html',
-  styleUrls: ['./side-navbar.component.css']
+  styleUrl: './side-navbar.component.css'
 })
 
 /**

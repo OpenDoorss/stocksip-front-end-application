@@ -55,7 +55,7 @@ export class ReportListComponent implements OnInit {
   Control = new FormControl('', [Validators.required, Validators.email]);
   matcher = new MyErrorStateMatcher();
   reports: Report[] = [];
-  
+
 
   constructor(private router: Router, private reportService: ReportService) {}
 
@@ -75,11 +75,10 @@ export class ReportListComponent implements OnInit {
     });
   }
 
-
-
   navigate(url: string): void {
     this.router.navigate([url]);
   }
+
   onSave(): void {
     const reportData: Report = {
       id: Date.now(),
