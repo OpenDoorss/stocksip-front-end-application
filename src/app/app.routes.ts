@@ -15,6 +15,7 @@ const CareGuideEditComponent = () => import('./analytics-and-reporting/pages/car
 const PageNotFoundComponent = () => import('./public/pages/page-not-found/page-not-found.component').then(m=>m.PageNotFoundComponent)
 
 const baseTitle = 'StockSip'
+const ZoneComponent  = () => import('./inventory-management/pages/zones/zones.component').then(m => m.ZonesComponent);
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -28,9 +29,10 @@ export const routes: Routes = [
     path: '',
     component: SideNavbarComponent,
     children: [
-      { path: 'warehouse/:profileId', loadComponent: WarehouseComponent, data: { title: 'Warehouses' } },
-      { path: 'warehouse/:profileId/create', loadComponent: CreateAndEditWarehouseComponent, data: { title: 'Create Warehouse' } },
-      { path: 'warehouse/:profileId/edit/:warehouseId', loadComponent: CreateAndEditWarehouseComponent, data: {title: 'Edit Warehouse'} },
+      { path: 'warehouse',                         loadComponent: WarehouseComponent,              data: { title: 'Warehouses' } },
+      { path: 'warehouse/create',                  loadComponent: CreateAndEditWarehouseComponent, data: { title: 'Create Warehouse' } },
+      { path: 'warehouse/edit/:warehouseId',       loadComponent: CreateAndEditWarehouseComponent, data: {title: 'Edit Warehouse'} },
+      { path: 'warehouse/zones/:warehouseId',     loadComponent: ZoneComponent,                   data: { title: 'Zones' } },
       { path: 'report-list', loadComponent: ReportListComponent, data: { title: 'Report list' } },
       { path: 'care-guide-list', loadComponent: CareGuideListComponent, data: { title: 'Care Guide List'}},
       { path: 'care-guide-create',loadComponent: CareGuideCreateComponent, data: { title: 'Care Guide Create'}},

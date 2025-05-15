@@ -4,4 +4,6 @@ export const environment = {
   warehousesEndpointPath: '/warehouses',
   productsEndpointPath: '/products',
   reportsEndpointPath: '/reports',
+  zonesEndpointPath: '/zones',
+  userEndpointPath: '/users',
 };

@@ -3,5 +3,7 @@ export const environment = {
   apiUrl: 'http://localhost:3000/api/v1',
   warehousesEndpointPath: '/warehouses',
   productsEndpointPath: '/products',
-  reportsEndpointPath: '/reports'
+  reportsEndpointPath: '/reports',
+  zonesEndpointPath: '/zones',
+  userEndpointPath: '/users',
 };

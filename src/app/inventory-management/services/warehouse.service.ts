@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Warehouse} from '../model/warehouse.entity';
-import {map, Observable} from 'rxjs';
+import {catchError, map, Observable, tap} from 'rxjs';
 import {WarehouseAssembler} from './warehouse.assembler';
 import {WarehouseResource} from './warehouse.response';
 
@@ -38,5 +38,16 @@ export class WarehouseService {
       `${this.apiUrl}${this.warehousesEndpoint}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
       map(resource => WarehouseAssembler.toEntityFromResource(resource))
     )
+  }
+
+  getWarehousesByProfile(profileId: number): Observable<any[]> {
+    console.log('Requesting warehouses for profileId:', profileId);
+    return this.http.get<any[]>(`${this.apiUrl}/warehouses?profileId=${profileId}`).pipe(
+      tap(data => console.log('Received warehouses from API:', data)),
+      catchError(error => {
+        console.error('Error fetching warehouses from API:', error);
+        throw error;
+      })
+    );
   }
 }
