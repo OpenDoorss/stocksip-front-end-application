@@ -34,7 +34,6 @@ export class ConfirmationCodeComponent {
     this.code[index] = value;
     input.value = value;
 
-    // Enfocar siguiente input
     if (index < 5) {
       input.nextElementSibling?.focus();
     }
