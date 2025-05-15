@@ -8,6 +8,7 @@ const WarehouseComponent  = () => import('./inventory-management/pages/warehouse
 const CreateAndEditWarehouseComponent  = () => import('./inventory-management/pages/warehouse-create-and-edit/warehouse-create-and-edit.component').then(m => m.WarehouseCreateAndEditComponent);
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
@@ -21,6 +22,4 @@ export const routes: Routes = [
       { path: 'warehouse/:profileId/edit/:warehouseId', loadComponent: CreateAndEditWarehouseComponent, data: {title: 'Edit Warehouse'} },
     ]
   },
-
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
