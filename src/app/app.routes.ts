@@ -3,6 +3,8 @@ import {LoginComponent} from './authentication/pages/login/login.component';
 import {RegisterComponent} from './authentication/pages/register/register.component';
 import {ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
 import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.component';
+import {ProfileComponent} from './profile-management/pages/profile/profile.component';
+import {RecoverPasswordComponent} from './authentication/pages/password-recover/password-recover.component';
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
 const CreateAndEditWarehouseComponent  = () => import('./inventory-management/pages/warehouse-create-and-edit/warehouse-create-and-edit.component').then(m => m.WarehouseCreateAndEditComponent);
@@ -18,7 +20,9 @@ export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'password-recover', component: RecoverPasswordComponent},
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
+  { path: 'profile', component: ProfileComponent },
 
   {
     path: '',
