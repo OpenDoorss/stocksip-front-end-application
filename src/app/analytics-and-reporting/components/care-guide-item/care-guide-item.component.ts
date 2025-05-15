@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {CareGuide} from '../../model/care-guide.entity';
-import { CareGuideService } from '../../services/care-guide.service'; 
+import { CareGuideService } from '../../services/care-guide.service';
 
 @Component({
   selector: 'app-care-guide-item',
@@ -21,7 +21,7 @@ export class CareGuideItemComponent implements OnInit {
   }
 
   private loadGuides(): void {
-    this.careGuideService.getAll().subscribe({
+    this.careGuideService.getAllReport().subscribe({
       next: (data: CareGuide[]) => {
         this.guides = data;
         console.log('Guides loaded:', this.guides);

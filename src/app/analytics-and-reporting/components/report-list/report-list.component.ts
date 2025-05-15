@@ -64,7 +64,7 @@ export class ReportListComponent implements OnInit {
   }
 
   private loadReports(): void {
-    this.reportService.getAll().subscribe({
+    this.reportService.getAllReport().subscribe({
       next: (data) => {
         this.reports = data;
         console.log('Reports loaded:', this.reports);
@@ -90,7 +90,7 @@ export class ReportListComponent implements OnInit {
       lost: Number(this.Control.value || 0)
     };
 
-    this.reportService.create(reportData).subscribe(
+    this.reportService.createReport(reportData).subscribe(
       (response) => {
         console.log('Report saved successfully:', response);
         this.loadReports();
