@@ -1,52 +1,52 @@
 {
-    "title": {
-        "title":"Guías de conservación",
-        "newtitle":"Nuevo guía",
-        "edit":"Editar guía",
-        "report":"Reportes"
-    },
-    "filter":"Tipo de productos",
-    "newguides": "Nuevo guía",
-    "edit":"Editar guía",
-    "history":"Historial de Reportes",
-    "product":"Productos con una guía",
-    "filter-product":{
-        "top": "Más alto",
-        "bottom": "Más bajo"
-    },
-    "info":{
-        "form":"Formulario de reporte de pérdidas",
-        "regist":"Registro"
-    },
-    "table":{
-        "title":"Nombre",
-        "type":"Tipo",
-        "description":"Descripción"
-    },
-    "search":{
-        "search":"Buscar",
-        "search-text":"Ingrese el texto a buscar"
-    },
-    "enter":{
-        "Name":"Nombre",
-        "type":"Tipo",
-        "description":"Descripción",
-        "product":"Nombre del producto",
-        "prices":"Precio",
-        "total":"Cantidad",
-        "date":"Fecha",
-        "lost":"Total de costo perdido"
-    },
-    "img":{
-        "title":"Insertar imagen"
-    },
-    "button":{
-        "cancel":"Cancelar",
-        "delete":"Eliminar",
-        "save":"Guardar",
-        "internal":"Remisión Interna",
-        "loss":"Remisión por pérdidas",
-        "conservation":"Conservación",
-        "report":"Generar reporte"
-    }
+  "title": {
+    "title": "Guías de conservación",
+    "newtitle": "Nuevo guía",
+    "edit": "Editar guía",
+    "report": "Reportes"
+  },
+  "filter": "Tipo de productos",
+  "newguides": "Nuevo guía",
+  "edit": "Editar guía",
+  "history": "Historial de Reportes",
+  "product": "Productos con una guía",
+  "filter-product": {
+    "top": "Más alto",
+    "bottom": "Más bajo"
+  },
+  "info": {
+    "form": "Formulario de reporte de pérdidas",
+    "regist": "Registro"
+  },
+  "table": {
+    "title": "Nombre",
+    "type": "Tipo",
+    "description": "Descripción"
+  },
+  "search": {
+    "search": "Buscar",
+    "search-text": "Ingrese el texto a buscar"
+  },
+  "enter": {
+    "Name": "Nombre",
+    "type": "Tipo",
+    "description": "Descripción",
+    "product": "Nombre del producto",
+    "prices": "Precio",
+    "total": "Cantidad",
+    "date": "Fecha",
+    "lost": "Total de costo perdido"
+  },
+  "img": {
+    "title": "Insertar imagen"
+  },
+  "button": {
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "internal": "Remisión Interna",
+    "loss": "Remisión por pérdidas",
+    "conservation": "Conservación",
+    "report": "Generar reporte"
+  }
 }
