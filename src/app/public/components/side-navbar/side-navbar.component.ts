@@ -7,6 +7,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatIconButton} from '@angular/material/button';
+import {Observable} from 'rxjs';
+import {ToolbarTitleService} from '../../services/toolbar-title.service';
+import {MatToolbar} from '@angular/material/toolbar';
 
 
 @Component({
@@ -19,12 +22,19 @@ import {MatIconButton} from '@angular/material/button';
     MatListModule,
     MatIconModule,
     MatTooltipModule,
-    MatIconButton
+    MatIconButton,
+    MatToolbar
   ],
   templateUrl: './side-navbar.component.html',
   styleUrls: ['./side-navbar.component.css']
 })
 export class SideNavbarComponent {
+  pageTitle$: Observable<string>;
+
+  constructor(private titleService: ToolbarTitleService) {
+    this.pageTitle$ = this.titleService.currentTitle$;
+  }
+
   isExpanded = false;
   toggleSidebar(): void {
     this.isExpanded = !this.isExpanded;
