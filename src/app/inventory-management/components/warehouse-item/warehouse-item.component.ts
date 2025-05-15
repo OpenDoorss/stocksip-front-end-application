@@ -25,10 +25,10 @@ export class WarehouseItemComponent {
   constructor(private router: Router) {}
 
   navigateToCreate(): void {
-    void this.router.navigate(['/warehouse', this.warehouse.profileId, 'edit', this.warehouse.warehouseId]);
+    void this.router.navigate(['/warehouse', 'edit', this.warehouse.warehouseId]);
   }
 
   navigateToZones(): void {
-    void this.router.navigate(['/warehouse', this.warehouse.profileId, 'zones', this.warehouse.warehouseId]);
+    void this.router.navigate(['/warehouse', 'zones', this.warehouse.warehouseId]);
   }
 }

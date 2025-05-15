@@ -76,10 +76,7 @@ export class WarehouseCreateAndEditComponent {
   }
 
   onCancel(): void {
-    const profileId = this.route.snapshot.paramMap.get('profileId');
-    if (profileId) {
-      void this.router.navigate(['/warehouse', profileId])
-    }
+    void this.router.navigate(['/warehouse'])
   }
 
 }
