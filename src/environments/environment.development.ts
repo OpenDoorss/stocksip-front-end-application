@@ -5,4 +5,5 @@ export const environment = {
   productsEndpointPath: '/products',
   reportsEndpointPath: '/reports',
   zonesEndpointPath: '/zones',
+  userEndpointPath: '/users',
 };
