@@ -1,1 +1,52 @@
-<p>care-guide-list works!</p>
+<!-- the table will store the list of products with a guides -->
+<div class="page-container">
+    <div class="header">
+        <h1>{{'title.title'|translate}}</h1>
+        <div class="search-user">
+            <mat-form-field appearance="outline">
+                <mat-label>Users</mat-label>
+                <mat-select>
+                    <mat-option value="1">PerfilUsuario correo123.com</mat-option>
+                    <mat-option value="2">PerfilUsuario correo123.com</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <app-language-switcher></app-language-switcher>
+        </div>
+    </div>
+    <div class="search-bar">
+        <mat-form-field appearance="outline" class="search-bar">
+            <mat-label>{{ 'search.search' | translate }}</mat-label>
+            <input matInput placeholder="{{ 'search.search-text' | translate }}" [(ngModel)]="searchText">
+            <button mat-icon-button matSuffix aria-label="Search" (click)="onSearch()">
+            </button>
+        </mat-form-field>
+        <button mat-flat-button (click)="navigate('care-guide-create')">{{ 'newguides' | translate }}</button>
+        <button mat-flat-button (click)="navigate('care-guide-edit')">{{ 'edit' | translate }}</button>
+    </div>
+    <div class="table-container">
+        <div class="search-filter">
+            <h2>{{ 'product' | translate }}</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'filter' | translate }}</mat-label>
+                <mat-select>
+                    <mat-option value="1">{{ 'filter-product.top' | translate }}</mat-option>
+                    <mat-option value="2">{{ 'filter-product.bottom' | translate }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <table>
+            <div class="tabla">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ 'table.title' | translate }}</th>
+                        <th>{{ 'table.type' | translate }}</th>
+                        <th>{{ 'table.description' | translate }}</th>
+                    </tr>
+                </thead>
+            </div>
+            <app-care-guide-item></app-care-guide-item>
+        </table>
+    </div>
+</div>
+
