@@ -1,5 +1,6 @@
 .sidenav-container {
   height: 100%;
+  color: #000000;
 }
 
 .sidenav {
@@ -9,7 +10,6 @@
   width: 64px;
   border-radius: 0;
 }
-
 
 .sidenav.expanded {
   width: 200px;
