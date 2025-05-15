@@ -12,7 +12,14 @@
       <div class="user-info">
         <h2 class="user-name">{{ userData.name }}</h2>
         <p class="user-email">{{ userData.email }}</p>
-        <button class="upload" (click)="uploadNewPhoto()">Subir nueva foto</button>
+        <button class="upload" (click)="uploadNewPhoto()">Upload Photo</button>
+        <input
+          type="file"
+          #fileInput
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
       </div>
     </div>
     <app-profile-edit></app-profile-edit>
