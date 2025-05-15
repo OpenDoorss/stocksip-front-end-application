@@ -1,5 +1,4 @@
 import {CommonModule} from '@angular/common';
-import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {ProfileEditComponent} from '../profile-edit/profile-edit.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -17,7 +16,6 @@ import {PlanBenefitsComponent} from '../../components/plan-benefits/plan-benefit
   imports: [
     CommonModule,
     ProfileEditComponent,
-    SideNavbarComponent,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
