@@ -56,7 +56,7 @@ The API endpoints should be access at `http://localhost:3000/api/v1`. The curren
 - `http://localhost:3000/api/v1/warehouses`
 - `http://localhost:3000/api/v1/products`
 - `http://localhost:3000/api/v1/reports`
--  `http://localhost:3000/api/v1/zone`
+- `http://localhost:3000/api/v1/zones`   
 - `http://localhost:3000/api/v1/users`
 
 ## Build
