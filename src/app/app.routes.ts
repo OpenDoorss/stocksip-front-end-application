@@ -3,7 +3,6 @@ import {LoginComponent} from './authentication/pages/login/login.component';
 import {RegisterComponent} from './authentication/pages/register/register.component';
 import {ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
 import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.component';
-import {ProfileComponent} from './profile-management/pages/profile/profile.component';
 import {RecoverPasswordComponent} from './authentication/pages/password-recover/password-recover.component';
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
@@ -13,6 +12,7 @@ const CareGuideListComponent = () => import('./analytics-and-reporting/component
 const CareGuideCreateComponent = () => import('./analytics-and-reporting/pages/care-guide-create-and-edit/care-guide-create/care-guide-create.component').then(m=>m.CareGuideCreateComponent)
 const CareGuideEditComponent = () => import('./analytics-and-reporting/pages/care-guide-create-and-edit/care-guide-edit/care-guide-edit.component').then(m=>m.CareGuideEditComponent)
 const PageNotFoundComponent = () => import('./public/pages/page-not-found/page-not-found.component').then(m=>m.PageNotFoundComponent)
+const ProfileComponent = () => import('./profile-management/pages/profile/profile.component').then(m=>m.ProfileComponent)
 
 const baseTitle = 'StockSip'
 const ZoneComponent  = () => import('./inventory-management/pages/zones/zones.component').then(m => m.ZonesComponent);
@@ -23,7 +23,6 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'password-recover', component: RecoverPasswordComponent},
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
-  { path: 'profile', component: ProfileComponent },
 
   {
     path: '',
@@ -37,6 +36,7 @@ export const routes: Routes = [
       { path: 'care-guide-list', loadComponent: CareGuideListComponent, data: { title: 'Care Guide List'}},
       { path: 'care-guide-create',loadComponent: CareGuideCreateComponent, data: { title: 'Care Guide Create'}},
       { path: 'care-guide-edit',loadComponent: CareGuideEditComponent, data: { title: 'Care Guide Edit'}},
+      { path: 'profile', loadComponent: ProfileComponent, data: { title: 'Profile' } },
     ]
   },
 
