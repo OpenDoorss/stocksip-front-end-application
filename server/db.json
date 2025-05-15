@@ -1,47 +1,64 @@
 {
-  "profiles": [{
+  "users": [
+    {
       "id": 1,
-      "name": "Farid"
+      "username": "farid@example.com",
+      "password": "123456",
+      "profileId": 1
     },
     {
       "id": 2,
-      "name": "Sebastian"
+      "username": "sebastian@example.com",
+      "password": "123456",
+      "profileId": 2
+    }
+  ],
+  "profiles": [
+    {
+      "profileId": 1,
+      "name": "Farid",
+      "role": "Liquor Store Manager"
+    },
+    {
+      "profileId": 2,
+      "name": "Sebastian",
+      "role": "Supplier"
     }
   ],
   "warehouses": [
-  {
-    "warehouseId": 1,
-    "name": "Warehouse 1",
-    "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157277/stocksipImages/iuj3ac91phua3kcrittk.jpg",
-    "location": "Av. Sol 123",
-    "city": "Lima",
-    "state": "Lima",
-    "postalCode": "15001",
-    "capacity": 1000,
-    "profileId": 1
-  },
-  {
-    "warehouseId": 2,
-    "name": "Warehouse 2",
-    "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
-    "location": "Av. Micaela Bastidas 123",
-    "city": "Lima",
-    "state": "Lima",
-    "postalCode": "15001",
-    "capacity": 500,
-    "profileId": 2
-  },
-  {
-    "warehouseId": 3,
-    "name": "Warehouse 3",
-    "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157361/stocksipImages/ggm2wesomwwm29icu5og.jpg",
-    "location": "Av. Sol 456",
-    "city": "Lima",
-    "state": "Lima",
-    "postalCode": "15001",
-    "capacity": 1000,
-    "profileId": 1
-  },
+    {
+      "warehouseId": 1,
+      "name": "Warehouse 1",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157277/stocksipImages/iuj3ac91phua3kcrittk.jpg",
+      "location": "Av. Sol 123",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 1000,
+      "profileId": 1
+    },
+    {
+      "warehouseId": 2,
+      "name": "Warehouse 2",
+      "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "location": "Av. Micaela Bastidas 123",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 500,
+      "profileId": 2
+    },
+    {
+      "warehouseId": 3,
+      "name": "Warehouse 3",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157361/stocksipImages/ggm2wesomwwm29icu5og.jpg",
+      "location": "Av. Sol 456",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 1000,
+      "profileId": 1
+    },
     {
       "warehouseId": 4,
       "name": "Warehouse 4",
@@ -82,49 +99,84 @@
       "warehouseId": 1,
       "name": "Principal warehouse",
       "type": "Wines",
-      "description": "Recommended temperature: 16 - 20 °C..."
+      "description": "Recommended temperature: 16 - 20 °C"
     },
     {
       "zoneId": 2,
       "warehouseId": 1,
       "name": "Cold zone",
       "type": "Wines",
-      "description": "Recommended temperature: 1 - 15 °C..."
+      "description": "Recommended temperature: 1 - 15 °C"
     },
     {
       "zoneId": 3,
       "warehouseId": 2,
       "name": "Exhibition zone",
       "type": "Whiskeys",
-      "description": "Recommended temperature: 8 - 10 °C..."
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 4,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 5,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 6,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 7,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 8,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
     }
   ],
   "products": [
     {
       "name": "Vino Tinto Malbec",
       "type": "Destilado",
-      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "description": "Temperatura recomendada: 16 - 20 °C",
       "imageUrl": "",
       "id": "7ca4"
     },
     {
       "name": "Vino Blanco",
       "type": "Destilado",
-      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "description": "Temperatura recomendada: 16 - 20 °C",
       "imageUrl": "",
       "id": "c52b"
     },
     {
       "name": "Ron Cartavio",
       "type": "Ron",
-      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "description": "Temperatura recomendada: 16 - 20 °C",
       "imageUrl": "",
       "id": "aa97"
     },
     {
       "name": "Absolut Vodka",
       "type": "Vodka",
-      "description": "Temperatura recomendada: 16 - 20 °C...",
+      "description": "Temperatura recomendada: 16 - 20 °C",
       "imageUrl": "",
       "id": "1f2e"
     }
@@ -183,6 +235,15 @@
       "amount": 1,
       "date": "2025/05/13",
       "lost": 1231
+    },
+    {
+      "id": 1747292735392,
+      "products": "",
+      "type": "",
+      "price": 0,
+      "amount": 0,
+      "date": "2025/05/15",
+      "lost": 0
     }
   ]
 }
