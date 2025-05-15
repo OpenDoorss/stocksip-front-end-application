@@ -10,11 +10,12 @@ export class Zone {
   description: string;
 
   constructor(zone: {
-    name: string,
-    description: string
-    type: string,
+    zoneId?: string,
+    name?: string,
+    description?: string
+    type?: string,
   }) {
-    this.zoneId = uuid();
+    this.zoneId = uuid() || '';
     this.name = zone.name || '';
     this.type = zone.type || '';
     this.description = zone.description || '';
