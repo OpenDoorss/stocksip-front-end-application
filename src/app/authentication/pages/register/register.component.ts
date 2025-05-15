@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {Router} from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgOptimizedImage
   ],
   styleUrls: ['./register.component.css']
 })
