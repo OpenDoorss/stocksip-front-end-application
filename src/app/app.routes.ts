@@ -14,7 +14,7 @@ const CareGuideEditComponent = () => import('./analytics-and-reporting/pages/car
 const PageNotFoundComponent = () => import('./public/pages/page-not-found/page-not-found.component').then(m=>m.PageNotFoundComponent)
 const ProfileComponent = () => import('./profile-management/pages/profile/profile.component').then(m=>m.ProfileComponent)
 
-const AlertListComponent = () => import('./alerts-and-notifications/components/alert-list/alert-list.component').then(m=>m.AlertListComponent)
+const AlertListComponent = () => import('./alerts-and-notifications/pages/alerts-dashboard/alerts.component').then(m=>m.AlertListComponent)
 
 const baseTitle = 'StockSip'
 const ZoneComponent  = () => import('./inventory-management/pages/zones/zones.component').then(m => m.ZonesComponent);
