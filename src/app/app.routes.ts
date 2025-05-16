@@ -19,6 +19,8 @@ const AlertListComponent = () => import('./alerts-and-notifications/components/a
 const baseTitle = 'StockSip'
 const ZoneComponent  = () => import('./inventory-management/pages/zones/zones.component').then(m => m.ZonesComponent);
 
+const DashboardComponent  = () => import('./analytics-and-reporting/pages/dashboard/dashboard.component').then(m => m.DashboardComponent);
+
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -40,6 +42,7 @@ export const routes: Routes = [
       { path: 'care-guide-edit',loadComponent: CareGuideEditComponent, data: { title: 'Care Guide Edit'}},
       { path: 'profile', loadComponent: ProfileComponent, data: { title: 'Profile' } },
       { path: 'alerts', loadComponent: AlertListComponent, data: { title: 'Alerts' } },
+      { path: 'dashboard', loadComponent: DashboardComponent, data: { title: 'Dashboard' } },
     ]
   },
 
