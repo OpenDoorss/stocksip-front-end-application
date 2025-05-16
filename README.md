@@ -1,5 +1,11 @@
 # Stocksip FrontEnd Application
 
+StockSip is a specialized inventory management solution designed specifically for liquor store owners and suppliers. Key features include:
+
+-  Detailed product care guidelines (storage, handling, and preservation).
+-  Smart stock tracking for wines, spirits, and beers.
+-  Built-in purchasing system (order directly to suppliers)
+
 ## Summary
 
 This project is a front-end application for Stocksip, a 
