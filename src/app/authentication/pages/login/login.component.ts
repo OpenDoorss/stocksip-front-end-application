@@ -68,4 +68,8 @@ export class LoginComponent {
   goToPassword() {
     this.router.navigate(['/password-recover']);
   }
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 }
