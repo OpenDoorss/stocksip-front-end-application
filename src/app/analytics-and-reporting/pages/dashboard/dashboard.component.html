@@ -1,0 +1,101 @@
+<div class="summary-alerts-container">
+  <mat-card class="summary-card">
+    <div class="summary-title">Resumen General</div>
+    <div class="summary-item"><span>🛒 Ventas hoy:</span> S/. 450.00</div>
+    <div class="summary-item"><span>📄 Última factura:</span> 24/04/2025</div>
+    <div class="summary-item"><span>📦 Productos en stock:</span> 142</div>
+    <div class="summary-item"><span>⚠️ Productos bajos en stock:</span> 7</div>
+    <div class="summary-item"><span>⏳ Productos por vencer:</span> 5</div>
+  </mat-card>
+
+  <mat-card class="alerts-card">
+    <div class="summary-title">Alertas Importantes</div>
+    <div class="alert-item">
+      <div><strong>Whisky Escocés Premium</strong></div>
+      <div class="low-stock">Stock actual: 5</div>
+      <div>Stock mínimo: 10</div>
+    </div>
+    <hr>
+    <div class="alert-item">
+      <div><strong>Vino Blanco Malbec</strong></div>
+      <div class="expiry-alert">¡Vence en 8 días!</div>
+    </div>
+  </mat-card>
+</div>
+
+<mat-card class="quick-access-card">
+  <div class="summary-title">Quick Access</div>
+  <div class="quick-access-buttons">
+    <button mat-raised-button class="access-button">
+      Inventory
+    </button>
+    <button mat-raised-button class="access-button">
+      Shopping
+    </button>
+    <button mat-raised-button class="access-button">
+      Zones
+    </button>
+  </div>
+</mat-card>
+
+<div class="dashboard-container">
+  <div class="charts-container">
+    <mat-card class="chart-card">
+      <div class="card-title">Highest Turnover</div>
+      <canvas #chartHighRotation></canvas>
+    </mat-card>
+
+    <mat-card class="chart-card">
+      <div class="card-title">Lowest Turnover</div>
+      <canvas #chartLowRotation></canvas>
+    </mat-card>
+  </div>
+
+  <mat-card class="table-card">
+    <div class="table-header">
+      <div class="table-title">Expiration Risk</div>
+      <mat-form-field appearance="fill" class="filter-dropdown">
+        <mat-label>Ordenar por</mat-label>
+        <mat-select>
+          <mat-option value="high">Highest</mat-option>
+          <mat-option value="low">Lowest</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="products" class="mat-elevation-z1">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Tipo </th>
+        <td mat-cell *matCellDef="let element"> {{ element.type }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="expiration">
+        <th mat-header-cell *matHeaderCellDef> Fecha de caducidad </th>
+        <td mat-cell *matCellDef="let element"> {{ element.expiration | date }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="stock">
+        <th mat-header-cell *matHeaderCellDef> Stock actual </th>
+        <td mat-cell *matCellDef="let element"> {{ element.stock }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="minStock">
+        <th mat-header-cell *matHeaderCellDef> Stock mínimo </th>
+        <td mat-cell *matCellDef="let element"> {{ element.minStock }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let element"> ${{ element.price }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+</div>

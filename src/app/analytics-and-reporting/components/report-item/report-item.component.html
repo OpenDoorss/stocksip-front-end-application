@@ -1,0 +1,13 @@
+<div class="report-item" *ngIf="report">
+  <div class="report-header">
+    <h3>{{ report.products }}</h3>
+    <span class="report-type">{{ report.type }}</span>
+  </div>
+  <div class="report-details">
+    <p><strong>Price:</strong> {{ report.price }}</p>
+    <p><strong>Amount:</strong> {{ report.amount }}</p>
+    <p><strong>Date:</strong> {{ report.date }}</p>
+    <p><strong>Lost:</strong> {{ report.lost }}</p>
+  </div>
+</div>
+
