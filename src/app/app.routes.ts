@@ -3,7 +3,8 @@ import {LoginComponent} from './authentication/pages/login/login.component';
 import {RegisterComponent} from './authentication/pages/register/register.component';
 import {ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
 import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.component';
-import {RecoverPasswordComponent} from './authentication/pages/password-recover/password-recover.component';
+import {PasswordRecoverComponent} from './authentication/pages/password-recover/password-recover.component';
+
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
 const CreateAndEditWarehouseComponent  = () => import('./inventory-management/pages/warehouse-create-and-edit/warehouse-create-and-edit.component').then(m => m.WarehouseCreateAndEditComponent);
@@ -14,14 +15,18 @@ const CareGuideEditComponent = () => import('./analytics-and-reporting/pages/car
 const PageNotFoundComponent = () => import('./public/pages/page-not-found/page-not-found.component').then(m=>m.PageNotFoundComponent)
 const ProfileComponent = () => import('./profile-management/pages/profile/profile.component').then(m=>m.ProfileComponent)
 
+const AlertsComponent = () => import('./alerts-and-notifications/pages/alerts-dashboard/alerts.component').then(m=>m.AlertsComponent)
+
 const baseTitle = 'StockSip'
 const ZoneComponent  = () => import('./inventory-management/pages/zones/zones.component').then(m => m.ZonesComponent);
+
+const DashboardComponent  = () => import('./analytics-and-reporting/pages/dashboard/dashboard.component').then(m => m.DashboardComponent);
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'password-recover', component: RecoverPasswordComponent},
+  { path: 'password-recover', component: PasswordRecoverComponent},
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
 
   {
@@ -37,6 +42,8 @@ export const routes: Routes = [
       { path: 'care-guide-create',loadComponent: CareGuideCreateComponent, data: { title: 'Care Guide Create'}},
       { path: 'care-guide-edit',loadComponent: CareGuideEditComponent, data: { title: 'Care Guide Edit'}},
       { path: 'profile', loadComponent: ProfileComponent, data: { title: 'Profile' } },
+      { path: 'alerts', loadComponent: AlertsComponent, data: { title: 'Alerts' } },
+      { path: 'dashboard', loadComponent: DashboardComponent, data: { title: 'Dashboard' } },
     ]
   },
 

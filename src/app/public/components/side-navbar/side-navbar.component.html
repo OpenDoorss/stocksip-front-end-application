@@ -1,12 +1,12 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav mode="side" [opened]="true" class="sidenav" [class.expanded]="isExpanded">
 
-    <button mat-icon-button class="toggle-btn" (click)="toggleSidebar()" matTooltip="Expandir/Contraer">
+    <button mat-icon-button class="toggle-btn" (click)="toggleSidebar()" matTooltip="Expand/Collapse">
       <mat-icon>menu</mat-icon>
     </button>
 
     <mat-nav-list>
-      <a mat-list-item routerLink="/" matTooltip="Dashboard">
+      <a mat-list-item routerLink="/dashboard" matTooltip="Dashboard">
         <mat-icon>dashboard</mat-icon>
         <span *ngIf="isExpanded">Dashboard</span>
       </a>
@@ -22,13 +22,9 @@
         <mat-icon>receipt</mat-icon>
         <span *ngIf="isExpanded">Reports</span>
       </a>
-      <a mat-list-item routerLink="/" matTooltip="Shop">
+      <a mat-list-item routerLink="/" matTooltip="Orders">
         <mat-icon>shopping_cart</mat-icon>
-        <span *ngIf="isExpanded">Shop</span>
-      </a>
-      <a mat-list-item routerLink="/" matTooltip="Storage">
-        <mat-icon>warehouse</mat-icon>
-        <span *ngIf="isExpanded">Storage</span>
+        <span *ngIf="isExpanded">Orders</span>
       </a>
       <a mat-list-item routerLink="/" matTooltip="Settings">
         <mat-icon>settings</mat-icon>
