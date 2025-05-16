@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatFormField, MatInput} from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-password-recover',
   templateUrl: './password-recover.component.html',
   imports: [
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatFormField,
-    MatInput,
-    MatFormField
+    CommonModule
+
   ],
   styleUrls: ['./password-recover.component.css']
 })
-export class RecoverPasswordComponent {
+export class PasswordRecoverComponent {
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router) {
@@ -27,10 +29,13 @@ export class RecoverPasswordComponent {
   onSubmit() {
     if (this.form.valid) {
       this.goToConfirmation();
-    } else {
-      console.log('Form is invalid');
     }
   }
+
+  get email() {
+    return this.form.get('email');
+  }
+
 
   goToConfirmation() {
     const email = this.form.value.email;
