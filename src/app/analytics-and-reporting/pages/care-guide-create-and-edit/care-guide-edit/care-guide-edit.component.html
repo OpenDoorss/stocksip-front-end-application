@@ -9,10 +9,9 @@
                     <mat-option value="2">PerfilUsuario correo123.com</mat-option>
                 </mat-select>
             </mat-form-field>
-            <app-language-switcher></app-language-switcher>
         </div>
     </div>
-    <div class="content">
+    <div class="content-wrapper">
         <div class="main">
             <div class="enter-name">
                 <h2>{{ 'enter.Name' | translate }}</h2>
@@ -39,29 +38,30 @@
                 </mat-form-field>
             </div>
         </div>
-    </div>
-    <div class="side-block">
-        <div class="img">
-            <mat-card class="upload-card" (click)="fileInput.click()">
-                <input  
-                    #fileInput
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    (change)="onFileSelected($event)"
-                />
-                <ng-container *ngIf="previewUrl; else placeholder">
-                    <img [src]="previewUrl" class="preview-img" />
-                </ng-container>
-                <ng-template #placeholder>
-                    <p>{{ 'img.title' | translate }}</p>
-                </ng-template>
-            </mat-card>
-        </div>
-        <div class="action">
-            <button mat-flat-button (click)="onEnter('care-guide-list')">{{ 'button.save' | translate }}</button>
-            <button mat-flat-button (click)="onDelete('care-guide-list')">{{ 'button.delete' | translate }}</button>
-            <button mat-flat-button (click)="onCancel('care-guide-list')">{{ 'button.cancel' | translate }}</button>
+        <div class="side-block">
+            <div class="img">
+                <mat-card class="upload-card" (click)="fileInput.click()">
+                    <input  
+                        #fileInput
+                        type="file"
+                        accept="image/*"
+                        hidden
+                        (change)="onFileSelected($event)"
+                    />
+                    <ng-container *ngIf="previewUrl; else placeholder">
+                        <img [src]="previewUrl" class="preview-img" />
+                    </ng-container>
+                    <ng-template #placeholder>
+                        <p>{{ 'img.title' | translate }}</p>
+                    </ng-template>
+                </mat-card>
+            </div>
+            <div class="action">
+                <button mat-flat-button (click)="onCancel('care-guide-list')">{{ 'button.cancel' | translate }}</button>
+                <button mat-flat-button (click)="onDelete('care-guide-list')">{{ 'button.delete' | translate }}</button>
+                <button mat-flat-button (click)="onEnter('care-guide-list')">{{ 'button.save' | translate }}</button>
+            </div>
         </div>
     </div>
 </div>
+
