@@ -20,7 +20,8 @@
       "email": "farid@example.com",
       "businessName": "Farid Liquors",
       "businessAddress": "123 Main St",
-      "phone": "555-1234"
+      "phone": "555-1234",
+      "role": "Liquor Store Owner"
     },
     {
       "profileId": 2,
