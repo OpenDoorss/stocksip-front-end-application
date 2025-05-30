@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
-import {RecoverPasswordComponent} from './authentication/pages/password-recover/password-recover.component';
-import { ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
-import { ProfileEditComponent } from './profile-management/pages/profile-edit/profile-edit.component';
-import { ProfileComponent } from './profile-management/pages/profile/profile.component';
+import {Router, RouterOutlet} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
-  template: '<app-profile></app-profile>',
+  template: '<router-outlet></router-outlet>',
   imports: [
-    RecoverPasswordComponent
-    , ConfirmationCodeComponent,
-    ProfileEditComponent,
-    ProfileComponent
+    RouterOutlet
   ],
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {}
+
+export class AppComponent {
+  title = 'stocksip-front-end-application';
+
+  constructor(private router: Router, private translate: TranslateService){
+    translate.use('en');
+    translate.setDefaultLang('es');
+  }
+}

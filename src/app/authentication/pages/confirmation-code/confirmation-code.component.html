@@ -8,7 +8,7 @@
       <input matInput maxlength="1" *ngFor="let digit of codeArray; let i = index"
              [(ngModel)]="code[i]" (input)="autoFocusNext($event, i)" />
     </div>
-    <button mat-raised-button color="primary" class="send-button">Send</button>
+    <button mat-raised-button color="primary" class="send-button" (click)="goToLogin()">Send</button>
   </div>
 </div>
 

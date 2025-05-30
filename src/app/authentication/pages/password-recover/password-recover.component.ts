@@ -1,25 +1,26 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatButton} from '@angular/material/button';
-import {MatFormField, MatInput} from '@angular/material/input';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-password-recover',
   templateUrl: './password-recover.component.html',
   imports: [
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatFormField,
-    MatButton,
-    MatInput,
-    MatFormField
+    CommonModule
+
   ],
   styleUrls: ['./password-recover.component.css']
 })
-export class RecoverPasswordComponent {
+export class PasswordRecoverComponent {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
@@ -27,9 +28,18 @@ export class RecoverPasswordComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      const email = this.form.value.email;
-      // Aquí iría la lógica para enviar el correo de recuperación
-      console.log('Sending password recovery email to:', email);
+      this.goToConfirmation();
     }
+  }
+
+  get email() {
+    return this.form.get('email');
+  }
+
+
+  goToConfirmation() {
+    const email = this.form.value.email;
+    console.log('Sending password recovery email to:', email);
+    this.router.navigate(['/confirmation-code']);
   }
 }

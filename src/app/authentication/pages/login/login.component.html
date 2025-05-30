@@ -2,38 +2,38 @@
   <!-- Login Section -->
   <div class="login-section">
     <h2>Sign In</h2>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="goToConfirmation()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="tucorreo@example.com" />
+        <input matInput type="email" placeholder="tucorreo@example.com" formControlName="email"/>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" />
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" />
         <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
       </mat-form-field>
 
       <div class="remember-me">
-        <mat-checkbox>
+        <mat-checkbox formControlName="rememberMe">
           <a> Remember me</a>
         </mat-checkbox>
       </div>
 
-      <button mat-raised-button color="primary" class="sign-in-button" (click)="goToConfirmation()">
+      <button mat-raised-button color="primary" class="sign-in-button" type="submit" (click)="goToDashboard()">
         Sign In
       </button>
 
       <div class="forgot-password">
-        <a href="#">Forgot your password?</a>
+        <a (click)="goToPassword()">Forgot your password?</a>
       </div>
 
       <div class="divider">or</div>
 
       <div class="social-login">
-        <button mat-icon-button><img src="../../../../assets/google-icon.png" alt="Google" width="48" height="48" /></button>
+        <button mat-icon-button><img ngSrc="../public/google_icon.svg" alt="Google" width="48" height="48" /></button>
         <button mat-icon-button><mat-icon>key</mat-icon></button>
       </div>
     </form>
@@ -53,8 +53,8 @@
     <button mat-raised-button color="primary" class="register-button" (click)="goToRegister()">Register</button>
 
     <div class="security-logos">
-      <img src="../../../../assets/ssl-icon.svg" alt="SSL" />
-      <img src="../../../../assets/recaptcha.svg" alt="reCAPTCHA" />
+      <img ngSrc="../../../../assets/ssl-icon.svg" alt="SSL" width="24" height="24"/>
+      <img ngSrc="../../../../assets/recaptcha.svg" alt="reCAPTCHA" width="24" height="24"/>
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ import {catchError, Observable, retry, throwError} from 'rxjs';
 
 export abstract class BaseService<T> {
   protected httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-  protected serverBaseUrl: string = `${environment.serverBaseUrl}`;
+  protected serverBaseUrl: string = `${environment.apiUrl}`;
   protected resourceEndpoint: string = '/resources';
   protected http: HttpClient = inject(HttpClient);
 
@@ -46,5 +46,29 @@ export abstract class BaseService<T> {
   public getById(id: any): Observable<T> {
     return this.http.get<T>(`${this.resourcePath()}/${id}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getAllReport(): Observable<T[]> {
+    const url = `${this.serverBaseUrl}${this.resourceEndpoint}`;
+    return this.http.get<T[]>(url, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error:', error);
+          return throwError(() => new Error('Something bad happened; please try again later.'));
+        })
+      );
+  }
+
+  createReport(data: T): Observable<T> {
+    const url = `${this.serverBaseUrl}${this.resourceEndpoint}`;
+    return this.http.post<T>(url, data, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError((error: HttpErrorResponse) => {
+          console.error('Error:', error);
+          return throwError(() => new Error('Something bad happened; please try again later.'));
+        })
+      );
   }
 }

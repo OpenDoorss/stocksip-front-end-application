@@ -5,10 +5,13 @@ export class WarehouseAssembler {
 
   static toEntityFromResource(resource: WarehouseResource): Warehouse {
     return {
-      id: resource.id,
+      warehouseId: resource.warehouseId,
       name: resource.name,
       imageUrl: resource.imageUrl,
       location: resource.location,
+      city: resource.city,
+      state: resource.state,
+      postalCode: resource.postalCode,
       capacity: resource.capacity,
       profileId: resource.profileId
     }

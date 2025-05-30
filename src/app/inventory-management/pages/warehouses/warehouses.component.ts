@@ -1,19 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {WarehouseListComponent} from '../../components/warehouse-list/warehouse-list.component';
 import {Warehouse} from '../../model/warehouse.entity';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {WarehouseService} from '../../services/warehouse.service';
-import {ToolbarContentComponent} from '../../../public/components/toolbar-content/toolbar-content.component';
 import {MatFabButton} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {UserService} from "../../../authentication/services/user.service";
 
 @Component({
   selector: 'app-warehouses',
   imports: [
     WarehouseListComponent,
-    ToolbarContentComponent,
     MatIconModule,
-    MatFabButton
+    MatFabButton,
   ],
   templateUrl: './warehouses.component.html',
   styleUrl: './warehouses.component.css'
@@ -21,25 +20,34 @@ import {MatIconModule} from '@angular/material/icon';
 export class WarehousesComponent implements OnInit {
   profileId: number = 0;
   warehouses: Warehouse[] = [];
-  pageTitle: string = 'Warehouses';
 
-  constructor(private route: ActivatedRoute, private warehouseService: WarehouseService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private warehouseService: WarehouseService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
+    const currentUser = this.userService.getCurrentUser();
+    console.log('Current user:', currentUser);
+    this.profileId = currentUser?.profileId;
 
     const idParam = this.route.snapshot.paramMap.get('profileId');
-    this.profileId = idParam ? parseInt(idParam, 10) : 0;
+    if (idParam) {
+      this.profileId = +idParam;
+    }
+
+    console.log('Using profileId:', this.profileId);
     this.loadWarehouses();
   }
 
   loadWarehouses(): void {
-    this.warehouseService.getWarehouses().subscribe((data) => {
-      this.warehouses = data.filter(warehouse => warehouse.profileId === this.profileId);
-      console.log(data);
-    })
+
+    this.warehouseService.getWarehousesByProfile(this.profileId).subscribe(data => {
+      console.log('Warehouses data received:', data);
+      this.warehouses = data;
+    }, error => {
+      console.error('Error loading warehouses:', error);
+    });
   }
 
   navigateToCreate(): void {
-    void this.router.navigate(['/warehouse', this.profileId, 'create']);
+    void this.router.navigate(['/warehouse', 'create']);
   }
 }

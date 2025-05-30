@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -20,11 +21,12 @@ export class ConfirmationCodeComponent {
   code: string[] = ['', '', '', '', '', ''];
   codeArray = new Array(6);
 
+  constructor(private router: Router) {}
+
   autoFocusNext(event: any, index: number) {
     const input = event.target;
     let value = input.value.toUpperCase();
 
-    // Reemplaza cualquier carácter que no sea letra o número
     if (!/^[A-Z0-9]$/.test(value)) {
       input.value = '';
       this.code[index] = '';
@@ -34,10 +36,13 @@ export class ConfirmationCodeComponent {
     this.code[index] = value;
     input.value = value;
 
-    // Enfocar siguiente input
     if (index < 5) {
       input.nextElementSibling?.focus();
     }
   }
 
+  goToLogin() {
+    console.log('Code:', this.code);
+    this.router.navigate(['/login']);
+  }
 }
