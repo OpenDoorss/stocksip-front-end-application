@@ -8,6 +8,8 @@ import {MatListModule} from '@angular/material/list';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PlanDetailsComponent} from '../../components/plan-details/plan-details.component';
 import {PlanBenefitsComponent} from '../../components/plan-benefits/plan-benefits.component';
+import {ProfileService, UserProfile} from '../../services/profile.service';
+import {UserService} from '../../../authentication/services/user.service';
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -28,14 +30,38 @@ import {PlanBenefitsComponent} from '../../components/plan-benefits/plan-benefit
 export class ProfileComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  userData = {
-    name: 'Juan Pérez',
-    email: 'correo123@gmail.com'
+  userData: UserProfile = {
+    profileId: 0,
+    name: '',
+    email: '',
+    role: ''
   };
 
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor(
+    private profileService: ProfileService,
+    private userService: UserService
+    ) {}
+
+  ngOnInit(): void {
+    const currentUser = this.userService.getCurrentUser();
+
+    if (!currentUser || !currentUser.profile || !currentUser.profile.profileId) {
+      console.error('No profileId found in currentUser');
+      return;
+    }
+
+    const profileId = currentUser.profile.profileId;
+
+    this.profileService.getProfileById(profileId).subscribe({
+      next: (profile) => {
+        this.userData = profile;
+      },
+      error: (err) => {
+        console.error('Error fetching profile:', err);
+      }
+    });
+  }
 
   uploadNewPhoto(): void {
     console.log('Subir nueva foto');

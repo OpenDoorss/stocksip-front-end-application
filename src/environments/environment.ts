@@ -6,4 +6,5 @@ export const environment = {
   reportsEndpointPath: '/reports',
   zonesEndpointPath: '/zones',
   userEndpointPath: '/users',
+  profileEndpointPath: '/profiles'
 };

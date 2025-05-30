@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment.development';
-import {delay, map, Observable, of, switchMap} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
+import { delay, map, Observable, of, switchMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +10,26 @@ export class UserService {
 
   private currentUser: any = null;
   private baseUrl = environment.apiUrl;
-  private usersResourceEndpointPath = environment.userEndpointPath;
+  private usersResourceEndpointPath = environment.userEndpointPath; // e.g. '/users'
+  private profilesResourceEndpointPath = environment.profileEndpointPath; // e.g. '/profiles'
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<boolean> {
-    const url = `${this.baseUrl}/users?username=${username}&password=${password}`;
+    const url = `${this.baseUrl}${this.usersResourceEndpointPath}?username=${username}&password=${password}`;
 
     return this.http.get<any[]>(url).pipe(
       switchMap(users => {
         if (users.length > 0) {
           const user = users[0];
-          return this.http.get<any>(`${this.baseUrl}${this.usersResourceEndpointPath}`).pipe(
-            map(profile => {
+          // Asumimos que user.id es la referencia para buscar perfil
+          const profileUrl = `${this.baseUrl}${this.profilesResourceEndpointPath}?userId=${user.id}`;
+          return this.http.get<any[]>(profileUrl).pipe(
+            map(profiles => {
+              if (profiles.length === 0) {
+                throw new Error('Profile not found for user');
+              }
+              const profile = profiles[0];
               this.currentUser = {
                 ...user,
                 profile

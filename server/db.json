@@ -17,7 +17,10 @@
     {
       "profileId": 1,
       "name": "Farid",
-      "role": "Liquor Store Manager"
+      "email": "farid@example.com",
+      "businessName": "Farid Liquors",
+      "businessAddress": "123 Main St",
+      "phone": "555-1234"
     },
     {
       "profileId": 2,

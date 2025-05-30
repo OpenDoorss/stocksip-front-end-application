@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ProfileService } from '../../services/profile.service';
+import {ProfileService, UserProfile} from '../../services/profile.service';
 import { Profile } from '../../models/profile.entity';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { MapDialogComponent } from '../../components/map-dialog/map-dialog.component';
+import { UserService } from '../../../authentication/services/user.service';
 
 function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -49,15 +50,17 @@ export class ProfileEditComponent {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private profileService: ProfileService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userService: UserService,
 
   ) {
     this.form = this.fb.group(
       {
+        profileId: [null],
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         businessName: ['', Validators.required],
-        businessAddress: ['', Validators.required], // <-- agregado
+        businessAddress: ['', Validators.required], // Assuming this is a string address
         phone: ['', Validators.required],
         currentPassword: [''],
         newPassword: [''],
@@ -66,6 +69,39 @@ export class ProfileEditComponent {
       { validators: passwordMatchValidator() }
     );
   }
+
+  ngOnInit(): void {
+    const currentUser = this.userService.getCurrentUser();
+
+    if (!currentUser || !currentUser.profile || !currentUser.profile.profileId) {
+      console.error('No profileId found in currentUser');
+      return;
+    }
+
+    const profileId = currentUser.profile.profileId;
+
+    this.profileService.getProfileById(profileId).subscribe({
+      next: (userProfile) => {
+        // Si Profile y UserProfile son diferentes, mapea aquí
+        const profile: Profile = {
+          profileId: userProfile.profileId,
+          name: userProfile.name,
+          email: userProfile.email,
+          businessName: '',        // asignar si tienes el dato
+          businessAddress: '',     // asignar si tienes el dato
+          phone: '',               // asignar si tienes el dato
+          role: userProfile.role
+        };
+        this.form.patchValue(profile);
+      },
+      error: (err) => {
+        console.error('Error loading profile:', err);
+        this.snackBar.open('Error al cargar el perfil', 'Cerrar', { duration: 3000 });
+      }
+    });
+  }
+
+
 
   save(): void {
 
