@@ -11,6 +11,23 @@
       "username": "sebastian@example.com",
       "password": "123456",
       "profileId": 2
+    },
+    {
+      "username": "cami123@gmail.com",
+      "password": "12345678",
+      "id": 3
+    },
+    {
+      "username": "nuevo@example.com",
+      "password": "12345678",
+      "id": 4,
+      "profileId": 4
+    },
+    {
+      "username": "martin@example.com",
+      "password": "123456789",
+      "id": 5,
+      "profileId": 5
     }
   ],
   "profiles": [
@@ -27,6 +44,20 @@
       "profileId": 2,
       "name": "Sebastian",
       "role": "Supplier"
+    },
+    {
+      "id": 4,
+      "profileId": 4,
+      "name": "Nuevo",
+      "email": "nuevo@example.com",
+      "role": "supplier"
+    },
+    {
+      "id": 5,
+      "profileId": 5,
+      "name": "Martin",
+      "email": "martin@example.com",
+      "role": "store_owner"
     }
   ],
   "warehouses": [

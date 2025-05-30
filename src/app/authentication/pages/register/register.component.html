@@ -25,20 +25,28 @@
   <!-- Right section: Registration form -->
   <div class="registration-form">
     <h2>Create Account</h2>
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Select your role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="store_owner">Liquor Store Owner</mat-option>
+          <mat-option value="supplier">Supplier</mat-option>
+        </mat-select>
+      </mat-form-field>
+
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Full Name</mat-label>
-        <input matInput type="text" />
+        <input matInput type="text" formControlName="name" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email address</mat-label>
-        <input matInput type="email" />
+        <input matInput type="email" formControlName="email" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password" />
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password" formControlName="password" />
         <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
@@ -52,8 +60,7 @@
         </button>
       </mat-form-field>
 
-
-      <button mat-raised-button color="primary" class="register-button">
+      <button mat-raised-button color="primary" class="register-button" type="submit">
         Create account
       </button>
 

@@ -43,25 +43,32 @@ export class ProfileComponent implements OnInit {
     private userService: UserService
     ) {}
 
+
+
   ngOnInit(): void {
     const currentUser = this.userService.getCurrentUser();
 
-    if (!currentUser || !currentUser.profile || !currentUser.profile.profileId) {
+    if (!currentUser || !currentUser.profileId) {
       console.error('No profileId found in currentUser');
       return;
     }
 
-    const profileId = currentUser.profile.profileId;
+    const profileId = currentUser.profileId;
+
+    console.log('Fetching profile for ID:', profileId);
 
     this.profileService.getProfileById(profileId).subscribe({
       next: (profile) => {
+        console.log('Profile fetched:', profile);
         this.userData = profile;
       },
       error: (err) => {
         console.error('Error fetching profile:', err);
       }
     });
+
   }
+
 
   uploadNewPhoto(): void {
     console.log('Subir nueva foto');

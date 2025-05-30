@@ -23,7 +23,9 @@ export class ProfileService {
   constructor(private http: HttpClient) {}
 
   getProfileById(profileId: number): Observable<UserProfile> {
-    return this.http.get<UserProfile[]>(`${this.apiUrl}/profiles?profileId=${profileId}`).pipe(
+    const url = `${this.apiUrl}/profiles?profileId=${profileId}`;
+    console.log('URL llamada API getProfileById:', url);
+    return this.http.get<UserProfile[]>(url).pipe(
       map(profiles => {
         if (profiles.length === 0) {
           throw new Error('Profile not found');

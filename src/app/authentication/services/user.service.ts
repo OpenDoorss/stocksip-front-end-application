@@ -51,4 +51,30 @@ export class UserService {
     }
     return this.currentUser;
   }
+
+  register(data: { name: string; email: string; password: string; role: string }): Observable<any> {
+    const user = {
+      username: data.email,
+      password: data.password
+    };
+
+    return this.http.post<any>(`${this.baseUrl}/users`, user).pipe(
+      switchMap(newUser =>
+        this.http.post<any>(`${this.baseUrl}/profiles`, {
+          id: newUser.id,
+          profileId: newUser.id,
+          name: data.name,
+          email: data.email,
+          role: data.role
+        }).pipe(
+          switchMap(() =>
+            this.http.patch<any>(`${this.baseUrl}/users/${newUser.id}`, {
+              profileId: newUser.id
+            })
+          )
+        )
+      )
+    );
+  }
+
 }
