@@ -10,8 +10,8 @@ export class UserService {
 
   private currentUser: any = null;
   private baseUrl = environment.apiUrl;
-  private usersResourceEndpointPath = environment.userEndpointPath; // e.g. '/users'
-  private profilesResourceEndpointPath = environment.profileEndpointPath; // e.g. '/profiles'
+  private usersResourceEndpointPath = environment.userEndpointPath;
+  private profilesResourceEndpointPath = environment.profileEndpointPath;
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +22,6 @@ export class UserService {
       switchMap(users => {
         if (users.length > 0) {
           const user = users[0];
-          // Asumimos que user.id es la referencia para buscar perfil
           const profileUrl = `${this.baseUrl}${this.profilesResourceEndpointPath}?userId=${user.id}`;
           return this.http.get<any[]>(profileUrl).pipe(
             map(profiles => {

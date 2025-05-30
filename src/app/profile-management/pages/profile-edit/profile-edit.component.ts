@@ -60,7 +60,7 @@ export class ProfileEditComponent {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         businessName: ['', Validators.required],
-        businessAddress: ['', Validators.required], // Assuming this is a string address
+        businessAddress: ['', Validators.required],
         phone: ['', Validators.required],
         currentPassword: [''],
         newPassword: [''],
@@ -82,14 +82,13 @@ export class ProfileEditComponent {
 
     this.profileService.getProfileById(profileId).subscribe({
       next: (userProfile) => {
-        // Si Profile y UserProfile son diferentes, mapea aquí
         const profile: Profile = {
           profileId: userProfile.profileId,
           name: userProfile.name,
           email: userProfile.email,
-          businessName: '',        // asignar si tienes el dato
-          businessAddress: '',     // asignar si tienes el dato
-          phone: '',               // asignar si tienes el dato
+          businessName: '',
+          businessAddress: '',
+          phone: '',
           role: userProfile.role
         };
         this.form.patchValue(profile);
