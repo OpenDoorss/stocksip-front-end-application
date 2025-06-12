@@ -9,7 +9,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {ReactiveFormsModule, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,6 @@ import {NgOptimizedImage} from '@angular/common';
     MatCheckboxModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    NgOptimizedImage
   ]
 })
 export class LoginComponent {
