@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { MapDialogComponent } from '../../components/map-dialog/map-dialog.component';
+import { MapDialogComponent } from '../map-dialog/map-dialog.component';
 import { UserService } from '../../../authentication/services/user.service';
 
 function passwordMatchValidator(): ValidatorFn {

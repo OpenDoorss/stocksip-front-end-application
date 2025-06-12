@@ -338,6 +338,8 @@
     {
       "id": 1,
       "profileId": 1,
+      "dateAdded": "2025-06-06T10:30:00.000Z",
+      "name": "Catalogo de Bebidas",
       "product": {
         "name": "Vino Tinto",
         "unitPrice": {
