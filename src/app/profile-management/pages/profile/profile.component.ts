@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {ProfileEditComponent} from '../profile-edit/profile-edit.component';
+import {ProfileEditComponent} from '../../components/profile-edit/profile-edit.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';

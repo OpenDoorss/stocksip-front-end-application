@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {BaseService} from '../../shared/services/base.service';
 import {Product} from '../model/product.entity';
+import {Observable} from 'rxjs';
 
 const productsResourceEndpointPath = environment.productsEndpointPath;
 
@@ -14,5 +15,6 @@ export class ProductService extends BaseService<Product> {
     super();
     this.resourceEndpoint = productsResourceEndpointPath;
   }
+
 }
 
