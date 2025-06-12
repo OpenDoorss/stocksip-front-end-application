@@ -1,0 +1,53 @@
+import {Component, OnInit} from '@angular/core';
+import {WarehouseListComponent} from '../../components/warehouse-list/warehouse-list.component';
+import {Warehouse} from '../../model/warehouse.entity';
+import {ActivatedRoute, Router} from '@angular/router';
+import {WarehouseService} from '../../services/warehouse.service';
+import {MatFabButton} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {UserService} from "../../../authentication/services/user.service";
+
+@Component({
+  selector: 'app-warehouses',
+  imports: [
+    WarehouseListComponent,
+    MatIconModule,
+    MatFabButton,
+  ],
+  templateUrl: './warehouses.component.html',
+  styleUrl: './warehouses.component.css'
+})
+export class WarehousesComponent implements OnInit {
+  profileId: number = 0;
+  warehouses: Warehouse[] = [];
+
+  constructor(private route: ActivatedRoute, private warehouseService: WarehouseService, private router: Router, private userService: UserService) {}
+
+  ngOnInit(): void {
+    const currentUser = this.userService.getCurrentUser();
+    console.log('Current user:', currentUser);
+    this.profileId = currentUser?.profileId;
+
+    const idParam = this.route.snapshot.paramMap.get('profileId');
+    if (idParam) {
+      this.profileId = +idParam;
+    }
+
+    console.log('Using profileId:', this.profileId);
+    this.loadWarehouses();
+  }
+
+  loadWarehouses(): void {
+
+    this.warehouseService.getWarehousesByProfile(this.profileId).subscribe(data => {
+      console.log('Warehouses data received:', data);
+      this.warehouses = data;
+    }, error => {
+      console.error('Error loading warehouses:', error);
+    });
+  }
+
+  navigateToCreate(): void {
+    void this.router.navigate(['/warehouse', 'create']);
+  }
+}

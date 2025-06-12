@@ -1,0 +1,52 @@
+{
+  "title": {
+    "title": "Conservation guides",
+    "newtitle": "New Guide",
+    "edit": "Edit Guide",
+    "report": "Reports"
+  },
+  "filter": "Type of products",
+  "newguides": "New Guide",
+  "edit": "Edit Guide",
+  "history": "Report history",
+  "product": "Products with a guides",
+  "filter-product": {
+    "top": "Top",
+    "bottom": "Bottom"
+  },
+  "info": {
+    "form": "Loss Report Form",
+    "regist": "Register"
+  },
+  "table": {
+    "title": "Name",
+    "type": "Type",
+    "description": "Description"
+  },
+  "search": {
+    "search": "Search",
+    "search-text": "Enter the text to search"
+  },
+  "enter": {
+    "Name": "Name",
+    "type": "Type",
+    "description": "Description",
+    "product": "Product name",
+    "prices": "Price",
+    "total": "Amount",
+    "date": "Date",
+    "lost": "Total lost cost"
+  },
+  "img": {
+    "title": "Insert image"
+  },
+  "button": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "save": "Save",
+    "internal": "Internal referral",
+    "loss": "Loss remission",
+    "conservation": "Conservation",
+    "report": "Generate report"
+  }
+}

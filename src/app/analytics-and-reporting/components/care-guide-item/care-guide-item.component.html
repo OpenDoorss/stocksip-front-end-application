@@ -1,0 +1,13 @@
+<!-- the list of product with a guides in the table, for now is a prototype -->
+<ng-container *ngFor="let guide of guides">
+    <tr>
+      <td>
+        <img [src]="guide.imageUrl" alt="{{guide.name}}">
+        {{ guide.name }}
+      </td>
+      <td>{{ guide.type }}</td>
+      <td>{{ guide.description }}</td>
+      <td></td>
+    </tr>
+  </ng-container>
+

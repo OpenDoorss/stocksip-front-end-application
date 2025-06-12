@@ -1,9 +1,284 @@
 {
-  "profiles": [],
-  "users": [],
-  "warehouses": [{
-    "id": 1,
-    "name": "Pepe"
-  }],
-  "products": []
+  "users": [
+    {
+      "id": 1,
+      "username": "farid@example.com",
+      "password": "123456",
+      "profileId": 1
+    },
+    {
+      "id": 2,
+      "username": "sebastian@example.com",
+      "password": "123456",
+      "profileId": 2
+    },
+    {
+      "username": "cami123@gmail.com",
+      "password": "12345678",
+      "id": 3
+    },
+    {
+      "username": "nuevo@example.com",
+      "password": "12345678",
+      "id": 4,
+      "profileId": 4
+    },
+    {
+      "username": "martin@example.com",
+      "password": "123456789",
+      "id": 5,
+      "profileId": 5
+    }
+  ],
+  "profiles": [
+    {
+      "profileId": 1,
+      "name": "Farid",
+      "email": "farid@example.com",
+      "businessName": "Farid Liquors",
+      "businessAddress": "123 Main St",
+      "phone": "555-1234",
+      "role": "Liquor Store Owner"
+    },
+    {
+      "profileId": 2,
+      "name": "Sebastian",
+      "role": "Supplier"
+    },
+    {
+      "id": 4,
+      "profileId": 4,
+      "name": "Nuevo",
+      "email": "nuevo@example.com",
+      "role": "supplier"
+    },
+    {
+      "id": 5,
+      "profileId": 5,
+      "name": "Martin",
+      "email": "martin@example.com",
+      "role": "store_owner"
+    }
+  ],
+  "warehouses": [
+    {
+      "warehouseId": 1,
+      "name": "Warehouse 1",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157277/stocksipImages/iuj3ac91phua3kcrittk.jpg",
+      "location": "Av. Sol 123",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 1000,
+      "profileId": 1
+    },
+    {
+      "warehouseId": 2,
+      "name": "Warehouse 2",
+      "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+      "location": "Av. Micaela Bastidas 123",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 500,
+      "profileId": 2
+    },
+    {
+      "warehouseId": 3,
+      "name": "Warehouse 3",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157361/stocksipImages/ggm2wesomwwm29icu5og.jpg",
+      "location": "Av. Sol 456",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 1000,
+      "profileId": 1
+    },
+    {
+      "warehouseId": 4,
+      "name": "Warehouse 4",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157759/stocksipImages/z1h378mlpzlyjdug7vxx.jpg",
+      "location": "Av. Sol 456",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 1900,
+      "profileId": 1
+    },
+    {
+      "warehouseId": 5,
+      "name": "Warehouse 5",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157430/stocksipImages/lw8vne0hty8w2s1fyevp.jpg",
+      "location": "Av. Sol 456",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 1900,
+      "profileId": 1
+    },
+    {
+      "warehouseId": 6,
+      "name": "Warehouse 6",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157543/stocksipImages/ptpzzssype89xe5ryguh.jpg",
+      "location": "Av. Sol 456",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 1900,
+      "profileId": 1
+    }
+  ],
+  "zones": [
+    {
+      "zoneId": 1,
+      "warehouseId": 1,
+      "name": "Principal warehouse",
+      "type": "Wines",
+      "description": "Recommended temperature: 16 - 20 °C"
+    },
+    {
+      "zoneId": 2,
+      "warehouseId": 1,
+      "name": "Cold zone",
+      "type": "Wines",
+      "description": "Recommended temperature: 1 - 15 °C"
+    },
+    {
+      "zoneId": 3,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 4,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 5,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 6,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 7,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    },
+    {
+      "zoneId": 8,
+      "warehouseId": 2,
+      "name": "Exhibition zone",
+      "type": "Whiskeys",
+      "description": "Recommended temperature: 8 - 10 °C"
+    }
+  ],
+  "products": [
+    {
+      "name": "Vino Tinto Malbec",
+      "type": "Destilado",
+      "description": "Temperatura recomendada: 16 - 20 °C",
+      "imageUrl": "",
+      "id": "7ca4"
+    },
+    {
+      "name": "Vino Blanco",
+      "type": "Destilado",
+      "description": "Temperatura recomendada: 16 - 20 °C",
+      "imageUrl": "",
+      "id": "c52b"
+    },
+    {
+      "name": "Ron Cartavio",
+      "type": "Ron",
+      "description": "Temperatura recomendada: 16 - 20 °C",
+      "imageUrl": "",
+      "id": "aa97"
+    },
+    {
+      "name": "Absolut Vodka",
+      "type": "Vodka",
+      "description": "Temperatura recomendada: 16 - 20 °C",
+      "imageUrl": "",
+      "id": "1f2e"
+    }
+  ],
+  "reports": [
+    {
+      "id": "2",
+      "products": "Vino",
+      "type": "destilado",
+      "price": 20,
+      "amount": 2,
+      "date": "2025/05/13",
+      "lost": 40
+    },
+    {
+      "id": 1747190640239,
+      "products": "Vino Tinto Malbec",
+      "type": "Destilado",
+      "price": 290,
+      "amount": 10,
+      "date": "2025/05/13",
+      "lost": 1092
+    },
+    {
+      "id": 1747190658789,
+      "products": "Vino Blanco",
+      "type": "Destilado",
+      "price": 92,
+      "amount": 12,
+      "date": "2025/05/13",
+      "lost": 102
+    },
+    {
+      "id": 1747190683057,
+      "products": "Ron Cartavio\"",
+      "type": "Ron",
+      "price": 921,
+      "amount": 9,
+      "date": "2025/05/13",
+      "lost": 0
+    },
+    {
+      "id": 1747190978615,
+      "products": "Al",
+      "type": "dos",
+      "price": 13,
+      "amount": 1,
+      "date": "2025/05/13",
+      "lost": 123
+    },
+    {
+      "id": 1747191170024,
+      "products": "a",
+      "type": "a",
+      "price": 1,
+      "amount": 1,
+      "date": "2025/05/13",
+      "lost": 1231
+    },
+    {
+      "id": 1747292735392,
+      "products": "",
+      "type": "",
+      "price": 0,
+      "amount": 0,
+      "date": "2025/05/15",
+      "lost": 0
+    }
+  ]
 }
