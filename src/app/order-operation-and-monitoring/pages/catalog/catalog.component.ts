@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CatalogListComponent} from '../../components/catalog-list/catalog-list.component';
+import { CatalogItemComponent} from '../../components/catalog-item/catalog-item.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-catalog-component',
   standalone: true,
   imports: [
-    CatalogListComponent,
+    CatalogItemComponent,
     MatButtonModule,
     MatCardModule
   ],

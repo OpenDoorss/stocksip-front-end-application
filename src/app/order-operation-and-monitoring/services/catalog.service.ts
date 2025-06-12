@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import {Observable, catchError, tap, map} from 'rxjs';
 import { CatalogItem } from '../model/catalog-item.entity';
 import { Product} from '../../inventory-management/model/product.entity';
+import {Catalog} from '../model/catalog.entity';
 
 
 @Injectable({
@@ -15,25 +16,15 @@ export class CatalogService {
 
   constructor(private http: HttpClient) {}
 
-  getCatalogByProfile(profileId: number): Observable<any[]> {
-    console.log('Requesting catalog items for profileId:', profileId);
-    return this.http.get<any[]>(`${this.apiUrl}/catalog?profileId=${profileId}`).pipe(
-      tap(data => console.log('Received catalog items:', data)),
-      catchError(error => {
-        console.error('Error fetching catalog:', error);
-        throw error;
-      })
-    );
+  getCatalogByProfile(profileId: number): Observable<Catalog[]> {
+    return this.http.get<Catalog[]>(`${this.apiUrl}/catalog?profileId=${profileId}`);
   }
 
+  getCatalogItems(catalogId: number): Observable<CatalogItem[]> {
+    return this.http.get<CatalogItem[]>(`${this.apiUrl}/catalogItems?catalogId=${catalogId}`);
+  }
 
-  createCatalogItem(item: CatalogItem): Observable<CatalogItem> {
-    return this.http.post<CatalogItem>(`${this.apiUrl}${this.catalogEndpoint}`, item).pipe(
-      tap(data => console.log('Created catalog item:', data)),
-      catchError(error => {
-        console.error('Error creating catalog item:', error);
-        throw error;
-      })
-    );
+  addCatalogItem(item: CatalogItem): Observable<CatalogItem> {
+    return this.http.post<CatalogItem>(`${this.apiUrl}/catalogItems`, item);
   }
 }
