@@ -4,6 +4,7 @@ import {RegisterComponent} from './authentication/pages/register/register.compon
 import {ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
 import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.component';
 import {PasswordRecoverComponent} from './authentication/pages/password-recover/password-recover.component';
+import {CatalogListComponent} from './order-operation-and-monitoring/components/catalog-list/catalog-list.component';
 
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
@@ -28,6 +29,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'password-recover', component: PasswordRecoverComponent},
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
+  { path: 'catalog', component: CatalogListComponent},
+
 
   {
     path: '',
@@ -46,6 +49,5 @@ export const routes: Routes = [
       { path: 'dashboard', loadComponent: DashboardComponent, data: { title: 'Dashboard' } },
     ]
   },
-
   { path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}},
 ];

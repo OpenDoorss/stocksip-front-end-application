@@ -19,13 +19,13 @@ export class Product {
   id: string;
   name: string;
   unitPrice: Money | null;
-  content: number; // Amount of milliliters of the product.
+  content: number;
   expirationDate: DateTime;
   imageUrl: string;
   productType: string;
   currentStock: number;
   minimumStock: number; // Minimum of stock that this product can have before sending an alert.
-  state: ProductState; // State of product, it can change in future for the product movement
+  state: ProductState; // State of product, it can change in the future for the product movement
   providerId: string;
 
   /**
@@ -87,7 +87,7 @@ export class Product {
    * Method to update the basic info of the Product
    * @param name {string} - Name of the product
    * @param unitPrice {Money} - Unit price of the product
-   * @param content {number} - The amount of milliliters of content of the product.
+   * @param content {number} - The number of milliliters of content of the product.
    */
   public updateInfo(name: string, unitPrice: Money, content: number): void {
     if (!(name.trim() === '')) {

@@ -280,5 +280,80 @@
       "date": "2025/05/15",
       "lost": 0
     }
+  ],
+  "catalog-items": [
+    {
+      "id": "cat-item-1",
+      "profileId": "1",
+      "product": {
+        "id": "prod-1",
+        "name": "Ron Barceló",
+        "unitPrice": {
+          "amount": 14.99,
+          "currency": {
+            "_code": "USD"
+          }
+        },
+        "content": 700,
+        "expirationDate": {
+          "value": "2026-12-31T00:00:00.000Z"
+        },
+        "imageUrl": "https://example.com/barcelo.png",
+        "productType": "RUM",
+        "currentStock": 10,
+        "minimumStock": 2,
+        "state": "IN-INVENTORY",
+        "providerId": "prov-123"
+      },
+      "dateAdded": "2025-06-06T10:30:00.000Z"
+    },
+    {
+      "id": "cat-item-2",
+      "profileId": "1",
+      "product": {
+        "id": "prod-2",
+        "name": "Tanqueray Gin",
+        "unitPrice": {
+          "amount": 21.50,
+          "currency": {
+            "_code": "USD"
+          }
+        },
+        "content": 750,
+        "expirationDate": {
+          "value": "2027-01-15T00:00:00.000Z"
+        },
+        "imageUrl": "https://example.com/tanqueray.png",
+        "productType": "GIN",
+        "currentStock": 5,
+        "minimumStock": 1,
+        "state": "IN-INVENTORY",
+        "providerId": "prov-456"
+      },
+      "dateAdded": "2025-06-05T15:00:00.000Z"
+    }
+  ],
+
+  "catalog": [
+    {
+      "id": 1,
+      "profileId": 1,
+      "product": {
+        "name": "Vino Tinto",
+        "unitPrice": {
+          "_amount": 30,
+          "_currency": {
+            "_code": "PEN"
+          }
+        },
+        "content": 355,
+        "expirationDate": "2025-12-31T00:00:00.000Z",
+        "imageUrl": "",
+        "productType": "RUM",
+        "currentStock": 10,
+        "minimumStock": 5,
+        "brand": "Tabernero"
+      }
+    }
   ]
 }
