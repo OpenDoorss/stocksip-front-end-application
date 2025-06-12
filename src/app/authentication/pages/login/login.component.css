@@ -144,7 +144,7 @@
     .security-logos {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 3rem;
       margin-top: 2rem;
 
       img {
