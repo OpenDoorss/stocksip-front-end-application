@@ -5,7 +5,7 @@ import {ConfirmationCodeComponent} from './authentication/pages/confirmation-cod
 import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.component';
 import {PasswordRecoverComponent} from './authentication/pages/password-recover/password-recover.component';
 import {CatalogComponent} from './order-operation-and-monitoring/pages/catalog/catalog.component';
-
+import {CatalogItemComponent} from './order-operation-and-monitoring/components/catalog-item/catalog-item.component';
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
 const CreateAndEditWarehouseComponent  = () => import('./inventory-management/pages/warehouse-create-and-edit/warehouse-create-and-edit.component').then(m => m.WarehouseCreateAndEditComponent);
@@ -23,14 +23,15 @@ const ZoneComponent  = () => import('./inventory-management/pages/zones/zones.co
 
 const DashboardComponent  = () => import('./analytics-and-reporting/pages/dashboard/dashboard.component').then(m => m.DashboardComponent);
 
+const CatalogCreateAndEditComponent = () => import ('./order-operation-and-monitoring/pages/catalog-create-and-edit/catalog-create-and-edit.component').then(m => m.CatalogCreateAndEditComponent);
+
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'password-recover', component: PasswordRecoverComponent},
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
-  { path: 'catalog', component: CatalogComponent},
-
+  { path: 'catalog', component: CatalogItemComponent},
 
   {
     path: '',
@@ -47,6 +48,8 @@ export const routes: Routes = [
       { path: 'profile', loadComponent: ProfileComponent, data: { title: 'Profile' } },
       { path: 'alerts', loadComponent: AlertsComponent, data: { title: 'Alerts' } },
       { path: 'dashboard', loadComponent: DashboardComponent, data: { title: 'Dashboard' } },
+      { path: 'catalog/create', loadComponent: CatalogCreateAndEditComponent, data: { title: 'Create Catalog' } },
+      { path: 'catalog/edit/:catalogId', loadComponent: CatalogCreateAndEditComponent, data: { title: 'Edit Catalog' } },
     ]
   },
   { path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}},
