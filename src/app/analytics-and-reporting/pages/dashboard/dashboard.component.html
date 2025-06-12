@@ -26,14 +26,20 @@
 <mat-card class="quick-access-card">
   <div class="summary-title">Quick Access</div>
   <div class="quick-access-buttons">
-    <button mat-raised-button class="access-button">
+    <button mat-raised-button class="access-button" [routerLink]="['/inventory']">
       Inventory
     </button>
-    <button mat-raised-button class="access-button">
-      Shopping
+    <button mat-raised-button class="access-button" [routerLink]="['/orders']">
+      Orders
+    </button>
+    <button mat-raised-button class="access-button" [routerLink]="['/catalog']">
+      Catalog
     </button>
     <button mat-raised-button class="access-button">
-      Zones
+      Discounts
+    </button>
+    <button mat-raised-button class="access-button">
+      Billing
     </button>
   </div>
 </mat-card>

@@ -17,6 +17,7 @@ import {
   MatOptionModule
 } from '@angular/material/core';
 import {MatButton} from '@angular/material/button';
+import {RouterLink} from '@angular/router';
 
 Chart.register(...registerables);
 
@@ -30,7 +31,8 @@ Chart.register(...registerables);
     MatSelectModule,
     MatOptionModule,
     MatTableModule,
-    MatButton
+    MatButton,
+    RouterLink
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
