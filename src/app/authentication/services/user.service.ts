@@ -83,4 +83,11 @@ export class UserService {
       )
     );
   }
+
+  getProfileByEmail(email: string): Observable<Profile | null> {
+    return this.http.get<Profile[]>(`${this.baseUrl}/profiles?email=${email}`).pipe(
+      map(profiles => profiles.length > 0 ? profiles[0] : null)
+    );
+  }
+
 }
