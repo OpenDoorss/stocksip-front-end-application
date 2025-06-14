@@ -4,17 +4,19 @@ import { UserService } from '../../../authentication/services/user.service';
 import { Catalog } from '../../model/catalog.entity';
 import { CatalogListComponent } from '../../components/catalog-list/catalog-list.component';
 import { CommonModule } from '@angular/common';
+import {Profile} from '../../../profile-management/models/profile.entity';
+import {CatalogForOrdersComponent} from '../catalog-for-orders/catalog-for-orders.component';
 
 @Component({
   selector: 'app-catalogs',
   standalone: true,
-  imports: [CommonModule, CatalogListComponent],
+  imports: [CommonModule, CatalogListComponent, CatalogForOrdersComponent],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
-
   catalogs: Catalog[] = [];
+  profile: Profile | null = null;
 
   constructor(
     private catalogService: CatalogService,
@@ -23,20 +25,47 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     const currentUser = this.userService.getCurrentUser();
-    if (!currentUser) {
-      console.error('Usuario no encontrado en localStorage');
+    console.log('Usuario actual:', currentUser);
+
+    if (!currentUser?.profile || !currentUser.profile.role) {
+      console.error('Perfil no encontrado o sin rol');
       return;
     }
 
-    const profileId = currentUser.profileId;
+    this.profile = currentUser.profile;
+    console.log('Rol del perfil:', this.profile?.role); // 👈 Esto debería decir 'Supplier' o 'Liquor Store Owner'
 
-    this.catalogService.getCatalogByProfile(profileId).subscribe({
-      next: (catalogs: Catalog[]) => {
-        this.catalogs = catalogs;
-      },
-      error: err => {
-        console.error('Error al cargar catálogos:', err);
-      }
-    });
+    if (this.profile?.role === 'Supplier') {
+      const profileId = this.profile.profileId;
+      this.catalogService.getCatalogByProfile(profileId).subscribe({
+        next: (catalogs: Catalog[]) => {
+          this.catalogs = catalogs;
+        },
+        error: err => {
+          console.error('Error al cargar catálogos:', err);
+        }
+      });
+    } else if (this.profile?.role === 'Liquor Store Owner') {
+      this.catalogService.getPublishedCatalogs().subscribe({
+        next: (catalogs: Catalog[]) => {
+          this.catalogs = catalogs;
+        },
+        error: err => {
+          console.error('Error al cargar catálogos publicados:', err);
+        }
+      });
+    } else {
+      console.warn('Rol no reconocido');
+    }
+  }
+
+
+
+  isSupplier(): boolean {
+    return this.profile?.role === 'Supplier';
+  }
+
+  isLiquorStoreOwner(): boolean {
+    return this.profile?.role === 'Liquor Store Owner';
   }
 }

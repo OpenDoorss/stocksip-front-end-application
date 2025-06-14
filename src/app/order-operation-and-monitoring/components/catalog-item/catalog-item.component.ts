@@ -27,8 +27,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     DatePipe,
     MatIcon,
     MatPaginator,
-    MatSnackBarModule,
-    RouterLink
+    MatSnackBarModule
   ]
 })
 export class CatalogItemComponent implements OnInit, OnChanges {

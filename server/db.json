@@ -77,7 +77,7 @@
       "profileId": 6,
       "name": "Camila",
       "email": "camila@example.com",
-      "role": "Liquor Store Owner"
+      "role": "Supplier"
     },
     {
       "id": 7,
@@ -318,17 +318,17 @@
   "catalogs": [
     {
       "id": 1,
-      "profileId": 1,
+      "profileId": 6,
       "name": "Catálogo 3",
       "dateCreated": "2025-06-06T10:30:00.000Z",
-      "isPublished": false
+      "isPublished": true
     },
     {
       "id": 2,
-      "profileId": 1,
-      "name": "Catálogo 2",
+      "profileId": 6,
+      "name": "Catálogo 1",
       "dateCreated": "2025-06-06T10:30:00.000Z",
-      "isPublished": false
+      "isPublished": true
     }
   ],
   "catalogItems": [
@@ -458,15 +458,15 @@
       }
     },
     {
-      "id": "d44b58c3-67d3-4613-b98e-c1dd322a142f",
-      "catalogId": 1,
-      "dateAdded": "2025-06-14T02:15:24.853Z",
-      "name": "nuevo6",
-      "productType": "nuevo",
-      "brand": "marca6",
-      "content": 780,
+      "id": "465de1fa-521e-4210-874a-c98db4420357",
+      "catalogId": 2,
+      "dateAdded": "2025-06-14T03:38:43.231Z",
+      "name": "vino tinto 2",
+      "productType": "vino",
+      "brand": "dfgffdgg",
+      "content": 5455,
       "unitPrice": {
-        "_amount": 48,
+        "_amount": 4343,
         "_currency": {
           "_code": "PEN"
         }

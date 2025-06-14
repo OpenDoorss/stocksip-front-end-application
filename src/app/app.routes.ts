@@ -4,6 +4,10 @@ import {RegisterComponent} from './authentication/pages/register/register.compon
 import {ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
 import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.component';
 import {PasswordRecoverComponent} from './authentication/pages/password-recover/password-recover.component';
+import {
+  CatalogForOrdersComponent
+} from './order-operation-and-monitoring/pages/catalog-for-orders/catalog-for-orders.component';
+import {LiquorStoreOwnerGuard} from './order-operation-and-monitoring/guards/liquor-store-owner.guard';
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
 const CreateAndEditWarehouseComponent  = () => import('./inventory-management/pages/warehouse-create-and-edit/warehouse-create-and-edit.component').then(m => m.WarehouseCreateAndEditComponent);
@@ -31,6 +35,11 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'password-recover', component: PasswordRecoverComponent},
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
+  {
+    path: 'catalog-market',
+    component: CatalogForOrdersComponent,
+    canActivate: [LiquorStoreOwnerGuard]
+  },
 
   {
     path: '',
