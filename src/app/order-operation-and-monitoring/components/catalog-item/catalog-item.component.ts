@@ -1,19 +1,18 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { CatalogService } from '../../services/catalog.service';
-import { UserService } from '../../../authentication/services/user.service';
 import { CatalogItem } from '../../model/catalog-item.entity';
 import { Catalog } from '../../model/catalog.entity';
 import { Money } from '../../../shared/model/money';
 import { Currency } from '../../../shared/model/currency';
 import {Router, RouterLink} from '@angular/router';
-import {DatePipe} from '@angular/common';
-import {MatIcon} from '@angular/material/icon';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-catalog-item',
@@ -28,7 +27,8 @@ import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
     DatePipe,
     MatIcon,
     MatPaginator,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterLink
   ]
 })
 export class CatalogItemComponent implements OnInit, OnChanges {
@@ -114,9 +114,9 @@ export class CatalogItemComponent implements OnInit, OnChanges {
           undoSub.unsubscribe();
         });
       },
-      error: err => {
+      error: (err: any) => {
         console.error('Error al eliminar del backend:', err);
-        this.snackBar.open('Item deleted successfully', 'Close', { duration: 3000 });
+        this.snackBar.open('Error al eliminar el producto', 'Cerrar', { duration: 3000 });
       }
     });
   }
@@ -133,4 +133,28 @@ export class CatalogItemComponent implements OnInit, OnChanges {
     }
   }
 
+  onPublish(): void {
+    if (!this.catalog?.id || !this.catalog.profileId || !this.catalog.name || !this.catalog.dateCreated) {
+      this.snackBar.open('Catálogo incompleto. No se puede publicar.', 'Cerrar', { duration: 4000 });
+      return;
+    }
+
+    const updatedCatalog: Catalog = {
+      id: this.catalog.id ?? 0,
+      profileId: this.catalog.profileId ?? 0,
+      name: this.catalog.name ?? '',
+      dateCreated: this.catalog.dateCreated ?? '',
+      isPublished: true
+    };
+
+    this.catalogService.updateCatalog(updatedCatalog).subscribe({
+      next: () => {
+        this.snackBar.open('Catálogo publicado con éxito', 'Cerrar', { duration: 4000 });
+      },
+      error: err => {
+        console.error('Error al publicar catálogo:', err);
+        this.snackBar.open('Error al publicar el catálogo', 'Cerrar', { duration: 4000 });
+      }
+    });
+  }
 }

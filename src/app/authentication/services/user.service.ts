@@ -77,4 +77,7 @@ export class UserService {
     );
   }
 
+  getCurrentUserProfile(): any {
+    return JSON.parse(localStorage.getItem('currentProfile') || '{}');
+  }
 }

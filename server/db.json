@@ -1,6 +1,12 @@
 {
   "users": [
     {
+      "username": "farid@example.com",
+      "password": "123456",
+      "id": 1,
+      "profileId": 1
+    },
+    {
       "username": "cami123@gmail.com",
       "password": "12345678",
       "id": 3
@@ -16,10 +22,29 @@
       "password": "123456789",
       "id": 5,
       "profileId": 5
+    },
+    {
+      "username": "camila@example.com",
+      "password": "12345678",
+      "id": 6,
+      "profileId": 6
+    },
+    {
+      "username": "cami124@example.com",
+      "password": "12345678",
+      "id": 7,
+      "profileId": 7
+    },
+    {
+      "username": "hola@example.com",
+      "password": "12345678",
+      "id": 8,
+      "profileId": 8
     }
   ],
   "profiles": [
     {
+      "id": 1,
       "profileId": 1,
       "name": "Farid",
       "email": "farid@example.com",
@@ -38,14 +63,35 @@
       "profileId": 4,
       "name": "Nuevo",
       "email": "nuevo@example.com",
-      "role": "supplier"
+      "role": "Supplier"
     },
     {
       "id": 5,
       "profileId": 5,
       "name": "Martin",
       "email": "martin@example.com",
-      "role": "store_owner"
+      "role": "Liquor Store Owner"
+    },
+    {
+      "id": 6,
+      "profileId": 6,
+      "name": "Camila",
+      "email": "camila@example.com",
+      "role": "Liquor Store Owner"
+    },
+    {
+      "id": 7,
+      "profileId": 7,
+      "name": "Camila",
+      "email": "cami124@example.com",
+      "role": "Liquor Store Owner"
+    },
+    {
+      "id": 8,
+      "profileId": 8,
+      "name": "hola",
+      "email": "hola@example.com",
+      "role": "Liquor Store Owner"
     }
   ],
   "warehouses": [
@@ -273,14 +319,16 @@
     {
       "id": 1,
       "profileId": 1,
-      "name": "Catálogo 4",
-      "dateCreated": "2025-06-06T10:30:00.000Z"
+      "name": "Catálogo 3",
+      "dateCreated": "2025-06-06T10:30:00.000Z",
+      "isPublished": false
     },
     {
       "id": 2,
       "profileId": 1,
       "name": "Catálogo 2",
-      "dateCreated": "2025-06-06T10:30:00.000Z"
+      "dateCreated": "2025-06-06T10:30:00.000Z",
+      "isPublished": false
     }
   ],
   "catalogItems": [
@@ -404,6 +452,21 @@
       "content": 6777,
       "unitPrice": {
         "_amount": 67,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
+    },
+    {
+      "id": "d44b58c3-67d3-4613-b98e-c1dd322a142f",
+      "catalogId": 1,
+      "dateAdded": "2025-06-14T02:15:24.853Z",
+      "name": "nuevo6",
+      "productType": "nuevo",
+      "brand": "marca6",
+      "content": 780,
+      "unitPrice": {
+        "_amount": 48,
         "_currency": {
           "_code": "PEN"
         }
