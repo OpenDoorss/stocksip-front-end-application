@@ -1,0 +1,5 @@
+<mat-grid-list cols="2" rowHeight="3:3" gutterSize="10px">
+  <mat-grid-tile *ngFor="let catalog of catalogs; trackBy: trackById">
+    <app-catalog-item [catalog]="catalog" />
+  </mat-grid-tile>
+</mat-grid-list>
