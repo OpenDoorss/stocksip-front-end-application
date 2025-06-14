@@ -23,7 +23,6 @@ export class UserService {
         if (users.length > 0) {
           const user = users[0];
 
-          // ✅ Corrección aquí: buscamos perfil por ID (usando profileId)
           const profileUrl = `${this.baseUrl}${this.profilesResourceEndpointPath}?id=${user.profileId}`;
           return this.http.get<Profile[]>(profileUrl).pipe(
             map(profiles => {
