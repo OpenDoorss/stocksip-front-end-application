@@ -3,7 +3,7 @@
 </ng-container>
 
 <ng-container *ngIf="isLiquorStoreOwner()">
-  <app-catalog-for-orders [catalogs]="catalogs"></app-catalog-for-orders>
+  <app-catalog-for-orders [catalogCards]="catalogs"></app-catalog-for-orders>
 </ng-container>
 
 <ng-container *ngIf="!isSupplier() && !isLiquorStoreOwner()">
