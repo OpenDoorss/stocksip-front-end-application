@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import {Observable, catchError, tap, map} from 'rxjs';
+import {Observable, map} from 'rxjs';
 import { CatalogItem } from '../model/catalog-item.entity';
-import { Product} from '../../inventory-management/model/product.entity';
 import {Catalog} from '../model/catalog.entity';
 import {Money} from '../../shared/model/money';
 import {Currency} from '../../shared/model/currency';
@@ -14,9 +13,10 @@ import {Currency} from '../../shared/model/currency';
 })
 export class CatalogService {
   private apiUrl = environment.apiUrl;
-  private catalogEndpoint = environment.catalogEndpointPath; // eg: '/catalog'
+  private catalogEndpoint = environment.catalogEndpointPath;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getCatalogByProfile(profileId: number): Observable<Catalog[]> {
     return this.http.get<Catalog[]>(`${this.apiUrl}/catalogs?profileId=${profileId}`);
@@ -75,8 +75,7 @@ export class CatalogService {
     return this.http.delete<void>(`${this.apiUrl}/catalogItems/${id}`);
   }
 
-
-
-
-
+  getPublishedCatalogs(): Observable<Catalog[]> {
+    return this.http.get<Catalog[]>(`${this.apiUrl}/catalogs?isPublished=true`);
+  }
 }

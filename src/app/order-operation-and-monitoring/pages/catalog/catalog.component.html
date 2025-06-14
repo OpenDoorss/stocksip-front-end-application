@@ -1,1 +1,11 @@
-<app-catalog-list [catalogs]="catalogs" />
+<ng-container *ngIf="isSupplier()">
+  <app-catalog-list [catalogs]="catalogs"></app-catalog-list>
+</ng-container>
+
+<ng-container *ngIf="isLiquorStoreOwner()">
+  <app-catalog-for-orders [catalogs]="catalogs"></app-catalog-for-orders>
+</ng-container>
+
+<ng-container *ngIf="!isSupplier() && !isLiquorStoreOwner()">
+  <p>No tienes acceso a esta sección.</p>
+</ng-container>
