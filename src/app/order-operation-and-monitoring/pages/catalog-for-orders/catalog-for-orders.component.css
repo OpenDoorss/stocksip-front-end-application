@@ -1,0 +1,18 @@
+.market-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.catalog-card {
+  padding: 10px;
+  background: #fff;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #2D3A3F;
+}
