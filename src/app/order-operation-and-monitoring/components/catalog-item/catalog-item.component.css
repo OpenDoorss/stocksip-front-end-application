@@ -63,4 +63,8 @@
   margin-bottom: 1rem;
 }
 
+::ng-deep .snackbar-error {
+  background-color: #f44336 !important; /* Rojo */
+  color: #fff;
+}
 

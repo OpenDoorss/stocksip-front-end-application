@@ -36,8 +36,8 @@ export class Currency {
     return amount.toLocaleString(locale, {
       style: "currency",
       currency: this._code,
-      minimumFractionDigits: 3,
-      maximumFractionDigits: 3,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     });
   };
 

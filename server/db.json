@@ -1,16 +1,10 @@
 {
   "users": [
     {
-      "id": 1,
       "username": "farid@example.com",
       "password": "123456",
+      "id": 1,
       "profileId": 1
-    },
-    {
-      "id": 2,
-      "username": "sebastian@example.com",
-      "password": "123456",
-      "profileId": 2
     },
     {
       "username": "cami123@gmail.com",
@@ -28,10 +22,29 @@
       "password": "123456789",
       "id": 5,
       "profileId": 5
+    },
+    {
+      "username": "camila@example.com",
+      "password": "12345678",
+      "id": 6,
+      "profileId": 6
+    },
+    {
+      "username": "cami124@example.com",
+      "password": "12345678",
+      "id": 7,
+      "profileId": 7
+    },
+    {
+      "username": "hola@example.com",
+      "password": "12345678",
+      "id": 8,
+      "profileId": 8
     }
   ],
   "profiles": [
     {
+      "id": 1,
       "profileId": 1,
       "name": "Farid",
       "email": "farid@example.com",
@@ -50,14 +63,35 @@
       "profileId": 4,
       "name": "Nuevo",
       "email": "nuevo@example.com",
-      "role": "supplier"
+      "role": "Supplier"
     },
     {
       "id": 5,
       "profileId": 5,
       "name": "Martin",
       "email": "martin@example.com",
-      "role": "store_owner"
+      "role": "Liquor Store Owner"
+    },
+    {
+      "id": 6,
+      "profileId": 6,
+      "name": "Camila",
+      "email": "camila@example.com",
+      "role": "Supplier"
+    },
+    {
+      "id": 7,
+      "profileId": 7,
+      "name": "Camila",
+      "email": "cami124@example.com",
+      "role": "Liquor Store Owner"
+    },
+    {
+      "id": 8,
+      "profileId": 8,
+      "name": "hola",
+      "email": "hola@example.com",
+      "role": "Liquor Store Owner"
     }
   ],
   "warehouses": [
@@ -186,7 +220,7 @@
       "description": "Recommended temperature: 8 - 10 °C"
     }
   ],
-  "product": [
+  "products": [
     {
       "name": "Vino Tinto Malbec",
       "type": "Destilado",
@@ -281,41 +315,29 @@
       "lost": 0
     }
   ],
-  "catalog": [
+  "catalogs": [
     {
       "id": 1,
-      "profileId": 1,
-      "name": "Catálogo de Bebidas",
-      "dateCreated": "2025-06-06T10:30:00.000Z"
+      "profileId": 6,
+      "name": "Catálogo 3",
+      "dateCreated": "2025-06-06T10:30:00.000Z",
+      "isPublished": true
+    },
+    {
+      "id": 2,
+      "profileId": 6,
+      "name": "Catálogo 1",
+      "dateCreated": "2025-06-06T10:30:00.000Z",
+      "isPublished": true
     }
   ],
   "catalogItems": [
-    {
-      "id": "a1",
-      "catalogId": 1,
-      "dateAdded": "2025-06-06T10:30:00.000Z",
-      "name": "Vino Tinto",
-      "unitPrice": {
-        "_amount": 30,
-        "_currency": {
-          "_code": "PEN"
-        }
-      },
-      "content": 355,
-      "productType": "RUM",
-      "brand": "Tabernero"
-    },
     {
       "id": "a2",
       "catalogId": 1,
       "dateAdded": "2025-06-06T10:30:00.000Z",
       "name": "Vino Blanco",
-      "unitPrice": {
-        "_amount": 40,
-        "_currency": {
-          "_code": "PEN"
-        }
-      },
+      "unitPrice": 40,
       "content": 355,
       "productType": "RUM",
       "brand": "Tabernero"
@@ -325,12 +347,7 @@
       "catalogId": 1,
       "dateAdded": "2025-06-06T10:30:00.000Z",
       "name": "Ron Cartavio",
-      "unitPrice": {
-        "_amount": 50,
-        "_currency": {
-          "_code": "PEN"
-        }
-      },
+      "unitPrice": 50,
       "content": 355,
       "productType": "RUM",
       "brand": "Cartavio"
@@ -340,65 +357,120 @@
       "catalogId": 1,
       "dateAdded": "2025-06-06T10:30:00.000Z",
       "name": "Absolut Vodka",
-      "unitPrice": {
-        "_amount": 60,
-        "_currency": {
-          "_code": "PEN"
-        }
-      },
+      "unitPrice": 60,
       "content": 355,
       "productType": "VODKA",
       "brand": "Absolut"
-    }
-  ],
-  "products": [
-    {
-      "id": 1,
-      "name": "Whisky Escocés Premium",
-      "current": 5,
-      "min": 10,
-      "expirationDate": "2025-07-15"
     },
     {
-      "id": 2,
-      "name": "Cerveza Artesanal IPA",
-      "current": 8,
-      "min": 12,
-      "expirationDate": "2025-06-26"
+      "id": "3c0a32f0-0685-4850-9154-898020087ec6",
+      "catalogId": 1,
+      "dateAdded": "2025-06-13T23:36:07.439Z",
+      "name": "Vino Tinto",
+      "productType": "Licor",
+      "brand": "Tabernero",
+      "content": 900,
+      "unitPrice": {
+        "_amount": 45,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
     },
     {
-      "id": 3,
-      "name": "Ron Añejo Reserva",
-      "current": 2,
-      "min": 6,
-      "expirationDate": "2025-06-19"
+      "id": "a637731f-8655-4a68-a859-b92e650618cd",
+      "catalogId": 1,
+      "dateAdded": "2025-06-13T23:49:30.041Z",
+      "name": "Vino Tinto",
+      "productType": "Vino",
+      "brand": "Ron Cartavio",
+      "content": 900,
+      "unitPrice": {
+        "_amount": 50,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
     },
     {
-      "id": 4,
+      "id": "2fc8aa27-f6b1-4ac2-8f00-5ce6183730ee",
+      "catalogId": 1,
+      "dateAdded": "2025-06-13T23:51:31.847Z",
+      "name": "Vino3",
+      "productType": "tipo2",
+      "brand": "Marca3",
+      "content": 546,
+      "unitPrice": {
+        "_amount": 43,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
+    },
+    {
+      "id": "701c1c7f-29ef-49bb-9543-948f9de9d807",
+      "catalogId": 1,
+      "dateAdded": "2025-06-13T23:52:30.889Z",
+      "name": "Vino4",
+      "productType": "tipo2",
+      "brand": "nuevo",
+      "content": 780,
+      "unitPrice": {
+        "_amount": 56,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
+    },
+    {
+      "id": "a5",
+      "catalogId": 2,
+      "dateAdded": "2025-06-06T10:30:00.000Z",
       "name": "Vino Tinto Malbec",
-      "current": 10,
-      "min": 6,
-      "expirationDate": "2025-06-18"
+      "unitPrice": 70,
+      "content": 355,
+      "productType": "VINO",
+      "brand": "Tabernero"
     },
     {
-      "id": 5,
-      "name": "Gin Botánico",
-      "current": 10,
-      "min": 6,
-      "expirationDate": "2025-06-20"
+      "id": "a6",
+      "catalogId": 2,
+      "dateAdded": "2025-06-06T10:30:00.000Z",
+      "name": "Vino Blanco",
+      "unitPrice": 80,
+      "content": 355,
+      "productType": "VINO",
+      "brand": "Tabernero"
     },
     {
-      "id": 6,
-      "name": "Vino Blanco Chardonnay",
-      "current": 1,
-      "min": 6,
-      "expirationDate": "2025-07-15"
-    }
-  ],
-  "settings": [
+      "id": "2a0143d1-d8d8-4073-9be7-b34a5c445636",
+      "catalogId": 1,
+      "dateAdded": "2025-06-14T01:31:18.892Z",
+      "name": "nuevo1",
+      "productType": "nuevo",
+      "brand": "marca4",
+      "content": 6777,
+      "unitPrice": {
+        "_amount": 67,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
+    },
     {
-      "expirationAlertMargin": 8,
-      "id": 1
+      "id": "465de1fa-521e-4210-874a-c98db4420357",
+      "catalogId": 2,
+      "dateAdded": "2025-06-14T03:38:43.231Z",
+      "name": "vino tinto 2",
+      "productType": "vino",
+      "brand": "dfgffdgg",
+      "content": 5455,
+      "unitPrice": {
+        "_amount": 4343,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
     }
   ]
 }

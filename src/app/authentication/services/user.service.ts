@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { delay, map, Observable, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Profile } from '../../profile-management/models/profile.entity';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
   private currentUser: any = null;
   private baseUrl = environment.apiUrl;
   private usersResourceEndpointPath = environment.userEndpointPath;
@@ -22,8 +22,9 @@ export class UserService {
       switchMap(users => {
         if (users.length > 0) {
           const user = users[0];
-          const profileUrl = `${this.baseUrl}${this.profilesResourceEndpointPath}?userId=${user.id}`;
-          return this.http.get<any[]>(profileUrl).pipe(
+
+          const profileUrl = `${this.baseUrl}${this.profilesResourceEndpointPath}?id=${user.profileId}`;
+          return this.http.get<Profile[]>(profileUrl).pipe(
             map(profiles => {
               if (profiles.length === 0) {
                 throw new Error('Profile not found for user');
@@ -52,6 +53,11 @@ export class UserService {
     return this.currentUser;
   }
 
+  getCurrentUserProfile(): Profile | null {
+    const user = this.getCurrentUser();
+    return user?.profile || null;
+  }
+
   register(data: { name: string; email: string; password: string; role: string }): Observable<any> {
     const user = {
       username: data.email,
@@ -74,6 +80,12 @@ export class UserService {
           )
         )
       )
+    );
+  }
+
+  getProfileByEmail(email: string): Observable<Profile | null> {
+    return this.http.get<Profile[]>(`${this.baseUrl}/profiles?email=${email}`).pipe(
+      map(profiles => profiles.length > 0 ? profiles[0] : null)
     );
   }
 

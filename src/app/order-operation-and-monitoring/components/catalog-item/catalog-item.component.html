@@ -5,13 +5,13 @@
       <strong>Created:</strong> {{ catalog?.dateCreated | date: 'mediumDate' }}
     </span>
     <div class="actions">
-      <button mat-stroked-button color="primary">Publish</button>
-      <button mat-flat-button color="primary" class="new-catalog-button" (click)="goToEdit()">Edit</button>
+      <button mat-stroked-button color="primary" (click)="onPublish()">Publish</button>
+      <button mat-flat-button color="primary" (click)="goToEdit()">Edit</button>
     </div>
   </div>
   <mat-card-title>Products in catalog</mat-card-title>
   <div class="table-wrapper">
-    <table mat-table [dataSource]="catalogItems" class="mat-elevation-z1">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -38,8 +38,19 @@
         <td mat-cell *matCellDef="let element"> {{ formatPrice(element.unitPrice) }} </td>
       </ng-container>
 
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let item">
+          <button mat-icon-button color="primary" (click)="deleteItem(item.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+
 </mat-card>

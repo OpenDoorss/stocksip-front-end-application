@@ -1,15 +1,11 @@
-<div class="catalog-container">
-  <h1 class="title">Catálogo de productos</h1>
+<ng-container *ngIf="isSupplier()">
+  <app-catalog-list [catalogs]="catalogs"></app-catalog-list>
+</ng-container>
 
-  <mat-card class="catalog-header-card">
-    <div class="catalog-header">
-      <span class="catalog-info"><strong>Current Catalog:</strong></span>
-      <div class="actions">
-        <button mat-stroked-button color="primary">Publicar</button>
-        <button mat-flat-button color="primary" class="new-catalog-button">Nuevo Catálogo</button>
-      </div>
-    </div>
-  </mat-card>
-  <app-catalog-item></app-catalog-item>
-</div>
+<ng-container *ngIf="isLiquorStoreOwner()">
+  <app-catalog-for-orders [catalogCards]="catalogs"></app-catalog-for-orders>
+</ng-container>
 
+<ng-container *ngIf="!isSupplier() && !isLiquorStoreOwner()">
+  <p>No tienes acceso a esta sección.</p>
+</ng-container>

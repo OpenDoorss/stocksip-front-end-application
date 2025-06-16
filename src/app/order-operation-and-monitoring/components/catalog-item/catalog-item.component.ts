@@ -1,16 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { CatalogService } from '../../services/catalog.service';
-import { UserService } from '../../../authentication/services/user.service';
 import { CatalogItem } from '../../model/catalog-item.entity';
 import { Catalog } from '../../model/catalog.entity';
 import { Money } from '../../../shared/model/money';
 import { Currency } from '../../../shared/model/currency';
-import { Router } from '@angular/router';
-import {DatePipe} from '@angular/common';
+import {Router, RouterLink} from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-catalog-item',
@@ -22,70 +24,51 @@ import {DatePipe} from '@angular/common';
     MatCardModule,
     MatButtonModule,
     FormsModule,
-    DatePipe
+    DatePipe,
+    MatIcon,
+    MatPaginator,
+    MatSnackBarModule
   ]
 })
-export class CatalogItemComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'content', 'type', 'brand', 'price'];
-  catalogItems: CatalogItem[] = [];
-  catalog: Catalog | null = null;
+export class CatalogItemComponent implements OnInit, OnChanges {
+  @Input() catalog: Catalog | null = null;
 
-  // Formulario temporal para agregar productos
-  newProduct = {
-    name: '',
-    productType: '',
-    content: 0,
-    brand: '',
-    price: 0
-  };
+  displayedColumns: string[] = ['name', 'content', 'type', 'brand', 'price', 'actions'];
+  catalogItems: CatalogItem[] = [];
+  dataSource = new MatTableDataSource<CatalogItem>();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private catalogService: CatalogService,
-    private userService: UserService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {
-    const currentUser = this.userService.getCurrentUser();
-    if (!currentUser) {
-      console.error('User not found in localStorage');
-      return;
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['catalog'] && this.catalog) {
+      this.loadCatalogItems();
     }
-
-    const profileId = currentUser.profileId;
-
-    this.catalogService.getCatalogByProfile(profileId).subscribe({
-      next: (catalogs: Catalog[]) => {
-        if (catalogs.length > 0) {
-          this.catalog = catalogs[0];
-          this.loadCatalogItems();
-        } else {
-          console.warn('No catalog found for this profile');
-        }
-      },
-      error: err => console.error('Error loading catalog:', err)
-    });
   }
 
-  goToEdit(): void {
-    this.router.navigate(['/catalog/edit/:catalogId']);
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
-
 
   loadCatalogItems(): void {
     if (!this.catalog) return;
 
     this.catalogService.getCatalogItems(this.catalog.id).subscribe({
       next: (items: CatalogItem[]) => {
-        this.catalogItems = items.map(item => {
+        const mappedItems = items.map(item => {
           const rawPrice = item.unitPrice as any;
 
-          // Validación adicional para evitar el error
           if (!rawPrice || (!rawPrice._amount && !rawPrice.amount)) {
-            console.warn('Invalid price data in catalog item:', item);
             return {
               ...item,
-              unitPrice: new Money(0, new Currency('PEN')) // valor por defecto
+              unitPrice: new Money(0, new Currency('PEN'))
             };
           }
 
@@ -99,38 +82,78 @@ export class CatalogItemComponent implements OnInit {
             unitPrice: money
           };
         });
+
+        this.catalogItems = mappedItems;
+        this.dataSource.data = mappedItems;
       },
       error: err => console.error('Error loading catalog items:', err)
     });
   }
 
+  deleteItem(id: string): void {
+    const confirmed = window.confirm('¿Estás seguro de que deseas eliminar este producto del catálogo?');
+    if (!confirmed) return;
 
+    const deletedItem = this.catalogItems.find(item => item.id === id);
+    if (!deletedItem) return;
+
+    this.catalogService.deleteCatalogItem(id).subscribe({
+      next: () => {
+        this.catalogItems = this.catalogItems.filter(item => item.id !== id);
+        this.dataSource.data = this.catalogItems;
+
+        const snackRef = this.snackBar.open('Producto eliminado', 'Deshacer', {
+          duration: 5000,
+          panelClass: ['snackbar-error']
+        });
+
+        const undoSub = snackRef.onAction().subscribe(() => {
+          this.catalogItems.unshift(deletedItem);
+          this.dataSource.data = this.catalogItems;
+          undoSub.unsubscribe();
+        });
+      },
+      error: (err: any) => {
+        console.error('Error al eliminar del backend:', err);
+        this.snackBar.open('Error al eliminar el producto', 'Cerrar', { duration: 3000 });
+      }
+    });
+  }
 
   formatPrice(price: { amount: number; currency: Currency } | null | undefined): string {
     if (!price) return 'N/A';
     const money = new Money(price.amount, price.currency);
     return money.format('es-PE');
   }
-  addCatalogItem(): void {
-    if (!this.catalog) return;
 
-    const newItem: CatalogItem = {
-      id: '',
-      catalogId: this.catalog.id,
-      dateAdded: new Date().toISOString(),
-      name: this.newProduct.name,
-      productType: this.newProduct.productType,
-      content: this.newProduct.content,
-      brand: this.newProduct.brand,
-      unitPrice: new Money(this.newProduct.price, new Currency('PEN'))
+  goToEdit(): void {
+    if (this.catalog) {
+      this.router.navigate(['/catalog/edit', this.catalog.id]);
+    }
+  }
+
+  onPublish(): void {
+    if (!this.catalog?.id || !this.catalog.profileId || !this.catalog.name || !this.catalog.dateCreated) {
+      this.snackBar.open('Catálogo incompleto. No se puede publicar.', 'Cerrar', { duration: 4000 });
+      return;
+    }
+
+    const updatedCatalog: Catalog = {
+      id: this.catalog.id ?? 0,
+      profileId: this.catalog.profileId ?? 0,
+      name: this.catalog.name ?? '',
+      dateCreated: this.catalog.dateCreated ?? '',
+      isPublished: true
     };
 
-    this.catalogService.addCatalogItem(newItem).subscribe({
-      next: (item: CatalogItem) => {
-        this.catalogItems.push(item);
-        this.newProduct = { name: '', productType: '', content: 0, brand: '', price: 0 };
+    this.catalogService.updateCatalog(updatedCatalog).subscribe({
+      next: () => {
+        this.snackBar.open('Catálogo publicado con éxito', 'Cerrar', { duration: 4000 });
       },
-      error: err => console.error('Error adding catalog item:', err)
+      error: err => {
+        console.error('Error al publicar catálogo:', err);
+        this.snackBar.open('Error al publicar el catálogo', 'Cerrar', { duration: 4000 });
+      }
     });
   }
 }
