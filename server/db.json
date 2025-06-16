@@ -44,14 +44,16 @@
   ],
   "profiles": [
     {
-      "id": 1,
       "profileId": 1,
       "name": "Farid",
       "email": "farid@example.com",
-      "businessName": "Farid Liquors",
-      "businessAddress": "123 Main St",
-      "phone": "555-1234",
-      "role": "Liquor Store Owner"
+      "businessName": "business 1",
+      "businessAddress": "Av. Alameda",
+      "phone": "123456789",
+      "currentPassword": "",
+      "newPassword": "",
+      "confirmPassword": "",
+      "id": 1
     },
     {
       "profileId": 2,
@@ -73,11 +75,16 @@
       "role": "Liquor Store Owner"
     },
     {
-      "id": 6,
       "profileId": 6,
       "name": "Camila",
       "email": "camila@example.com",
-      "role": "Supplier"
+      "businessName": "business 2",
+      "businessAddress": "Avenida Riobamba & Calle Tarma",
+      "phone": "973964283",
+      "currentPassword": "",
+      "newPassword": "",
+      "confirmPassword": "",
+      "id": 6
     },
     {
       "id": 7,

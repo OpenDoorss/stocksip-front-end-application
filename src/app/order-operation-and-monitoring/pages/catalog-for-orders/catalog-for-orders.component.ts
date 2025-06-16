@@ -55,7 +55,7 @@ export class CatalogForOrdersComponent implements OnInit {
 
     if (profile?.role === 'Liquor Store Owner') {
       this.isAllowed = true;
-      this.catalogs = []; // Iniciar sin catálogos visibles
+      this.catalogs = [];
     }
   }
 
@@ -80,7 +80,7 @@ export class CatalogForOrdersComponent implements OnInit {
 
         this.catalogService.getPublishedCatalogsByProfile(profile.profileId).subscribe({
           next: (catalogs) => {
-            this.catalogs = catalogs; // Reemplazar los catálogos existentes
+            this.catalogs = catalogs;
           },
           error: () => {
             this.snackBar.open('Error al cargar catálogos del proveedor', 'Cerrar', { duration: 3000 });
