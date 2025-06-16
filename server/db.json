@@ -220,7 +220,7 @@
       "description": "Recommended temperature: 8 - 10 °C"
     }
   ],
-  "products": [
+  "product": [
     {
       "name": "Vino Tinto Malbec",
       "type": "Destilado",
@@ -471,6 +471,56 @@
           "_code": "PEN"
         }
       }
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Whisky Escocés Premium",
+      "current": 5,
+      "min": 10,
+      "expirationDate": "2025-07-15"
+    },
+    {
+      "id": 2,
+      "name": "Cerveza Artesanal IPA",
+      "current": 8,
+      "min": 12,
+      "expirationDate": "2025-06-26"
+    },
+    {
+      "id": 3,
+      "name": "Ron Añejo Reserva",
+      "current": 2,
+      "min": 6,
+      "expirationDate": "2025-06-19"
+    },
+    {
+      "id": 4,
+      "name": "Vino Tinto Malbec",
+      "current": 10,
+      "min": 6,
+      "expirationDate": "2025-06-18"
+    },
+    {
+      "id": 5,
+      "name": "Gin Botánico",
+      "current": 10,
+      "min": 6,
+      "expirationDate": "2025-06-20"
+    },
+    {
+      "id": 6,
+      "name": "Vino Blanco Chardonnay",
+      "current": 1,
+      "min": 6,
+      "expirationDate": "2025-07-15"
+    }
+  ],
+  "settings": [
+    {
+      "expirationAlertMargin": 8,
+      "id": 1
     }
   ]
 }
