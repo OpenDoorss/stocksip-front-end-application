@@ -33,7 +33,7 @@ export class CatalogComponent implements OnInit {
     }
 
     this.profile = currentUser.profile;
-    console.log('Rol del perfil:', this.profile?.role); // 👈 Esto debería decir 'Supplier' o 'Liquor Store Owner'
+    console.log('Rol del perfil:', this.profile?.role);
 
     if (this.profile?.role === 'Supplier') {
       const profileId = this.profile.profileId;

@@ -87,7 +87,6 @@ export class CatalogCreateAndEditComponent implements OnInit {
   }
 
   onSave(): void {
-    // Validamos solo el nombre del catálogo
     if (!this.catalog.name.trim()) {
       this.showError = true;
       return;
@@ -102,7 +101,6 @@ export class CatalogCreateAndEditComponent implements OnInit {
 
     this.catalogService.updateCatalog(updatedCatalog).subscribe({
       next: () => {
-        // Si se ha completado algún campo del nuevo producto, lo agregamos
         const isProductFormFilled = Object.values(this.newProduct).some(f => f !== '' && f !== null && f !== 0);
 
         if (isProductFormFilled) {
