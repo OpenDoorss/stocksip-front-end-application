@@ -1,26 +1,23 @@
 <div class="alerts-container mat-typography">
-  <h2 class="title">Alerts</h2>
   <div class="cards-wrapper">
-    <mat-card class="alert-card">
-      <mat-card-title>Urgent Repositioning</mat-card-title>
-      <mat-divider></mat-divider>
-      <div *ngFor="let alert of urgentRestockAlerts" class="alert-item">
-        <p class="product-name">{{ alert.name }}</p>
-        <p class="stock-actual">Actual stock : {{ alert.current }}</p>
-        <p class="stock-minimo">Minimum stock: {{ alert.min }}</p>
-        <mat-divider></mat-divider>
-      </div>
-      <a class="link">View all alerts</a>
-    </mat-card>
-    <mat-card class="alert-card">
-      <mat-card-title>Next to expire</mat-card-title>
-      <mat-divider></mat-divider>
-      <div *ngFor="let product of upcomingExpirations" class="alert-item">
-        <p class="product-name">{{ product.name }}</p>
-        <p class="expiration">Expires in  {{ product.days }} days!</p>
-        <mat-divider></mat-divider>
-      </div>
-      <a class="link">See all products</a>
-    </mat-card>
+    <app-alert-list
+      [restocks]="urgentRestockAlerts"
+      [expirations]="upcomingExpirations"
+      [products]="products"
+      [loading]="loading"
+      [successMsg]="successMsg"
+      [errorMsg]="errorMsg"
+      [updateMinStock]="updateMinStock.bind(this)"
+      [expirationAlertMargin]="expirationAlertMargin"
+      (expirationAlertMarginChange)="expirationAlertMargin = $event"
+      [showEditMarginModal]="showEditMarginModal"
+      [openEditMarginModal]="openEditMarginModal.bind(this)"
+      [closeEditMarginModal]="closeEditMarginModal.bind(this)"
+      [saveExpirationAlertMargin]="saveExpirationAlertMargin.bind(this)"
+      [marginSuccessMsg]="marginSuccessMsg"
+      [marginErrorMsg]="marginErrorMsg"
+      [marginLoading]="marginLoading"
+    >
+    </app-alert-list>
   </div>
 </div>
