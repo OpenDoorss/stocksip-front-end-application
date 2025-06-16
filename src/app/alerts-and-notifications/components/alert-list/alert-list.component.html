@@ -1,1 +1,88 @@
-<p>alert-list works!</p>
+<mat-card class="alert-card">
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <mat-card-title>Urgent Repositioning</mat-card-title>
+    <button (click)="toggleEditPanel()" title="Editar stock mínimo" style="margin-left: 8px;">
+      🖉
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <ng-container *ngIf="restocks.length > 0; else noRestocks">
+    <app-alert-item *ngFor="let alert of displayedRestocks" [alert]="alert"></app-alert-item>
+    <a class="link" *ngIf="restocks.length > 3" (click)="toggleRestocks()">
+      {{ showAllRestocks ? 'Show less' : 'View all alerts' }}
+    </a>
+  </ng-container>
+  <ng-template #noRestocks>
+    <p>No hay alertas de bajo stock.</p>
+  </ng-template>
+</mat-card>
+
+<!-- Modal para edición de stock mínimo -->
+<div class="modal-overlay" *ngIf="showEditPanel">
+  <div class="modal-content">
+    <button class="close-btn" (click)="toggleEditPanel()" title="Cerrar">&times;</button>
+    <h3>Editar stock mínimo de productos</h3>
+    <div *ngIf="successMsg" class="success-msg">{{ successMsg }}</div>
+    <div *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Stock actual</th>
+          <th>Stock mínimo</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.current }}</td>
+          <td>
+            <input type="number" [(ngModel)]="product.min" min="0" [disabled]="loading" />
+          </td>
+          <td>
+            <button (click)="updateMinStock(product)" [disabled]="loading || product.min < 0">Guardar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Expiring Products Alerts -->
+<mat-card class="alert-card">
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <mat-card-title>Next to expire</mat-card-title>
+    <button (click)="toggleEditMarginModal()" title="Editar margen de vencimiento" style="margin-left: 8px;">
+      🖉
+    </button>
+  </div>
+  <mat-divider></mat-divider>
+  <ng-container *ngIf="expirations.length > 0; else noExpirations">
+    <app-alert-item *ngFor="let exp of displayedExpirations" [expiration]="exp"></app-alert-item>
+    <a class="link" *ngIf="expirations.length > 3" (click)="toggleExpirations()">
+      {{ showAllExpirations ? 'Show less' : 'See all products' }}
+    </a>
+  </ng-container>
+  <ng-template #noExpirations>
+    <p>No hay alertas de vencimiento.</p>
+  </ng-template>
+</mat-card>
+
+<!-- Modal para edición de margen de vencimiento -->
+<div class="modal-overlay" *ngIf="showEditMarginModal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeEditMarginModal()" title="Cerrar">&times;</button>
+    <h3>Editar margen de vencimiento (días)</h3>
+    <div *ngIf="marginSuccessMsg" class="success-msg">{{ marginSuccessMsg }}</div>
+    <div *ngIf="marginErrorMsg" class="error-msg">{{ marginErrorMsg }}</div>
+    <div style="margin-bottom: 16px;">
+      <label for="marginInput">Días antes del vencimiento para alertar:</label>
+      <input id="marginInput" type="number"
+        [ngModel]="expirationAlertMargin"
+        (ngModelChange)="expirationAlertMarginChange.emit($event)"
+        min="1" [disabled]="marginLoading" style="width: 70px; margin-left: 8px;" />
+    </div>
+    <button (click)="saveExpirationAlertMargin()" [disabled]="marginLoading || expirationAlertMargin < 1">Guardar</button>
+  </div>
+</div>
