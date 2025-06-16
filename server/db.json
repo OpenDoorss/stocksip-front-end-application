@@ -49,6 +49,7 @@
       "email": "farid@example.com",
       "businessName": "business 1",
       "businessAddress": "Av. Alameda",
+      "role": "Liquor Store Owner",
       "phone": "123456789",
       "currentPassword": "",
       "newPassword": "",
