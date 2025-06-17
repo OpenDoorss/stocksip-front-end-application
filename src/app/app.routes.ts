@@ -29,6 +29,7 @@ const PurchaseOrderCreateComponent = () => import ('./order-operation-and-monito
 
 const PurchaseOrderComponent = () => import ('./order-operation-and-monitoring/pages/purchase-order/purchase-order.component').then(m => m.PurchaseOrderComponent);
 
+const OrderComponent = () => import ('./order-operation-and-monitoring/pages/orders/orders.component').then(m => m.OrdersComponent);
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -55,7 +56,7 @@ export const routes: Routes = [
       { path: 'catalog/edit/:catalogId', loadComponent: CatalogCreateAndEditComponent, data: { title: 'Edit Catalog' } },
       { path: 'catalog', loadComponent: CatalogComponent, data: { title: 'Catalog' } },
       { path: 'purchase-order/new/:catalogId', loadComponent: PurchaseOrderCreateComponent, data: { title: 'New Order' } },
-      { path: 'orders', loadComponent: PurchaseOrderComponent, data: { title: 'Orders' } },
+      { path: 'orders', loadComponent: OrderComponent, data: { title: 'Orders' } },
     ]
   },
   { path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}},

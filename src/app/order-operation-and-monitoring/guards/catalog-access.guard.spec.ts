@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
 
-import { liquorStoreOwnerGuardGuard } from './liquor-store-owner.guard';
+import { liquorStoreOwnerGuardGuard } from './catalog-access.guard';
 
 describe('liquorStoreOwnerGuardGuard', () => {
   const executeGuard: CanActivateFn = (...guardParameters) =>
