@@ -31,21 +31,24 @@
     display: flex;
     gap: 20px;
     background: #fff;
-    margin: 20px 40px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     padding: 20px;
     border-radius: 25px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.button-bar button.mat-flat-button {
-    background-color: #8D1454;
-    color: #fff;
-    border-radius: 24px;
-    padding: 12px 24px;
-    font-weight: 600;
-    text-transform: none;
-}
-.button-bar button.mat-flat-button:hover {
-    background-color: #700c3f;
+    button {
+      background-color: #8D1454;
+      color: #fff;
+      border-radius: 24px;
+      padding: 20px 24px;
+      font-weight: 600;
+      text-transform: none;
+      font-size: 1.2rem;
+    }
+    button.mat-flat-button:hover {
+      background-color: #700c3f;
+    }
+
 }
 
 .form-header {
@@ -58,13 +61,13 @@
     margin: 0;
 }
 .text-reg p:first-child {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 600;
     margin: 0 0 4px;
 }
 .text-reg p:last-child {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     color: #666;
 }
 
@@ -72,11 +75,42 @@
 .enter-information-products {
     margin: 20px 40px;
     flex: 1;
+  mat-form-field {
+    width: 100%;
+    background-color: #f4ede3;
+    border-radius: 12px;
+    font-size: 1.3rem;
+  }
+  mat-label {
+    font-weight: 500;
+    color: #2D3A3F;
+    font-size: 1.3rem;
+  }
+  .example-full-width mat-label{
+    width: 100%;
+    color: white;
+  }
 }
 .enter-information-product {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 20px;
+    font-size: 1.3rem;
+  mat-form-field {
+    width: 100%;
+    background-color: #f4ede3;
+    border-radius: 12px;
+    font-size: 1.3rem;
+  }
+  mat-label {
+    font-weight: 500;
+    color: #2D3A3F;
+    font-size: 1.3rem;
+  }
+  .lost-full-width mat-label {
+    width: 100%;
+    color: white;
+  }
 }
 .enter-information-products {
     display: grid;
@@ -87,6 +121,13 @@
 
 .lost-form .mat-form-field,
 
+.lost-form  {
+    mat-error {
+      width: 100%;
+      background-color: #f4ede3;
+      border-radius: 12px;
+    }
+}
 .main-content {
     display: flex;
     gap: 2rem;
@@ -146,13 +187,17 @@
     justify-content: flex-end;
     gap: 12px;
     margin: 20px 40px 40px;
-}
-.save-cancel-button button.mat-flat-button {
+  button {
     border-radius: 24px;
     padding: 12px 24px;
     font-weight: 600;
     text-transform: none;
+    background-color: #8D1454;
+    color: #fff;
+    font-size: 1.3rem;
+  }
 }
+
 .save-cancel-button button.mat-flat-button:first-child {
     background-color: #8D1454;
     color: #fff;

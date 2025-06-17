@@ -3,18 +3,17 @@
     align-items: center;
     justify-content: space-between;
     margin: 20px 40px;
-}
-.generate-report {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-
-}
-.generate-report button.mat-flat-button {
-    background-color: #8D1454;
+  .generate-report button {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: #880E4F;
     color: #fff;
+    font-size: 1.3rem;
     border-radius: 24px;
     padding: 12px 24px;
     font-weight: 600;
     text-transform: none;
+  }
 }
+
+
