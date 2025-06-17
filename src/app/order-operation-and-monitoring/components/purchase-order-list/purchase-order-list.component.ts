@@ -42,6 +42,5 @@ export class PurchaseOrderListComponent {
       minimumFractionDigits: 2
     }).format(amount);
   }
-
 }
 
