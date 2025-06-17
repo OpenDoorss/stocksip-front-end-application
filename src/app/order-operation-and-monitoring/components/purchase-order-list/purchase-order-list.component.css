@@ -1,0 +1,12 @@
+.purchase-list-card {
+  border: none;
+  box-shadow: none;
+  background-color: #f4ede3;
+  .recent-orders {
+    color: #2D3A3F;
+    font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+}

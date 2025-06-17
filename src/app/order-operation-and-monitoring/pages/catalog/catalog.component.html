@@ -1,4 +1,10 @@
 <ng-container *ngIf="isSupplier()">
+  <div class="add-catalog-btn">
+    <button mat-raised-button color="primary" [routerLink]="['/catalog/new']">
+      New Catalog
+    </button>
+  </div>
+
   <app-catalog-list [catalogs]="catalogs"></app-catalog-list>
 </ng-container>
 

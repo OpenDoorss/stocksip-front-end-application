@@ -82,4 +82,9 @@ export class CatalogService {
   getPublishedCatalogsByProfile(profileId: number): Observable<Catalog[]> {
     return this.http.get<Catalog[]>(`${this.apiUrl}/catalogs?profileId=${profileId}&isPublished=true`);
   }
+
+  createCatalog(catalog: Catalog): Observable<Catalog> {
+    return this.http.post<Catalog>(`${this.apiUrl}/catalogs`, catalog);
+  }
+
 }

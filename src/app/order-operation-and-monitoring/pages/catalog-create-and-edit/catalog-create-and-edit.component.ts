@@ -8,7 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatIcon } from '@angular/material/icon';
+import { UserService } from '../../../authentication/services/user.service';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { Catalog } from '../../model/catalog.entity';
@@ -47,7 +47,8 @@ export class CatalogCreateAndEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private catalogService: CatalogService
+    private catalogService: CatalogService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -94,47 +95,71 @@ export class CatalogCreateAndEditComponent implements OnInit {
 
     this.showError = false;
 
-    const updatedCatalog = {
+    const currentProfile = this.userService.getCurrentUserProfile();
+    if (!currentProfile) {
+      console.error('No se pudo obtener el perfil del usuario actual');
+      this.showError = true;
+      return;
+    }
+
+    const catalogPayload = {
       ...this.catalog,
-      name: this.catalog.name.trim()
+      name: this.catalog.name.trim(),
+      profileId: currentProfile.profileId,
+      dateCreated: new Date().toISOString(),
+      isPublished: false
     };
 
-    this.catalogService.updateCatalog(updatedCatalog).subscribe({
-      next: () => {
-        const isProductFormFilled = Object.values(this.newProduct).some(f => f !== '' && f !== null && f !== 0);
+    if (this.isEditMode) {
+      this.catalogService.updateCatalog(catalogPayload).subscribe({
+        next: () => this.handleCatalogSaveSuccess(),
+        error: err => console.error('Error actualizando catálogo:', err)
+      });
+    } else {
+      this.catalogService.createCatalog(catalogPayload).subscribe({
+        next: (createdCatalog: Catalog) => {
+          this.catalog = createdCatalog;
+          this.isEditMode = true;
+          this.handleCatalogSaveSuccess();
+        },
+        error: (err: any) => console.error('Error creando catálogo:', err)
+      });
+    }
+  }
 
-        if (isProductFormFilled) {
-          const isProductFormValid = Object.values(this.newProduct).every(f => f !== '' && f !== null && f !== 0);
-          if (!isProductFormValid) {
-            this.showError = true;
-            return;
-          }
 
-          const newCatalogItem: CatalogItem = {
-            id: uuidv4(),
-            catalogId: this.catalog.id,
-            dateAdded: new Date().toISOString(),
-            name: this.newProduct.name,
-            productType: this.newProduct.productType,
-            brand: this.newProduct.brand,
-            content: +this.newProduct.content,
-            unitPrice: new Money(this.newProduct.price!, new Currency('PEN'))
-          };
+  private handleCatalogSaveSuccess(): void {
+    const isProductFormFilled = Object.values(this.newProduct).some(f => f !== '' && f !== null && f !== 0);
 
-          this.catalogService.addCatalogItem(newCatalogItem).subscribe({
-            next: () => {
-              this.catalogItems.push(newCatalogItem);
-              this.resetForm();
-              alert('Catálogo actualizado y producto agregado correctamente');
-            },
-            error: err => console.error('Error agregando producto:', err)
-          });
-        } else {
-          alert('Catálogo actualizado correctamente');
-        }
-      },
-      error: err => console.error('Error actualizando catálogo:', err)
-    });
+    if (isProductFormFilled) {
+      const isProductFormValid = Object.values(this.newProduct).every(f => f !== '' && f !== null && f !== 0);
+      if (!isProductFormValid) {
+        this.showError = true;
+        return;
+      }
+
+      const newCatalogItem: CatalogItem = {
+        id: uuidv4(),
+        catalogId: this.catalog.id,
+        dateAdded: new Date().toISOString(),
+        name: this.newProduct.name,
+        productType: this.newProduct.productType,
+        brand: this.newProduct.brand,
+        content: +this.newProduct.content,
+        unitPrice: new Money(this.newProduct.price!, new Currency('PEN'))
+      };
+
+      this.catalogService.addCatalogItem(newCatalogItem).subscribe({
+        next: () => {
+          this.catalogItems.push(newCatalogItem);
+          this.resetForm();
+          alert(this.isEditMode ? 'Catálogo actualizado y producto agregado correctamente' : 'Catálogo creado y producto agregado correctamente');
+        },
+        error: err => console.error('Error agregando producto:', err)
+      });
+    } else {
+      alert(this.isEditMode ? 'Catálogo actualizado correctamente' : 'Catálogo creado correctamente');
+    }
   }
 
   resetForm(): void {

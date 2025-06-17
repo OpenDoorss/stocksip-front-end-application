@@ -8,6 +8,15 @@
 .catalog-card {
   padding: 10px;
   background: #fff;
+  .new-order {
+    background-color: #890E4F;
+    color: white;
+    margin-top: 1rem;
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 45px;
+    text-align: center;
+  }
 }
 
 .product-info {
@@ -15,4 +24,20 @@
   flex-direction: column;
   gap: 10px;
   color: #2D3A3F;
+}
+
+.provider-input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1.5rem;
+  .input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2rem;
+  }
+  .search {
+    background-color: #890E4F;
+    color: white;
+    font-size: 1.5rem;
+  }
 }

@@ -2,11 +2,8 @@
   <div class="market-container">
     <mat-card *ngFor="let catalog of catalogs" class="catalog-card">
       <mat-card-title>{{ catalog.name }}</mat-card-title>
-      <mat-card-subtitle>Publicado el {{ catalog.dateCreated | date }}</mat-card-subtitle>
-
+      <mat-card-subtitle>Publicado el {{ catalog.dateCreated | date }} </mat-card-subtitle>
       <button mat-button (click)="loadItems(catalog.id)">Ver productos</button>
-
-
       <mat-list *ngIf="selectedItems[catalog.id]">
         <mat-list-item *ngFor="let item of selectedItems[catalog.id]">
           <div class="product-info">
@@ -16,6 +13,14 @@
           </div>
         </mat-list-item>
       </mat-list>
+      <mat-card-actions>
+        <button mat-raised-button
+                class="new-order"
+                color="primary"
+                [routerLink]="['/purchase-order/new', catalog.id]">
+          New Order
+        </button>
+      </mat-card-actions>
     </mat-card>
   </div>
 </ng-container>
@@ -25,9 +30,14 @@
 </ng-template>
 
 <div class="provider-input">
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill" class="input">
     <mat-label>Supplier email</mat-label>
-    <input matInput [(ngModel)]="providerEmail" placeholder="proveedor@ejemplo.com" />
+    <input matInput [(ngModel)]="providerEmail"  placeholder="supplier@example.com" />
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="loadProviderCatalogs()">Search</button>
+  <button mat-raised-button
+          class="search"
+          color="primary"
+          (click)="loadProviderCatalogs()">
+    Search
+  </button>
 </div>
