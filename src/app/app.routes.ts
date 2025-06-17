@@ -54,10 +54,11 @@ export const routes: Routes = [
       { path: 'catalog/new', loadComponent: CatalogCreateAndEditComponent, data: { title: 'New Catalog' } },
       { path: 'catalog/edit/:catalogId', loadComponent: CatalogCreateAndEditComponent, data: { title: 'Edit Catalog' } },
       { path: 'catalog', loadComponent: CatalogComponent, data: { title: 'Catalog' } },
-      { path: 'purchase-order/new/:catalogId', loadComponent: PurchaseOrderCreateComponent, data: { title: 'New Purchase Order' } },
-      { path: 'orders', loadComponent: PurchaseOrderComponent, data: { title: 'Purchase Orders' } },
+      { path: 'purchase-order/new/:catalogId', loadComponent: PurchaseOrderCreateComponent, data: { title: 'New Order' } },
+      { path: 'orders', loadComponent: PurchaseOrderComponent, data: { title: 'Orders' } },
     ]
   },
   { path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}},
 ];
+
 

@@ -995,6 +995,63 @@
         }
       },
       "totalItems": 2
+    },
+    {
+      "id": 7,
+      "date": {
+        "_date": "2025-06-17T03:56:20.023Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a5",
+          "catalogId": 2,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Vino Tinto Malbec",
+          "unitPrice": {
+            "_amount": 70,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "VINO",
+          "brand": "Tabernero"
+        }
+      ],
+      "totalAmount": {
+        "_amount": 70,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 1
     }
   ],
   "settings": [
