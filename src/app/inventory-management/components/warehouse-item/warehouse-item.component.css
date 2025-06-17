@@ -3,6 +3,11 @@
   max-width: 400px;
   margin: 16px;
   background-color: white;
+  mat-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2D3A3F;
+  }
 }
 .center-text {
   display: flex;
@@ -22,6 +27,11 @@
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
+  button {
+    background-color: #8D1454;
+    color: #fff;
+    font-size: 1.2rem;
+  }
 }
 
 .action-button {
