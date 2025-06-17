@@ -62,9 +62,6 @@ export class ProfileEditComponent {
         businessName: ['', Validators.required],
         businessAddress: [''],
         phone: [''],
-        currentPassword: [''],
-        newPassword: [''],
-        confirmPassword: [''],
         role: [''],
       },
       { validators: passwordMatchValidator() }
