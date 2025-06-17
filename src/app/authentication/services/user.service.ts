@@ -8,7 +8,7 @@ import { Profile } from '../../profile-management/models/profile.entity';
   providedIn: 'root'
 })
 export class UserService {
-  private currentUser: any = null;
+  currentUser: any = null;
   private baseUrl = environment.apiUrl;
   private usersResourceEndpointPath = environment.userEndpointPath;
   private profilesResourceEndpointPath = environment.profileEndpointPath;

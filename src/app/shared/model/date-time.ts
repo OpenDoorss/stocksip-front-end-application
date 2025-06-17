@@ -1,5 +1,5 @@
 export class DateTime {
-  private readonly _date: Date;
+  readonly _date: Date;
 
   constructor(value?: Date | string) {
     const now = new Date();

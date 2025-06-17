@@ -19,4 +19,9 @@ export class PurchaseOrderService {
   getAll(): Observable<PurchaseOrder[]> {
     return this.http.get<PurchaseOrder[]>(this.apiUrl);
   }
+
+  update(id: number, order: PurchaseOrder): Observable<PurchaseOrder> {
+    return this.http.put<PurchaseOrder>(`${this.apiUrl}/purchase-orders/${id}`, order);
+  }
+
 }

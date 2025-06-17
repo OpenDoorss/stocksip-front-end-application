@@ -72,9 +72,8 @@ export class PurchaseOrderCreateComponent implements OnInit {
     });
   }
 
-
   get selectedCatalogItems(): CatalogItem[] {
-    return this.catalogItems.filter(item => this.selectedItems[item.id] === true);
+    return this.catalogItems.filter(item => this.selectedItems[item.id]);
   }
 
   get totalItems(): number {
@@ -93,7 +92,6 @@ export class PurchaseOrderCreateComponent implements OnInit {
       this.snackBar.open('Selecciona al menos un producto', 'Cerrar', { duration: 3000 });
       return;
     }
-
 
     const newOrder: PurchaseOrder = {
       id: 0,

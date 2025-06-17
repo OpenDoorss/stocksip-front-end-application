@@ -1052,6 +1052,135 @@
         }
       },
       "totalItems": 1
+    },
+    {
+      "id": 8,
+      "date": {
+        "_date": "2025-06-17T04:00:13.282Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a4",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Absolut Vodka",
+          "unitPrice": {
+            "_amount": 60,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "VODKA",
+          "brand": "Absolut"
+        },
+        {
+          "id": "3c0a32f0-0685-4850-9154-898020087ec6",
+          "catalogId": 1,
+          "dateAdded": "2025-06-13T23:36:07.439Z",
+          "name": "Vino Tinto",
+          "productType": "Licor",
+          "brand": "Tabernero",
+          "content": 900,
+          "unitPrice": {
+            "_amount": 45,
+            "_currency": {
+              "_code": "PEN"
+            }
+          }
+        }
+      ],
+      "totalAmount": {
+        "_amount": 105,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 2
+    },
+    {
+      "id": 9,
+      "date": {
+        "_date": "2025-06-17T05:57:13.713Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "8bd3598b-b3eb-4d59-b625-c41b723485f6",
+          "catalogId": 4,
+          "dateAdded": "2025-06-16T19:41:10.570Z",
+          "name": "nuevo1",
+          "productType": "nuevo",
+          "brand": "marca 23",
+          "content": 323,
+          "unitPrice": {
+            "_amount": 233,
+            "_currency": {
+              "_code": "PEN"
+            }
+          }
+        }
+      ],
+      "totalAmount": {
+        "_amount": 233,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 1
     }
   ],
   "settings": [
