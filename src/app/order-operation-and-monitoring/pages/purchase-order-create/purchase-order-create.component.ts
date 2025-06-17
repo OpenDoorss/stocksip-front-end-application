@@ -94,6 +94,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
       return;
     }
 
+
     const newOrder: PurchaseOrder = {
       id: 0,
       date: new DateTime(),
@@ -111,9 +112,8 @@ export class PurchaseOrderCreateComponent implements OnInit {
     });
   }
 
-
-
   formatPrice(price: Money): string {
     return price?.format('es-PE') ?? 'S/ 0.00';
   }
+
 }

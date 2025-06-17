@@ -60,3 +60,4 @@ export const routes: Routes = [
   },
   { path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}},
 ];
+

@@ -21,6 +21,7 @@ export class PurchaseOrderComponent {
 
   constructor(private orderService: PurchaseOrderService) {}
 
+
   ngOnInit(): void {
     this.orderService.getAll().subscribe({
       next: (data: PurchaseOrder[]) => this.orders = data,

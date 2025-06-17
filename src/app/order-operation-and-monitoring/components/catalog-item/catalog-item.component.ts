@@ -53,6 +53,7 @@ export class CatalogItemComponent implements OnInit, OnChanges {
     }
   }
 
+
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
