@@ -46,6 +46,12 @@
       "password": "123456",
       "id": 9,
       "profileId": 9
+    },
+    {
+      "username": "nuevousuario2@example.com",
+      "password": "123456",
+      "id": 10,
+      "profileId": 10
     }
   ],
   "profiles": [
@@ -57,9 +63,6 @@
       "businessAddress": "Av. Alameda",
       "role": "Liquor Store Owner",
       "phone": "123456789",
-      "currentPassword": "",
-      "newPassword": "",
-      "confirmPassword": "",
       "id": 1
     },
     {
@@ -88,9 +91,6 @@
       "businessName": "Business 2",
       "businessAddress": "Av. Riobamba & C. Tarma",
       "phone": "973964283",
-      "currentPassword": "",
-      "newPassword": "",
-      "confirmPassword": "",
       "role": "Supplier",
       "id": 6
     },
@@ -114,6 +114,16 @@
       "name": "Usuario Nuevo",
       "email": "usuarionuevo@example.com",
       "role": "Supplier"
+    },
+    {
+      "profileId": 10,
+      "name": "Nuevo usuario 2",
+      "email": "nuevousuario2@example.com",
+      "businessName": "Business 22",
+      "businessAddress": "av. alameda",
+      "phone": "123456789",
+      "role": "Supplier",
+      "id": 10
     }
   ],
   "warehouses": [
@@ -1176,6 +1186,63 @@
       ],
       "totalAmount": {
         "_amount": 233,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 1
+    },
+    {
+      "id": 10,
+      "date": {
+        "_date": "2025-06-17T15:23:50.821Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "701c1c7f-29ef-49bb-9543-948f9de9d807",
+          "catalogId": 1,
+          "dateAdded": "2025-06-13T23:52:30.889Z",
+          "name": "Vino4",
+          "productType": "tipo2",
+          "brand": "nuevo",
+          "content": 780,
+          "unitPrice": {
+            "_amount": 56,
+            "_currency": {
+              "_code": "PEN"
+            }
+          }
+        }
+      ],
+      "totalAmount": {
+        "_amount": 56,
         "_currency": {
           "_code": "PEN"
         }
