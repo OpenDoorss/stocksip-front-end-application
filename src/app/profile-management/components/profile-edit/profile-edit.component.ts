@@ -60,11 +60,12 @@ export class ProfileEditComponent {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         businessName: ['', Validators.required],
-        businessAddress: ['', Validators.required],
-        phone: ['', Validators.required],
+        businessAddress: [''],
+        phone: [''],
         currentPassword: [''],
         newPassword: [''],
-        confirmPassword: ['']
+        confirmPassword: [''],
+        role: [''],
       },
       { validators: passwordMatchValidator() }
     );

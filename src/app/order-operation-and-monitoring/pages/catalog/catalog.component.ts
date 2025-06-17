@@ -6,11 +6,13 @@ import { CatalogListComponent } from '../../components/catalog-list/catalog-list
 import { CommonModule } from '@angular/common';
 import {Profile} from '../../../profile-management/models/profile.entity';
 import {CatalogForOrdersComponent} from '../catalog-for-orders/catalog-for-orders.component';
+import {MatButton} from '@angular/material/button';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-catalogs',
   standalone: true,
-  imports: [CommonModule, CatalogListComponent, CatalogForOrdersComponent],
+  imports: [CommonModule, CatalogListComponent, CatalogForOrdersComponent, MatButton, RouterLink],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
@@ -58,8 +60,6 @@ export class CatalogComponent implements OnInit {
       console.warn('Rol no reconocido');
     }
   }
-
-
 
   isSupplier(): boolean {
     return this.profile?.role === 'Supplier';

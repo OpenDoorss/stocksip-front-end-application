@@ -5,8 +5,8 @@
       <strong>Created:</strong> {{ catalog?.dateCreated | date: 'mediumDate' }}
     </span>
     <div class="actions">
-      <button mat-stroked-button color="primary" (click)="onPublish()">Publish</button>
-      <button mat-flat-button color="primary" (click)="goToEdit()">Edit</button>
+      <button mat-stroked-button color="primary" class="publish" (click)="onPublish()">Publish</button>
+      <button mat-flat-button color="primary" class="edit" (click)="goToEdit()">Edit</button>
     </div>
   </div>
   <mat-card-title>Products in catalog</mat-card-title>

@@ -1,0 +1,31 @@
+.purchase-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #f4ede3;
+  box-shadow: none;
+  border: none;
+  margin: 3rem;
+  font-family: 'Poppins', sans-serif;
+  color: #2D3A3F;
+  .mt-4 {
+    background-color: #8D1454;
+    color: white;
+    padding: 0.5rem;
+    width: 200px;
+    font-size: 1.2rem;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-family: 'Poppins', sans-serif;
+    color: #2D3A3F;
+  }
+}
+
+.mat-elevation-z1 {
+  border: 1px solid gray;
+}
+
+

@@ -22,7 +22,7 @@
         <mat-icon>receipt</mat-icon>
         <span *ngIf="isExpanded">Reports</span>
       </a>
-      <a mat-list-item routerLink="/catalog" matTooltip="Orders">
+      <a mat-list-item routerLink="/orders" matTooltip="Orders">
         <mat-icon>shopping_cart</mat-icon>
         <span *ngIf="isExpanded">Orders</span>
       </a>
@@ -34,9 +34,11 @@
         <mat-icon>person</mat-icon>
         <span *ngIf="isExpanded">Profile</span>
       </a>
+
     </mat-nav-list>
 
   </mat-sidenav>
+
 
   <mat-sidenav-content class="background">
 
@@ -49,3 +51,4 @@
   </mat-sidenav-content>
 
 </mat-sidenav-container>
+

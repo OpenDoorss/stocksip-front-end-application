@@ -4,10 +4,6 @@ import {RegisterComponent} from './authentication/pages/register/register.compon
 import {ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
 import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.component';
 import {PasswordRecoverComponent} from './authentication/pages/password-recover/password-recover.component';
-import {
-  CatalogForOrdersComponent
-} from './order-operation-and-monitoring/pages/catalog-for-orders/catalog-for-orders.component';
-import {LiquorStoreOwnerGuard} from './order-operation-and-monitoring/guards/liquor-store-owner.guard';
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);
 const CreateAndEditWarehouseComponent  = () => import('./inventory-management/pages/warehouse-create-and-edit/warehouse-create-and-edit.component').then(m => m.WarehouseCreateAndEditComponent);
@@ -29,17 +25,16 @@ const CatalogCreateAndEditComponent = () => import ('./order-operation-and-monit
 
 const CatalogComponent = () => import ('./order-operation-and-monitoring/pages/catalog/catalog.component').then(m => m.CatalogComponent);
 
+const PurchaseOrderCreateComponent = () => import ('./order-operation-and-monitoring/pages/purchase-order-create/purchase-order-create.component').then(m => m.PurchaseOrderCreateComponent);
+
+const PurchaseOrderComponent = () => import ('./order-operation-and-monitoring/pages/purchase-order/purchase-order.component').then(m => m.PurchaseOrderComponent);
+
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'password-recover', component: PasswordRecoverComponent},
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
-  {
-    path: 'catalog-market',
-    component: CatalogForOrdersComponent,
-    canActivate: [LiquorStoreOwnerGuard]
-  },
 
   {
     path: '',
@@ -56,10 +51,13 @@ export const routes: Routes = [
       { path: 'profile', loadComponent: ProfileComponent, data: { title: 'Profile' } },
       { path: 'alerts', loadComponent: AlertsComponent, data: { title: 'Alerts' } },
       { path: 'dashboard', loadComponent: DashboardComponent, data: { title: 'Dashboard' } },
-      { path: 'catalog/new', loadComponent: CatalogCreateAndEditComponent, data: { title: 'Create Catalog' } },
+      { path: 'catalog/new', loadComponent: CatalogCreateAndEditComponent, data: { title: 'New Catalog' } },
       { path: 'catalog/edit/:catalogId', loadComponent: CatalogCreateAndEditComponent, data: { title: 'Edit Catalog' } },
       { path: 'catalog', loadComponent: CatalogComponent, data: { title: 'Catalog' } },
+      { path: 'purchase-order/new/:catalogId', loadComponent: PurchaseOrderCreateComponent, data: { title: 'New Purchase Order' } },
+      { path: 'orders', loadComponent: PurchaseOrderComponent, data: { title: 'Purchase Orders' } },
     ]
   },
   { path: '**',loadComponent: PageNotFoundComponent, data: { title: `${baseTitle} | Page Not Found`}},
 ];
+

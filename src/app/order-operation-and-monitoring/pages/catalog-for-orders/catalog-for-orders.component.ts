@@ -3,13 +3,14 @@ import { CatalogService } from '../../services/catalog.service';
 import { Catalog } from '../../model/catalog.entity';
 import { CatalogItem } from '../../model/catalog-item.entity';
 import { UserService } from '../../../authentication/services/user.service';
-import { MatCard, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import {MatCard, MatCardActions, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import { CurrencyPipe, DatePipe, NgForOf, NgIf } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { MatList, MatListItem } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-catalog-for-orders',
@@ -28,7 +29,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatLabel,
     MatFormField,
     FormsModule,
-    MatInput
+    MatInput,
+    MatCardActions,
+    RouterLink
   ],
   styleUrls: ['./catalog-for-orders.component.css'],
   standalone: true
@@ -47,7 +50,7 @@ export class CatalogForOrdersComponent implements OnInit {
   constructor(
     private catalogService: CatalogService,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {

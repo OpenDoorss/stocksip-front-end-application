@@ -40,6 +40,12 @@
       "password": "12345678",
       "id": 8,
       "profileId": 8
+    },
+    {
+      "username": "usuarionuevo@example.com",
+      "password": "123456",
+      "id": 9,
+      "profileId": 9
     }
   ],
   "profiles": [
@@ -49,6 +55,7 @@
       "email": "farid@example.com",
       "businessName": "business 1",
       "businessAddress": "Av. Alameda",
+      "role": "Liquor Store Owner",
       "phone": "123456789",
       "currentPassword": "",
       "newPassword": "",
@@ -78,12 +85,13 @@
       "profileId": 6,
       "name": "Camila",
       "email": "camila@example.com",
-      "businessName": "business 2",
-      "businessAddress": "Avenida Riobamba & Calle Tarma",
+      "businessName": "Business 2",
+      "businessAddress": "Av. Riobamba & C. Tarma",
       "phone": "973964283",
       "currentPassword": "",
       "newPassword": "",
       "confirmPassword": "",
+      "role": "Supplier",
       "id": 6
     },
     {
@@ -99,6 +107,13 @@
       "name": "hola",
       "email": "hola@example.com",
       "role": "Liquor Store Owner"
+    },
+    {
+      "id": 9,
+      "profileId": 9,
+      "name": "Usuario Nuevo",
+      "email": "usuarionuevo@example.com",
+      "role": "Supplier"
     }
   ],
   "warehouses": [
@@ -336,6 +351,27 @@
       "name": "Catálogo 1",
       "dateCreated": "2025-06-06T10:30:00.000Z",
       "isPublished": true
+    },
+    {
+      "id": 3,
+      "name": "Catalogo 5",
+      "profileId": 6,
+      "dateCreated": "2025-06-16T19:32:24.589Z",
+      "isPublished": false
+    },
+    {
+      "id": 4,
+      "profileId": 6,
+      "name": "Catalogo 6",
+      "dateCreated": "2025-06-16T19:41:10.538Z",
+      "isPublished": true
+    },
+    {
+      "id": 5,
+      "profileId": 9,
+      "name": "Catalogo 4",
+      "dateCreated": "2025-06-16T19:49:34.173Z",
+      "isPublished": true
     }
   ],
   "catalogItems": [
@@ -478,6 +514,51 @@
           "_code": "PEN"
         }
       }
+    },
+    {
+      "id": "1b460b03-a7fd-4b02-8da6-17813ae73b50",
+      "catalogId": 3,
+      "dateAdded": "2025-06-16T19:32:24.612Z",
+      "name": "nuevo 23",
+      "productType": "tipo 23",
+      "brand": "marca 23",
+      "content": 123,
+      "unitPrice": {
+        "_amount": 123,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
+    },
+    {
+      "id": "8bd3598b-b3eb-4d59-b625-c41b723485f6",
+      "catalogId": 4,
+      "dateAdded": "2025-06-16T19:41:10.570Z",
+      "name": "nuevo1",
+      "productType": "nuevo",
+      "brand": "marca 23",
+      "content": 323,
+      "unitPrice": {
+        "_amount": 233,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
+    },
+    {
+      "id": "a52fb563-a610-4d68-9d81-b3673bc6605a",
+      "catalogId": 5,
+      "dateAdded": "2025-06-16T19:49:34.210Z",
+      "name": "nuevo1",
+      "productType": "tipo 23",
+      "brand": "nuevo",
+      "content": 678,
+      "unitPrice": {
+        "_amount": 763,
+        "_currency": {
+          "_code": "PEN"
+        }
+      }
     }
   ],
   "products": [
@@ -522,6 +603,398 @@
       "current": 1,
       "min": 6,
       "expirationDate": "2025-07-15"
+    }
+  ],
+  "purchase-orders": [
+    {
+      "id": 2,
+      "date": {
+        "_date": "2025-06-17T03:02:51.068Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a2",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Vino Blanco",
+          "unitPrice": {
+            "_amount": 40,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Tabernero"
+        },
+        {
+          "id": "a3",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Ron Cartavio",
+          "unitPrice": {
+            "_amount": 50,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Cartavio"
+        }
+      ],
+      "totalAmount": {
+        "_amount": 90,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 2
+    },
+    {
+      "id": 3,
+      "date": {
+        "_date": "2025-06-17T03:22:45.138Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a2",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Vino Blanco",
+          "unitPrice": {
+            "_amount": 40,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Tabernero"
+        },
+        {
+          "id": "a3",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Ron Cartavio",
+          "unitPrice": {
+            "_amount": 50,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Cartavio"
+        },
+        {
+          "id": "a4",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Absolut Vodka",
+          "unitPrice": {
+            "_amount": 60,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "VODKA",
+          "brand": "Absolut"
+        }
+      ],
+      "totalAmount": {
+        "_amount": 150,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 3
+    },
+    {
+      "id": 4,
+      "date": {
+        "_date": "2025-06-17T03:24:57.509Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a2",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Vino Blanco",
+          "unitPrice": {
+            "_amount": 40,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Tabernero"
+        },
+        {
+          "id": "a3",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Ron Cartavio",
+          "unitPrice": {
+            "_amount": 50,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Cartavio"
+        },
+        {
+          "id": "a4",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Absolut Vodka",
+          "unitPrice": {
+            "_amount": 60,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "VODKA",
+          "brand": "Absolut"
+        },
+        {
+          "id": "3c0a32f0-0685-4850-9154-898020087ec6",
+          "catalogId": 1,
+          "dateAdded": "2025-06-13T23:36:07.439Z",
+          "name": "Vino Tinto",
+          "productType": "Licor",
+          "brand": "Tabernero",
+          "content": 900,
+          "unitPrice": {
+            "_amount": 45,
+            "_currency": {
+              "_code": "PEN"
+            }
+          }
+        }
+      ],
+      "totalAmount": {
+        "_amount": 195,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 4
+    },
+    {
+      "id": 5,
+      "date": {
+        "_date": "2025-06-17T03:39:47.521Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "3c0a32f0-0685-4850-9154-898020087ec6",
+          "catalogId": 1,
+          "dateAdded": "2025-06-13T23:36:07.439Z",
+          "name": "Vino Tinto",
+          "productType": "Licor",
+          "brand": "Tabernero",
+          "content": 900,
+          "unitPrice": {
+            "_amount": 45,
+            "_currency": {
+              "_code": "PEN"
+            }
+          }
+        }
+      ],
+      "totalAmount": {
+        "_amount": 45,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 1
+    },
+    {
+      "id": 6,
+      "date": {
+        "_date": "2025-06-17T03:40:30.958Z"
+      },
+      "status": "sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "currentPassword": "",
+        "newPassword": "",
+        "confirmPassword": "",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "3c0a32f0-0685-4850-9154-898020087ec6",
+          "catalogId": 1,
+          "dateAdded": "2025-06-13T23:36:07.439Z",
+          "name": "Vino Tinto",
+          "productType": "Licor",
+          "brand": "Tabernero",
+          "content": 900,
+          "unitPrice": {
+            "_amount": 45,
+            "_currency": {
+              "_code": "PEN"
+            }
+          }
+        },
+        {
+          "id": "a637731f-8655-4a68-a859-b92e650618cd",
+          "catalogId": 1,
+          "dateAdded": "2025-06-13T23:49:30.041Z",
+          "name": "Vino Tinto",
+          "productType": "Vino",
+          "brand": "Ron Cartavio",
+          "content": 900,
+          "unitPrice": {
+            "_amount": 50,
+            "_currency": {
+              "_code": "PEN"
+            }
+          }
+        }
+      ],
+      "totalAmount": {
+        "_amount": 95,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 2
     }
   ],
   "settings": [
