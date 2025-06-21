@@ -48,5 +48,40 @@
     "loss": "Remisión por pérdidas",
     "conservation": "Conservación",
     "report": "Generar reporte"
+  },
+  "warehouse": {
+    "title": "Almacenes",
+    "create": "Nuevo almacén",
+    "edit": "Editar almacén",
+    "card": {
+      "address": "Dirección",
+      "capacity": "Capacidad"
+    }
+  },
+  "dashboard": {
+    "title": "Dasboard"
+  },
+  "components": {
+    "edit": "Editar",
+    "show": "Mostrar"
+  },
+  "reports": {
+    "care-guide-list": {
+      "title": "Guías de conservación",
+      "create": "Crear guía de conservación",
+      "edit": "Editar guía de conservación"
+    },
+    "title": "Reportes"
+  },
+  "profile": {
+    "title": "Perfil"
+  },
+  "alerts": {
+    "title": "Alertas"
+  },
+  "catalog": {
+    "title": "Catálogo",
+    "create": "Nuevo catálogo",
+    "edit": "Editar catálogo"
   }
 }

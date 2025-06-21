@@ -48,5 +48,42 @@
     "loss": "Loss remission",
     "conservation": "Conservation",
     "report": "Generate report"
+  },
+  "warehouse": {
+    "title": "Warehouses",
+    "create": "Warehouse new",
+    "edit": "Edit warehouse",
+    "card": {
+      "address": "Address",
+      "capacity": "Capacity",
+      "edit": "Edit",
+      "show": "Show"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard"
+  },
+  "components": {
+    "edit": "Edit",
+    "show": "Show"
+  },
+  "reports": {
+    "care-guide-list": {
+      "title": "Conservation guides",
+      "create": "New conservation guide",
+      "edit": "Edit conservation guide"
+    },
+    "title": "Reports"
+  },
+  "profile": {
+    "title": "Profile"
+  },
+  "alerts": {
+    "title": "Alerts"
+  },
+  "catalog": {
+    "title": "Catalog",
+    "create": "New catalog",
+    "edit": "Edit catalog"
   }
 }
