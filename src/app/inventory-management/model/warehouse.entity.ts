@@ -2,7 +2,7 @@ export class Warehouse {
   warehouseId: number;
   name: string;
   imageUrl: string;
-  location: string;
+  street: string;
   city: string;
   state: string;
   postalCode: string;
@@ -13,7 +13,7 @@ export class Warehouse {
     this.warehouseId = 0;
     this.name = '';
     this.imageUrl = '';
-    this.location = '';
+    this.street = '';
     this.city = '';
     this.state = '';
     this.postalCode = '';
