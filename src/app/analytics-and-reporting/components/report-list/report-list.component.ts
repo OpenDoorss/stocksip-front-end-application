@@ -10,7 +10,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
-import { LanguageSwitcherComponent } from '../../../public/components/language-switcher/language-switcher.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ReportService } from '../../services/report.service';
 import { Report } from '../../model/report.entity';

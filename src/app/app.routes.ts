@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import {LoginComponent} from './authentication/pages/login/login.component';
 import {RegisterComponent} from './authentication/pages/register/register.component';
 import {ConfirmationCodeComponent} from './authentication/pages/confirmation-code/confirmation-code.component';
-import {SideNavbarComponent} from './public/components/side-navbar/side-navbar.component';
 import {PasswordRecoverComponent} from './authentication/pages/password-recover/password-recover.component';
 
 const WarehouseComponent  = () => import('./inventory-management/pages/warehouses/warehouses.component').then(m => m.WarehousesComponent);

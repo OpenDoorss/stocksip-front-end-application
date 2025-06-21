@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardModule} from '@angular/material/card';
+import { MatCardModule} from '@angular/material/card';
 import {Warehouse} from '../../model/warehouse.entity';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
