@@ -11,6 +11,7 @@ import {Observable} from 'rxjs';
 import {ToolbarTitleService} from '../../services/toolbar-title.service';
 import {MatToolbar} from '@angular/material/toolbar';
 import {LanguageSwitcherComponent} from '../language-switcher/language-switcher.component';
+import {ToolBarComponent} from '../tool-bar/tool-bar.component';
 
 
 @Component({
@@ -22,23 +23,14 @@ import {LanguageSwitcherComponent} from '../language-switcher/language-switcher.
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatTooltipModule,
-    MatIconButton,
-    MatToolbar,
-    LanguageSwitcherComponent
+    MatTooltipModule
   ],
   templateUrl: './side-navbar.component.html',
   styleUrls: ['./side-navbar.component.css']
 })
 export class SideNavbarComponent {
-  pageTitle$: Observable<string>;
-
-  constructor(private titleService: ToolbarTitleService) {
-    this.pageTitle$ = this.titleService.currentTitle$;
-  }
-
   isExpanded = false;
-  toggleSidebar(): void {
+  toggleSidebar() {
     this.isExpanded = !this.isExpanded;
   }
 }

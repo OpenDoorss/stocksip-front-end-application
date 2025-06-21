@@ -7,6 +7,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
   selector: 'app-warehouse-list',
   imports: [
     WarehouseItemComponent,
+
     MatGridListModule
   ],
   templateUrl: './warehouse-list.component.html',

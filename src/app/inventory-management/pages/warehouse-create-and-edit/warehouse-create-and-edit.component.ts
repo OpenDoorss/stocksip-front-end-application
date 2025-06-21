@@ -7,6 +7,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WarehouseService} from '../../services/warehouse.service';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 
 @Component({
   selector: 'app-warehouse-create-and-edit',
@@ -17,6 +19,8 @@ import {WarehouseService} from '../../services/warehouse.service';
     MatCardModule,
     MatButtonModule,
     ReactiveFormsModule,
+    SideNavbarComponent,
+    ToolBarComponent,
   ],
   templateUrl: './warehouse-create-and-edit.component.html',
   styleUrl: './warehouse-create-and-edit.component.css'
@@ -25,6 +29,7 @@ export class WarehouseCreateAndEditComponent {
 
   isEditMode: boolean = false;
   warehouseId: string | null = null;
+  pageTitle: string = '';
 
   nameFormControl = new FormControl('', Validators.required)
   locationFormControl = new FormControl('', Validators.required)
@@ -51,6 +56,7 @@ export class WarehouseCreateAndEditComponent {
   ngOnInit(): void {
     this.warehouseId = this.route.snapshot.paramMap.get('warehouseId');
     this.isEditMode = !!this.warehouseId;
+    this.pageTitle = this.isEditMode ? 'warehouse.edit' : 'warehouse.create';
 
     if (this.isEditMode) {
       this.loadWarehouseData();
@@ -63,20 +69,20 @@ export class WarehouseCreateAndEditComponent {
         next: (warehouse) => {
           this.warehouseForm.patchValue({
             name: warehouse.name,
-            location: warehouse.location,
+            location: warehouse.street,
             city: warehouse.city,
             state: warehouse.state,
             postalCode: warehouse.postalCode,
             capacity: warehouse.capacity.toString()
           });
         },
-        error: (err) => console.error('Error loading warehouse', err)
+        error: (err) => console.error('Error loading warehouses', err)
       });
     }
   }
 
   onCancel(): void {
-    void this.router.navigate(['/warehouse'])
+    void this.router.navigate(['/warehouses'])
   }
 
 }

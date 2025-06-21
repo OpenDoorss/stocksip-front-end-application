@@ -2,7 +2,7 @@ export interface WarehouseResource {
   warehouseId: number;
   name: string;
   imageUrl: string;
-  location: string;
+  street: string;
   city: string;
   state: string;
   postalCode: string;

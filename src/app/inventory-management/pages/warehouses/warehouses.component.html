@@ -1,14 +1,21 @@
-<div>
+<div class="warehouse-bg">
 
-  <app-warehouse-list [warehouses]="warehouses"></app-warehouse-list>
+  <app-side-navbar/>
+  <div class="warehouse-main">
 
-  <button mat-fab extended
-          color= "primary"
-          class= "create-button"
-          (click)= "navigateToCreate()"
-          aria-label="Create a new Warehouse">
-    <mat-icon>add</mat-icon>
-    New Warehouse
-  </button>
+    <app-tool-bar [titleKey]="'warehouse.title'"></app-tool-bar>
+
+    <div class="warehouse-content">
+      <app-warehouse-list [warehouses]="warehouses"></app-warehouse-list>
+
+      <button mat-fab extended
+              color= "primary"
+              class= "create-button"
+              (click)= "navigateToCreate()"
+              aria-label="Create a new Warehouse">
+        <mat-icon>add</mat-icon>
+        New Warehouse
+      </button>
+    </div>
+  </div>
 </div>
-

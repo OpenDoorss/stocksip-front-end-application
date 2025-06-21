@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { LanguageSwitcherComponent } from '../../../../public/components/language-switcher/language-switcher.component';
 import { CareGuideService } from '../../../services/care-guide.service';
+import {ToolBarComponent} from '../../../../public/components/tool-bar/tool-bar.component';
+import {SideNavbarComponent} from '../../../../public/components/side-navbar/side-navbar.component';
 
 @Component({
   selector: 'app-care-guide-create',
@@ -24,7 +26,8 @@ import { CareGuideService } from '../../../services/care-guide.service';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    LanguageSwitcherComponent
+    ToolBarComponent,
+    SideNavbarComponent
   ],
   templateUrl: './care-guide-create.component.html',
   styleUrls: ['./care-guide-create.component.css']

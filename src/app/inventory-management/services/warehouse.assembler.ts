@@ -8,7 +8,7 @@ export class WarehouseAssembler {
       warehouseId: resource.warehouseId,
       name: resource.name,
       imageUrl: resource.imageUrl,
-      location: resource.location,
+      street: resource.street,
       city: resource.city,
       state: resource.state,
       postalCode: resource.postalCode,

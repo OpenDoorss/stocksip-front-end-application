@@ -28,4 +28,16 @@
   border: 1px solid gray;
 }
 
+.purchase-order-create-bg {
+  padding: 2rem;
+  background: #F7EDDC;
+  min-height: 100vh;
+  display: flex;
+}
+
+.purchase-order-create-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 

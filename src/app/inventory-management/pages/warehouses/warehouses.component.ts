@@ -6,6 +6,8 @@ import {WarehouseService} from '../../services/warehouse.service';
 import {MatFabButton} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {UserService} from "../../../authentication/services/user.service";
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 
 @Component({
   selector: 'app-warehouses',
@@ -13,6 +15,8 @@ import {UserService} from "../../../authentication/services/user.service";
     WarehouseListComponent,
     MatIconModule,
     MatFabButton,
+    ToolBarComponent,
+    SideNavbarComponent,
   ],
   templateUrl: './warehouses.component.html',
   styleUrl: './warehouses.component.css'
@@ -48,6 +52,6 @@ export class WarehousesComponent implements OnInit {
   }
 
   navigateToCreate(): void {
-    void this.router.navigate(['/warehouse', 'create']);
+    void this.router.navigate(['/warehouses', 'new']);
   }
 }

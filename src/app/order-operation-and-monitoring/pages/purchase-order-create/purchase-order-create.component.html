@@ -1,36 +1,50 @@
-<mat-card class="purchase-card">
-  <h2>Select products for the order</h2>
+<div class="purchase-order-create-bg">
 
-  <table mat-table [dataSource]="catalogItems" class="mat-elevation-z1">
+  <app-side-navbar/>
 
-    <ng-container class="table-purchase" matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef>Select</th>
-      <td mat-cell *matCellDef="let item">
-        <mat-checkbox [(ngModel)]="selectedItems[item.id]"></mat-checkbox>
-      </td>
-    </ng-container>
+  <div class="purchase-order-create-main">
 
-    <ng-container class="table-purchase" matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let item">{{ item.name }}</td>
-    </ng-container>
+    <app-tool-bar [titleKey]="'titulo.por.definir'"></app-tool-bar>
 
-    <ng-container class="table-purchase" matColumnDef="brand">
-      <th mat-header-cell *matHeaderCellDef>Brand</th>
-      <td mat-cell *matCellDef="let item">{{ item.brand }}</td>
-    </ng-container>
+    <mat-card class="purchase-card">
+      <h2>Select products for the order</h2>
 
-    <ng-container class="table-purchase" matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef>Price</th>
-      <td mat-cell *matCellDef="let item">{{ formatPrice(item.unitPrice) }}</td>
-    </ng-container>
+      <table mat-table [dataSource]="catalogItems" class="mat-elevation-z1">
 
-    <tr mat-header-row *matHeaderRowDef="['select', 'name', 'brand', 'price']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['select', 'name', 'brand', 'price'];"></tr>
-  </table>
+        <ng-container class="table-purchase" matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>Select</th>
+          <td mat-cell *matCellDef="let item">
+            <mat-checkbox [(ngModel)]="selectedItems[item.id]"></mat-checkbox>
+          </td>
+        </ng-container>
 
-  <button mat-raised-button class="mt-4" (click)="createOrder()">
-    Create Order
-  </button>
-</mat-card>
+        <ng-container class="table-purchase" matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let item">{{ item.name }}</td>
+        </ng-container>
 
+        <ng-container class="table-purchase" matColumnDef="brand">
+          <th mat-header-cell *matHeaderCellDef>Brand</th>
+          <td mat-cell *matCellDef="let item">{{ item.brand }}</td>
+        </ng-container>
+
+        <ng-container class="table-purchase" matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let item">{{ formatPrice(item.unitPrice) }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['select', 'name', 'brand', 'price']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['select', 'name', 'brand', 'price'];"></tr>
+      </table>
+
+      <button mat-raised-button class="mt-4" (click)="createOrder()">
+        Create Order
+      </button>
+    </mat-card>
+
+
+
+  </div>
+
+
+</div>

@@ -6,6 +6,19 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.care-guide-list-bg {
+  padding: 2rem;
+  background: #F7EDDC;
+  min-height: 100vh;
+  display: flex;
+}
+
+.care-guide-list-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .page-container {
     padding: 40px 20px;
     margin-left: 50rem;

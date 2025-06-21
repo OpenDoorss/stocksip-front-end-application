@@ -1,3 +1,16 @@
+.create-edit-bg {
+  padding: 2rem;
+  background: #F7EDDC;
+  min-height: 100vh;
+  display: flex;
+}
+
+.create-edit-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .form-container {
   max-width: 800px;
   margin: 24px auto;

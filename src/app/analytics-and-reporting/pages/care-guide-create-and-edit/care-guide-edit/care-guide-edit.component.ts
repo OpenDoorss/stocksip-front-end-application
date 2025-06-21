@@ -9,21 +9,24 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { LanguageSwitcherComponent } from '../../../../public/components/language-switcher/language-switcher.component'; 
+import { LanguageSwitcherComponent } from '../../../../public/components/language-switcher/language-switcher.component';
+import {ToolBarComponent} from '../../../../public/components/tool-bar/tool-bar.component';
+import {SideNavbarComponent} from '../../../../public/components/side-navbar/side-navbar.component';
 
 @Component({
   selector: 'app-care-guide-edit',
   imports: [
     CommonModule,
     FormsModule,
-    LanguageSwitcherComponent,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    TranslatePipe
+    TranslatePipe,
+    ToolBarComponent,
+    SideNavbarComponent
   ],
   templateUrl: './care-guide-edit.component.html',
   styleUrl: './care-guide-edit.component.css'

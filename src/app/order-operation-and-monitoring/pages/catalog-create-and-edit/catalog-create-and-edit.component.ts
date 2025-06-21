@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 import { Catalog } from '../../model/catalog.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { MatTableModule } from '@angular/material/table';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 
 @Component({
   selector: 'app-catalog-create-and-edit',
@@ -26,7 +28,9 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    SideNavbarComponent,
+    ToolBarComponent
   ],
   templateUrl: './catalog-create-and-edit.component.html',
   styleUrl: './catalog-create-and-edit.component.css'
@@ -36,6 +40,7 @@ export class CatalogCreateAndEditComponent implements OnInit {
   catalogItems: CatalogItem[] = [];
   isEditMode = false;
   showError = false;
+  pageTitle: string = '';
 
   newProduct = {
     name: '',
@@ -55,6 +60,7 @@ export class CatalogCreateAndEditComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const catalogId = +params.get('catalogId')!;
       this.isEditMode = !!catalogId;
+      this.pageTitle = this.isEditMode ? 'catalog.edit' : 'catalog.create';
 
       if (this.isEditMode) {
         this.catalogService.getCatalogById(catalogId).subscribe({

@@ -17,6 +17,8 @@ import { UserService } from '../../../authentication/services/user.service';
 import { Profile } from '../../../profile-management/models/profile.entity';
 import {ProfileService} from '../../../profile-management/services/profile.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 
 @Component({
   selector: 'app-purchase-order-create',
@@ -27,7 +29,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    SideNavbarComponent,
+    ToolBarComponent
   ],
   templateUrl: './purchase-order-create.component.html',
   styleUrls: ['./purchase-order-create.component.css']

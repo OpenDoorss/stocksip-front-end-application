@@ -6,6 +6,19 @@
   flex-wrap: wrap;
 }
 
+.catalog-create-edit-bg {
+  padding: 2rem;
+  background: #F7EDDC;
+  min-height: 100vh;
+  display: flex;
+}
+
+.catalog-create-edit-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .catalog-form {
   margin-top: 5rem;
   display: flex;
