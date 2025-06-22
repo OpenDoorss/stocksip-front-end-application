@@ -39,7 +39,7 @@ export class LoginComponent {
       this.userService.login(email, password).subscribe(success => {
         console.log('Login response:', success);
         if (success) {
-          this.router.navigate(['warehouse']);
+          this.router.navigate(['warehouses']);
         } else {
           this.snackBar.open('Invalid email or password', 'Close', {
             duration: 3000,

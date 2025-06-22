@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {Router, RouterLink} from '@angular/router';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 
 @Component({
   selector: 'app-catalog-for-orders',
@@ -31,7 +33,9 @@ import {Router, RouterLink} from '@angular/router';
     FormsModule,
     MatInput,
     MatCardActions,
-    RouterLink
+    RouterLink,
+    ToolBarComponent,
+    SideNavbarComponent
   ],
   styleUrls: ['./catalog-for-orders.component.css'],
   standalone: true

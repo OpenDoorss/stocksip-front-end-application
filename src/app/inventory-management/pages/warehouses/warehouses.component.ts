@@ -8,6 +8,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {UserService} from "../../../authentication/services/user.service";
 import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {NgIf} from '@angular/common';
+import {
+  PurchaseOrderComponent
+} from '../../../order-operation-and-monitoring/pages/purchase-order/purchase-order.component';
+import {SalesOrderComponent} from '../../../order-operation-and-monitoring/pages/sales-order/sales-order.component';
 
 @Component({
   selector: 'app-warehouses',

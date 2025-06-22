@@ -48,3 +48,16 @@
   font-weight: 600;
   margin-bottom: 1rem;
 }
+
+.catalog-for-supplier {
+  padding: 2rem;
+  background: #f4ede3;
+  min-height: 100vh;
+  display: flex;
+  .catalog-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+  }
+}
