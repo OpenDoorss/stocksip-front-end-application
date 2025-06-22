@@ -4,20 +4,23 @@ import {Warehouse} from '../model/warehouse.entity';
 export class WarehouseAssembler {
 
   static toEntityFromResource(resource: WarehouseResource): Warehouse {
-    return {
-      warehouseId: resource.warehouseId,
-      name: resource.name,
-      imageUrl: resource.imageUrl,
-      street: resource.street,
-      city: resource.city,
-      district: resource.district,
-      postalCode: resource.postalCode,
-      country: resource.country,
-      maxTemperature: resource.maxTemperature,
-      minTemperature: resource.minTemperature,
-      capacity: resource.capacity,
-      profileId: resource.profileId
-    }
+
+    const warehouse = new Warehouse();
+
+    warehouse.warehouseId = resource.warehouseId;
+    warehouse.name = resource.name;
+    warehouse.imageUrl = resource.imageUrl;
+    warehouse.street = resource.street;
+    warehouse.city = resource.city;
+    warehouse.district = resource.district;
+    warehouse.postalCode = resource.postalCode;
+    warehouse.country = resource.country;
+    warehouse.maxTemperature = resource.maxTemperature;
+    warehouse.minTemperature = resource.minTemperature;
+    warehouse.capacity = resource.capacity;
+    warehouse.profileId = resource.profileId;
+
+    return warehouse;
   }
 
   static toEntitiesFromResources(resources: WarehouseResource[]): Warehouse[] {

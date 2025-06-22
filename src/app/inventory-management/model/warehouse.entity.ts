@@ -26,4 +26,5 @@ export class Warehouse {
     this.capacity = 0;
     this.profileId = 0;
   }
+
 }
