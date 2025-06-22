@@ -1,27 +1,49 @@
 <ng-container *ngIf="isAllowed; else notAllowed">
-  <div class="market-container">
-    <mat-card *ngFor="let catalog of catalogs" class="catalog-card">
-      <mat-card-title>{{ catalog.name }}</mat-card-title>
-      <mat-card-subtitle>Publicado el {{ catalog.dateCreated | date }} </mat-card-subtitle>
-      <button mat-button (click)="loadItems(catalog.id)">See all products</button>
-      <mat-list *ngIf="selectedItems[catalog.id]">
-        <mat-list-item *ngFor="let item of selectedItems[catalog.id]">
-          <div class="product-info">
-            <h4>{{ item.name }}</h4>
-            <p>{{ item.brand }} · {{ item.content }}ml</p>
-            <strong>{{ item.unitPrice.amount | currency:'PEN' }}</strong>
-          </div>
-        </mat-list-item>
-      </mat-list>
-      <mat-card-actions>
+  <div class="catalog-for-orders-bg">
+    <app-side-navbar></app-side-navbar>
+    <div class="catalog-for-orders-main">
+      <app-tool-bar [titleKey]="'Catalogs'"></app-tool-bar>
+
+
+      <div class="provider-input">
+        <mat-form-field appearance="fill" class="input">
+          <mat-label>Supplier email</mat-label>
+          <input matInput [(ngModel)]="providerEmail"  placeholder="supplier@example.com" />
+        </mat-form-field>
         <button mat-raised-button
-                class="new-order"
+                class="search"
                 color="primary"
-                [routerLink]="['/purchase-order/new', catalog.id]">
-          New Order
+                (click)="loadProviderCatalogs()">
+          Search
         </button>
-      </mat-card-actions>
-    </mat-card>
+      </div>
+
+
+      <div class="market-container">
+        <mat-card *ngFor="let catalog of catalogs" class="catalog-card">
+          <mat-card-title>{{ catalog.name }}</mat-card-title>
+          <mat-card-subtitle>Publicado el {{ catalog.dateCreated | date }} </mat-card-subtitle>
+          <button mat-button (click)="loadItems(catalog.id)">See all products</button>
+          <mat-list *ngIf="selectedItems[catalog.id]">
+            <mat-list-item *ngFor="let item of selectedItems[catalog.id]">
+              <div class="product-info">
+                <h4>{{ item.name }}</h4>
+                <p>{{ item.brand }} · {{ item.content }}ml</p>
+                <strong>{{ item.unitPrice.amount | currency:'PEN' }}</strong>
+              </div>
+            </mat-list-item>
+          </mat-list>
+          <mat-card-actions>
+            <button mat-raised-button
+                    class="new-order"
+                    color="primary"
+                    [routerLink]="['/purchase-order/new', catalog.id]">
+              New Order
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </ng-container>
 
@@ -29,15 +51,4 @@
   <p>No tienes permiso para ver esta sección.</p>
 </ng-template>
 
-<div class="provider-input">
-  <mat-form-field appearance="fill" class="input">
-    <mat-label>Supplier email</mat-label>
-    <input matInput [(ngModel)]="providerEmail"  placeholder="supplier@example.com" />
-  </mat-form-field>
-  <button mat-raised-button
-          class="search"
-          color="primary"
-          (click)="loadProviderCatalogs()">
-    Search
-  </button>
-</div>
+

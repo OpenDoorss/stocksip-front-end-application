@@ -6,6 +6,8 @@ import {Profile} from '../../../profile-management/models/profile.entity';
 import {DateTime} from '../../../shared/model/date-time';
 import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
 import {CurrencyPipe, NgForOf} from '@angular/common';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 
 @Component({
   selector: 'app-sales-order',
@@ -15,7 +17,9 @@ import {CurrencyPipe, NgForOf} from '@angular/common';
     MatCardTitle,
     MatCard,
     NgForOf,
-    CurrencyPipe
+    CurrencyPipe,
+    SideNavbarComponent,
+    ToolBarComponent
   ],
   styleUrls: ['./sales-order.component.css']
 })

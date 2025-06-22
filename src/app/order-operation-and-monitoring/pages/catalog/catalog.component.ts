@@ -8,11 +8,13 @@ import {Profile} from '../../../profile-management/models/profile.entity';
 import {CatalogForOrdersComponent} from '../catalog-for-orders/catalog-for-orders.component';
 import {MatButton} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 
 @Component({
   selector: 'app-catalogs',
   standalone: true,
-  imports: [CommonModule, CatalogListComponent, CatalogForOrdersComponent, MatButton, RouterLink],
+  imports: [CommonModule, CatalogListComponent, CatalogForOrdersComponent, MatButton, RouterLink, SideNavbarComponent, ToolBarComponent],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
