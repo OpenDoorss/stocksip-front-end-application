@@ -10,8 +10,9 @@ export class WarehouseAssembler {
       imageUrl: resource.imageUrl,
       street: resource.street,
       city: resource.city,
-      state: resource.state,
+      district: resource.district,
       postalCode: resource.postalCode,
+      country: resource.country,
       capacity: resource.capacity,
       profileId: resource.profileId
     }

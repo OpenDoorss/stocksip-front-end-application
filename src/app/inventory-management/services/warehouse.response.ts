@@ -4,7 +4,8 @@ export interface WarehouseResource {
   imageUrl: string;
   street: string;
   city: string;
-  state: string;
+  district: string;
+  country: string;
   postalCode: string;
   capacity: number;
   profileId: number;

@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WarehouseService} from '../../services/warehouse.service';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-warehouse-create-and-edit',
@@ -21,6 +22,7 @@ import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.com
     ReactiveFormsModule,
     SideNavbarComponent,
     ToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './warehouse-create-and-edit.component.html',
   styleUrl: './warehouse-create-and-edit.component.css'
@@ -32,18 +34,20 @@ export class WarehouseCreateAndEditComponent {
   pageTitle: string = '';
 
   nameFormControl = new FormControl('', Validators.required)
-  locationFormControl = new FormControl('', Validators.required)
+  streetFormControl = new FormControl('', Validators.required)
   cityFormControl=  new FormControl('', Validators.required)
-  stateFormControl = new FormControl('', Validators.required)
+  districtFormControl = new FormControl('', Validators.required)
+  countryFormControl = new FormControl('', Validators.required)
   postalCodeFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\d{5}$/)])
   capacityFormControl = new FormControl('', [Validators.required, Validators.min(1)])
 
   warehouseForm = new FormGroup({
     name: this.nameFormControl,
-    location: this.locationFormControl,
+    street: this.streetFormControl,
     city: this.cityFormControl,
-    state: this.stateFormControl,
+    district: this.districtFormControl,
     postalCode: this.postalCodeFormControl,
+    country: this.countryFormControl,
     capacity: this.capacityFormControl,
   });
 
@@ -69,10 +73,11 @@ export class WarehouseCreateAndEditComponent {
         next: (warehouse) => {
           this.warehouseForm.patchValue({
             name: warehouse.name,
-            location: warehouse.street,
+            street: warehouse.street,
             city: warehouse.city,
-            state: warehouse.state,
+            district: warehouse.district,
             postalCode: warehouse.postalCode,
+            country: warehouse.country,
             capacity: warehouse.capacity.toString()
           });
         },

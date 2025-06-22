@@ -4,8 +4,9 @@ export class Warehouse {
   imageUrl: string;
   street: string;
   city: string;
-  state: string;
+  district: string;
   postalCode: string;
+  country: string;
   capacity: number;
   profileId: number;
 
@@ -15,8 +16,9 @@ export class Warehouse {
     this.imageUrl = '';
     this.street = '';
     this.city = '';
-    this.state = '';
+    this.district = '';
     this.postalCode = '';
+    this.country = '';
     this.capacity = 0;
     this.profileId = 0;
   }
