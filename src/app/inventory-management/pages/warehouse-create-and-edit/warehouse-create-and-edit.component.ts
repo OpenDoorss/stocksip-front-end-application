@@ -10,6 +10,7 @@ import {WarehouseService} from '../../services/warehouse.service';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 import {TranslatePipe} from '@ngx-translate/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-warehouse-create-and-edit',
@@ -58,7 +59,8 @@ export class WarehouseCreateAndEditComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private warehouseService: WarehouseService
+    private warehouseService: WarehouseService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +71,77 @@ export class WarehouseCreateAndEditComponent {
     if (this.isEditMode) {
       this.loadWarehouseData();
     }
+  }
+
+  private prepareFormData(): any {
+    return {
+      name: this.warehouseForm.value.name,
+      street: this.warehouseForm.value.street,
+      city: this.warehouseForm.value.city,
+      district: this.warehouseForm.value.district,
+      postalCode: this.warehouseForm.value.postalCode,
+      country: this.warehouseForm.value.country,
+      maxTemperature: this.warehouseForm.value.maxTemperature,
+      minTemperature: this.warehouseForm.value.minTemperature,
+      capacity: Number(this.warehouseForm.value.capacity),
+      string: '',
+      accountId: 1
+    };
+  }
+
+  onSubmit(): void {
+    if (this.warehouseForm.invalid) {
+      this.snackBar.open('Please fill all required fields correctly', 'Close', {
+        duration: 3000
+      });
+      return;
+    }
+
+    const formData = this.prepareFormData();
+
+    if (this.isEditMode && this.warehouseId) {
+      this.updateWarehouse(formData);
+    } else {
+      this.createWarehouse(formData);
+    }
+  }
+
+
+  private createWarehouse(formData: any): void {
+    this.warehouseService.createWarehouse(formData).subscribe({
+      next: (response) => {
+        this.snackBar.open('Warehouse created successfully!', 'Close', {
+          duration: 3000
+        });
+        this.router.navigate(['/warehouses']);
+      },
+      error: (err) => {
+        console.error('Full error response:', err);
+        console.error('Error details:', err.error);
+        this.snackBar.open(
+          err.error?.message || 'Error creating warehouse',
+          'Close',
+          { duration: 3000 }
+        );
+      }
+    });
+  }
+
+  private updateWarehouse(formData: any): void {
+    this.warehouseService.updateWarehouse(this.warehouseId!, formData).subscribe({
+      next: (response) => {
+        this.snackBar.open('Warehouse updated successfully!', 'Close', {
+          duration: 3000
+        });
+        this.router.navigate(['/warehouses']);
+      },
+      error: (err) => {
+        console.error('Error updating warehouse', err);
+        this.snackBar.open('Error updating warehouse', 'Close', {
+          duration: 3000
+        });
+      }
+    });
   }
 
   loadWarehouseData(): void {

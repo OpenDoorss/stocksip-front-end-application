@@ -41,7 +41,7 @@
               <!-- District -->
               <mat-form-field appearance="outline" class="form-group">
                 <mat-label>{{ 'warehouse.form.district' | translate }}</mat-label>
-                <input matInput formControlName="district" placeholder="Lima">
+                <input matInput formControlName="district" placeholder="Villa El Salvador">
                 @if (districtFormControl.hasError('required')) {
                   <mat-error>{{ 'warehouse.form.district-required' | translate }}</mat-error>
                 }
@@ -116,7 +116,7 @@
               <button mat-stroked-button type="button" class="cancel-button" (click)="onCancel()">
                 {{ 'components.cancel' | translate }}
               </button>
-              <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="warehouseForm.invalid">
+              <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="warehouseForm.invalid" (click)="onSubmit()">
                 {{ isEditMode ? ('components.edit' | translate) : ('components.save' | translate) }}
               </button>
             </div>

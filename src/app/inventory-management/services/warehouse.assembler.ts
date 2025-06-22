@@ -18,7 +18,7 @@ export class WarehouseAssembler {
     warehouse.maxTemperature = resource.maxTemperature;
     warehouse.minTemperature = resource.minTemperature;
     warehouse.capacity = resource.capacity;
-    warehouse.profileId = resource.profileId;
+    warehouse.accountId = resource.accountId;
 
     return warehouse;
   }

@@ -10,7 +10,7 @@ export class Warehouse {
   maxTemperature: number;
   minTemperature: number;
   capacity: number;
-  profileId: number;
+  accountId: number;
 
   constructor() {
     this.warehouseId = 0;
@@ -24,7 +24,7 @@ export class Warehouse {
     this.maxTemperature = 0;
     this.minTemperature = 0;
     this.capacity = 0;
-    this.profileId = 0;
+    this.accountId = 0;
   }
 
 }

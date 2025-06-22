@@ -10,5 +10,5 @@ export interface WarehouseResource {
   maxTemperature: number;
   minTemperature: number;
   capacity: number;
-  profileId: number;
+  accountId: number;
 }

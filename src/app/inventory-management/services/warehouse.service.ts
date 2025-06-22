@@ -40,6 +40,13 @@ export class WarehouseService {
     )
   }
 
+  updateWarehouse(warehouseId: string, warehouse: Warehouse): Observable<Warehouse> {
+    return this.http.put<Warehouse>(
+      `${this.apiUrl}${this.warehousesEndpoint}/${warehouse.warehouseId}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
+      map(resource => WarehouseAssembler.toEntityFromResource(resource))
+    );
+  }
+
   getWarehousesByProfile(profileId: number): Observable<any[]> {
     console.log('Requesting warehouses for profileId:', profileId);
     return this.http.get<any[]>(`${this.apiUrl}/warehouses?profileId=${profileId}`).pipe(
