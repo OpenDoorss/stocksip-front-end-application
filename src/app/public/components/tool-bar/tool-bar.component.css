@@ -1,0 +1,16 @@
+.background {
+  background-color: #F4EDE3;
+  padding: 1rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar-title {
+  padding-left: 2rem;
+  color: #6F0082;
+  font-family: 'Poppins', sans-serif;
+  font-weight: Bold;
+  font-size: 50px
+}
