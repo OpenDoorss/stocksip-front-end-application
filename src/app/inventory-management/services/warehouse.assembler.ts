@@ -13,6 +13,8 @@ export class WarehouseAssembler {
       district: resource.district,
       postalCode: resource.postalCode,
       country: resource.country,
+      maxTemperature: resource.maxTemperature,
+      minTemperature: resource.minTemperature,
       capacity: resource.capacity,
       profileId: resource.profileId
     }

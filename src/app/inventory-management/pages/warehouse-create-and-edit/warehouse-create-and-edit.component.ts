@@ -39,6 +39,8 @@ export class WarehouseCreateAndEditComponent {
   districtFormControl = new FormControl('', Validators.required)
   countryFormControl = new FormControl('', Validators.required)
   postalCodeFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\d{5}$/)])
+  maxTemperatureFormControl = new FormControl<number | null>(null, [Validators.required, Validators.min(-50), Validators.max(50)])
+  minTemperatureFormControl = new FormControl<number | null>(null, [Validators.required, Validators.min(-50), Validators.max(50)])
   capacityFormControl = new FormControl('', [Validators.required, Validators.min(1)])
 
   warehouseForm = new FormGroup({
@@ -48,6 +50,8 @@ export class WarehouseCreateAndEditComponent {
     district: this.districtFormControl,
     postalCode: this.postalCodeFormControl,
     country: this.countryFormControl,
+    maxTemperature: this.maxTemperatureFormControl,
+    minTemperature: this.minTemperatureFormControl,
     capacity: this.capacityFormControl,
   });
 
@@ -78,6 +82,8 @@ export class WarehouseCreateAndEditComponent {
             district: warehouse.district,
             postalCode: warehouse.postalCode,
             country: warehouse.country,
+            maxTemperature: warehouse.maxTemperature,
+            minTemperature: warehouse.minTemperature,
             capacity: warehouse.capacity.toString()
           });
         },

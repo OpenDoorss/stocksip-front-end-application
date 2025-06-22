@@ -7,6 +7,8 @@ export interface WarehouseResource {
   district: string;
   country: string;
   postalCode: string;
+  maxTemperature: number;
+  minTemperature: number;
   capacity: number;
   profileId: number;
 }
