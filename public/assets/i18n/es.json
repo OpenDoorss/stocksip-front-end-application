@@ -56,6 +56,29 @@
     "card": {
       "address": "Dirección",
       "capacity": "Capacidad"
+    },
+    "form" : {
+      "name": "Nombre",
+      "street": "Calle",
+      "city": "Ciudad",
+      "district": "Distrito",
+      "postalCode": "Código postal",
+      "country": "País",
+      "maxTemperature": "Temperatura máxima",
+      "minTemperature": "Temperatura mínima",
+      "capacity": "Capacidad",
+      "image": "Imagen del almacén",
+      "name-required": "El nombre es obligatorio",
+      "street-required": "La calle es obligatoria",
+      "city-required": "La ciudad es obligatoria",
+      "district-required": "El distrito es obligatorio",
+      "postalCode-required": "El código postal es obligatorio",
+      "postalCode-length": "El código postal debe tener 5 caracteres",
+      "country-required": "El país es obligatorio",
+      "maxTemperature-required": "La temperatura máxima es obligatoria",
+      "minTemperature-required": "La temperatura mínima es obligatoria",
+      "capacity-required": "La capacidad es obligatoria",
+      "capacity-length": "La capacidad debe ser mayor a 0"
     }
   },
   "dashboard": {
@@ -63,7 +86,12 @@
   },
   "components": {
     "edit": "Editar",
-    "show": "Mostrar"
+    "show": "Mostrar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "upload": "Subir imagen",
+    "no-file": "No hay archivo seleccionado",
+    "complete": "Completa todos los campos del formulario"
   },
   "reports": {
     "care-guide-list": {

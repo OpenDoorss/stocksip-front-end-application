@@ -51,13 +51,36 @@
   },
   "warehouse": {
     "title": "Warehouses",
-    "create": "Warehouse new",
+    "create": "New Warehouse",
     "edit": "Edit warehouse",
     "card": {
       "address": "Address",
       "capacity": "Capacity",
       "edit": "Edit",
       "show": "Show"
+    },
+    "form" : {
+      "name": "Name",
+      "street": "Street",
+      "city": "City",
+      "district": "District",
+      "postalCode": "Postal Code",
+      "country": "Country",
+      "maxTemperature": "Max Temperature",
+      "minTemperature": "Min Temperature",
+      "capacity": "Capacity",
+      "image": "Warehouse image",
+      "name-required": "Name is required",
+      "street-required": "Street is required",
+      "city-required": "City is required",
+      "district-required": "District is required",
+      "postalCode-required": "Postal code is required",
+      "postalCode-length": "Enter a valid 5-digits postal code",
+      "country-required": "Country is required",
+      "maxTemperature-required": "Max temperature is required",
+      "minTemperature-required": "Min temperature is required",
+      "capacity-required": "Capacity is required",
+      "capacity-length": "Capacity must be a number greater than 0"
     }
   },
   "dashboard": {
@@ -65,7 +88,12 @@
   },
   "components": {
     "edit": "Edit",
-    "show": "Show"
+    "show": "Show",
+    "save": "Save",
+    "cancel": "Cancel",
+    "upload": "Upload image",
+    "no-file": "No file chosen",
+    "complete": "Complete all form fields"
   },
   "reports": {
     "care-guide-list": {
