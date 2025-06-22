@@ -62,7 +62,7 @@
               <!-- Country -->
               <mat-form-field appearance="outline" class="form-group">
                 <mat-label>{{ 'warehouse.form.country' | translate }}</mat-label>
-                <input matInput formControlName="postalCode" placeholder="Perú">
+                <input matInput formControlName="country" placeholder="Perú">
                 @if (countryFormControl.hasError('required')) {
                   <mat-error>{{ 'warehouse.form.country-required' | translate }}</mat-error>
                 }
@@ -71,16 +71,20 @@
               <!-- Max Temperature -->
               <mat-form-field appearance="outline" class="form-group">
                 <mat-label>{{ 'warehouse.form.maxTemperature' | translate }}</mat-label>
-                <input matInput type="number" formControlName="maxTemperature" placeholder="10" min="-" max="50">
-                @if (capacityFormControl.hasError('required')) {
+                <input matInput type="number" formControlName="maxTemperature" placeholder="10" min="-50" max="50">
+                @if (maxTemperatureFormControl.hasError('required')) {
                   <mat-error>{{ 'warehouse.form.maxTemperature-required' | translate }}</mat-error>
-                }
-                @if (capacityFormControl.hasError('min')) {
-                  <mat-error>{{ 'warehouse.form.capacity-length' | translate }}</mat-error>
                 }
               </mat-form-field>
 
               <! -- Min Temperature -->
+              <mat-form-field appearance="outline" class="form-group">
+                <mat-label>{{ 'warehouse.form.minTemperature' | translate }}</mat-label>
+                <input matInput type="number" formControlName="minTemperature" placeholder="10" min="-50" max="50">
+                @if (minTemperatureFormControl.hasError('required')) {
+                  <mat-error>{{ 'warehouse.form.minTemperature-required' | translate }}</mat-error>
+                }
+              </mat-form-field>
 
               <!-- Capacity -->
               <mat-form-field appearance="outline" class="form-group full-width">

@@ -10,7 +10,7 @@ import {WarehouseResource} from './warehouse.response';
   providedIn: 'root'
 })
 export class WarehouseService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = environment.backendApi;
   private warehousesEndpoint = environment.warehousesEndpointPath;
 
   constructor(private http: HttpClient) {}

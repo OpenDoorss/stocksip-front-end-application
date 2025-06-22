@@ -7,5 +7,6 @@ export const environment = {
   zonesEndpointPath: '/zones',
   userEndpointPath: '/users',
   profileEndpointPath: '/profiles',
-  catalogEndpointPath: '/catalog'
+  catalogEndpointPath: '/catalog',
+  backendApi: 'http://localhost:8080/api/v1',
 };
