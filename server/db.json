@@ -632,7 +632,9 @@
       "date": {
         "_date": "2025-06-17T03:02:51.068Z"
       },
-      "status": "sent",
+      "status": [
+        "Arrived"
+      ],
       "buyer": {
         "profileId": 1,
         "name": "Farid",
@@ -902,9 +904,6 @@
         "businessAddress": "Av. Alameda",
         "role": "Liquor Store Owner",
         "phone": "123456789",
-        "currentPassword": "",
-        "newPassword": "",
-        "confirmPassword": "",
         "id": 1
       },
       "supplier": {
@@ -1031,9 +1030,6 @@
         "businessAddress": "Av. Alameda",
         "role": "Liquor Store Owner",
         "phone": "123456789",
-        "currentPassword": "",
-        "newPassword": "",
-        "confirmPassword": "",
         "id": 1
       },
       "supplier": {
@@ -1043,9 +1039,6 @@
         "businessName": "Business 2",
         "businessAddress": "Av. Riobamba & C. Tarma",
         "phone": "973964283",
-        "currentPassword": "",
-        "newPassword": "",
-        "confirmPassword": "",
         "role": "Supplier",
         "id": 6
       },
@@ -1100,9 +1093,6 @@
         "businessName": "Business 2",
         "businessAddress": "Av. Riobamba & C. Tarma",
         "phone": "973964283",
-        "currentPassword": "",
-        "newPassword": "",
-        "confirmPassword": "",
         "role": "Supplier",
         "id": 6
       },

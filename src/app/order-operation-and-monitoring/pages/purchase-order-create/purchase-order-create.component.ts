@@ -93,14 +93,14 @@ export class PurchaseOrderCreateComponent implements OnInit {
     const selectedItems = this.selectedCatalogItems;
 
     if (selectedItems.length === 0) {
-      this.snackBar.open('Selecciona al menos un producto', 'Cerrar', { duration: 3000 });
+      this.snackBar.open('Select at least one product', 'Close', { duration: 3000 });
       return;
     }
 
     const newOrder: PurchaseOrder = {
       id: 0,
       date: new DateTime(),
-      status: 'sent',
+      status: 'Sent',
       buyer: this.buyerProfile,
       supplier: this.supplierProfile,
       items: selectedItems,

@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PurchaseOrderService } from '../../services/purchase-order.service';
-import {UserService} from '../../../authentication/services/user.service';
-import {CatalogItem} from '../../model/catalog-item.entity';
-import {Profile} from '../../../profile-management/models/profile.entity';
-import {DateTime} from '../../../shared/model/date-time';
-import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
-import {CurrencyPipe, NgForOf} from '@angular/common';
-import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
-import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import { UserService } from '../../../authentication/services/user.service';
+import { CatalogItem } from '../../model/catalog-item.entity';
+import { Profile } from '../../../profile-management/models/profile.entity';
+import { DateTime } from '../../../shared/model/date-time';
+import {MatCard, MatCardActions, MatCardContent, MatCardTitle} from '@angular/material/card';
+import { CurrencyPipe, NgForOf } from '@angular/common';
+import { SideNavbarComponent } from '../../../public/components/side-navbar/side-navbar.component';
+import { ToolBarComponent } from '../../../public/components/tool-bar/tool-bar.component';
+import { OrderStatusComponent} from '../../components/order-status/order-status.component';
 
 @Component({
   selector: 'app-sales-order',
   templateUrl: './sales-order.component.html',
+  standalone: true,
   imports: [
     MatCardContent,
     MatCardTitle,
@@ -19,7 +22,8 @@ import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.com
     NgForOf,
     CurrencyPipe,
     SideNavbarComponent,
-    ToolBarComponent
+    ToolBarComponent,
+    MatCardActions
   ],
   styleUrls: ['./sales-order.component.css']
 })
@@ -32,13 +36,14 @@ export class SalesOrderComponent implements OnInit {
     supplier: Profile;
     items: CatalogItem[];
     totalAmount: number;
-    totalItems: number
+    totalItems: number;
   }[] = [];
   currentSupplierId: number = 0;
 
   constructor(
     private purchaseOrderService: PurchaseOrderService,
-    private userService: UserService
+    private userService: UserService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -66,5 +71,17 @@ export class SalesOrderComponent implements OnInit {
     }).format(amount);
   }
 
+  openStatusDialog(order: any): void {
+    const dialogRef = this.dialog.open(OrderStatusComponent, {
+      width: '300px',
+      data: { status: order.status }
+    });
 
+    dialogRef.afterClosed().subscribe(newStatus => {
+      if (newStatus && newStatus !== order.status) {
+        order.status = newStatus;
+        this.purchaseOrderService.updateStatus(order.id, newStatus).subscribe();
+      }
+    });
+  }
 }
