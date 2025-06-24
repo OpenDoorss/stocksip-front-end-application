@@ -54,3 +54,31 @@
     width: 60%;
   }
 }
+
+.catalog-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  mat-list-item {
+    padding: 2px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    cursor: pointer;
+    height: 4rem;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      justify-content: center;
+      margin: 20px;
+      font-size: 1rem;
+    }
+  }
+}
