@@ -794,7 +794,7 @@
         "_date": "2025-06-17T03:24:57.509Z"
       },
       "status": [
-        "Canceled"
+        "In Process"
       ],
       "buyer": {
         "profileId": 1,
@@ -1560,6 +1560,262 @@
         }
       },
       "totalItems": 3
+    },
+    {
+      "id": 15,
+      "date": {
+        "_date": "2025-06-24T17:42:31.202Z"
+      },
+      "status": "Sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a3",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Ron Cartavio",
+          "unitPrice": {
+            "_amount": 50,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Cartavio",
+          "customQuantity": ""
+        },
+        {
+          "id": "a4",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Absolut Vodka",
+          "unitPrice": {
+            "_amount": 60,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "VODKA",
+          "brand": "Absolut",
+          "customQuantity": ""
+        }
+      ],
+      "totalAmount": {
+        "_amount": 110,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 2
+    },
+    {
+      "id": 16,
+      "date": {
+        "_date": "2025-06-24T17:42:56.081Z"
+      },
+      "status": "Sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a4",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Absolut Vodka",
+          "unitPrice": {
+            "_amount": 60,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "VODKA",
+          "brand": "Absolut",
+          "customQuantity": ""
+        },
+        {
+          "id": "3c0a32f0-0685-4850-9154-898020087ec6",
+          "catalogId": 1,
+          "dateAdded": "2025-06-13T23:36:07.439Z",
+          "name": "Vino Tinto",
+          "productType": "Licor",
+          "brand": "Tabernero",
+          "content": 900,
+          "unitPrice": {
+            "_amount": 45,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "customQuantity": ""
+        }
+      ],
+      "totalAmount": {
+        "_amount": 105,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 2
+    },
+    {
+      "id": 17,
+      "date": {
+        "_date": "2025-06-24T17:44:15.250Z"
+      },
+      "status": "Sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a3",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Ron Cartavio",
+          "unitPrice": {
+            "_amount": 50,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Cartavio",
+          "customQuantity": ""
+        },
+        {
+          "id": "a4",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Absolut Vodka",
+          "unitPrice": {
+            "_amount": 60,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "VODKA",
+          "brand": "Absolut",
+          "customQuantity": ""
+        }
+      ],
+      "totalAmount": {
+        "_amount": 110,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 2
+    },
+    {
+      "id": 18,
+      "date": {
+        "_date": "2025-06-24T17:50:20.683Z"
+      },
+      "status": "Sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a2",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Vino Blanco",
+          "unitPrice": {
+            "_amount": 40,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Tabernero",
+          "customQuantity": "3 cajas"
+        }
+      ],
+      "totalAmount": {
+        "_amount": 40,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 1
     }
   ],
   "settings": [

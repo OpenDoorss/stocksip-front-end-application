@@ -41,6 +41,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
   catalogItems: CatalogItem[] = [];
   selectedItems: { [id: string]: boolean } = {};
   buyerProfile!: Profile;
+  quantities: { [id: string]: string } = {};
   supplierProfile!: Profile;
 
   constructor(
@@ -97,15 +98,21 @@ export class PurchaseOrderCreateComponent implements OnInit {
       return;
     }
 
+    const selectedItemsWithQuantities = this.selectedCatalogItems.map(item => ({
+      ...item,
+      customQuantity: this.quantities[item.id] || ''
+    }));
+
+
     const newOrder: PurchaseOrder = {
       id: 0,
       date: new DateTime(),
       status: 'Sent',
       buyer: this.buyerProfile,
       supplier: this.supplierProfile,
-      items: selectedItems,
+      items: selectedItemsWithQuantities,
       totalAmount: this.totalPrice,
-      totalItems: selectedItems.length
+      totalItems: selectedItemsWithQuantities.length
     };
 
     this.orderService.createPurchaseOrder(newOrder).subscribe({
