@@ -7,6 +7,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WarehouseService} from '../../services/warehouse.service';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {TranslatePipe} from '@ngx-translate/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-warehouse-create-and-edit',
@@ -17,6 +21,9 @@ import {WarehouseService} from '../../services/warehouse.service';
     MatCardModule,
     MatButtonModule,
     ReactiveFormsModule,
+    SideNavbarComponent,
+    ToolBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './warehouse-create-and-edit.component.html',
   styleUrl: './warehouse-create-and-edit.component.css'
@@ -25,36 +32,116 @@ export class WarehouseCreateAndEditComponent {
 
   isEditMode: boolean = false;
   warehouseId: string | null = null;
+  pageTitle: string = '';
 
   nameFormControl = new FormControl('', Validators.required)
-  locationFormControl = new FormControl('', Validators.required)
+  streetFormControl = new FormControl('', Validators.required)
   cityFormControl=  new FormControl('', Validators.required)
-  stateFormControl = new FormControl('', Validators.required)
+  districtFormControl = new FormControl('', Validators.required)
+  countryFormControl = new FormControl('', Validators.required)
   postalCodeFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\d{5}$/)])
+  maxTemperatureFormControl = new FormControl<number | null>(null, [Validators.required, Validators.min(-50), Validators.max(50)])
+  minTemperatureFormControl = new FormControl<number | null>(null, [Validators.required, Validators.min(-50), Validators.max(50)])
   capacityFormControl = new FormControl('', [Validators.required, Validators.min(1)])
 
   warehouseForm = new FormGroup({
     name: this.nameFormControl,
-    location: this.locationFormControl,
+    street: this.streetFormControl,
     city: this.cityFormControl,
-    state: this.stateFormControl,
+    district: this.districtFormControl,
+    country: this.countryFormControl,
     postalCode: this.postalCodeFormControl,
+    maxTemperature: this.maxTemperatureFormControl,
+    minTemperature: this.minTemperatureFormControl,
     capacity: this.capacityFormControl,
   });
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private warehouseService: WarehouseService
+    private warehouseService: WarehouseService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.warehouseId = this.route.snapshot.paramMap.get('warehouseId');
     this.isEditMode = !!this.warehouseId;
+    this.pageTitle = this.isEditMode ? 'warehouse.edit' : 'warehouse.create';
 
     if (this.isEditMode) {
       this.loadWarehouseData();
     }
+  }
+
+  private prepareFormData(): any {
+    return {
+      name: this.warehouseForm.value.name,
+      street: this.warehouseForm.value.street,
+      city: this.warehouseForm.value.city,
+      district: this.warehouseForm.value.district,
+      postalCode: this.warehouseForm.value.postalCode,
+      country: this.warehouseForm.value.country,
+      maxTemperature: this.warehouseForm.value.maxTemperature,
+      minTemperature: this.warehouseForm.value.minTemperature,
+      capacity: Number(this.warehouseForm.value.capacity),
+      string: '',
+      accountId: 1
+    };
+  }
+
+  onSubmit(): void {
+    if (this.warehouseForm.invalid) {
+      this.snackBar.open('Please fill all required fields correctly', 'Close', {
+        duration: 3000
+      });
+      return;
+    }
+
+    const formData = this.prepareFormData();
+
+    if (this.isEditMode && this.warehouseId) {
+      this.updateWarehouse(formData);
+    } else {
+      this.createWarehouse(formData);
+    }
+  }
+
+
+  private createWarehouse(formData: any): void {
+    this.warehouseService.createWarehouse(formData).subscribe({
+      next: (response) => {
+        this.snackBar.open('Warehouse created successfully!', 'Close', {
+          duration: 3000
+        });
+        this.router.navigate(['/warehouses']);
+      },
+      error: (err) => {
+        console.error('Full error response:', err);
+        console.error('Error details:', err.error);
+        this.snackBar.open(
+          err.error?.message || 'Error creating warehouse',
+          'Close',
+          { duration: 3000 }
+        );
+      }
+    });
+  }
+
+  private updateWarehouse(formData: any): void {
+    this.warehouseService.updateWarehouse(this.warehouseId!, formData).subscribe({
+      next: (response) => {
+        this.snackBar.open('Warehouse updated successfully!', 'Close', {
+          duration: 3000
+        });
+        this.router.navigate(['/warehouses']);
+      },
+      error: (err) => {
+        console.error('Error updating warehouse', err);
+        this.snackBar.open('Error updating warehouse', 'Close', {
+          duration: 3000
+        });
+      }
+    });
   }
 
   loadWarehouseData(): void {
@@ -63,20 +150,23 @@ export class WarehouseCreateAndEditComponent {
         next: (warehouse) => {
           this.warehouseForm.patchValue({
             name: warehouse.name,
-            location: warehouse.location,
+            street: warehouse.street,
             city: warehouse.city,
-            state: warehouse.state,
+            district: warehouse.district,
             postalCode: warehouse.postalCode,
+            country: warehouse.country,
+            maxTemperature: warehouse.maxTemperature,
+            minTemperature: warehouse.minTemperature,
             capacity: warehouse.capacity.toString()
           });
         },
-        error: (err) => console.error('Error loading warehouse', err)
+        error: (err) => console.error('Error loading warehouses', err)
       });
     }
   }
 
   onCancel(): void {
-    void this.router.navigate(['/warehouse'])
+    void this.router.navigate(['/warehouses'])
   }
 
 }

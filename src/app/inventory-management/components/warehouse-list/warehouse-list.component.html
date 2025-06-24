@@ -1,7 +1,7 @@
-<mat-grid-list cols="4" rowHeight="3:3" gutterSize="10px">
+<div class="warehouse-grid">
   @for (warehouse of warehouses; track warehouse.warehouseId) {
-    <mat-grid-tile>
-      <app-warehouse-item [warehouse]="warehouse"/>
-    </mat-grid-tile>
+    <div class="warehouse-item">
+      <app-warehouse-item [warehouses]="warehouse"></app-warehouse-item>
+    </div>
   }
-</mat-grid-list>
+</div>

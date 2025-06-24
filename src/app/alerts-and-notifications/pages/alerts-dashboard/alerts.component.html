@@ -1,23 +1,36 @@
-<div class="alerts-container mat-typography">
-  <div class="cards-wrapper">
-    <app-alert-list
-      [restocks]="urgentRestockAlerts"
-      [expirations]="upcomingExpirations"
-      [products]="products"
-      [loading]="loading"
-      [successMsg]="successMsg"
-      [errorMsg]="errorMsg"
-      [updateMinStock]="updateMinStock.bind(this)"
-      [expirationAlertMargin]="expirationAlertMargin"
-      (expirationAlertMarginChange)="expirationAlertMargin = $event"
-      [showEditMarginModal]="showEditMarginModal"
-      [openEditMarginModal]="openEditMarginModal.bind(this)"
-      [closeEditMarginModal]="closeEditMarginModal.bind(this)"
-      [saveExpirationAlertMargin]="saveExpirationAlertMargin.bind(this)"
-      [marginSuccessMsg]="marginSuccessMsg"
-      [marginErrorMsg]="marginErrorMsg"
-      [marginLoading]="marginLoading"
-    >
-    </app-alert-list>
+<div class="alerts-bg">
+
+  <app-side-navbar/>
+
+  <div class="alerts-main">
+
+    <app-tool-bar [titleKey]="'alerts.title'"></app-tool-bar>
+
+    <div class="alerts-container mat-typography">
+      <div class="cards-wrapper">
+        <app-alert-list
+          [restocks]="urgentRestockAlerts"
+          [expirations]="upcomingExpirations"
+          [products]="products"
+          [loading]="loading"
+          [successMsg]="successMsg"
+          [errorMsg]="errorMsg"
+          [updateMinStock]="updateMinStock.bind(this)"
+          [expirationAlertMargin]="expirationAlertMargin"
+          (expirationAlertMarginChange)="expirationAlertMargin = $event"
+          [showEditMarginModal]="showEditMarginModal"
+          [openEditMarginModal]="openEditMarginModal.bind(this)"
+          [closeEditMarginModal]="closeEditMarginModal.bind(this)"
+          [saveExpirationAlertMargin]="saveExpirationAlertMargin.bind(this)"
+          [marginSuccessMsg]="marginSuccessMsg"
+          [marginErrorMsg]="marginErrorMsg"
+          [marginLoading]="marginLoading"
+        >
+        </app-alert-list>
+      </div>
+    </div>
+
+
   </div>
+
 </div>

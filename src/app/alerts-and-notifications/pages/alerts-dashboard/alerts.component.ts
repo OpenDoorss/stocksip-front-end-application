@@ -4,6 +4,8 @@ import { UrgentRestockAlert, ExpiringProduct } from '../../model/alert.entity';
 import { AlertListComponent } from '../../components/alert-list/alert-list.component';
 import { HttpClient } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 
 interface Product {
   id: number;
@@ -18,7 +20,9 @@ interface Product {
   templateUrl: './alerts.component.html',
   imports: [
     AlertListComponent,
-    FormsModule
+    FormsModule,
+    ToolBarComponent,
+    SideNavbarComponent
   ],
   styleUrls: ['./alerts.component.css']
 })

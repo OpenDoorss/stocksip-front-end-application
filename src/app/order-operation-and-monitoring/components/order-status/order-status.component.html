@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Change Order Status</h2>
+<mat-dialog-content>
+  <mat-selection-list [(ngModel)]="selectedStatus">
+    <mat-list-option *ngFor="let status of statusOptions" [value]="status">
+      {{ status }}
+    </mat-list-option>
+  </mat-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

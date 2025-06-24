@@ -5,3 +5,7 @@ body { margin: 0; font-family: Roboto, "Poppins", sans-serif; background-color: 
 html, body { height: 100%; background-color: #F4EDE3}
 body { margin: 0; font-family: Roboto, "Poppins", sans-serif; background-color: #F4EDE3;}
 
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-floating-label {
+  color: inherit !important;
+}
+

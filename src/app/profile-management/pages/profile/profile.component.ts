@@ -10,6 +10,8 @@ import {PlanDetailsComponent} from '../../components/plan-details/plan-details.c
 import {PlanBenefitsComponent} from '../../components/plan-benefits/plan-benefits.component';
 import {ProfileService, UserProfile} from '../../services/profile.service';
 import {UserService} from '../../../authentication/services/user.service';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -24,7 +26,9 @@ import {UserService} from '../../../authentication/services/user.service';
     MatTooltipModule,
     MatButtonModule,
     PlanDetailsComponent,
-    PlanBenefitsComponent
+    PlanBenefitsComponent,
+    SideNavbarComponent,
+    ToolBarComponent
   ]
 })
 export class ProfileComponent implements OnInit {

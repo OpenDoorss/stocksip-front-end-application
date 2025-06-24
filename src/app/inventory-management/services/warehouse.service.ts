@@ -10,7 +10,7 @@ import {WarehouseResource} from './warehouse.response';
   providedIn: 'root'
 })
 export class WarehouseService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = environment.backendApi;
   private warehousesEndpoint = environment.warehousesEndpointPath;
 
   constructor(private http: HttpClient) {}
@@ -38,6 +38,13 @@ export class WarehouseService {
       `${this.apiUrl}${this.warehousesEndpoint}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
       map(resource => WarehouseAssembler.toEntityFromResource(resource))
     )
+  }
+
+  updateWarehouse(warehouseId: string, warehouse: Warehouse): Observable<Warehouse> {
+    return this.http.put<Warehouse>(
+      `${this.apiUrl}${this.warehousesEndpoint}/${warehouse.warehouseId}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
+      map(resource => WarehouseAssembler.toEntityFromResource(resource))
+    );
   }
 
   getWarehousesByProfile(profileId: number): Observable<any[]> {

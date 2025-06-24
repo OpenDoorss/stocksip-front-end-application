@@ -10,13 +10,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
-import { LanguageSwitcherComponent } from '../../../public/components/language-switcher/language-switcher.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ReportService } from '../../services/report.service';
 import { Report } from '../../model/report.entity';
 import { ReportItemComponent } from '../report-item/report-item.component';
 import { formatDate } from '@angular/common';
 import { ReportCreateAndEditComponent } from "../../pages/report-create-and-edit/report-create-and-edit.component";
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,7 +33,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    LanguageSwitcherComponent,
     TranslatePipe,
     MatButtonModule,
     MatSelectModule,
@@ -43,8 +43,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     FormsModule,
     ReactiveFormsModule,
     ReportItemComponent,
-    ReportCreateAndEditComponent
-],
+    ReportCreateAndEditComponent,
+    ToolBarComponent,
+    SideNavbarComponent
+  ],
   providers: [provideNativeDateAdapter()],
 })
 export class ReportListComponent implements OnInit {
