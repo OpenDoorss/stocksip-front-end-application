@@ -1816,12 +1816,115 @@
         }
       },
       "totalItems": 1
+    },
+    {
+      "id": 19,
+      "date": {
+        "_date": "2025-06-24T21:14:35.068Z"
+      },
+      "status": "Sent",
+      "buyer": {
+        "profileId": 1,
+        "name": "Farid",
+        "email": "farid@example.com",
+        "businessName": "business 1",
+        "businessAddress": "Av. Alameda",
+        "role": "Liquor Store Owner",
+        "phone": "123456789",
+        "id": 1
+      },
+      "supplier": {
+        "profileId": 6,
+        "name": "Camila",
+        "email": "camila@example.com",
+        "businessName": "Business 2",
+        "businessAddress": "Av. Riobamba & C. Tarma",
+        "phone": "973964283",
+        "role": "Supplier",
+        "id": 6
+      },
+      "items": [
+        {
+          "id": "a3",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Ron Cartavio",
+          "unitPrice": {
+            "_amount": 50,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Cartavio",
+          "customQuantity": "3 cajas"
+        }
+      ],
+      "totalAmount": {
+        "_amount": 50,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 1
+    },
+    {
+      "id": 20,
+      "date": {
+        "_date": "2025-06-24T23:40:31.832Z"
+      },
+      "status": "Sent",
+      "buyer": null,
+      "supplier": {
+        "id": "a1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "name": "Farid",
+        "email": "farid@example.com"
+      },
+      "items": [
+        {
+          "id": "a3",
+          "catalogId": 1,
+          "dateAdded": "2025-06-06T10:30:00.000Z",
+          "name": "Ron Cartavio",
+          "unitPrice": {
+            "_amount": 50,
+            "_currency": {
+              "_code": "PEN"
+            }
+          },
+          "content": 355,
+          "productType": "RUM",
+          "brand": "Cartavio",
+          "customQuantity": "4 unidades"
+        }
+      ],
+      "totalAmount": {
+        "_amount": 50,
+        "_currency": {
+          "_code": "PEN"
+        }
+      },
+      "totalItems": 1
     }
   ],
   "settings": [
     {
       "expirationAlertMargin": 8,
       "id": 1
+    }
+  ],
+  "accounts": [
+    {
+      "id": "a1",
+      "userOwnerId": 1,
+      "role": "Liquor Store Owner",
+      "businessName": "business 1",
+      "name": "Farid",
+      "email": "farid@example.com"
     }
   ]
 }
