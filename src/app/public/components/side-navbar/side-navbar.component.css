@@ -6,7 +6,7 @@
 .sidenav {
   background-color: #273238;
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 64px;
+  width: 70px;
   min-height: 100vh;
   padding-top: 16px;
   position: fixed;
@@ -14,6 +14,7 @@
   left: 0;
   bottom: 0;
   z-index: 1000;
+  border-radius: 0;
 }
 
 .sidenav.expanded {
