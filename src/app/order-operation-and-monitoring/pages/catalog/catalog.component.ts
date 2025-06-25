@@ -1,26 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { MatButton } from '@angular/material/button';
+
 import { CatalogService } from '../../services/catalog.service';
 import { UserService } from '../../../authentication/services/user.service';
+
 import { Catalog } from '../../model/catalog.entity';
+import { Account} from '../../../payment-and-subscriptions/model/account.entity';
+
 import { CatalogListComponent } from '../../components/catalog-list/catalog-list.component';
-import { CommonModule } from '@angular/common';
-import {Profile} from '../../../profile-management/models/profile.entity';
-import {CatalogForOrdersComponent} from '../catalog-for-orders/catalog-for-orders.component';
-import {MatButton} from '@angular/material/button';
-import {RouterLink} from '@angular/router';
-import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
-import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import { CatalogForOrdersComponent } from '../catalog-for-orders/catalog-for-orders.component';
+import { SideNavbarComponent } from '../../../public/components/side-navbar/side-navbar.component';
+import { ToolBarComponent } from '../../../public/components/tool-bar/tool-bar.component';
 
 @Component({
   selector: 'app-catalogs',
   standalone: true,
-  imports: [CommonModule, CatalogListComponent, CatalogForOrdersComponent, MatButton, RouterLink, SideNavbarComponent, ToolBarComponent],
+  imports: [
+    CommonModule,
+    CatalogListComponent,
+    CatalogForOrdersComponent,
+    MatButton,
+    RouterLink,
+    SideNavbarComponent,
+    ToolBarComponent
+  ],
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
   catalogs: Catalog[] = [];
-  profile: Profile | null = null;
+  account: Account | null = null;
 
   constructor(
     private catalogService: CatalogService,
@@ -28,46 +39,40 @@ export class CatalogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const currentUser = this.userService.getCurrentUser();
-    console.log('Usuario actual:', currentUser);
+    const user = this.userService.getCurrentUser();
+    console.log('Usuario actual:', user);
 
-    if (!currentUser?.profile || !currentUser.profile.role) {
-      console.error('Perfil no encontrado o sin rol');
+    const role = user?.role;
+    if (!role) {
+      console.error('Cuenta o perfil sin rol');
       return;
     }
 
-    this.profile = currentUser.profile;
-    console.log('Rol del perfil:', this.profile?.role);
+    // solo asigna account si realmente existe
+    this.account = user.account ?? null;
 
-    if (this.profile?.role === 'Supplier') {
-      const profileId = this.profile.profileId;
-      this.catalogService.getCatalogByProfile(profileId).subscribe({
-        next: (catalogs: Catalog[]) => {
-          this.catalogs = catalogs;
-        },
-        error: err => {
-          console.error('Error al cargar catálogos:', err);
-        }
+    if (role === 'Supplier') {
+      const accountId = user.account?.id ?? user.id;
+      this.catalogService.getCatalogByAccount(accountId).subscribe({
+        next: cats => (this.catalogs = cats),
+        error: err => console.error('Error al cargar catálogos:', err)
       });
-    } else if (this.profile?.role === 'Liquor Store Owner') {
+    } else if (role === 'Liquor Store Owner') {
       this.catalogService.getPublishedCatalogs().subscribe({
-        next: (catalogs: Catalog[]) => {
-          this.catalogs = catalogs;
-        },
-        error: err => {
-          console.error('Error al cargar catálogos publicados:', err);
-        }
+        next: cats => (this.catalogs = cats),
+        error: err => console.error('Error al cargar catálogos publicados:', err)
       });
     } else {
       console.warn('Rol no reconocido');
     }
   }
 
+
   isSupplier(): boolean {
-    return this.profile?.role === 'Supplier';
+    return this.account?.role === 'Supplier';
   }
 
   isLiquorStoreOwner(): boolean {
-    return this.profile?.role === 'Liquor Store Owner';
+    return this.account?.role === 'Liquor Store Owner';
   }
 }

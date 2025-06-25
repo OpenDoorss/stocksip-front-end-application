@@ -15,7 +15,7 @@
           <h4>Items:</h4>
           <ul>
             <li *ngFor="let item of order.items">
-              {{ item.name }} - {{ item.unitPrice._amount | currency:'PEN' }}
+              {{ item.name }} - {{ formatPrice(item.unitPrice) }}
             </li>
           </ul>
 

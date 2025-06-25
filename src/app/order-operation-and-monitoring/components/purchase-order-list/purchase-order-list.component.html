@@ -31,7 +31,7 @@
     <ng-container matColumnDef="total">
       <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
       <mat-cell *matCellDef="let order">
-        {{ formatPrice(order.totalAmount?._amount, order.totalAmount?._currency?._code) }}
+        {{ formatPrice(order.totalAmount) }}
       </mat-cell>
     </ng-container>
 

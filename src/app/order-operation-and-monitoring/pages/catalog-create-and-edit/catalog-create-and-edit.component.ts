@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CatalogService } from '../../services/catalog.service';
 import { CatalogItem } from '../../model/catalog-item.entity';
 import { Money } from '../../../shared/model/money';
-import { Currency } from '../../../shared/model/currency';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -36,18 +35,34 @@ import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.com
   styleUrl: './catalog-create-and-edit.component.css'
 })
 export class CatalogCreateAndEditComponent implements OnInit {
-  catalog: Catalog = { id: 0, name: '', profileId: 0, dateCreated: '' , isPublished: false};
-  catalogItems: CatalogItem[] = [];
+  catalog: Catalog = {
+    id: 0,
+    name: '',
+    accountId: '',
+    dateCreated: '',
+    isPublished: false
+  };
+
+  catalogItems: {
+    id: string;
+    catalogId: number;
+    dateAdded: string;
+    name: string;
+    productType: string;
+    content: number;
+    brand: string;
+    unitPrice: Money
+  }[] = [];
   isEditMode = false;
   showError = false;
-  pageTitle: string = '';
+  pageTitle = '';
 
   newProduct = {
     name: '',
     productType: '',
     content: 0,
     brand: '',
-    price: null as number | null,
+    price: null as number | null
   };
 
   constructor(
@@ -64,7 +79,7 @@ export class CatalogCreateAndEditComponent implements OnInit {
 
       if (this.isEditMode) {
         this.catalogService.getCatalogById(catalogId).subscribe({
-          next: (catalog) => {
+          next: catalog => {
             this.catalog = catalog;
             this.loadCatalogItems();
           },
@@ -74,75 +89,59 @@ export class CatalogCreateAndEditComponent implements OnInit {
     });
   }
 
-
   loadCatalogItems(): void {
     if (!this.catalog.id) return;
 
     this.catalogService.getCatalogItems(this.catalog.id).subscribe({
-      next: (items) => {
-        this.catalogItems = items.map(item => {
-          const rawPrice = item.unitPrice as any;
-          const money = new Money(
-            rawPrice?._amount ?? rawPrice?.amount ?? 0,
-            new Currency(rawPrice?._currency?._code ?? rawPrice?.currency ?? 'PEN')
-          );
-          return { ...item, unitPrice: money };
-        });
+      next: items => {
+        /* asumimos que backend ya devuelve unitPrice como number */
+        this.catalogItems = items as any;
       },
       error: err => console.error('Error loading items:', err)
     });
   }
 
-  onSave(): void {
-    if (!this.catalog.name.trim()) {
-      this.showError = true;
-      return;
-    }
 
+  onSave(): void {
+    if (!this.catalog.name.trim()) { this.showError = true; return; }
     this.showError = false;
 
-    const currentProfile = this.userService.getCurrentUserProfile();
-    if (!currentProfile) {
-      console.error('No se pudo obtener el perfil del usuario actual');
+    const currentUser = this.userService.getCurrentUser();
+    if (!currentUser?.account?.id) {
+      console.error('No se encontró la cuenta del usuario');
       this.showError = true;
       return;
     }
 
-    const catalogPayload = {
+    const catalogPayload: Catalog = {
       ...this.catalog,
       name: this.catalog.name.trim(),
-      profileId: currentProfile.profileId,
+      accountId: currentUser.account.id,
       dateCreated: new Date().toISOString(),
       isPublished: false
     };
 
-    if (this.isEditMode) {
-      this.catalogService.updateCatalog(catalogPayload).subscribe({
-        next: () => this.handleCatalogSaveSuccess(),
-        error: err => console.error('Error actualizando catálogo:', err)
-      });
-    } else {
-      this.catalogService.createCatalog(catalogPayload).subscribe({
-        next: (createdCatalog: Catalog) => {
-          this.catalog = createdCatalog;
-          this.isEditMode = true;
-          this.handleCatalogSaveSuccess();
-        },
-        error: (err: any) => console.error('Error creando catálogo:', err)
-      });
-    }
+    (this.isEditMode
+        ? this.catalogService.updateCatalog(catalogPayload)
+        : this.catalogService.createCatalog(catalogPayload)
+    ).subscribe({
+      next: createdOrUpdated => {
+        if (!this.isEditMode) this.catalog = createdOrUpdated;
+        this.isEditMode = true;
+        this.handleCatalogSaveSuccess();
+      },
+      error: err =>
+        console.error(
+          this.isEditMode ? 'Error actualizando catálogo:' : 'Error creando catálogo:',
+          err
+        )
+    });
   }
-
-
   private handleCatalogSaveSuccess(): void {
-    const isProductFormFilled = Object.values(this.newProduct).some(f => f !== '' && f !== null && f !== 0);
-
-    if (isProductFormFilled) {
-      const isProductFormValid = Object.values(this.newProduct).every(f => f !== '' && f !== null && f !== 0);
-      if (!isProductFormValid) {
-        this.showError = true;
-        return;
-      }
+    const filled = Object.values(this.newProduct).some(v => v !== '' && v !== null && v !== 0);
+    if (filled) {
+      const valid = Object.values(this.newProduct).every(v => v !== '' && v !== null && v !== 0);
+      if (!valid) { this.showError = true; return; }
 
       const newCatalogItem: CatalogItem = {
         id: uuidv4(),
@@ -152,14 +151,16 @@ export class CatalogCreateAndEditComponent implements OnInit {
         productType: this.newProduct.productType,
         brand: this.newProduct.brand,
         content: +this.newProduct.content,
-        unitPrice: new Money(this.newProduct.price!, new Currency('PEN'))
+        unitPrice: this.newProduct.price!
       };
 
       this.catalogService.addCatalogItem(newCatalogItem).subscribe({
         next: () => {
-          this.catalogItems.push(newCatalogItem);
+          this.catalogItems.push(newCatalogItem as any);
           this.resetForm();
-          alert(this.isEditMode ? 'Catálogo actualizado y producto agregado correctamente' : 'Catálogo creado y producto agregado correctamente');
+          alert(this.isEditMode
+            ? 'Catálogo actualizado y producto agregado correctamente'
+            : 'Catálogo creado y producto agregado correctamente');
         },
         error: err => console.error('Error agregando producto:', err)
       });
@@ -178,7 +179,12 @@ export class CatalogCreateAndEditComponent implements OnInit {
     };
   }
 
-  formatPrice(price: Money): string {
-    return price?.format('es-PE') ?? 'S/0.00';
+  formatPrice(amount: number, currencyCode: string = 'PEN'): string {
+    const formatted = new Intl.NumberFormat('es-PE', {
+      style: 'currency',
+      currency: currencyCode,
+      minimumFractionDigits: 2
+    }).format(amount);
+    return formatted.replace('S/', 'S/.');
   }
 }

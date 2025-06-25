@@ -1,15 +1,15 @@
 import { CatalogItem } from './catalog-item.entity';
-import { Money } from '../../shared/model/money';
 import { DateTime } from '../../shared/model/date-time';
-import { Profile } from '../../profile-management/models/profile.entity';
+import {Account} from '../../payment-and-subscriptions/model/account.entity';
+
 
 export interface PurchaseOrder {
   id: number;
   date: DateTime;
   status: string;
-  buyer: Profile;
-  supplier: Profile;
+  buyer: Account;
+  supplier: Account;
   items: CatalogItem[];
-  totalAmount: Money;
+  totalAmount: number;
   totalItems: number;
 }
