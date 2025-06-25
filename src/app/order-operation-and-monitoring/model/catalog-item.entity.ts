@@ -1,5 +1,3 @@
-import {Money} from '../../shared/model/money';
-
 export interface CatalogItem {
   id: string;
   catalogId: number;
@@ -8,5 +6,5 @@ export interface CatalogItem {
   productType: string;
   content: number;
   brand: string;
-  unitPrice: Money;
+  unitPrice: number;
 }

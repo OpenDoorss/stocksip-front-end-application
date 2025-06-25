@@ -1,5 +1,5 @@
 export interface Account {
-  accountId: string;
+  id: string;
   email: string;
   businessName: string;
   role: string;

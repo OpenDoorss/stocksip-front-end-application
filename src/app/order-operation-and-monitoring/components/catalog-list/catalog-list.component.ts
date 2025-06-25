@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Catalog } from '../../model/catalog.entity';
-import {MatGridListModule, MatGridTile} from '@angular/material/grid-list';
+import { MatGridListModule, MatGridTile } from '@angular/material/grid-list';
 import { CatalogItemComponent } from '../catalog-item/catalog-item.component';
-import {CatalogService} from '../../services/catalog.service';
-import {UserService} from '../../../authentication/services/user.service';
-import {NgForOf} from '@angular/common';
+import { CatalogService } from '../../services/catalog.service';
+import { UserService } from '../../../authentication/services/user.service';
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-catalog-list',
@@ -18,24 +18,30 @@ import {NgForOf} from '@angular/common';
   ]
 })
 export class CatalogListComponent implements OnInit {
-  @Input() catalogs!: Catalog[];
+  @Input() catalogs: Catalog[] = [];
 
-  constructor(private catalogService: CatalogService, private userService: UserService) {}
+  constructor(
+    private catalogService: CatalogService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     const currentUser = this.userService.getCurrentUser();
-    if (!currentUser) return;
+    const accountId = currentUser?.account?.id;   // 👈 aquí
 
-    this.catalogService.getCatalogByProfile(currentUser.profileId).subscribe({
-      next: (catalogs: Catalog[]) => {
-        this.catalogs = catalogs;
-      },
-      error: (err: any) => console.error('Error fetching catalogs:', err)
+    if (!accountId) {
+      console.warn('El usuario aún no tiene cuenta');   // o muestra mensaje en la vista
+      return;
+    }
+
+    this.catalogService.getCatalogByAccount(accountId).subscribe({
+      next: cats => (this.catalogs = cats),
+      error: err => console.error('Error fetching catalogs:', err)
     });
   }
+
 
   trackById(index: number, item: Catalog): number {
     return item.id;
   }
-
 }

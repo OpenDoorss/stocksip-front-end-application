@@ -1,6 +1,6 @@
 export interface Catalog {
   id: number;
-  profileId: number;
+  accountId: string;
   name: string;
   dateCreated: string;
   isPublished: boolean;
