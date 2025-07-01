@@ -1,0 +1,15 @@
+<div class="product-card">
+  <div class="card-header center-text">
+    <h2 class="card-title">{{product.name}}</h2>
+  </div>
+  <div class="image-container">
+    <img [src]="product.imageUrl" [alt]="product.name" class="product-image">
+  </div>
+  <div class="card-content">
+    <p><strong>{{ 'product.card.unitprice' | translate }}:</strong> {{product.unitPrice }}</p>
+    <p><strong>{{ 'product.card.expirationDate' | translate }}:</strong> {{product.expirationDate}}</p>
+  </div>
+  <div class="action-buttons">
+    <p><strong>{{ 'product.card.footer' | translate }}:</strong></p>
+  </div>
+</div>
