@@ -177,3 +177,16 @@
     gap: 1rem;
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .auth-container {
+    flex-direction: column;
+  }
+  .register-section{
+    background-color: #263238;
+    color: white;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    align-items: center;
+  }
+}
