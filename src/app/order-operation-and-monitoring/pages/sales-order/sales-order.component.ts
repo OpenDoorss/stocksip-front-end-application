@@ -49,8 +49,7 @@ export class SalesOrderComponent implements OnInit {
     totalItems: number;
   }[] = [];
 
-  /** identificador (accountId) de la cuenta actual */
-  private currentAccountId = '';
+  private currentAccountId = 0;
 
   constructor(
     private purchaseOrderService: PurchaseOrderService,
@@ -63,7 +62,7 @@ export class SalesOrderComponent implements OnInit {
     const user = this.userService.getCurrentUser();
 
     this.currentAccountId =
-      user?.account?.accountId ?? user?.account?.id ?? '';
+      user?.account?.accountId ?? user?.account?.id ?? 0;
 
     if (!this.currentAccountId) {
       console.warn('Sin cuenta asociada; no se mostrarán órdenes');

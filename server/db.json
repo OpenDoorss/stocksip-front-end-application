@@ -361,14 +361,16 @@
   "catalogs": [
     {
       "id": 7,
-      "accountId": "a3",
-      "name": "Catalogo prueba",
-      "dateCreated": "2025-06-25T23:34:44.754Z",
-      "isPublished": false
+      "accountId": {
+        "accountId": 3
+      },
+      "name": "Catalogo 67",
+      "dateCreated": "2025-07-01T22:04:12.086416",
+      "isPublished": true
     },
     {
       "id": 8,
-      "accountId": "a3",
+      "accountId": "3",
       "name": "Catalogo 4",
       "dateCreated": "2025-06-25T23:17:08.303Z",
       "isPublished": true
@@ -404,6 +406,36 @@
       "brand": "fdfd",
       "content": 45,
       "unitPrice": 455
+    },
+    {
+      "id": "5d4e66c9-8ea0-4162-bab6-6e74f45510e8",
+      "catalogId": 0,
+      "dateAdded": "2025-07-02T03:17:21.246Z",
+      "name": "NUEVO",
+      "productType": "NUEVECITO",
+      "brand": "Marca de ron",
+      "content": 578,
+      "unitPrice": 677
+    },
+    {
+      "id": "a23dbc71-2e1f-48fe-bb1b-062f5e258b97",
+      "catalogId": 10,
+      "dateAdded": "2025-07-02T03:26:01.762Z",
+      "name": "nuevo1",
+      "productType": "uiyhoiu",
+      "brand": "ouiui",
+      "content": 787,
+      "unitPrice": 556
+    },
+    {
+      "id": "f139baca-83dd-402a-bf24-93c5d7545e2e",
+      "catalogId": 11,
+      "dateAdded": "2025-07-02T03:26:34.676Z",
+      "name": "uyhuh",
+      "productType": "lkhk",
+      "brand": "lkhkl",
+      "content": 79879,
+      "unitPrice": 90
     }
   ],
   "products": [
@@ -457,10 +489,10 @@
         "_date": "2025-06-25T23:30:02.555Z"
       },
       "status": [
-        "Received"
+        "In Process"
       ],
       "buyer": {
-        "id": "a1",
+        "id": "1",
         "userOwnerId": 1,
         "role": "Liquor Store Owner",
         "businessName": "business 1",
@@ -468,7 +500,7 @@
         "email": "farid@example.com"
       },
       "supplier": {
-        "id": "a3",
+        "id": "3",
         "userOwnerId": 6,
         "role": "Supplier",
         "businessName": "Business 3",
@@ -490,6 +522,84 @@
       ],
       "totalAmount": 23,
       "totalItems": 1
+    },
+    {
+      "id": 4,
+      "date": {
+        "_date": "2025-07-02T02:01:25.896Z"
+      },
+      "status": "Received",
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "name": "Farid",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "name": "Camila",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "08499fbe-57fc-41a4-b4e6-7878c358d569",
+          "catalogId": 8,
+          "dateAdded": "2025-06-25T23:17:08.324Z",
+          "name": "vino",
+          "productType": "vino",
+          "brand": "tabernero",
+          "content": 456,
+          "unitPrice": 23,
+          "customQuantity": 2
+        }
+      ],
+      "totalAmount": 23,
+      "totalItems": 1,
+      "customQuantity": 0
+    },
+    {
+      "id": 5,
+      "date": {
+        "_date": "2025-07-02T02:04:01.934Z"
+      },
+      "status": "Received",
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "name": "Farid",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "name": "Camila",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "08499fbe-57fc-41a4-b4e6-7878c358d569",
+          "catalogId": 8,
+          "dateAdded": "2025-06-25T23:17:08.324Z",
+          "name": "vino",
+          "productType": "vino",
+          "brand": "tabernero",
+          "content": 456,
+          "unitPrice": 23,
+          "customQuantity": 56
+        }
+      ],
+      "totalAmount": 1288,
+      "totalItems": 1,
+      "customQuantity": 0
     }
   ],
   "settings": [
@@ -500,7 +610,7 @@
   ],
   "accounts": [
     {
-      "id": "a1",
+      "id": "1",
       "userOwnerId": 1,
       "role": "Liquor Store Owner",
       "businessName": "business 1",
@@ -508,7 +618,7 @@
       "email": "farid@example.com"
     },
     {
-      "id": "a3",
+      "id": "3",
       "userOwnerId": 6,
       "role": "Supplier",
       "businessName": "Business 3",

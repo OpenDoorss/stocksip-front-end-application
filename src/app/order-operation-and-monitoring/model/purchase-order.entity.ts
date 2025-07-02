@@ -10,6 +10,7 @@ export interface PurchaseOrder {
   buyer: Account;
   supplier: Account;
   items: CatalogItem[];
+  customQuantity: number;
   totalAmount: number;
   totalItems: number;
 }

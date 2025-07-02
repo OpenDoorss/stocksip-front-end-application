@@ -40,7 +40,7 @@ export class PurchaseOrderCreateComponent implements OnInit {
   catalogItems: CatalogItem[] = [];
 
   selectedItems: Record<string, boolean> = {};
-  quantities: Record<string, string> = {};
+  quantities: Record<string, number> = {};
 
   buyerAccount!: Account;
   supplierAccount!: Account;
@@ -83,11 +83,12 @@ export class PurchaseOrderCreateComponent implements OnInit {
   }
 
   get totalPrice(): number {
-    return this.selectedCatalogItems.reduce(
-      (sum, i) => sum + i.unitPrice,
-      0
-    );
+    return this.selectedCatalogItems.reduce((sum, item) => {
+      const quantity = this.quantities[item.id] || 0;
+      return sum + item.unitPrice * quantity;
+    }, 0);
   }
+
 
   createOrder(): void {
     if (this.selectedCatalogItems.length === 0) {
@@ -95,9 +96,15 @@ export class PurchaseOrderCreateComponent implements OnInit {
       return;
     }
 
+    if (this.selectedCatalogItems.some(i => !this.quantities[i.id] || this.quantities[i.id] <= 0)) {
+      this.snackBar.open('Please enter a valid quantity for each selected product', 'Close', { duration: 3000 });
+      return;
+    }
+
+
     const itemsWithQty = this.selectedCatalogItems.map(i => ({
       ...i,
-      customQuantity: this.quantities[i.id] || ''
+      customQuantity: this.quantities[i.id] || 0
     }));
 
     const newOrder: PurchaseOrder = {
@@ -108,7 +115,8 @@ export class PurchaseOrderCreateComponent implements OnInit {
       supplier: this.supplierAccount,
       items: itemsWithQty,
       totalAmount: this.totalPrice,
-      totalItems: itemsWithQty.length
+      totalItems: itemsWithQty.length,
+      customQuantity: 0
     };
 
     this.orderService.createPurchaseOrder(newOrder).subscribe({

@@ -96,7 +96,7 @@ export class UserService {
           ),
           switchMap(() =>
             this.http.post<Account>(`${this.baseUrl}${this.accountsEndpoint}`, {
-              id: `a${newUser.id}`,
+              id: newUser.id,
               userOwnerId: newUser.id,
               role: data.role,
               businessName: data.name + ' Business',
@@ -123,7 +123,7 @@ export class UserService {
       .pipe(map(a => a[0] ?? null));
   }
 
-  getAccountById(accountId: string): Observable<Account | null> {
+  getAccountById(accountId: number): Observable<Account | null> {
     return this.http
       .get<Account>(`${this.baseUrl}${this.accountsEndpoint}/${accountId}`)
       .pipe(map(a => a ?? null));
