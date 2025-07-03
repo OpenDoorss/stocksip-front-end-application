@@ -5,7 +5,7 @@ import {Account} from '../../payment-and-subscriptions/model/account.entity';
 
 export interface PurchaseOrder {
   id: number;
-  date: DateTime;
+  date: Date;
   status: string;
   buyer: Account;
   supplier: Account;

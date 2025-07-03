@@ -131,12 +131,8 @@ export class CatalogItemComponent implements OnInit, OnChanges {
   }
 
   onPublish(): void {
-    if (
-      !this.catalog?.id ||
-      !this.catalog.accountId ||
-      !this.catalog.name ||
-      !this.catalog.dateCreated
-    ) {
+    const cat = this.catalog!;
+    if (!cat.id) {
       this.snackBar.open(
         'Catálogo incompleto. No se puede publicar.',
         'Cerrar',
@@ -145,30 +141,21 @@ export class CatalogItemComponent implements OnInit, OnChanges {
       return;
     }
 
-    const updatedCatalog: Catalog = {
-      id: this.catalog.id,
-      accountId: this.catalog.accountId,
-      name: this.catalog.name,
-      dateCreated: this.catalog.dateCreated,
-      isPublished: true
-    };
+    this.catalogService.publishCatalog(cat.id).subscribe({
+      next: (published) => {
+        this.catalog = published;
 
-    this.catalogService.updateCatalog(updatedCatalog).subscribe({
-      next: () => {
-        this.snackBar.open(
-          'Catálogo publicado con éxito',
-          'Cerrar',
-          { duration: 4000 }
-        );
+        this.snackBar.open('Catálogo publicado con éxito', 'Cerrar', {
+          duration: 4000
+        });
       },
-      error: err => {
+      error: (err) => {
         console.error('Error al publicar catálogo:', err);
-        this.snackBar.open(
-          'Error al publicar el catálogo',
-          'Cerrar',
-          { duration: 4000 }
-        );
+        this.snackBar.open('Error al publicar el catálogo', 'Cerrar', {
+          duration: 4000
+        });
       }
     });
   }
+
 }

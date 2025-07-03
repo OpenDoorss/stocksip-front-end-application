@@ -5,6 +5,7 @@ import { NgForOf } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatFormField, MatOption, MatSelect} from '@angular/material/select';
 
 @Component({
   selector: 'app-order-status',
@@ -15,11 +16,20 @@ import { MatDialogModule } from '@angular/material/dialog';
     NgForOf,
     MatListModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelect,
+    MatFormField,
+    MatOption
   ],
 })
 export class OrderStatusComponent {
-  statusOptions = ['Received', 'In Process', 'Arrived', 'Canceled'];
+  statusOptions = [
+    { label: 'Received', value: 'RECEIVED' },
+    { label: 'In Process', value: 'IN_PROCESS' },
+    { label: 'Arrived', value: 'ARRIVED' },
+    { label: 'Canceled', value: 'CANCELED' }
+  ];
+
   selectedStatus: string;
 
   constructor(
@@ -37,4 +47,3 @@ export class OrderStatusComponent {
     this.dialogRef.close(this.selectedStatus);
   }
 }
-

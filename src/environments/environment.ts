@@ -9,6 +9,7 @@ export const environment = {
   profileEndpointPath: '/profiles',
   accountsEndpointPath: '/accounts',
   catalogEndpointPath: '/catalog',
+  authEndpointPath: '/authentications',
   backendApi: 'http://localhost:8080/api/v1',
 };
 

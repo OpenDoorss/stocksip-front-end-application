@@ -3,7 +3,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4ede3;
   color: #8E24AA;
-  padding: 40px 0;
+  padding: 0;
 }
 
 .title {
@@ -14,7 +14,6 @@
 
 .description {
   background-color: #9327b3;
-  padding: 1rem;
   color: white;
   font-size: 2rem;
   line-height: 1.5;

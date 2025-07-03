@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogService } from '../../services/catalog.service';
 import { CatalogItem } from '../../model/catalog-item.entity';
-import { Money } from '../../../shared/model/money';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -15,6 +14,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { MatTableModule } from '@angular/material/table';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {EMPTY, of, switchMap, tap} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-catalog-create-and-edit',
@@ -38,7 +39,7 @@ export class CatalogCreateAndEditComponent implements OnInit {
   catalog: Catalog = {
     id: 0,
     name: '',
-    accountId: '',
+    accountId: 0,
     dateCreated: '',
     isPublished: false
   };
@@ -51,11 +52,12 @@ export class CatalogCreateAndEditComponent implements OnInit {
     productType: string;
     content: number;
     brand: string;
-    unitPrice: Money
+    unitPrice: number
   }[] = [];
   isEditMode = false;
   showError = false;
   pageTitle = '';
+  prevName = '';
 
   newProduct = {
     name: '',
@@ -68,7 +70,8 @@ export class CatalogCreateAndEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private catalogService: CatalogService,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -76,6 +79,7 @@ export class CatalogCreateAndEditComponent implements OnInit {
       const catalogId = +params.get('catalogId')!;
       this.isEditMode = !!catalogId;
       this.pageTitle = this.isEditMode ? 'catalog.edit' : 'catalog.create';
+
 
       if (this.isEditMode) {
         this.catalogService.getCatalogById(catalogId).subscribe({
@@ -94,79 +98,66 @@ export class CatalogCreateAndEditComponent implements OnInit {
 
     this.catalogService.getCatalogItems(this.catalog.id).subscribe({
       next: items => {
-        /* asumimos que backend ya devuelve unitPrice como number */
         this.catalogItems = items as any;
       },
       error: err => console.error('Error loading items:', err)
     });
   }
 
-
   onSave(): void {
     if (!this.catalog.name.trim()) { this.showError = true; return; }
     this.showError = false;
 
     const currentUser = this.userService.getCurrentUser();
-    if (!currentUser?.account?.id) {
-      console.error('No se encontró la cuenta del usuario');
-      this.showError = true;
-      return;
-    }
+    if (!currentUser?.account?.id) { /* … */ return; }
 
-    const catalogPayload: Catalog = {
-      ...this.catalog,
-      name: this.catalog.name.trim(),
-      accountId: currentUser.account.id,
-      dateCreated: new Date().toISOString(),
-      isPublished: false
-    };
+    const nameChanged = this.isEditMode && this.catalog.name !== this.prevName;
+    const update$ = nameChanged
+      ? this.catalogService.updateCatalogName(
+        this.catalog.id,
+        this.catalog.name.trim(),
+        this.catalog.accountId)
+      : of(this.catalog);
 
-    (this.isEditMode
-        ? this.catalogService.updateCatalog(catalogPayload)
-        : this.catalogService.createCatalog(catalogPayload)
+
+    update$.pipe(
+      switchMap((cat: Catalog) => {
+        this.catalog = cat;
+        const filled = Object.values(this.newProduct).some(v => v);
+        if (!filled) return of(null);
+
+        const valid = Object.values(this.newProduct).every(v => v);
+        if (!valid) { this.showError = true; return EMPTY; }
+
+        const newItem: CatalogItem = {
+          id: uuidv4(),
+          catalogId: this.catalog.id,
+          dateAdded: new Date().toISOString(),
+          name: this.newProduct.name,
+          productType: this.newProduct.productType,
+          brand: this.newProduct.brand,
+          content: +this.newProduct.content,
+          unitPrice: this.newProduct.price!
+        };
+        return this.catalogService.addCatalogItem(newItem).pipe(
+          tap(item => this.catalogItems.push(item))
+        );
+      })
     ).subscribe({
-      next: createdOrUpdated => {
-        if (!this.isEditMode) this.catalog = createdOrUpdated;
+      next: () => {
+        this.resetForm();
+        this.prevName = this.catalog.name;
+        this.snackBar.open(
+          this.isEditMode
+            ? 'Catálogo actualizado y producto agregado'
+            : 'Catálogo creado y producto agregado',
+          'Cerrar',
+          { duration: 4000 }
+        );
         this.isEditMode = true;
-        this.handleCatalogSaveSuccess();
       },
-      error: err =>
-        console.error(
-          this.isEditMode ? 'Error actualizando catálogo:' : 'Error creando catálogo:',
-          err
-        )
+      error: (err: any) => console.error('Error en guardado:', err)
     });
-  }
-  private handleCatalogSaveSuccess(): void {
-    const filled = Object.values(this.newProduct).some(v => v !== '' && v !== null && v !== 0);
-    if (filled) {
-      const valid = Object.values(this.newProduct).every(v => v !== '' && v !== null && v !== 0);
-      if (!valid) { this.showError = true; return; }
-
-      const newCatalogItem: CatalogItem = {
-        id: uuidv4(),
-        catalogId: this.catalog.id,
-        dateAdded: new Date().toISOString(),
-        name: this.newProduct.name,
-        productType: this.newProduct.productType,
-        brand: this.newProduct.brand,
-        content: +this.newProduct.content,
-        unitPrice: this.newProduct.price!
-      };
-
-      this.catalogService.addCatalogItem(newCatalogItem).subscribe({
-        next: () => {
-          this.catalogItems.push(newCatalogItem as any);
-          this.resetForm();
-          alert(this.isEditMode
-            ? 'Catálogo actualizado y producto agregado correctamente'
-            : 'Catálogo creado y producto agregado correctamente');
-        },
-        error: err => console.error('Error agregando producto:', err)
-      });
-    } else {
-      alert(this.isEditMode ? 'Catálogo actualizado correctamente' : 'Catálogo creado correctamente');
-    }
   }
 
   resetForm(): void {

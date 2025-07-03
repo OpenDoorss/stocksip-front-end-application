@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { Observable, of, delay, switchMap, map } from 'rxjs';
+import {Observable, of, delay, switchMap, map, throwError, catchError} from 'rxjs';
 
 import { Profile } from '../../profile-management/models/profile.entity';
 import { Account } from '../../payment-and-subscriptions/model/account.entity';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private readonly baseUrl           = environment.apiUrl;
-  private readonly usersEndpoint     = environment.userEndpointPath;
-  private readonly profilesEndpoint  = environment.profileEndpointPath;
-  private readonly accountsEndpoint  = environment.accountsEndpointPath;
+  private readonly baseUrl = environment.apiUrl;
+  private readonly backendApi = environment.backendApi;
+  private readonly usersEndpoint = environment.userEndpointPath;
+  private readonly profilesEndpoint = environment.profileEndpointPath;
+  private readonly accountsEndpoint = environment.accountsEndpointPath;
 
   private currentUser: any = null;
 
@@ -23,16 +24,16 @@ export class UserService {
     return this.http.get<any[]>(url).pipe(
       switchMap(users => {
         if (users.length === 0) return of(false).pipe(delay(500));
+
         const user = users[0];
+        const token = user.token;
 
         return this.http
           .get<Profile[]>(`${this.baseUrl}${this.profilesEndpoint}?id=${user.profileId}`)
           .pipe(
             switchMap(profiles => {
-              if (profiles.length === 0) throw new Error('Profile not found');
+              if (profiles.length === 0) return throwError(() => new Error('Perfil no encontrado'));
               const profile = profiles[0];
-
-              if (!profile.role) throw new Error('Profile has no role');
 
               return this.http
                 .get<Account[]>(`${this.baseUrl}${this.accountsEndpoint}?userOwnerId=${user.id}`)
@@ -48,6 +49,7 @@ export class UserService {
                     };
 
                     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                    localStorage.setItem('token', token); // Se guarda el token ya existente
                     return true;
                   })
                 );
@@ -57,25 +59,6 @@ export class UserService {
     );
   }
 
-  private initFromStorage(): void {
-    if (!this.currentUser) {
-      const saved = localStorage.getItem('currentUser') ?? sessionStorage.getItem('currentUser');
-      this.currentUser = saved ? JSON.parse(saved) : null;
-    }
-  }
-
-  getCurrentUser() {
-    this.initFromStorage();
-    return this.currentUser;
-  }
-
-  getCurrentUserProfile(): Profile | null {
-    return this.getCurrentUser()?.profile ?? null;
-  }
-
-  getCurrentUserAccount(): Account | null {
-    return this.getCurrentUser()?.account ?? null;
-  }
 
   register(data: { name: string; email: string; password: string; role: string }): Observable<any> {
     const userPayload = { username: data.email, password: data.password };
@@ -96,7 +79,7 @@ export class UserService {
           ),
           switchMap(() =>
             this.http.post<Account>(`${this.baseUrl}${this.accountsEndpoint}`, {
-              id: `a${newUser.id}`,
+              id: newUser.id,
               userOwnerId: newUser.id,
               role: data.role,
               businessName: data.name + ' Business',
@@ -109,6 +92,32 @@ export class UserService {
     );
   }
 
+  logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    this.currentUser = null;
+  }
+
+  private initFromStorage(): void {
+    if (!this.currentUser) {
+      const saved = localStorage.getItem('currentUser');
+      this.currentUser = saved ? JSON.parse(saved) : null;
+    }
+  }
+
+  getCurrentUser() {
+    this.initFromStorage();
+    return this.currentUser;
+  }
+
+  getCurrentUserProfile(): Profile | null {
+    return this.getCurrentUser()?.profile ?? null;
+  }
+
+  getCurrentUserAccount(): Account | null {
+    return this.getCurrentUser()?.account ?? null;
+  }
+
   getProfileByEmail(email: string): Observable<Profile | null> {
     const params = new HttpParams().set('email', email);
     return this.http
@@ -118,12 +127,18 @@ export class UserService {
 
   getAccountByEmail(email: string): Observable<Account | null> {
     const params = new HttpParams().set('email', email);
+
     return this.http
-      .get<Account[]>(`${this.baseUrl}${this.accountsEndpoint}`, { params })
-      .pipe(map(a => a[0] ?? null));
+      .get<Account>(`${this.backendApi}${this.accountsEndpoint}`, { params })
+      .pipe(
+        catchError((err: { status: number; }) => {
+          if (err.status === 404) return of(null);
+          throw err;
+        })
+      );
   }
 
-  getAccountById(accountId: string): Observable<Account | null> {
+  getAccountById(accountId: number): Observable<Account | null> {
     return this.http
       .get<Account>(`${this.baseUrl}${this.accountsEndpoint}/${accountId}`)
       .pipe(map(a => a ?? null));
