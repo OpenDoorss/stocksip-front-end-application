@@ -78,48 +78,63 @@ export class PurchaseOrderCreateComponent implements OnInit {
     return this.catalogItems.filter(i => this.selectedItems[i.id]);
   }
 
-  get totalItems(): number {
-    return this.selectedCatalogItems.length;
-  }
-
   get totalPrice(): number {
     return this.selectedCatalogItems.reduce((sum, item) => {
-      const quantity = this.quantities[item.id] || 0;
-      return sum + item.unitPrice * quantity;
+      const qty = this.quantities[item.id] ?? 0;
+      return sum + item.unitPrice * qty;
     }, 0);
   }
 
 
   createOrder(): void {
+
     if (this.selectedCatalogItems.length === 0) {
       this.snackBar.open('Select at least one product', 'Close', { duration: 3000 });
       return;
     }
-
     if (this.selectedCatalogItems.some(i => !this.quantities[i.id] || this.quantities[i.id] <= 0)) {
       this.snackBar.open('Please enter a valid quantity for each selected product', 'Close', { duration: 3000 });
       return;
     }
 
-
-    const itemsWithQty = this.selectedCatalogItems.map(i => ({
-      ...i,
-      customQuantity: this.quantities[i.id] || 0
-    }));
-
-    const newOrder: PurchaseOrder = {
-      id: 0,
-      date: new DateTime(),
-      status: 'Received',
-      buyer: this.buyerAccount,
-      supplier: this.supplierAccount,
-      items: itemsWithQty,
-      totalAmount: this.totalPrice,
-      totalItems: itemsWithQty.length,
-      customQuantity: 0
+    const buyer = {
+      accountId:    this.buyerAccount.accountId ?? +this.buyerAccount.id,
+      userOwnerId:  this.buyerAccount.userOwnerId ?? +this.buyerAccount.userOwnerId,
+      role:         this.buyerAccount.role,
+      businessName: this.buyerAccount.businessName,
+      email:        this.buyerAccount.email
     };
 
-    this.orderService.createPurchaseOrder(newOrder).subscribe({
+    const supplier = {
+      accountId:    this.supplierAccount.accountId ?? +this.supplierAccount.id,
+      userOwnerId:  this.supplierAccount.userOwnerId ?? +this.supplierAccount.userOwnerId,
+      role:         this.supplierAccount.role,
+      businessName: this.supplierAccount.businessName,
+      email:        this.supplierAccount.email
+    };
+
+    const items = this.selectedCatalogItems.map(i => ({
+      id:             i.id,
+      catalogId:      i.catalogId ?? this.catalogId,
+      name:           i.name,
+      productType:    i.productType,
+      brand:          i.brand,
+      content:        i.content,
+      unitPrice:      i.unitPrice,
+      dateAdded:      i.dateAdded ?? new Date().toISOString(), // fallback seguro
+      customQuantity: this.quantities[i.id]
+    }));
+
+    const orderPayload = {
+      buyer,
+      supplier,
+      items,
+      totalAmount: this.totalPrice,
+      totalItems:  items.length
+    };
+
+    console.log('Order Payload:', orderPayload);
+    this.orderService.createPurchaseOrder(orderPayload).subscribe({
       next: () => this.router.navigate(['/orders']),
       error: err => console.error('Error al crear orden:', err)
     });

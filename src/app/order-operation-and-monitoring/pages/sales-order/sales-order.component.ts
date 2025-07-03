@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NgForOf } from '@angular/common';
+import {DatePipe, NgForOf} from '@angular/common';
 import {
   MatCard,
   MatCardActions,
@@ -19,6 +19,7 @@ import { SideNavbarComponent } from '../../../public/components/side-navbar/side
 import { ToolBarComponent } from '../../../public/components/tool-bar/tool-bar.component';
 import { OrderStatusComponent } from '../../components/order-status/order-status.component';
 import {MatButton} from '@angular/material/button';
+import {PurchaseOrder} from '../../model/purchase-order.entity';
 
 @Component({
   selector: 'app-sales-order',
@@ -33,21 +34,13 @@ import {MatButton} from '@angular/material/button';
     SideNavbarComponent,
     ToolBarComponent,
     MatCardActions,
-    MatButton
+    MatButton,
+    DatePipe
   ]
 })
 
 export class SalesOrderComponent implements OnInit {
-  orders: {
-    id: number;
-    date: Date | DateTime;
-    status: string;
-    buyer: Account;
-    supplier: Account;
-    items: CatalogItem[];
-    totalAmount: number;
-    totalItems: number;
-  }[] = [];
+  orders: PurchaseOrder[] = [];
 
   private currentAccountId = 0;
 
@@ -74,25 +67,16 @@ export class SalesOrderComponent implements OnInit {
 
   private loadOrders(): void {
     this.purchaseOrderService.getAll().subscribe(allOrders => {
-      this.orders = allOrders
-        .filter(o =>
-          o.supplier?.id        === this.currentAccountId
-        )
-        .map(o => {
-          const raw = o.totalAmount as any;
-          const amount =
-            typeof raw === 'number'
-              ? raw
-              : raw?._amount ?? raw.amount ?? 0;
 
-          return {
-            ...o,
-            totalAmount: amount,
-            date: (o.date as any)?._date ?? o.date
-          };
-        });
+      this.orders = allOrders.filter(o => {
+        const supplierId = Number(o.supplier?.accountId ?? o.supplier?.id ?? 0);
+        return supplierId === Number(this.currentAccountId);
+      });
     });
   }
+
+
+
 
 
   formatPrice(amount: number, currencyCode = 'PEN'): string {

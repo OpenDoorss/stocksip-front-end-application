@@ -25,6 +25,12 @@ export class CatalogService {
     return this.http.get<Catalog[]>(`${this.baseUrl}/catalogs`, { params });
   }
 
+  getPublishedCatalogsByProviderEmail(email: string): Observable<Catalog[]> {
+    const params = new HttpParams().set('providerEmail', email);
+    return this.http.get<Catalog[]>(`${this.baseUrl}/catalogs/published`, { params });
+  }
+
+
   getPublishedCatalogs(): Observable<Catalog[]> {
     return this.http.get<Catalog[]>(`${this.baseUrl}/catalogs?isPublished=true`);
   }

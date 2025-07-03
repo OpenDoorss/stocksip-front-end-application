@@ -91,40 +91,25 @@ export class CatalogForOrdersComponent implements OnInit {
   }
 
   loadProviderCatalogs(): void {
-    if (!this.isAllowed) return;
-    if (!this.providerEmail) return;
+    if (!this.isAllowed || !this.providerEmail) return;
 
     this.userService.getAccountByEmail(this.providerEmail).subscribe({
       next: account => {
         if (!account || account.role !== 'Supplier') {
-          this.snackBar.open(
-            'No se encontró proveedor válido con ese correo',
-            'Cerrar',
-            { duration: 3000 }
-          );
+          this.snackBar.open('No se encontró proveedor válido', 'Cerrar', { duration: 3000 });
           return;
         }
 
-        const accountId = (account as any).accountId ?? account.id;
-
         this.catalogService
-          .getPublishedCatalogsByAccount(accountId)
+          .getPublishedCatalogsByProviderEmail(this.providerEmail)
           .subscribe({
             next: catalogs => (this.catalogs = catalogs),
             error: () =>
-              this.snackBar.open(
-                'Error al cargar catálogos del proveedor',
-                'Cerrar',
-                { duration: 3000 }
-              )
+              this.snackBar.open('Error al cargar catálogos', 'Cerrar', { duration: 3000 })
           });
       },
       error: () =>
-        this.snackBar.open(
-          'Proveedor no encontrado',
-          'Cerrar',
-          { duration: 3000 }
-        )
+        this.snackBar.open('Proveedor no encontrado', 'Cerrar', { duration: 3000 })
     });
   }
 

@@ -613,8 +613,199 @@
         }
       ],
       "totalAmount": 1288,
+      "totalItems": 1
+    },
+    {
+      "id": 6,
+      "date": {
+        "_date": "2025-07-03T03:53:26.484Z"
+      },
+      "status": "Received",
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 2
+        }
+      ],
+      "totalAmount": 174,
+      "totalItems": 1
+    },
+    {
+      "id": 7,
+      "date": {
+        "_date": "2025-07-03T04:06:15.154Z"
+      },
+      "status": "Received",
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 78
+        }
+      ],
+      "totalAmount": 6786,
+      "totalItems": 1
+    },
+    {
+      "buyer": {
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 67
+        }
+      ],
+      "totalAmount": 5829,
       "totalItems": 1,
-      "customQuantity": 0
+      "id": 8
+    },
+    {
+      "buyer": {
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 6879
+        }
+      ],
+      "totalAmount": 598473,
+      "totalItems": 1,
+      "id": 9
+    },
+    {
+      "buyer": {
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 3
+        }
+      ],
+      "totalAmount": 261,
+      "totalItems": 1,
+      "id": 10
+    },
+    {
+      "buyer": {
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 78
+        }
+      ],
+      "totalAmount": 6786,
+      "totalItems": 1,
+      "id": 11
     }
   ],
   "settings": [
@@ -629,7 +820,6 @@
       "userOwnerId": 1,
       "role": "Liquor Store Owner",
       "businessName": "business 1",
-      "name": "Farid",
       "email": "farid@example.com"
     },
     {
@@ -637,7 +827,6 @@
       "userOwnerId": 6,
       "role": "Supplier",
       "businessName": "Business 3",
-      "name": "Camila",
       "email": "camila@example.com"
     },
     {

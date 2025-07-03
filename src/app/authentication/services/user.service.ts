@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { Observable, of, delay, switchMap, map, throwError } from 'rxjs';
+import {Observable, of, delay, switchMap, map, throwError, catchError} from 'rxjs';
 
 import { Profile } from '../../profile-management/models/profile.entity';
 import { Account } from '../../payment-and-subscriptions/model/account.entity';
@@ -9,6 +9,7 @@ import { Account } from '../../payment-and-subscriptions/model/account.entity';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private readonly baseUrl = environment.apiUrl;
+  private readonly backendApi = environment.backendApi;
   private readonly usersEndpoint = environment.userEndpointPath;
   private readonly profilesEndpoint = environment.profileEndpointPath;
   private readonly accountsEndpoint = environment.accountsEndpointPath;
@@ -126,9 +127,15 @@ export class UserService {
 
   getAccountByEmail(email: string): Observable<Account | null> {
     const params = new HttpParams().set('email', email);
+
     return this.http
-      .get<Account[]>(`${this.baseUrl}${this.accountsEndpoint}`, { params })
-      .pipe(map(a => a[0] ?? null));
+      .get<Account>(`${this.backendApi}${this.accountsEndpoint}`, { params })
+      .pipe(
+        catchError((err: { status: number; }) => {
+          if (err.status === 404) return of(null);
+          throw err;
+        })
+      );
   }
 
   getAccountById(accountId: number): Observable<Account | null> {

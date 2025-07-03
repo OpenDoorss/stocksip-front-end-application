@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { PurchaseOrder } from '../model/purchase-order.entity';
 
@@ -9,20 +9,28 @@ import { PurchaseOrder } from '../model/purchase-order.entity';
 })
 export class PurchaseOrderService {
   private apiUrl = `${environment.apiUrl}/purchase-orders`;
+  private baseUrl = `${environment.backendApi}/orders`;
 
   constructor(private http: HttpClient) {}
 
-  createPurchaseOrder(order: PurchaseOrder): Observable<any> {
-    return this.http.post(this.apiUrl, order);
+  createPurchaseOrder(payload: any): Observable<PurchaseOrder> {
+    return this.http.post<PurchaseOrder>(this.baseUrl, payload);
   }
+
 
   getAll(): Observable<PurchaseOrder[]> {
-    return this.http.get<PurchaseOrder[]>(this.apiUrl);
+    return this.http.get<PurchaseOrder[]>(this.baseUrl);
   }
 
-  updateStatus(id: number, status: string): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/${id}`, { status });
+  updateStatus(id: number, status: string) {
+    const enc = encodeURIComponent(status);   // evita espacios sin problema
+    return this.http.patch(
+      `${this.baseUrl}/${id}/status?status=${enc}`,
+      null                    // <- cuerpo vacío
+    );
   }
+
+
 
 
 }
