@@ -59,7 +59,6 @@ export class UserService {
     );
   }
 
-
   register(data: { name: string; email: string; password: string; role: string }): Observable<any> {
     const userPayload = { username: data.email, password: data.password };
 

@@ -1,3 +1,11 @@
+<app-notification
+  *ngIf="showNotification"
+  [title]="notificationTitle"
+  [content]="notificationContent"
+  [type]="notificationType"
+  [showCloseButton]="true">
+</app-notification>
+
 <div class="auth-container">
   <!-- Left section: Role selection and info -->
   <div class="register-section">
@@ -36,17 +44,18 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Full Name</mat-label>
-        <input matInput type="text" formControlName="name" />
+        <input matInput type="text" formControlName="name"/>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email address</mat-label>
-        <input matInput type="email" formControlName="email" />
+        <input matInput type="email" formControlName="email"/>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password" formControlName="password" />
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter your password"
+               formControlName="password"/>
         <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
@@ -54,13 +63,13 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Confirm Password</mat-label>
-        <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirm your password" />
+        <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirm your password"/>
         <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" type="button">
           <mat-icon>{{ hideConfirm ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="register-button" type="submit">
+      <button mat-raised-button color="primary" class="register-button" type="submit" (click)="onSubmit()">
         Create account
       </button>
 
@@ -68,7 +77,7 @@
 
       <div class="social-login">
         <button mat-icon-button>
-          <img ngSrc="/google_icon.svg" alt="Google" width="48" height="48" />
+          <img ngSrc="/google_icon.svg" alt="Google" width="48" height="48"/>
         </button>
         <button mat-icon-button>
           <mat-icon>key</mat-icon>
