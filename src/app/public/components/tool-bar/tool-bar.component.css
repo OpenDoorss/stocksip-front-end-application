@@ -1,6 +1,6 @@
 .background {
   background-color: #F4EDE3;
-  padding: 1rem;
+  padding: 3rem;
 }
 
 .spacer {
@@ -8,9 +8,9 @@
 }
 
 .toolbar-title {
-  padding-left: 2rem;
   color: #6F0082;
+  text-align: center;
   font-family: 'Poppins', sans-serif;
   font-weight: Bold;
-  font-size: 50px
+  font-size: clamp(30px, 3vw, 5rem);
 }
