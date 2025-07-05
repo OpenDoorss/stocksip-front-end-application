@@ -86,7 +86,9 @@
   "dashboard": {
     "title": "Dashboard"
   },
-
+  "storage": {
+    "title": "Products in storage"
+  },
   "subscription": {
     "title": "Subscription plans",
     "plan-free": {
