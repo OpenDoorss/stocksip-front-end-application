@@ -18,47 +18,43 @@ export class ProductService {
   constructor(private http: HttpClient) {
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<ProductResource[]>(`${this.apiUrl}${this.productsEndpoint}`).pipe(
-      map(resources => ProductAssembler.toEntitiesFromResources(resources))
-    );
-  }
 
-  getProductById(productId: string): Observable<Product> {
-    return this.getProducts().pipe(
-      map(products => products.find(p => p.productId === +productId)),
-      map(warehouse => {
-        if (!warehouse) {
-          throw new Error('Product not found');
-        }
-        return warehouse;
-      })
-    );
-  }
-
-  createProductId(product: Product): Observable<Product> {
-    return this.http.post<Product>(
-      `${this.apiUrl}${this.productsEndpoint}`, ProductAssembler.toEntityFromResource(product)).pipe(
-      map(resource => ProductAssembler.toEntityFromResource(resource))
-    )
-  }
-
-  updateProduct(productId: string, product: Product): Observable<Product> {
-    return this.http.put<Product>(
-      `${this.apiUrl}${this.productsEndpoint}/${product.productId}`, ProductAssembler.toEntityFromResource(product)).pipe(
-      map(resource => ProductAssembler.toEntityFromResource(resource))
-    );
-  }
-
-  getProductsByAccountId(accountId: number): Observable<any[]> {
-    console.log('Requesting products for profileId:', accountId);
-    return this.http.get<any[]>(`${this.apiUrl}/products?providerId=${accountId}`).pipe(
-      tap(data => console.log('Received products from API:', data)),
+  getProductsByAccountId(accountId: number): Observable<Product[]> {
+    const url = `${this.apiUrl}/accounts/${accountId}/products`;
+    return this.http.get<ProductResource[]>(url).pipe(
+      map(resources => ProductAssembler.toEntitiesFromResources(resources)),
       catchError(error => {
         console.error('Error fetching products from API:', error);
         throw error;
       })
     );
   }
+
+
+
+  createProductId(product: Product, imageFile: File): Observable<Product> {
+    const formData = this.createFormData(product, imageFile);
+
+    return this.http.post<Product>(
+      `${this.apiUrl}${this.productsEndpoint}`,
+      formData
+    ).pipe(
+      map(resource => ProductAssembler.toEntityFromResource(resource))
+    );
+  }
+
+  private createFormData(product: Product, imageFile: File): FormData {
+    const formData = new FormData();
+    formData.append('name', product.name);
+    formData.append('liquorType', product.productType);
+    formData.append('brandName', product.productBrand);
+    formData.append('unitPriceAmount', product.unitPrice.toString());
+    formData.append('minimumStock', product.minimumStock.toString());
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
+    return formData;
+  }
+
 }
 
