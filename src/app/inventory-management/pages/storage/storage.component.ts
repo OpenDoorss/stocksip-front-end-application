@@ -5,6 +5,8 @@ import {Product} from '../../model/product.entity';
 import {MatFabButton} from '@angular/material/button';
 import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 import {ProductListComponent} from '../../components/product-list/product-list.component';
+import {WarehouseListComponent} from '../../components/warehouse-list/warehouse-list.component';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-storage',
@@ -24,7 +26,7 @@ export class StorageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const accountId = 1; // ← cambia esto por el ID de la cuenta actual
+    const accountId = 1;
     this.loadProducts(accountId);
   }
 

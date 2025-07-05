@@ -1,16 +1,16 @@
-import {Component} from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {WarehouseService} from '../../services/warehouse.service';
-import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
-import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
-import {TranslatePipe} from '@ngx-translate/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { WarehouseService } from '../../services/warehouse.service';
+import { SideNavbarComponent } from '../../../public/components/side-navbar/side-navbar.component';
+import { ToolBarComponent } from '../../../public/components/tool-bar/tool-bar.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-warehouse-create-and-edit',
@@ -33,16 +33,17 @@ export class WarehouseCreateAndEditComponent {
   isEditMode: boolean = false;
   warehouseId: number | null = 0;
   pageTitle: string = '';
+  selectedImageFile: File | null = null;
 
-  nameFormControl = new FormControl('', Validators.required)
-  streetFormControl = new FormControl('', Validators.required)
-  cityFormControl=  new FormControl('', Validators.required)
-  districtFormControl = new FormControl('', Validators.required)
-  countryFormControl = new FormControl('', Validators.required)
-  postalCodeFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\d{5}$/)])
-  maxTemperatureFormControl = new FormControl<number | null>(null, [Validators.required, Validators.min(-50), Validators.max(50)])
-  minTemperatureFormControl = new FormControl<number | null>(null, [Validators.required, Validators.min(-50), Validators.max(50)])
-  capacityFormControl = new FormControl('', [Validators.required, Validators.min(1)])
+  nameFormControl = new FormControl('', Validators.required);
+  streetFormControl = new FormControl('', Validators.required);
+  cityFormControl = new FormControl('', Validators.required);
+  districtFormControl = new FormControl('', Validators.required);
+  countryFormControl = new FormControl('', Validators.required);
+  postalCodeFormControl = new FormControl('', [Validators.required, Validators.pattern(/^\d{5}$/)]);
+  maxTemperatureFormControl = new FormControl<number | null>(null, [Validators.required, Validators.min(-50), Validators.max(50)]);
+  minTemperatureFormControl = new FormControl<number | null>(null, [Validators.required, Validators.min(-50), Validators.max(50)]);
+  capacityFormControl = new FormControl('', [Validators.required, Validators.min(1)]);
 
   warehouseForm = new FormGroup({
     name: this.nameFormControl,
@@ -53,7 +54,7 @@ export class WarehouseCreateAndEditComponent {
     postalCode: this.postalCodeFormControl,
     maxTemperature: this.maxTemperatureFormControl,
     minTemperature: this.minTemperatureFormControl,
-    capacity: this.capacityFormControl,
+    capacity: this.capacityFormControl
   });
 
   constructor(
@@ -76,20 +77,32 @@ export class WarehouseCreateAndEditComponent {
     }
   }
 
-  private prepareFormData(): any {
-    return {
-      name: this.warehouseForm.value.name,
-      street: this.warehouseForm.value.street,
-      city: this.warehouseForm.value.city,
-      district: this.warehouseForm.value.district,
-      postalCode: this.warehouseForm.value.postalCode,
-      country: this.warehouseForm.value.country,
-      maxTemperature: this.warehouseForm.value.maxTemperature,
-      minTemperature: this.warehouseForm.value.minTemperature,
-      capacity: Number(this.warehouseForm.value.capacity),
-      string: '',
-      accountId: 1
-    };
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedImageFile = input.files[0];
+    }
+  }
+
+  private prepareFormData(): FormData {
+    const formData = new FormData();
+    const formValue = this.warehouseForm.value;
+
+    formData.append('name', formValue.name || '');
+    formData.append('street', formValue.street || '');
+    formData.append('city', formValue.city || '');
+    formData.append('district', formValue.district || '');
+    formData.append('postalCode', formValue.postalCode || '');
+    formData.append('country', formValue.country || '');
+    formData.append('maxTemperature', formValue.maxTemperature?.toString() ?? '');
+    formData.append('minTemperature', formValue.minTemperature?.toString() ?? '');
+    formData.append('capacity', formValue.capacity?.toString() ?? '');
+
+    if (this.selectedImageFile) {
+      formData.append('image', this.selectedImageFile);
+    }
+
+    return formData;
   }
 
   onSubmit(): void {
@@ -109,45 +122,31 @@ export class WarehouseCreateAndEditComponent {
     }
   }
 
-
-  private createWarehouse(formData: any): void {
+  private createWarehouse(formData: FormData): void {
     this.warehouseService.createWarehouse(formData).subscribe({
-      next: (response) => {
-        this.snackBar.open('Warehouse created successfully!', 'Close', {
-          duration: 3000
-        });
+      next: () => {
+        this.snackBar.open('Warehouse created successfully!', 'Close', { duration: 3000 });
         this.router.navigate(['/warehouses']);
       },
       error: (err) => {
-        this.snackBar.open(
-          err.error?.message || 'Error creating warehouse',
-          'Close',
-          { duration: 3000 }
-        );
+        this.snackBar.open(err.error?.message || 'Error creating warehouse', 'Close', { duration: 3000 });
       }
     });
   }
 
-  private updateWarehouse(formData: any): void {
-    console.log(this.warehouseId);
+  private updateWarehouse(formData: FormData): void {
     this.warehouseService.updateWarehouse(this.warehouseId!, formData).subscribe({
-      next: (response) => {
-        this.snackBar.open('Warehouse updated successfully!', 'Close', {
-          duration: 3000
-        });
+      next: () => {
+        this.snackBar.open('Warehouse updated successfully!', 'Close', { duration: 3000 });
         this.router.navigate(['/warehouses']);
       },
       error: (err) => {
-        console.error('Full error response:', err);
-        console.error('Error details:', err.error);
-        this.snackBar.open('Error updating warehouse', 'Close', {
-          duration: 3000
-        });
+        this.snackBar.open('Error updating warehouse', 'Close', { duration: 3000 });
       }
     });
   }
 
-  loadWarehouseData(): void {
+  private loadWarehouseData(): void {
     if (this.warehouseId) {
       this.warehouseService.getWarehouseById(this.warehouseId).subscribe({
         next: (warehouse) => {
@@ -163,13 +162,14 @@ export class WarehouseCreateAndEditComponent {
             capacity: warehouse.capacity.toString()
           });
         },
-        error: (err) => console.error('Error loading warehouses', err)
+        error: (err) => {
+          console.error('Error loading warehouse', err);
+        }
       });
     }
   }
 
   onCancel(): void {
-    void this.router.navigate(['/warehouses'])
+    void this.router.navigate(['/warehouses']);
   }
-
 }

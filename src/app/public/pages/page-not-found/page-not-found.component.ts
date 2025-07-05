@@ -18,6 +18,6 @@ export class PageNotFoundComponent {
   }
 
   goToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/sign-in']);
   }
 }

@@ -141,5 +141,8 @@
     "title": "Catalog",
     "create": "New catalog",
     "edit": "Edit catalog"
+  },
+  "products": {
+    "title": "Products"
   }
 }

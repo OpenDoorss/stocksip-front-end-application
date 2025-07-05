@@ -12,7 +12,7 @@ import {ProductAssembler} from './product.assembler';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = environment.backendApi;
+  private apiUrl = environment.baseServerUrl;
   private productsEndpoint = environment.productsEndpointPath;
 
   constructor(private http: HttpClient) {

@@ -11,5 +11,7 @@ export const environment = {
   catalogEndpointPath: '/catalog',
   baseServerUrl: 'http://localhost:8080/api/v1',
   authEndpointPath: '/authentications',
+
+  accountWarehousesEndpointPath: '/accounts/{accountId}/warehouses',
 };
 

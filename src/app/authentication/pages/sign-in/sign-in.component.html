@@ -2,10 +2,10 @@
   <!-- Login Section -->
   <div class="login-section">
     <h2>Sign In</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="goToConfirmation()">
+    <form [formGroup]="loginForm">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="tucorreo@example.com" formControlName="email"/>
+        <input matInput type="username" placeholder="tucorreo@example.com" formControlName="username"/>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
@@ -22,7 +22,7 @@
         </mat-checkbox>
       </div>
 
-      <button mat-raised-button color="primary" class="sign-in-button" type="submit" (click)="goToDashboard()">
+      <button mat-raised-button color="primary" class="sign-in-button" type="submit" (click)="onSubmit()">
         Sign In
       </button>
 

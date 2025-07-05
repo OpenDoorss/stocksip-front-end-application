@@ -9,7 +9,7 @@ import { Account } from '../../payment-and-subscriptions/model/account.entity';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private readonly baseUrl = environment.apiUrl;
-  private readonly backendApi = environment.backendApi;
+  private readonly backendApi = environment.baseServerUrl;
   private readonly usersEndpoint = environment.userEndpointPath;
   private readonly profilesEndpoint = environment.profileEndpointPath;
   private readonly accountsEndpoint = environment.accountsEndpointPath;

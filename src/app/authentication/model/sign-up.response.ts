@@ -1,9 +1,9 @@
 export class SignUpResponse {
-  public id: number;
+  public accountId: number;
   public username: string;
 
-  constructor(id: number, username: string) {
+  constructor(accountId: number, username: string) {
     this.username = username;
-    this.id = id;
+    this.accountId = accountId;
   }
 }

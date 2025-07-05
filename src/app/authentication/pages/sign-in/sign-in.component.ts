@@ -9,12 +9,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import {ReactiveFormsModule, FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {SignInRequest} from '../../model/sign-in.request';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-sign-in',
   standalone: true,
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.css'],
   imports: [
     MatFormFieldModule,
     MatInputModule,
@@ -26,34 +28,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     MatCheckboxModule,
   ]
 })
-export class LoginComponent {
+export class SignInComponent {
   hide = true;
   loginForm: FormGroup;
+  submitted = false;
 
-
-  goToConfirmation() {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      console.log('Logging in with:', email, password);
-
-      this.userService.login(email, password).subscribe(success => {
-        console.log('Login response:', success);
-        if (success) {
-          this.router.navigate(['warehouses']);
-        } else {
-          this.snackBar.open('Invalid email or password', 'Close', {
-            duration: 3000,
-          });
-        }
-      });
-    } else {
-      this.loginForm.markAllAsTouched();
-    }
-  }
-
-  constructor(private router: Router, private fb: FormBuilder, private userService: UserService, private snackBar: MatSnackBar) {
+  constructor(private router: Router, private fb: FormBuilder, private userService: UserService, private snackBar: MatSnackBar, private authenticationService: AuthenticationService) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       rememberMe: [false]
     });
@@ -67,7 +49,12 @@ export class LoginComponent {
     this.router.navigate(['/password-recover']);
   }
 
-  goToDashboard() {
-    this.router.navigate(['/dashboard']);
+  onSubmit() {
+    if (this.loginForm.invalid) return;
+    let username = this.loginForm.value.username;
+    let password = this.loginForm.value.password;
+    const signInRequest = new SignInRequest(username, password);
+    this.authenticationService.signIn(signInRequest);
+    this.submitted = true;
   }
 }

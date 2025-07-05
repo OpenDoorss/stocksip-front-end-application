@@ -1,11 +1,11 @@
-<div class="product-main-container">
+<div class="product-bg">
 
   <app-side-navbar/>
-  <div class="product-container">
+  <div class="product-main">
 
-    <app-tool-bar></app-tool-bar>
+    <app-tool-bar [titleKey]="'products.title'"></app-tool-bar>
 
-    <div class="products-container">
+    <div class="product-content">
       <app-product-list [products]="products"></app-product-list>
     </div>
   </div>

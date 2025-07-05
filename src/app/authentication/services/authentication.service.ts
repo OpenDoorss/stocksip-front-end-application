@@ -28,6 +28,7 @@ export class AuthenticationService {
    * @param http The HttpClient service.
    */
   constructor(private router: Router, private http: HttpClient) {
+    this.initializeAuthState();
   }
 
   get isSignedIn() {
@@ -55,7 +56,8 @@ export class AuthenticationService {
     return this.http.post<SignUpResponse>(`${this.basePath}/accounts/sign-up`, signUpRequest, this.httpOptions)
       .subscribe({
         next: (response) => {
-          console.log(`Signed up as ${response.username} with id ${response.id}`);
+          console.log('Response backend:', response);
+          console.log(`Signed up as ${response.username} with id ${response.accountId}`);
           this.router.navigate(['/sign-in']).then();
         },
         error: (error) => {
@@ -63,6 +65,18 @@ export class AuthenticationService {
           this.router.navigate(['/sign-up']).then();
         }
       });
+  }
+
+  private initializeAuthState() {
+    const token = localStorage.getItem('token');
+    const accountId = localStorage.getItem('accountId');
+    const username = localStorage.getItem('username');
+
+    if (token && accountId) {
+      this.signedIn.next(true);
+      this.signedInUserId.next(Number(accountId));
+      this.signedInUsername.next(username || '');
+    }
   }
 
   /**
@@ -87,8 +101,11 @@ export class AuthenticationService {
           this.signedInUserId.next(response.id);
           this.signedInUsername.next(response.username);
           localStorage.setItem('token', response.token);
+          localStorage.setItem('accountId', response.accountId.toString());
+          localStorage.setItem('username', response.username);
           console.log(`Signed in as ${response.username} with token ${response.token}`);
-          this.router.navigate(['/']).then();
+          console.log(`Account ID: ${response.accountId}`);
+          this.router.navigate(['/dashboard']).then();
         },
         error: (error) => {
           this.signedIn.next(false);
@@ -111,6 +128,7 @@ export class AuthenticationService {
     this.signedInUserId.next(0);
     this.signedInUsername.next('');
     localStorage.removeItem('token');
+    localStorage.removeItem('accountId');
     this.router.navigate(['/sign-in']).then();
   }
 

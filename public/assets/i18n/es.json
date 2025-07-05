@@ -136,5 +136,8 @@
     "title": "Catálogo",
     "create": "Nuevo catálogo",
     "edit": "Editar catálogo"
+  },
+  "products": {
+    "title": "Productos"
   }
 }

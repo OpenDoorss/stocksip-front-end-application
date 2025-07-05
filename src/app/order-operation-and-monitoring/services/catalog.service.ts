@@ -9,7 +9,7 @@ import { CatalogItem } from '../model/catalog-item.entity';
 @Injectable({ providedIn: 'root' })
 export class CatalogService {
   private apiUrl = environment.apiUrl;
-  private baseUrl = environment.backendApi;
+  private baseUrl = environment.baseServerUrl;
 
   constructor(private http: HttpClient) {}
 

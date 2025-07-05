@@ -43,6 +43,10 @@
           <mat-icon>person</mat-icon>
           <span class="menu-text" *ngIf="isExpanded">Profile</span>
         </a>
+        <a mat-list-item (click)="onLogout()" matTooltip="Logout">
+          <mat-icon>logout</mat-icon>
+          <span class="menu-text" *ngIf="isExpanded">Logout</span>
+        </a>
       </mat-nav-list>
     </div>
   </mat-sidenav>

@@ -10,8 +10,8 @@ import {WarehouseResource} from './warehouse.response';
   providedIn: 'root'
 })
 export class WarehouseService {
-  private apiUrl = environment.backendApi;
-  private warehousesEndpoint = environment.warehousesEndpointPath;
+  private apiUrl = environment.baseServerUrl;
+  private warehousesEndpoint = environment.accountWarehousesEndpointPath;
 
   constructor(private http: HttpClient) {}
 
@@ -33,16 +33,25 @@ export class WarehouseService {
     );
   }
 
-  createWarehouse(warehouse: Warehouse): Observable<Warehouse> {
-    return this.http.post<Warehouse>(
-      `${this.apiUrl}${this.warehousesEndpoint}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
+  createWarehouse(formData: FormData): Observable<Warehouse> {
+    const accountId = localStorage.getItem('accountId');
+    if (!accountId) {
+      throw new Error('Account ID not found in local storage');
+    }
+
+    const endpoint = environment.accountWarehousesEndpointPath.replace('{accountId}', accountId);
+    const url = `${this.apiUrl}${endpoint}`;
+
+    console.log('endpoint backend:', url);
+
+    return this.http.post<Warehouse>(url, formData).pipe(
       map(resource => WarehouseAssembler.toEntityFromResource(resource))
-    )
+    );
   }
 
-  updateWarehouse(warehouseId: number, warehouse: Warehouse): Observable<Warehouse> {
-    return this.http.put<Warehouse>(
-      `${this.apiUrl}${this.warehousesEndpoint}/${warehouse.warehouseId}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
+
+  updateWarehouse(warehouseId: number, formData: FormData): Observable<Warehouse> {
+    return this.http.put<Warehouse>(`${this.apiUrl}${this.warehousesEndpoint}/${warehouseId}`, formData).pipe(
       map(resource => WarehouseAssembler.toEntityFromResource(resource))
     );
   }
@@ -57,4 +66,5 @@ export class WarehouseService {
       })
     );
   }
+
 }

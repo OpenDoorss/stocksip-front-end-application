@@ -6,6 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {AuthenticationService} from '../../../authentication/services/authentication.service';
 
 @Component({
   selector: 'app-side-navbar',
@@ -26,4 +27,13 @@ export class SideNavbarComponent {
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
   }
+
+  constructor( private authenticationService: AuthenticationService) {
+    this.authenticationService = authenticationService;
+  }
+
+  onLogout() {
+    this.authenticationService.signOut();
+  }
+
 }

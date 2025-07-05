@@ -9,7 +9,7 @@ import { PurchaseOrder } from '../model/purchase-order.entity';
 })
 export class PurchaseOrderService {
   private apiUrl = `${environment.apiUrl}/purchase-orders`;
-  private baseUrl = `${environment.backendApi}/orders`;
+  private baseUrl = `${environment.baseServerUrl}/orders`;
 
   constructor(private http: HttpClient) {}
 
