@@ -27,7 +27,7 @@ const CatalogComponent = () => import ('./order-operation-and-monitoring/pages/c
 const PurchaseOrderCreateComponent = () => import ('./order-operation-and-monitoring/pages/purchase-order-create/purchase-order-create.component').then(m => m.PurchaseOrderCreateComponent);
 const StorageComponent = () => import ('./inventory-management/pages/storage/storage.component').then(m => m.StorageComponent);
 const PurchaseOrderComponent = () => import ('./order-operation-and-monitoring/pages/purchase-order/purchase-order.component').then(m => m.PurchaseOrderComponent);
-
+const ProductCreateEdit = () => import ('./inventory-management/pages/product-create-and-edit/product-create-and-edit.component').then(m => m.ProductCreateAndEditComponent);
 const SubscriptionPlanComponent = () => import ( './payment-and-subscriptions/pages/subscription-plan/subscription-plan.component').then(m => m.SubscriptionPlanComponent);
 const OrderComponent = () => import ('./order-operation-and-monitoring/pages/orders/orders.component').then(m => m.OrdersComponent);
 export const routes: Routes = [
@@ -40,7 +40,7 @@ export const routes: Routes = [
   {path: 'warehouses',          loadComponent: WarehouseComponent,              data: {title: 'Warehouses'},        canActivate: [authenticationGuard]},
   {path: 'warehouses/new',      loadComponent: CreateAndEditWarehouseComponent, data: {title: 'New Warehouse'},     canActivate: [authenticationGuard]},
   {path: 'subscription-plan',   loadComponent: SubscriptionPlanComponent,       data: {title: 'Subscription Plan'}, canActivate: [authenticationGuard]},
-
+  {path: 'product/new', loadComponent: ProductCreateEdit, data: { title: 'New Product' }, canActivate: [authenticationGuard] },
   { path: 'warehouses/edit/:warehouseId',     loadComponent: CreateAndEditWarehouseComponent,     data: { title: 'Edit Warehouse' },        canActivate: [authenticationGuard] },
   { path: 'storage',                          loadComponent: StorageComponent,                    data: { title: 'Storage' },               canActivate: [authenticationGuard] },
   { path: 'report-list', loadComponent: ReportListComponent, data: { title: 'Report list' }, canActivate: [authenticationGuard] },
