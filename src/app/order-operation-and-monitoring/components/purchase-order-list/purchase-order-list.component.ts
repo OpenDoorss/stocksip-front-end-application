@@ -35,12 +35,14 @@ import {PurchaseOrder} from '../../model/purchase-order.entity';
 export class PurchaseOrderListComponent {
   @Input() orders: PurchaseOrder[] = [];
 
-  formatPrice(amount: number, currencyCode: string = 'PES'): string {
-    return new Intl.NumberFormat('es-PE', {
+  formatPrice(amount: number, currencyCode: string = 'PEN'): string {
+    const formatted = new Intl.NumberFormat('es-PE', {
       style: 'currency',
       currency: currencyCode,
       minimumFractionDigits: 2
     }).format(amount);
+    return formatted.replace('S/', 'S/.');
   }
+
 }
 

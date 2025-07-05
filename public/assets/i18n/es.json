@@ -57,7 +57,7 @@
       "address": "Dirección",
       "capacity": "Capacidad"
     },
-    "form" : {
+    "form": {
       "name": "Nombre",
       "street": "Calle",
       "city": "Ciudad",
@@ -83,6 +83,31 @@
   },
   "dashboard": {
     "title": "Dasboard"
+  },
+  "subscription": {
+    "title": "Planes de suscripción",
+    "plan-free": {
+      "title": "Plan gratuito",
+      "description": "Este plan es gratuito y tiene algunas limitaciones. Es ideal para empresas pequeñas que quieren probar la aplicación.",
+      "benefit1": "Gestionar hasta 10 productos",
+      "benefit2": "Almacenes limitados",
+      "benefit3": "Alertas básicas",
+      "benefit4": "Soporte básico",
+      "benefit5": "Informes limitados",
+      "benefit6": "Almacenes limitados",
+      "price": "Gratis"
+    },
+    "plan-premium": {
+      "title": "Plan Premium",
+      "description": "Este plan es ideal para empresas que necesitan más funcionalidades y soporte. Ofrece una experiencia completa con todas las características de la aplicación.",
+      "benefit1": "Almacena hasta 100 productos",
+      "benefit2": "Ilimitado número de almacenes",
+      "benefit3": "Alertas personalizadas",
+      "benefit4": "Soporte prioritario",
+      "benefit5": "Informes avanzados",
+      "benefit6": "Acceso a todas las funcionalidades",
+      "price": "S/. 19.90 per month"
+    }
   },
   "components": {
     "edit": "Editar",

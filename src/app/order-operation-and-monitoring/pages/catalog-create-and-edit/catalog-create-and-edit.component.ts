@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogService } from '../../services/catalog.service';
 import { CatalogItem } from '../../model/catalog-item.entity';
-import { Money } from '../../../shared/model/money';
-import { Currency } from '../../../shared/model/currency';
 import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -16,6 +14,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { MatTableModule } from '@angular/material/table';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {EMPTY, of, switchMap, tap} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-catalog-create-and-edit',
@@ -36,24 +36,42 @@ import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.com
   styleUrl: './catalog-create-and-edit.component.css'
 })
 export class CatalogCreateAndEditComponent implements OnInit {
-  catalog: Catalog = { id: 0, name: '', profileId: 0, dateCreated: '' , isPublished: false};
-  catalogItems: CatalogItem[] = [];
+  catalog: Catalog = {
+    id: 0,
+    name: '',
+    accountId: 0,
+    dateCreated: '',
+    isPublished: false
+  };
+
+  catalogItems: {
+    id: string;
+    catalogId: number;
+    dateAdded: string;
+    name: string;
+    productType: string;
+    content: number;
+    brand: string;
+    unitPrice: number
+  }[] = [];
   isEditMode = false;
   showError = false;
-  pageTitle: string = '';
+  pageTitle = '';
+  prevName = '';
 
   newProduct = {
     name: '',
     productType: '',
     content: 0,
     brand: '',
-    price: null as number | null,
+    price: null as number | null
   };
 
   constructor(
     private route: ActivatedRoute,
     private catalogService: CatalogService,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -62,9 +80,10 @@ export class CatalogCreateAndEditComponent implements OnInit {
       this.isEditMode = !!catalogId;
       this.pageTitle = this.isEditMode ? 'catalog.edit' : 'catalog.create';
 
+
       if (this.isEditMode) {
         this.catalogService.getCatalogById(catalogId).subscribe({
-          next: (catalog) => {
+          next: catalog => {
             this.catalog = catalog;
             this.loadCatalogItems();
           },
@@ -74,98 +93,71 @@ export class CatalogCreateAndEditComponent implements OnInit {
     });
   }
 
-
   loadCatalogItems(): void {
     if (!this.catalog.id) return;
 
     this.catalogService.getCatalogItems(this.catalog.id).subscribe({
-      next: (items) => {
-        this.catalogItems = items.map(item => {
-          const rawPrice = item.unitPrice as any;
-          const money = new Money(
-            rawPrice?._amount ?? rawPrice?.amount ?? 0,
-            new Currency(rawPrice?._currency?._code ?? rawPrice?.currency ?? 'PEN')
-          );
-          return { ...item, unitPrice: money };
-        });
+      next: items => {
+        this.catalogItems = items as any;
       },
       error: err => console.error('Error loading items:', err)
     });
   }
 
   onSave(): void {
-    if (!this.catalog.name.trim()) {
-      this.showError = true;
-      return;
-    }
-
+    if (!this.catalog.name.trim()) { this.showError = true; return; }
     this.showError = false;
 
-    const currentProfile = this.userService.getCurrentUserProfile();
-    if (!currentProfile) {
-      console.error('No se pudo obtener el perfil del usuario actual');
-      this.showError = true;
-      return;
-    }
+    const currentUser = this.userService.getCurrentUser();
+    if (!currentUser?.account?.id) { /* … */ return; }
 
-    const catalogPayload = {
-      ...this.catalog,
-      name: this.catalog.name.trim(),
-      profileId: currentProfile.profileId,
-      dateCreated: new Date().toISOString(),
-      isPublished: false
-    };
-
-    if (this.isEditMode) {
-      this.catalogService.updateCatalog(catalogPayload).subscribe({
-        next: () => this.handleCatalogSaveSuccess(),
-        error: err => console.error('Error actualizando catálogo:', err)
-      });
-    } else {
-      this.catalogService.createCatalog(catalogPayload).subscribe({
-        next: (createdCatalog: Catalog) => {
-          this.catalog = createdCatalog;
-          this.isEditMode = true;
-          this.handleCatalogSaveSuccess();
-        },
-        error: (err: any) => console.error('Error creando catálogo:', err)
-      });
-    }
-  }
+    const nameChanged = this.isEditMode && this.catalog.name !== this.prevName;
+    const update$ = nameChanged
+      ? this.catalogService.updateCatalogName(
+        this.catalog.id,
+        this.catalog.name.trim(),
+        this.catalog.accountId)
+      : of(this.catalog);
 
 
-  private handleCatalogSaveSuccess(): void {
-    const isProductFormFilled = Object.values(this.newProduct).some(f => f !== '' && f !== null && f !== 0);
+    update$.pipe(
+      switchMap((cat: Catalog) => {
+        this.catalog = cat;
+        const filled = Object.values(this.newProduct).some(v => v);
+        if (!filled) return of(null);
 
-    if (isProductFormFilled) {
-      const isProductFormValid = Object.values(this.newProduct).every(f => f !== '' && f !== null && f !== 0);
-      if (!isProductFormValid) {
-        this.showError = true;
-        return;
-      }
+        const valid = Object.values(this.newProduct).every(v => v);
+        if (!valid) { this.showError = true; return EMPTY; }
 
-      const newCatalogItem: CatalogItem = {
-        id: uuidv4(),
-        catalogId: this.catalog.id,
-        dateAdded: new Date().toISOString(),
-        name: this.newProduct.name,
-        productType: this.newProduct.productType,
-        brand: this.newProduct.brand,
-        content: +this.newProduct.content,
-        unitPrice: new Money(this.newProduct.price!, new Currency('PEN'))
-      };
-
-      this.catalogService.addCatalogItem(newCatalogItem).subscribe({
-        next: () => {
-          this.catalogItems.push(newCatalogItem);
-          this.resetForm();
-          alert(this.isEditMode ? 'Catálogo actualizado y producto agregado correctamente' : 'Catálogo creado y producto agregado correctamente');
-        },
-        error: err => console.error('Error agregando producto:', err)
-      });
-    } else {
-      alert(this.isEditMode ? 'Catálogo actualizado correctamente' : 'Catálogo creado correctamente');
-    }
+        const newItem: CatalogItem = {
+          id: uuidv4(),
+          catalogId: this.catalog.id,
+          dateAdded: new Date().toISOString(),
+          name: this.newProduct.name,
+          productType: this.newProduct.productType,
+          brand: this.newProduct.brand,
+          content: +this.newProduct.content,
+          unitPrice: this.newProduct.price!
+        };
+        return this.catalogService.addCatalogItem(newItem).pipe(
+          tap(item => this.catalogItems.push(item))
+        );
+      })
+    ).subscribe({
+      next: () => {
+        this.resetForm();
+        this.prevName = this.catalog.name;
+        this.snackBar.open(
+          this.isEditMode
+            ? 'Catálogo actualizado y producto agregado'
+            : 'Catálogo creado y producto agregado',
+          'Cerrar',
+          { duration: 4000 }
+        );
+        this.isEditMode = true;
+      },
+      error: (err: any) => console.error('Error en guardado:', err)
+    });
   }
 
   resetForm(): void {
@@ -178,7 +170,12 @@ export class CatalogCreateAndEditComponent implements OnInit {
     };
   }
 
-  formatPrice(price: Money): string {
-    return price?.format('es-PE') ?? 'S/0.00';
+  formatPrice(amount: number, currencyCode: string = 'PEN'): string {
+    const formatted = new Intl.NumberFormat('es-PE', {
+      style: 'currency',
+      currency: currencyCode,
+      minimumFractionDigits: 2
+    }).format(amount);
+    return formatted.replace('S/', 'S/.');
   }
 }

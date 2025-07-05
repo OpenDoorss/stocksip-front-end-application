@@ -72,25 +72,4 @@ export class ProfileComponent implements OnInit {
     });
 
   }
-
-
-  uploadNewPhoto(): void {
-    console.log('Subir nueva foto');
-    this.fileInput.nativeElement.click();
-  }
-
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      console.log('Archivo seleccionado:', file);
-
-      const reader = new FileReader();
-      reader.onload = () => {
-        const base64Image = reader.result as string;
-        console.log('Imagen en base64:', base64Image);
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 }

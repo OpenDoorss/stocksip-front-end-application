@@ -86,6 +86,34 @@
   "dashboard": {
     "title": "Dashboard"
   },
+
+  "subscription": {
+    "title": "Subscription plans",
+    "plan-free": {
+      "title": "Free plan",
+      "description": "This plan is free and has limitations. It is ideal for individuals who want to use the application without paying.",
+      "benefit1":  "Manage up to 50 products",
+      "benefit2": "Storage guides",
+      "benefit3": "Limited number of conservation guides",
+      "benefit4": "Basic alerts",
+      "benefit5": "Community support",
+      "benefit6": "Limited access to reports",
+      "benefit7": "Limited access to warehouses",
+      "price": "Free"
+    },
+    "plan-premium": {
+      "title": "Premium plan",
+      "description": "This plan is paid and has no limitations. It is ideal for companies that want to use the application without restrictions.",
+      "benefit1": "Manage unlimited products",
+      "benefit2": "Unlimited storage guides",
+      "benefit3": "Custom alerts",
+      "benefit4": "Advanced alerts",
+      "benefit5": "Priority support",
+      "benefit6": "Full access to reports",
+      "benefit7": "Full access to warehouses",
+      "price": "S/. 19.90 per month"
+    }
+  },
   "components": {
     "edit": "Edit",
     "show": "Show",

@@ -1,90 +1,80 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import {Observable, map} from 'rxjs';
+import {Observable, map, catchError, of, throwError} from 'rxjs';
+
+import { Catalog } from '../model/catalog.entity';
 import { CatalogItem } from '../model/catalog-item.entity';
-import {Catalog} from '../model/catalog.entity';
-import {Money} from '../../shared/model/money';
-import {Currency} from '../../shared/model/currency';
 
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class CatalogService {
   private apiUrl = environment.apiUrl;
-  private catalogEndpoint = environment.catalogEndpointPath;
+  private baseUrl = environment.backendApi;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
+
+  getCatalogByAccount(accountId: number): Observable<Catalog[]> {
+    const params = new HttpParams().set('accountId', accountId);
+    return this.http.get<Catalog[]>(`${this.baseUrl}/catalogs`, { params });
   }
 
-  getCatalogByProfile(profileId: number): Observable<Catalog[]> {
-    return this.http.get<Catalog[]>(`${this.apiUrl}/catalogs?profileId=${profileId}`);
+  getPublishedCatalogsByAccount(accountId: number): Observable<Catalog[]> {
+    const params = new HttpParams()
+      .set('accountId', accountId)
+      .set('isPublished', true);
+    return this.http.get<Catalog[]>(`${this.baseUrl}/catalogs`, { params });
   }
 
-  getCatalogItems(catalogId: number): Observable<CatalogItem[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/catalogItems?catalogId=${catalogId}`).pipe(
-      map((items: any[]) => {
-        return items.map((item: any) => {
-          const priceRaw = item.unitPrice;
-
-          let money: Money;
-
-          if (typeof priceRaw === 'number') {
-            money = new Money(priceRaw, new Currency('PEN'));
-          } else if (priceRaw && typeof priceRaw === 'object') {
-            const amount = priceRaw._amount ?? priceRaw.amount ?? 0;
-            const currencyCode = priceRaw._currency?._code ?? priceRaw.currency ?? 'PEN';
-            money = new Money(amount, new Currency(currencyCode));
-          } else {
-            money = new Money(0, new Currency('PEN'));
-          }
-
-          return {
-            ...item,
-            unitPrice: money
-          };
-        });
-      })
-    );
+  getPublishedCatalogsByProviderEmail(email: string): Observable<Catalog[]> {
+    const params = new HttpParams().set('providerEmail', email);
+    return this.http.get<Catalog[]>(`${this.baseUrl}/catalogs/published`, { params });
   }
 
-  addCatalogItem(item: CatalogItem): Observable<CatalogItem> {
-    const plainItem = {
-      ...item,
-      unitPrice: {
-        _amount: item.unitPrice.amount,
-        _currency: {
-          _code: item.unitPrice.currency.code
-        }
-      }
-    };
 
-    return this.http.post<CatalogItem>(`${this.apiUrl}/catalogItems`, plainItem);
+  getPublishedCatalogs(): Observable<Catalog[]> {
+    return this.http.get<Catalog[]>(`${this.baseUrl}/catalogs?isPublished=true`);
   }
 
   getCatalogById(id: number): Observable<Catalog> {
-    return this.http.get<Catalog>(`${this.apiUrl}/catalogs/${id}`);
-  }
-
-  updateCatalog(catalog: Catalog): Observable<Catalog> {
-    return this.http.put<Catalog>(`${this.apiUrl}/catalogs/${catalog.id}`, catalog);
-  }
-
-  deleteCatalogItem(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/catalogItems/${id}`);
-  }
-
-  getPublishedCatalogs(): Observable<Catalog[]> {
-    return this.http.get<Catalog[]>(`${this.apiUrl}/catalogs?isPublished=true`);
-  }
-
-  getPublishedCatalogsByProfile(profileId: number): Observable<Catalog[]> {
-    return this.http.get<Catalog[]>(`${this.apiUrl}/catalogs?profileId=${profileId}&isPublished=true`);
+    return this.http.get<Catalog>(`${this.baseUrl}/catalogs/${id}`);
   }
 
   createCatalog(catalog: Catalog): Observable<Catalog> {
-    return this.http.post<Catalog>(`${this.apiUrl}/catalogs`, catalog);
+    return this.http.post<Catalog>(`${this.baseUrl}/catalogs`, catalog);
   }
+
+  updateCatalogName(id: number, name: string, accountId: number): Observable<Catalog> {
+    return this.http.put<Catalog>(`${this.baseUrl}/catalogs/${id}`, {
+      id,
+      accountId,
+      name
+    });
+  }
+
+
+  getCatalogItems(catalogId: number): Observable<CatalogItem[]> {
+    return this.http
+      .get<CatalogItem[]>(`${this.baseUrl}/catalogItems?catalogId=${catalogId}`)
+      .pipe(
+        map(items => items.map(i => ({ ...i, unitPrice: i.unitPrice }))),
+        catchError((err: { status: number; }) =>
+          err.status === 404 ? of([]) : throwError(() => err)
+        )
+      );
+  }
+
+  addCatalogItem(item: CatalogItem): Observable<CatalogItem> {
+    return this.http.post<CatalogItem>(`${this.baseUrl}/catalogItems`, item);
+  }
+
+  deleteCatalogItem(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/catalogItems/${id}`);
+  }
+
+  publishCatalog(id: number): Observable<Catalog> {
+    return this.http.post<Catalog>(`${this.baseUrl}/catalogs/${id}/publish`, {});
+  }
+
+
 
 }
