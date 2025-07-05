@@ -31,8 +31,8 @@ const PurchaseOrderComponent = () => import ('./order-operation-and-monitoring/p
 const OrderComponent = () => import ('./order-operation-and-monitoring/pages/orders/orders.component').then(m => m.OrdersComponent);
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'sign-in', component: LoginComponent },
+  { path: 'sing-up', component: RegisterComponent },
   { path: 'password-recover', component: PasswordRecoverComponent},
   { path: 'confirmation-code', component: ConfirmationCodeComponent },
 

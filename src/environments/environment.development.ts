@@ -8,5 +8,5 @@ export const environment = {
   userEndpointPath: '/users',
   profileEndpointPath: '/profiles',
   catalogEndpointPath: '/catalog',
-  backendApi: 'http://localhost:8080/api/v1',
+  baseServerUrl: 'http://localhost:8080/api/v1',
 };

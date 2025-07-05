@@ -21,7 +21,7 @@ export class WarehouseService {
     );
   }
 
-  getWarehouseById(warehouseId: string): Observable<Warehouse> {
+  getWarehouseById(warehouseId: number): Observable<Warehouse> {
     return this.getWarehouses().pipe(
       map(warehouses => warehouses.find(w => w.warehouseId === +warehouseId)),
       map(warehouse => {
@@ -40,7 +40,7 @@ export class WarehouseService {
     )
   }
 
-  updateWarehouse(warehouseId: string, warehouse: Warehouse): Observable<Warehouse> {
+  updateWarehouse(warehouseId: number, warehouse: Warehouse): Observable<Warehouse> {
     return this.http.put<Warehouse>(
       `${this.apiUrl}${this.warehousesEndpoint}/${warehouse.warehouseId}`, WarehouseAssembler.toEntityFromResource(warehouse)).pipe(
       map(resource => WarehouseAssembler.toEntityFromResource(resource))

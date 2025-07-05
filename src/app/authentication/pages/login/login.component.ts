@@ -60,7 +60,7 @@ export class LoginComponent {
   }
 
   goToRegister() {
-    void this.router.navigate(['/register']);
+    void this.router.navigate(['/sign-up']);
   }
 
   goToPassword() {

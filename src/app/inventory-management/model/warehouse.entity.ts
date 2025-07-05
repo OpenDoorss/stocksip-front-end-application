@@ -1,5 +1,5 @@
 export class Warehouse {
-  warehouseId: number;
+  warehouseId: number = 0;
   name: string;
   imageUrl: string;
   street: string;
@@ -13,7 +13,6 @@ export class Warehouse {
   accountId: number;
 
   constructor() {
-    this.warehouseId = 0;
     this.name = '';
     this.imageUrl = '';
     this.street = '';

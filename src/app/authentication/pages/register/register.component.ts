@@ -51,13 +51,13 @@ export class RegisterComponent {
       const { name, email, password, role } = this.registerForm.value;
 
       this.userService.register({ name, email, password, role }).subscribe({
-        next: () => this.router.navigate(['/login']),
+        next: () => this.router.navigate(['/sign-in']),
         error: (err) => console.error('Registration Error:', err)
       });
     }
   }
 
   goToSignIn() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/sign-in']);
   }
 }

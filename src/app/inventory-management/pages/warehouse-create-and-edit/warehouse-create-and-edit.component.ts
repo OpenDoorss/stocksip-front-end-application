@@ -31,7 +31,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class WarehouseCreateAndEditComponent {
 
   isEditMode: boolean = false;
-  warehouseId: string | null = null;
+  warehouseId: number | null = 0;
   pageTitle: string = '';
 
   nameFormControl = new FormControl('', Validators.required)
@@ -64,12 +64,15 @@ export class WarehouseCreateAndEditComponent {
   ) {}
 
   ngOnInit(): void {
-    this.warehouseId = this.route.snapshot.paramMap.get('warehouseId');
+    const idParam = this.route.snapshot.paramMap.get('warehouseId');
+    this.warehouseId = Number(idParam);
     this.isEditMode = !!this.warehouseId;
     this.pageTitle = this.isEditMode ? 'warehouse.edit' : 'warehouse.create';
 
     if (this.isEditMode) {
       this.loadWarehouseData();
+    } else {
+      this.warehouseId = null;
     }
   }
 
@@ -116,8 +119,6 @@ export class WarehouseCreateAndEditComponent {
         this.router.navigate(['/warehouses']);
       },
       error: (err) => {
-        console.error('Full error response:', err);
-        console.error('Error details:', err.error);
         this.snackBar.open(
           err.error?.message || 'Error creating warehouse',
           'Close',
@@ -128,6 +129,7 @@ export class WarehouseCreateAndEditComponent {
   }
 
   private updateWarehouse(formData: any): void {
+    console.log(this.warehouseId);
     this.warehouseService.updateWarehouse(this.warehouseId!, formData).subscribe({
       next: (response) => {
         this.snackBar.open('Warehouse updated successfully!', 'Close', {
@@ -136,7 +138,8 @@ export class WarehouseCreateAndEditComponent {
         this.router.navigate(['/warehouses']);
       },
       error: (err) => {
-        console.error('Error updating warehouse', err);
+        console.error('Full error response:', err);
+        console.error('Error details:', err.error);
         this.snackBar.open('Error updating warehouse', 'Close', {
           duration: 3000
         });
