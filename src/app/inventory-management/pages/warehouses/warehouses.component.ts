@@ -22,6 +22,7 @@ import {SalesOrderComponent} from '../../../order-operation-and-monitoring/pages
     MatFabButton,
     ToolBarComponent,
     SideNavbarComponent,
+    NgIf,
   ],
   templateUrl: './warehouses.component.html',
   styleUrl: './warehouses.component.css'
@@ -33,26 +34,19 @@ export class WarehousesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private warehouseService: WarehouseService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
-    const currentUser = this.userService.getCurrentUser();
-    console.log('Current user:', currentUser);
-    this.profileId = currentUser?.profileId;
-
-    const idParam = this.route.snapshot.paramMap.get('profileId');
-    if (idParam) {
-      this.profileId = +idParam;
-    }
-
-    console.log('Using profileId:', this.profileId);
     this.loadWarehouses();
   }
 
   loadWarehouses(): void {
 
-    this.warehouseService.getWarehousesByProfile(this.profileId).subscribe(data => {
-      console.log('Warehouses data received:', data);
-      this.warehouses = data;
-    }, error => {
-      console.error('Error loading warehouses:', error);
+    this.warehouseService.getWarehouses().subscribe({
+      next: (data) => {
+        console.log('Warehouses data received:', data);
+        this.warehouses = data;
+      },
+      error: (error) => {
+        console.error('Error loading warehouses:', error);
+      }
     });
   }
 

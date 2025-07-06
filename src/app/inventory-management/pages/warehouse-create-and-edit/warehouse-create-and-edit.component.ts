@@ -123,7 +123,7 @@ export class WarehouseCreateAndEditComponent {
   }
 
   private createWarehouse(formData: FormData): void {
-    this.warehouseService.createWarehouse(formData).subscribe({
+    this.warehouseService.createWarehouse(formData,).subscribe({
       next: () => {
         this.snackBar.open('Warehouse created successfully!', 'Close', { duration: 3000 });
         this.router.navigate(['/warehouses']);
