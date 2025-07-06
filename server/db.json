@@ -1,28 +1,144 @@
 {
   "users": [
     {
-      "id": 1,
       "username": "farid@example.com",
       "password": "123456",
+      "id": 1,
       "profileId": 1
     },
     {
-      "id": 2,
-      "username": "sebastian@example.com",
+      "username": "cami123@gmail.com",
+      "password": "12345678",
+      "id": 3
+    },
+    {
+      "username": "nuevo@example.com",
+      "password": "12345678",
+      "id": 4,
+      "profileId": 4
+    },
+    {
+      "username": "martin@example.com",
+      "password": "123456789",
+      "id": 5,
+      "profileId": 5
+    },
+    {
+      "username": "camila@example.com",
+      "password": "12345678",
+      "token": "fake-token-6",
+      "id": 6,
+      "profileId": 6
+    },
+    {
+      "username": "cami124@example.com",
+      "password": "12345678",
+      "id": 7,
+      "profileId": 7
+    },
+    {
+      "username": "hola@example.com",
+      "password": "12345678",
+      "id": 8,
+      "profileId": 8
+    },
+    {
+      "username": "usuarionuevo@example.com",
       "password": "123456",
-      "profileId": 2
+      "id": 9,
+      "profileId": 9
+    },
+    {
+      "username": "nuevousuario2@example.com",
+      "password": "123456",
+      "id": 10,
+      "profileId": 10
+    },
+    {
+      "username": "prueba123@gmail.com",
+      "password": "1234578",
+      "token": "fake-token-11",
+      "id": 11,
+      "profileId": 11
     }
   ],
   "profiles": [
     {
       "profileId": 1,
       "name": "Farid",
-      "role": "Liquor Store Manager"
+      "email": "farid@example.com",
+      "businessName": "business 1",
+      "businessAddress": "Av. Alameda",
+      "role": "Liquor Store Owner",
+      "phone": "123456789",
+      "id": 1
     },
     {
       "profileId": 2,
       "name": "Sebastian",
       "role": "Supplier"
+    },
+    {
+      "id": 4,
+      "profileId": 4,
+      "name": "Nuevo",
+      "email": "nuevo@example.com",
+      "role": "Supplier"
+    },
+    {
+      "id": 5,
+      "profileId": 5,
+      "name": "Martin",
+      "email": "martin@example.com",
+      "role": "Liquor Store Owner"
+    },
+    {
+      "profileId": 6,
+      "name": "Camila",
+      "email": "camila@example.com",
+      "businessName": "Business 2",
+      "businessAddress": "Av. Riobamba & C. Tarma",
+      "phone": "973964283",
+      "role": "Supplier",
+      "id": 6
+    },
+    {
+      "id": 7,
+      "profileId": 7,
+      "name": "Camila",
+      "email": "cami124@example.com",
+      "role": "Liquor Store Owner"
+    },
+    {
+      "id": 8,
+      "profileId": 8,
+      "name": "hola",
+      "email": "hola@example.com",
+      "role": "Liquor Store Owner"
+    },
+    {
+      "id": 9,
+      "profileId": 9,
+      "name": "Usuario Nuevo",
+      "email": "usuarionuevo@example.com",
+      "role": "Supplier"
+    },
+    {
+      "profileId": 10,
+      "name": "Nuevo usuario 2",
+      "email": "nuevousuario2@example.com",
+      "businessName": "Business 22",
+      "businessAddress": "av. alameda",
+      "phone": "123456789",
+      "role": "Supplier",
+      "id": 10
+    },
+    {
+      "id": 11,
+      "profileId": 11,
+      "name": "Prueba",
+      "email": "prueba123@gmail.com",
+      "role": "Liquor Store Owner"
     }
   ],
   "warehouses": [
@@ -30,7 +146,7 @@
       "warehouseId": 1,
       "name": "Warehouse 1",
       "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157277/stocksipImages/iuj3ac91phua3kcrittk.jpg",
-      "location": "Av. Sol 123",
+      "street": "Av. Sol 123",
       "city": "Lima",
       "state": "Lima",
       "postalCode": "15001",
@@ -41,7 +157,7 @@
       "warehouseId": 2,
       "name": "Warehouse 2",
       "imageUrl": "https://material.angular.io/assets/img/examples/shiba2.jpg",
-      "location": "Av. Micaela Bastidas 123",
+      "street": "Av. Micaela Bastidas 123",
       "city": "Lima",
       "state": "Lima",
       "postalCode": "15001",
@@ -52,7 +168,7 @@
       "warehouseId": 3,
       "name": "Warehouse 3",
       "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157361/stocksipImages/ggm2wesomwwm29icu5og.jpg",
-      "location": "Av. Sol 456",
+      "street": "Av. Sol 456",
       "city": "Lima",
       "state": "Lima",
       "postalCode": "15001",
@@ -63,7 +179,7 @@
       "warehouseId": 4,
       "name": "Warehouse 4",
       "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157759/stocksipImages/z1h378mlpzlyjdug7vxx.jpg",
-      "location": "Av. Sol 456",
+      "street": "Av. Sol 456",
       "city": "Lima",
       "state": "Lima",
       "postalCode": "15001",
@@ -74,7 +190,7 @@
       "warehouseId": 5,
       "name": "Warehouse 5",
       "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157430/stocksipImages/lw8vne0hty8w2s1fyevp.jpg",
-      "location": "Av. Sol 456",
+      "street": "Av. Sol 456",
       "city": "Lima",
       "state": "Lima",
       "postalCode": "15001",
@@ -85,12 +201,23 @@
       "warehouseId": 6,
       "name": "Warehouse 6",
       "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157543/stocksipImages/ptpzzssype89xe5ryguh.jpg",
-      "location": "Av. Sol 456",
+      "street": "Av. Sol 456",
       "city": "Lima",
       "state": "Lima",
       "postalCode": "15001",
       "capacity": 1900,
       "profileId": 1
+    },
+    {
+      "warehouseId": 7,
+      "name": "Warehouse 7",
+      "imageUrl": "https://res.cloudinary.com/deuy1pr9e/image/upload/v1747157600/stocksipImages/iyqj3x2k6g4v5bq8wz1a.jpg",
+      "location": "Av. Sol 456",
+      "city": "Lima",
+      "state": "Lima",
+      "postalCode": "15001",
+      "capacity": 1900,
+      "profileId": 6
     }
   ],
   "zones": [
@@ -151,7 +278,7 @@
       "description": "Recommended temperature: 8 - 10 °C"
     }
   ],
-  "products": [
+  "product": [
     {
       "name": "Vino Tinto Malbec",
       "type": "Destilado",
@@ -244,6 +371,471 @@
       "amount": 0,
       "date": "2025/05/15",
       "lost": 0
+    }
+  ],
+  "catalogs": [
+    {
+      "id": 7,
+      "accountId": {
+        "accountId": 3
+      },
+      "name": "Catalogo 67",
+      "dateCreated": "2025-07-01T22:04:12.086416",
+      "isPublished": true
+    },
+    {
+      "id": 8,
+      "accountId": "3",
+      "name": "Catalogo 4",
+      "dateCreated": "2025-06-25T23:17:08.303Z",
+      "isPublished": true
+    }
+  ],
+  "catalogItems": [
+    {
+      "id": "e65b4a51-3ea9-454b-afe2-db5bb5d0c583",
+      "catalogId": 7,
+      "dateAdded": "2025-06-25T23:16:09.025Z",
+      "name": "nuevo",
+      "productType": "nuevo",
+      "brand": "nuevo",
+      "content": 34455,
+      "unitPrice": 45
+    },
+    {
+      "id": "08499fbe-57fc-41a4-b4e6-7878c358d569",
+      "catalogId": 8,
+      "dateAdded": "2025-06-25T23:17:08.324Z",
+      "name": "vino",
+      "productType": "vino",
+      "brand": "tabernero",
+      "content": 456,
+      "unitPrice": 23
+    },
+    {
+      "id": "9c82e2f3-836b-4f5a-ae4f-87f2c0487f55",
+      "catalogId": 7,
+      "dateAdded": "2025-06-25T23:34:44.782Z",
+      "name": "nuevo1",
+      "productType": "ff",
+      "brand": "fdfd",
+      "content": 45,
+      "unitPrice": 455
+    },
+    {
+      "id": "5d4e66c9-8ea0-4162-bab6-6e74f45510e8",
+      "catalogId": 0,
+      "dateAdded": "2025-07-02T03:17:21.246Z",
+      "name": "NUEVO",
+      "productType": "NUEVECITO",
+      "brand": "Marca de ron",
+      "content": 578,
+      "unitPrice": 677
+    },
+    {
+      "id": "a23dbc71-2e1f-48fe-bb1b-062f5e258b97",
+      "catalogId": 10,
+      "dateAdded": "2025-07-02T03:26:01.762Z",
+      "name": "nuevo1",
+      "productType": "uiyhoiu",
+      "brand": "ouiui",
+      "content": 787,
+      "unitPrice": 556
+    },
+    {
+      "id": "f139baca-83dd-402a-bf24-93c5d7545e2e",
+      "catalogId": 11,
+      "dateAdded": "2025-07-02T03:26:34.676Z",
+      "name": "uyhuh",
+      "productType": "lkhk",
+      "brand": "lkhkl",
+      "content": 79879,
+      "unitPrice": 90
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Whisky Escocés Premium",
+      "current": 5,
+      "min": 10,
+      "expirationDate": "2025-07-15"
+    },
+    {
+      "id": 2,
+      "name": "Cerveza Artesanal IPA",
+      "current": 8,
+      "min": 12,
+      "expirationDate": "2025-06-26"
+    },
+    {
+      "id": 3,
+      "name": "Ron Añejo Reserva",
+      "current": 2,
+      "min": 6,
+      "expirationDate": "2025-06-19"
+    },
+    {
+      "id": 4,
+      "name": "Vino Tinto Malbec",
+      "current": 10,
+      "min": 6,
+      "expirationDate": "2025-06-18"
+    },
+    {
+      "id": 5,
+      "name": "Gin Botánico",
+      "current": 10,
+      "min": 6,
+      "expirationDate": "2025-06-20"
+    },
+    {
+      "id": 6,
+      "name": "Vino Blanco Chardonnay",
+      "current": 1,
+      "min": 6,
+      "expirationDate": "2025-07-15"
+    }
+  ],
+  "purchase-orders": [
+    {
+      "id": 3,
+      "date": {
+        "_date": "2025-06-25T23:30:02.555Z"
+      },
+      "status": [
+        "In Process"
+      ],
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "name": "Farid",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "name": "Camila",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "08499fbe-57fc-41a4-b4e6-7878c358d569",
+          "catalogId": 8,
+          "dateAdded": "2025-06-25T23:17:08.324Z",
+          "name": "vino",
+          "productType": "vino",
+          "brand": "tabernero",
+          "content": 456,
+          "unitPrice": 23,
+          "customQuantity": "1 unidad"
+        }
+      ],
+      "totalAmount": 23,
+      "totalItems": 1
+    },
+    {
+      "id": 4,
+      "date": {
+        "_date": "2025-07-02T02:01:25.896Z"
+      },
+      "status": "Received",
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "name": "Farid",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "name": "Camila",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "08499fbe-57fc-41a4-b4e6-7878c358d569",
+          "catalogId": 8,
+          "dateAdded": "2025-06-25T23:17:08.324Z",
+          "name": "vino",
+          "productType": "vino",
+          "brand": "tabernero",
+          "content": 456,
+          "unitPrice": 23,
+          "customQuantity": 2
+        }
+      ],
+      "totalAmount": 23,
+      "totalItems": 1,
+      "customQuantity": 0
+    },
+    {
+      "id": 5,
+      "date": {
+        "_date": "2025-07-02T02:04:01.934Z"
+      },
+      "status": "Received",
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "name": "Farid",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "name": "Camila",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "08499fbe-57fc-41a4-b4e6-7878c358d569",
+          "catalogId": 8,
+          "dateAdded": "2025-06-25T23:17:08.324Z",
+          "name": "vino",
+          "productType": "vino",
+          "brand": "tabernero",
+          "content": 456,
+          "unitPrice": 23,
+          "customQuantity": 56
+        }
+      ],
+      "totalAmount": 1288,
+      "totalItems": 1
+    },
+    {
+      "id": 6,
+      "date": {
+        "_date": "2025-07-03T03:53:26.484Z"
+      },
+      "status": "Received",
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 2
+        }
+      ],
+      "totalAmount": 174,
+      "totalItems": 1
+    },
+    {
+      "id": 7,
+      "date": {
+        "_date": "2025-07-03T04:06:15.154Z"
+      },
+      "status": "Received",
+      "buyer": {
+        "id": "1",
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "id": "3",
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 78
+        }
+      ],
+      "totalAmount": 6786,
+      "totalItems": 1
+    },
+    {
+      "buyer": {
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 67
+        }
+      ],
+      "totalAmount": 5829,
+      "totalItems": 1,
+      "id": 8
+    },
+    {
+      "buyer": {
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 6879
+        }
+      ],
+      "totalAmount": 598473,
+      "totalItems": 1,
+      "id": 9
+    },
+    {
+      "buyer": {
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 3
+        }
+      ],
+      "totalAmount": 261,
+      "totalItems": 1,
+      "id": 10
+    },
+    {
+      "buyer": {
+        "userOwnerId": 1,
+        "role": "Liquor Store Owner",
+        "businessName": "business 1",
+        "email": "farid@example.com"
+      },
+      "supplier": {
+        "userOwnerId": 6,
+        "role": "Supplier",
+        "businessName": "Business 3",
+        "email": "camila@example.com"
+      },
+      "items": [
+        {
+          "id": "ab37c475-d286-441a-a3a6-4db7b3ffe498",
+          "catalogId": 4,
+          "name": "Vino",
+          "productType": "Vino",
+          "brand": "Tabernero",
+          "content": 898,
+          "unitPrice": 87,
+          "dateAdded": "2025-07-02T00:58:09.17164",
+          "customQuantity": 78
+        }
+      ],
+      "totalAmount": 6786,
+      "totalItems": 1,
+      "id": 11
+    }
+  ],
+  "settings": [
+    {
+      "expirationAlertMargin": 8,
+      "id": 1
+    }
+  ],
+  "accounts": [
+    {
+      "id": "1",
+      "userOwnerId": 1,
+      "role": "Liquor Store Owner",
+      "businessName": "business 1",
+      "email": "farid@example.com"
+    },
+    {
+      "id": "3",
+      "userOwnerId": 6,
+      "role": "Supplier",
+      "businessName": "Business 3",
+      "email": "camila@example.com"
+    },
+    {
+      "id": "a11",
+      "userOwnerId": 11,
+      "role": "Liquor Store Owner",
+      "businessName": "Prueba Business",
+      "name": "Prueba",
+      "email": "prueba123@gmail.com"
     }
   ]
 }

@@ -5,6 +5,22 @@
   font-family: 'Arial', sans-serif;
 }
 
+.dashboard-bg {
+  background: #F7EDDC;
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-content {
+  padding: 3rem;
+}
+
 .charts-container {
   display: flex;
   gap: 1rem;

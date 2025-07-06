@@ -17,6 +17,8 @@ import {
   MatOptionModule
 } from '@angular/material/core';
 import {MatButton} from '@angular/material/button';
+import {RouterLink} from '@angular/router';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 
 Chart.register(...registerables);
 
@@ -30,7 +32,9 @@ Chart.register(...registerables);
     MatSelectModule,
     MatOptionModule,
     MatTableModule,
-    MatButton
+    MatButton,
+    RouterLink,
+    SideNavbarComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']

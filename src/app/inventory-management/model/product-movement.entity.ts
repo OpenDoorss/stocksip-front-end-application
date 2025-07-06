@@ -4,7 +4,7 @@ import {DateTime} from '../../shared/model/date-time';
 const Types: string[] = ["Purchase", "Donation", "Loss", "Internal-Consumption"]
 
 /**
- * Represents a Product Movement in the system to register the exit of a product from the inventory.
+ * Represents a Product Movement in the system to sign-up the exit of a product from the inventory.
  */
 export class ProductMovement {
   id: string;

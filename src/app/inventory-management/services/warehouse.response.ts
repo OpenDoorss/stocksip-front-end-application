@@ -1,11 +1,14 @@
 export interface WarehouseResource {
   warehouseId: number;
   name: string;
-  imageUrl: string;
-  location: string;
+  street: string;
   city: string;
-  state: string;
+  district: string;
   postalCode: string;
+  country: string;
+  maxTemperature: number;
+  minTemperature: number;
   capacity: number;
-  profileId: number;
+  imageUrl: string;
+  accountId: number;
 }

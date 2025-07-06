@@ -6,6 +6,13 @@ import {WarehouseService} from '../../services/warehouse.service';
 import {MatFabButton} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {UserService} from "../../../authentication/services/user.service";
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
+import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {NgIf} from '@angular/common';
+import {
+  PurchaseOrderComponent
+} from '../../../order-operation-and-monitoring/pages/purchase-order/purchase-order.component';
+import {SalesOrderComponent} from '../../../order-operation-and-monitoring/pages/sales-order/sales-order.component';
 
 @Component({
   selector: 'app-warehouses',
@@ -13,6 +20,9 @@ import {UserService} from "../../../authentication/services/user.service";
     WarehouseListComponent,
     MatIconModule,
     MatFabButton,
+    ToolBarComponent,
+    SideNavbarComponent,
+    NgIf,
   ],
   templateUrl: './warehouses.component.html',
   styleUrl: './warehouses.component.css'
@@ -24,30 +34,23 @@ export class WarehousesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private warehouseService: WarehouseService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
-    const currentUser = this.userService.getCurrentUser();
-    console.log('Current user:', currentUser);
-    this.profileId = currentUser?.profileId;
-
-    const idParam = this.route.snapshot.paramMap.get('profileId');
-    if (idParam) {
-      this.profileId = +idParam;
-    }
-
-    console.log('Using profileId:', this.profileId);
     this.loadWarehouses();
   }
 
   loadWarehouses(): void {
 
-    this.warehouseService.getWarehousesByProfile(this.profileId).subscribe(data => {
-      console.log('Warehouses data received:', data);
-      this.warehouses = data;
-    }, error => {
-      console.error('Error loading warehouses:', error);
+    this.warehouseService.getWarehouses().subscribe({
+      next: (data) => {
+        console.log('Warehouses data received:', data);
+        this.warehouses = data;
+      },
+      error: (error) => {
+        console.error('Error loading warehouses:', error);
+      }
     });
   }
 
   navigateToCreate(): void {
-    void this.router.navigate(['/warehouse', 'create']);
+    void this.router.navigate(['/warehouses', 'new']);
   }
 }

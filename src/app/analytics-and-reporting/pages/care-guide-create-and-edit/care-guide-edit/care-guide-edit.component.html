@@ -1,67 +1,79 @@
-<div class="page-container">
-    <div class="header">
+<div class="edit-bg">
+
+  <app-side-navbar/>
+
+  <div class="edit-main">
+
+    <app-tool-bar [titleKey]="'reports.care-guide-list.edit'"></app-tool-bar>
+
+    <div class="page-container">
+      <div class="header">
         <h1>{{'title.edit'| translate}}</h1>
         <div class="search-user">
-            <mat-form-field appearance="outline">
-                <mat-label>Users</mat-label>
-                <mat-select>
-                    <mat-option value="1">PerfilUsuario correo123.com</mat-option>
-                    <mat-option value="2">PerfilUsuario correo123.com</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <app-language-switcher></app-language-switcher>
+          <mat-form-field appearance="outline">
+            <mat-label>Users</mat-label>
+            <mat-select>
+              <mat-option value="1">PerfilUsuario correo123.com</mat-option>
+              <mat-option value="2">PerfilUsuario correo123.com</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-    </div>
-    <div class="content">
+      </div>
+      <div class="content-wrapper">
         <div class="main">
-            <div class="enter-name">
-                <h2>{{ 'enter.Name' | translate }}</h2>
-                <mat-form-field appearance="outline" class="enter-name">
-                    <input matInput placeholder="" [(ngModel)]="name">
-                    <button mat-icon-button matSuffix aria-label="enter" (click)="onEnter('care-guide-list')">
-                    </button>
-                </mat-form-field>
-            </div>
-            <div class="enter-type">
-                <h2>{{ 'enter.type' | translate }}</h2>
-                <mat-form-field appearance="outline" class="enter-name">
-                    <input matInput placeholder="" [(ngModel)]="type">
-                    <button mat-icon-button matSuffix aria-label="enter" (click)="onEnter('care-guide-list')">
-                    </button>
-                </mat-form-field>
-            </div>
-            <div class="enter-description">
-                <h2>{{ 'enter.description' | translate }}</h2>
-                <mat-form-field appearance="outline" class="enter-name">
-                    <textarea matInput placeholder="" [(ngModel)]="description"></textarea>
-                    <button mat-icon-button matSuffix aria-label="enter" (click)="onEnter('care-guide-list')">
-                    </button>
-                </mat-form-field>
-            </div>
+          <div class="enter-name">
+            <h2>{{ 'enter.Name' | translate }}</h2>
+            <mat-form-field appearance="outline" class="enter-name">
+              <input matInput placeholder="" [(ngModel)]="name">
+              <button mat-icon-button matSuffix aria-label="enter" (click)="onEnter('care-guide-list')">
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="enter-type">
+            <h2>{{ 'enter.type' | translate }}</h2>
+            <mat-form-field appearance="outline" class="enter-name">
+              <input matInput placeholder="" [(ngModel)]="type">
+              <button mat-icon-button matSuffix aria-label="enter" (click)="onEnter('care-guide-list')">
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="enter-description">
+            <h2>{{ 'enter.description' | translate }}</h2>
+            <mat-form-field appearance="outline" class="enter-name">
+              <textarea matInput placeholder="" [(ngModel)]="description"></textarea>
+              <button mat-icon-button matSuffix aria-label="enter" (click)="onEnter('care-guide-list')">
+              </button>
+            </mat-form-field>
+          </div>
         </div>
-    </div>
-    <div class="side-block">
-        <div class="img">
+        <div class="side-block">
+          <div class="img">
             <mat-card class="upload-card" (click)="fileInput.click()">
-                <input  
-                    #fileInput
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    (change)="onFileSelected($event)"
-                />
-                <ng-container *ngIf="previewUrl; else placeholder">
-                    <img [src]="previewUrl" class="preview-img" />
-                </ng-container>
-                <ng-template #placeholder>
-                    <p>{{ 'img.title' | translate }}</p>
-                </ng-template>
+              <input
+                #fileInput
+                type="file"
+                accept="image/*"
+                hidden
+                (change)="onFileSelected($event)"
+              />
+              <ng-container *ngIf="previewUrl; else placeholder">
+                <img [src]="previewUrl" class="preview-img" />
+              </ng-container>
+              <ng-template #placeholder>
+                <p>{{ 'img.title' | translate }}</p>
+              </ng-template>
             </mat-card>
-        </div>
-        <div class="action">
-            <button mat-flat-button (click)="onEnter('care-guide-list')">{{ 'button.save' | translate }}</button>
-            <button mat-flat-button (click)="onDelete('care-guide-list')">{{ 'button.delete' | translate }}</button>
+          </div>
+          <div class="action">
             <button mat-flat-button (click)="onCancel('care-guide-list')">{{ 'button.cancel' | translate }}</button>
+            <button mat-flat-button (click)="onDelete('care-guide-list')">{{ 'button.delete' | translate }}</button>
+            <button mat-flat-button (click)="onEnter('care-guide-list')">{{ 'button.save' | translate }}</button>
+          </div>
         </div>
+      </div>
     </div>
+
+
+
+  </div>
 </div>

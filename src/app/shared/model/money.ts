@@ -1,7 +1,7 @@
 import {Currency} from "./currency";
 
 export class Money {
-  private readonly _amount: number;
+  readonly _amount: number;
   private readonly _currency: Currency;
 
   constructor(amount: number, currency: Currency) {

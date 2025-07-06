@@ -6,4 +6,12 @@ export const environment = {
   reportsEndpointPath: '/reports',
   zonesEndpointPath: '/zones',
   userEndpointPath: '/users',
+  profileEndpointPath: '/profiles',
+  accountsEndpointPath: '/accounts',
+  catalogEndpointPath: '/catalog',
+  authEndpointPath: '/authentications',
+  baseServerUrl: 'http://localhost:8080/api/v1',
+
+  accountWarehousesEndpointPath: '/accounts/{accountId}/warehouses',
+  accountProductsEndpointPath: '/accounts/{accountId}/products',
 };

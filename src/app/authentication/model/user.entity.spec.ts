@@ -1,7 +1,7 @@
-import { UserEntity } from './user.entity';
+import { User } from './user.entity';
 
 describe('UserEntity', () => {
   it('should create an instance', () => {
-    expect(new UserEntity()).toBeTruthy();
+    expect(new User()).toBeTruthy();
   });
 });

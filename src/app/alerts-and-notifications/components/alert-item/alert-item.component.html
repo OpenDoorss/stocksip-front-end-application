@@ -1,1 +1,12 @@
-<p>alert-item works!</p>
+<div class="alert-item" *ngIf="alert">
+  <p class="product-name">{{ alert.name }}</p>
+  <p class="stock-actual">Actual stock : {{ alert.current }}</p>
+  <p class="stock-minimo">Minimum stock: {{ alert.min }}</p>
+  <mat-divider></mat-divider>
+</div>
+
+<div class="alert-item" *ngIf="expiration">
+  <p class="product-name">{{ expiration.name }}</p>
+  <p class="expiration">Expires in {{ expiration.days }} days!</p>
+  <mat-divider></mat-divider>
+</div>

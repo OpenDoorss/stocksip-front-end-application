@@ -1,0 +1,24 @@
+<div class="purchase-order-bg">
+
+  <app-side-navbar/>
+
+  <div class="purchase-order-main">
+    <app-tool-bar [titleKey]="'Orders'"></app-tool-bar>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" class="new-order" routerLink="/catalog">New Order</button>
+    </div>
+
+    <app-purchase-order-list [orders]="orders"></app-purchase-order-list>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+

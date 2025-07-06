@@ -1,0 +1,79 @@
+.catalog-row {
+  align-items: center;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.catalog-create-edit-bg {
+  padding: 2rem;
+  background: #f4ede3;
+  min-height: 100vh;
+  display: flex;
+}
+
+.catalog-create-edit-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-form {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: #f5f0eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .buttons {
+    .save {
+      background-color: #890E4F;
+      color: white;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 45px;
+      cursor: pointer;
+      width: 90px;
+    }
+    .reset {
+      background-color: white;
+      color: #890E4F;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      border: #890E4F 4px solid;
+      border-radius: 45px;
+      cursor: pointer;
+    }
+  }
+}
+
+.catalog-table {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background-color: #f5f0eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+.buttons {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.error {
+  color: red;
+  margin-top: 8px;
+}

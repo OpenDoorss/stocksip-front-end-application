@@ -1,0 +1,23 @@
+.actions {
+  .new-order {
+    background-color: #890E4F;
+    color: white;
+    margin-top: 4rem;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.purchase-order-bg {
+  padding: 2rem;
+  background: #f4ede3;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  .purchase-order-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+  }
+}

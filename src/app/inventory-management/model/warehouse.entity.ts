@@ -1,23 +1,42 @@
 export class Warehouse {
   warehouseId: number;
   name: string;
-  imageUrl: string;
-  location: string;
+  street: string;
   city: string;
-  state: string;
+  district: string;
   postalCode: string;
+  country: string;
+  maxTemperature: number;
+  minTemperature: number;
   capacity: number;
-  profileId: number;
-
-  constructor() {
-    this.warehouseId = 0;
-    this.name = '';
-    this.imageUrl = '';
-    this.location = '';
-    this.city = '';
-    this.state = '';
-    this.postalCode = '';
-    this.capacity = 0;
-    this.profileId = 0;
+  imageUrl: string;
+  accountId: number;
+  constructor(
+    warehouseId: number,
+    name: string,
+    street: string,
+    city: string,
+    district: string,
+    postalCode: string,
+    country: string,
+    maxTemperature: number,
+    minTemperature: number,
+    capacity: number,
+    imageUrl: string,
+    accountId: number = 0
+  ) {
+    this.warehouseId = warehouseId;
+    this.name = name;
+    this.imageUrl = imageUrl;
+    this.street = street;
+    this.city = city;
+    this.district = district;
+    this.postalCode = postalCode;
+    this.country = country;
+    this.maxTemperature = maxTemperature;
+    this.minTemperature = minTemperature;
+    this.capacity = capacity;
+    this.accountId = accountId;
   }
+
 }

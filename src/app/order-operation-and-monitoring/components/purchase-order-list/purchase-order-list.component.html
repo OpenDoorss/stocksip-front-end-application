@@ -1,0 +1,41 @@
+<mat-card class="purchase-list-card">
+  <mat-card-title class="recent-orders">Recent Orders</mat-card-title>
+
+  <mat-table [dataSource]="orders" class="mat-elevation-z1">
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{ order.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let order">
+        {{ order.date | date:'shortDate' }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let order"> {{ order.status }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="products">
+      <mat-header-cell *matHeaderCellDef> Products </mat-header-cell>
+      <mat-cell *matCellDef="let order">
+        {{ order.totalItems }} products
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+      <mat-cell *matCellDef="let order">
+        {{ formatPrice(order.totalAmount) }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['id', 'date', 'status', 'products', 'total']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['id', 'date', 'status', 'products', 'total']"></mat-row>
+  </mat-table>
+</mat-card>

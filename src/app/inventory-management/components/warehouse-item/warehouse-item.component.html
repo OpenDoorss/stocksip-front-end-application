@@ -1,16 +1,16 @@
-<mat-card class="warehouse-card" appearance="outlined">
-  <mat-card-header class="center-text">
-    <mat-card-title>{{warehouse.name}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-header>
-    <img [src]="warehouse.imageUrl" [alt]="warehouse.name" class="warehouse-image">
-  </mat-card-header>
-  <mat-card-content>
-    <p>Location: {{warehouse.location}}</p>
-    <p>Capacity: {{warehouse.capacity}} m³</p>
-  </mat-card-content>
-  <mat-card-actions class="action-buttons">
-    <button mat-flat-button class="action-button" (click)="navigateToCreate()"> <mat-icon>edit</mat-icon> Edit</button>
-    <button mat-flat-button class="action-button" (click)="navigateToZones()">Show</button>
-  </mat-card-actions>
-</mat-card>
+<div class="warehouse-card">
+  <div class="card-header center-text">
+    <h2 class="card-title">{{warehouses.name}}</h2>
+  </div>
+  <div class="image-container">
+    <img [src]="warehouses.imageUrl" [alt]="warehouses.name" class="warehouse-image">
+  </div>
+  <div class="card-content">
+    <p><strong>{{ 'warehouse.card.address' | translate }}:</strong> {{warehouses.street }}</p>
+    <p><strong>{{ 'warehouse.card.capacity' | translate }}:</strong> {{warehouses.capacity}} m³</p>
+  </div>
+  <div class="action-buttons">
+    <button class="action-button" (click)="navigateToCreate()"> <mat-icon>edit</mat-icon> {{ 'components.edit' | translate }}</button>
+    <button class="action-button" (click)="navigateToZones()">{{ 'components.show' | translate }}</button>
+  </div>
+</div>
