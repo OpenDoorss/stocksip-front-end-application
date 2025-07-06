@@ -54,9 +54,7 @@ export class WarehouseService {
     );
   }
 
-  updateWarehouse(warehouseId: number, formData: FormData): Observable<Warehouse> {
-    return this.http.put<Warehouse>(`${this.apiUrl}${this.warehousesEndpoint}/${warehouseId}`, formData).pipe(
-      map(resource => WarehouseAssembler.toEntityFromResource(resource))
-    );
+  updateWarehouse(warehouseId: number, formData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/warehouses/${warehouseId}`, formData);
   }
 }
