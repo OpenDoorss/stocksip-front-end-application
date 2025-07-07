@@ -20,6 +20,8 @@ import { ToolBarComponent } from '../../../public/components/tool-bar/tool-bar.c
 import { OrderStatusComponent } from '../../components/order-status/order-status.component';
 import {MatButton} from '@angular/material/button';
 import {PurchaseOrder} from '../../model/purchase-order.entity';
+import {AuthenticationService} from '../../../authentication/services/authentication.service';
+import {AccountService} from '../../../payment-and-subscriptions/services/account.service';
 
 @Component({
   selector: 'app-sales-order',
@@ -40,45 +42,55 @@ import {PurchaseOrder} from '../../model/purchase-order.entity';
 })
 
 export class SalesOrderComponent implements OnInit {
+
+  /** Orders received by the current supplier */
   orders: PurchaseOrder[] = [];
 
-  private currentAccountId = 0;
+  /** Supplier account (loaded from backend) */
+  supplierAccountId = 0;
 
   constructor(
     private purchaseOrderService: PurchaseOrderService,
-    private userService: UserService,
-    private dialog: MatDialog
+    private authService         : AuthenticationService,
+    private accountService      : AccountService,
+    private dialog              : MatDialog
   ) {}
 
-
+  /* ---------------------------------------------------------------- */
   ngOnInit(): void {
-    const user = this.userService.getCurrentUser();
 
-    this.currentAccountId =
-      user?.account?.accountId ?? user?.account?.id ?? 0;
-
-    if (!this.currentAccountId) {
-      console.warn('Sin cuenta asociada; no se mostrarán órdenes');
+    /* 1️⃣  Read accountId from session ----------------------------- */
+    const { accountId } = this.authService.getCurrentUser();
+    if (!accountId) {
+      console.warn('[SalesOrder] No accountId in session – cannot load orders');
       return;
     }
 
-    this.loadOrders();
-  }
-
-  private loadOrders(): void {
-    this.purchaseOrderService.getAll().subscribe(allOrders => {
-
-      this.orders = allOrders.filter(o => {
-        const supplierId = Number(o.supplier?.accountId ?? o.supplier?.id ?? 0);
-        return supplierId === Number(this.currentAccountId);
-      });
+    /* 2️⃣  Confirm the supplier account via backend ---------------- */
+    this.accountService.getById(accountId).subscribe({
+      next : acc => {
+        this.supplierAccountId = acc.accountId;
+        this.loadOrders();        // load only after account confirmation
+      },
+      error: err =>
+        console.error('[SalesOrder] Error fetching supplier account:', err)
     });
   }
 
+  /* ---------------------------------------------------------------- */
+  /** Load orders and keep only those addressed to this supplier */
+  private loadOrders(): void {
 
+    if (!this.supplierAccountId) return;
 
+    this.purchaseOrderService.getAll().subscribe(allOrders => {
+      this.orders = allOrders.filter(o =>
+        Number(o.supplier?.accountId ?? o.supplier?.id ?? 0) === this.supplierAccountId
+      );
+    });
+  }
 
-
+  /* ---------------------------------------------------------------- */
   formatPrice(amount: number, currencyCode = 'PEN'): string {
     return new Intl.NumberFormat('es-PE', {
       style: 'currency',
@@ -87,18 +99,18 @@ export class SalesOrderComponent implements OnInit {
     }).format(amount);
   }
 
-  openStatusDialog(order: any): void {
+  /* ---------------------------------------------------------------- */
+  /** Open dialog to change order status */
+  openStatusDialog(order: PurchaseOrder): void {
     const dlg = this.dialog.open(OrderStatusComponent, {
       width: '300px',
-      data: { status: order.status }
+      data : { status: order.status }
     });
 
     dlg.afterClosed().subscribe(newStatus => {
       if (newStatus && newStatus !== order.status) {
         order.status = newStatus;
-        this.purchaseOrderService
-          .updateStatus(order.id, newStatus)
-          .subscribe();
+        this.purchaseOrderService.updateStatus(order.id, newStatus).subscribe();
       }
     });
   }
