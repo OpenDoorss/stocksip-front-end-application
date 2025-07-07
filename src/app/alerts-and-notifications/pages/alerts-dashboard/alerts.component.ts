@@ -1,19 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../../services/alert.service';
-import { UrgentRestockAlert, ExpiringProduct } from '../../model/alert.entity';
+import { BackendAlert } from '../../model/alert.entity';
 import { AlertListComponent } from '../../components/alert-list/alert-list.component';
-import { HttpClient } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
-import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
-
-interface Product {
-  id: number;
-  name: string;
-  current: number;
-  min: number;
-  expirationDate: string;
-}
+import { ProductService } from '../../../inventory-management/services/product.service';
+import { Product } from '../../../inventory-management/model/product.entity';
+import { FormsModule } from '@angular/forms';
+import { ToolBarComponent } from '../../../public/components/tool-bar/tool-bar.component';
+import { SideNavbarComponent } from '../../../public/components/side-navbar/side-navbar.component';
 
 @Component({
   selector: 'app-alerts-and-notifications',
@@ -27,100 +20,76 @@ interface Product {
   styleUrls: ['./alerts.component.css']
 })
 export class AlertsComponent implements OnInit {
-  urgentRestockAlerts: UrgentRestockAlert[] = [];
-  upcomingExpirations: ExpiringProduct[] = [];
+  stockAlerts: BackendAlert[] = [];
+  expirationAlerts: BackendAlert[] = [];
+  backendLoading = false;
+  backendErrorMsg = '';
   products: Product[] = [];
-  apiUrl = 'http://localhost:3000/products';
-  settingsUrl = 'http://localhost:3000/settings/1';
-  successMsg = '';
-  errorMsg = '';
-  loading = false;
 
-  expirationAlertMargin = 7;
-  showEditMarginModal = false;
-  marginSuccessMsg = '';
-  marginErrorMsg = '';
-  marginLoading = false;
-
-  constructor(private alertService: AlertService, private http: HttpClient) {}
+  constructor(
+    private alertService: AlertService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
-    this.alertService.getUrgentRestocks().subscribe(data => this.urgentRestockAlerts = data);
-    this.getUpcomingExpirations();
-    this.fetchProducts();
-    this.fetchExpirationAlertMargin();
+    this.loadProducts();
+    this.loadBackendAlerts();
   }
 
-  fetchProducts() {
-    this.http.get<Product[]>(this.apiUrl).subscribe({
-      next: (data) => this.products = data,
-      error: () => this.errorMsg = 'Error al cargar productos.'
+  loadProducts() {
+    this.productService.getProductsByAccountId().subscribe({
+      next: (products) => this.products = products,
+      error: () => this.products = []
     });
   }
 
-  getUpcomingExpirations() {
-    this.alertService.getUpcomingExpirations(this.expirationAlertMargin).subscribe(data => this.upcomingExpirations = data);
-  }
-
-  fetchExpirationAlertMargin() {
-    this.http.get<{ id: number, expirationAlertMargin: number }>(this.settingsUrl).subscribe({
-      next: (settings) => {
-        this.expirationAlertMargin = settings.expirationAlertMargin;
-        console.log('Margen actualizado desde backend:', this.expirationAlertMargin);
-        this.getUpcomingExpirations();
-      },
-      error: () => this.marginErrorMsg = 'Error al cargar el margen de vencimiento.'
-    });
-  }
-
-  updateMinStock(product: Product) {
-    this.successMsg = '';
-    this.errorMsg = '';
-    if (product.min < 0) {
-      this.errorMsg = 'El stock mínimo debe ser positivo.';
+  loadBackendAlerts() {
+    const accountId = localStorage.getItem('accountId');
+    if (!accountId) {
+      console.warn('No account ID found in localStorage');
       return;
     }
-    this.loading = true;
-    this.http.patch(`${this.apiUrl}/${product.id}`, { min: product.min }).subscribe({
-      next: () => {
-        this.successMsg = 'Stock mínimo actualizado correctamente.';
-        this.loading = false;
+    this.backendLoading = true;
+    this.backendErrorMsg = '';
+    this.alertService.getAlerts(accountId).subscribe({
+      next: (alerts) => {
+        this.stockAlerts = alerts.filter(alert => alert.type === 'PRODUCTLOWSTOCK');
+        this.expirationAlerts = alerts.filter(alert => alert.type === 'EXPIRATION_WARNING' && alert.state === 'ACTIVE');
+        this.backendLoading = false;
       },
       error: () => {
-        this.errorMsg = 'Error al actualizar el stock mínimo.';
-        this.loading = false;
+        this.backendErrorMsg = 'Error loading backend alerts.';
+        this.backendLoading = false;
       }
     });
   }
 
-  openEditMarginModal() {
-    this.showEditMarginModal = true;
-    this.marginSuccessMsg = '';
-    this.marginErrorMsg = '';
-  }
+  /**
+   * Returns the minimum stock for a given productId
+   */
+  getMinimumStock = (productId: string): number | null => {
+    const product = this.products.find(p => p.id.toString() === productId);
+    return product ? product.minimumStock : null;
+  };
 
-  closeEditMarginModal() {
-    this.showEditMarginModal = false;
-  }
-
-  saveExpirationAlertMargin() {
-    this.marginSuccessMsg = '';
-    this.marginErrorMsg = '';
-    if (this.expirationAlertMargin < 1) {
-      this.marginErrorMsg = 'El margen debe ser al menos 1 día.';
-      return;
+  getSeverityColor(severity: string): string {
+    switch (severity) {
+      case 'WARNING': return '#f44336';
+      case 'HIGH': return '#ff9800';
+      case 'MEDIUM': return '#ffc107';
+      case 'LOW': return '#4caf50';
+      default: return '#757575';
     }
-    this.marginLoading = true;
-    this.http.put(this.settingsUrl, { expirationAlertMargin: this.expirationAlertMargin }).subscribe({
-      next: () => {
-        this.marginSuccessMsg = 'Margen de vencimiento actualizado correctamente.';
-        this.marginLoading = false;
-        this.fetchExpirationAlertMargin();
-      },
-      error: () => {
-        this.marginErrorMsg = 'Error al actualizar el margen de vencimiento.';
-        this.marginLoading = false;
-      }
-    });
+  }
+
+  getSeverityIcon(severity: string): string {
+    switch (severity) {
+      case 'WARNING': return '⚠️';
+      case 'HIGH': return '🔴';
+      case 'MEDIUM': return '🟡';
+      case 'LOW': return '🟢';
+      default: return 'ℹ️';
+    }
   }
 }
+

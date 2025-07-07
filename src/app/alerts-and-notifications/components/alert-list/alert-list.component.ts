@@ -1,55 +1,68 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { UrgentRestockAlert, ExpiringProduct } from '../../model/alert.entity';
-import {AlertItemComponent} from '../alert-item/alert-item.component';
+import { Component, Input } from '@angular/core';
+import { BackendAlert } from '../../model/alert.entity';
 import {MatDivider} from '@angular/material/divider';
 import {MatCard, MatCardTitle} from '@angular/material/card';
 import {NgForOf, NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {AlertItemComponent} from '../alert-item/alert-item.component';
 
 @Component({
   selector: 'app-alert-list',
   templateUrl: './alert-list.component.html',
   imports: [
-    AlertItemComponent,
     MatDivider,
     MatCardTitle,
     MatCard,
     NgForOf,
     NgIf,
-    FormsModule
+    AlertItemComponent
   ],
   styleUrls: ['./alert-list.component.css']
 })
 export class AlertListComponent {
-  @Input() restocks: UrgentRestockAlert[] = [];
-  @Input() expirations: ExpiringProduct[] = [];
-  @Input() products: any[] = [];
-  @Input() loading: boolean = false;
-  @Input() successMsg: string = '';
-  @Input() errorMsg: string = '';
-  @Input() updateMinStock: (product: any) => void = () => {};
-
-  // Para el modal de margen de vencimiento
-  @Input() expirationAlertMargin: number = 7;
-  @Output() expirationAlertMarginChange = new EventEmitter<number>();
-  @Input() showEditMarginModal: boolean = false;
-  @Input() openEditMarginModal: () => void = () => {};
-  @Input() closeEditMarginModal: () => void = () => {};
-  @Input() saveExpirationAlertMargin: () => void = () => {};
-  @Input() marginSuccessMsg: string = '';
-  @Input() marginErrorMsg: string = '';
-  @Input() marginLoading: boolean = false;
+  /**
+   * List of backend alerts of type PRODUCTLOWSTOCK
+   */
+  @Input() stockAlerts: BackendAlert[] = [];
+  /**
+   * List of backend alerts of type EXPIRATION_WARNING
+   */
+  @Input() expirationAlerts: BackendAlert[] = [];
+  /**
+   * Loading state for backend alerts
+   */
+  @Input() backendLoading: boolean = false;
+  /**
+   * Error message for backend alerts
+   */
+  @Input() backendErrorMsg: string = '';
+  /**
+   * Function to get the color for a given severity
+   */
+  @Input() getSeverityColor: (severity: string) => string = () => '#757575';
+  /**
+   * Function to get the icon for a given severity
+   */
+  @Input() getSeverityIcon: (severity: string) => string = () => 'ℹ️';
+  /**
+   * Function to get the minimum stock for a productId
+   */
+  @Input() getMinimumStock: (productId: string) => number | null = () => null;
 
   showAllRestocks = false;
   showAllExpirations = false;
-  showEditPanel = false;
 
-  get displayedRestocks(): UrgentRestockAlert[] {
-    return this.showAllRestocks ? this.restocks : this.restocks.slice(0, 3);
+  /**
+   * Returns the stock alerts to display (all or first 3)
+   */
+  get displayedStockAlerts(): BackendAlert[] {
+    return this.showAllRestocks ? this.stockAlerts : this.stockAlerts.slice(0, 3);
   }
 
-  get displayedExpirations(): ExpiringProduct[] {
-    return this.showAllExpirations ? this.expirations : this.expirations.slice(0, 3);
+  /**
+   * Returns the expiration alerts to display (all or first 3)
+   */
+  get displayedExpirationAlerts(): BackendAlert[] {
+    return this.showAllExpirations ? this.expirationAlerts : this.expirationAlerts.slice(0, 3);
   }
 
   toggleRestocks() {
@@ -58,13 +71,5 @@ export class AlertListComponent {
 
   toggleExpirations() {
     this.showAllExpirations = !this.showAllExpirations;
-  }
-
-  toggleEditPanel() {
-    this.showEditPanel = !this.showEditPanel;
-  }
-
-  toggleEditMarginModal() {
-    if (this.openEditMarginModal) this.openEditMarginModal();
   }
 }

@@ -12,22 +12,34 @@
           <div class="summary-item"><span>🛒 Sales Today:</span> S/. 450.00</div>
           <div class="summary-item"><span>📄 Last invoice:</span> 24/04/2025</div>
           <div class="summary-item"><span>📦 Products in stock:</span> 142</div>
-          <div class="summary-item"><span>⚠️ Products with low stock:</span> 7</div>
-          <div class="summary-item"><span>⏳ Products to expire:</span> 5</div>
+          <div class="summary-item"><span>⚠️ Products with low stock:</span> {{ stockAlerts.length }}</div>
+          <div class="summary-item"><span>⏳ Products to expire:</span> {{ expirationAlerts.length }}</div>
         </mat-card>
 
         <mat-card class="alerts-card">
           <div class="summary-title">Important Alerts</div>
-          <div class="alert-item">
-            <div><strong>Whisky Escocés Premium</strong></div>
-            <div class="low-stock">Stock actual: 5</div>
-            <div>Stock mínimo: 10</div>
-          </div>
-          <hr>
-          <div class="alert-item">
-            <div><strong>Vino Blanco Malbec</strong></div>
-            <div class="expiry-alert">¡Vence en 8 días!</div>
-          </div>
+          <ng-container *ngIf="!loadingAlerts">
+            <ng-container *ngIf="stockAlerts.length > 0; else noStockAlerts">
+              <div class="alert-item" *ngFor="let alert of stockAlerts.slice(0,2)">
+                <div><strong>{{ alert.title }}</strong></div>
+                <div class="low-stock">{{ alert.message }}</div>
+              </div>
+            </ng-container>
+            <ng-template #noStockAlerts>
+              <div class="alert-item">No urgent restock alerts.</div>
+            </ng-template>
+            <hr>
+            <ng-container *ngIf="expirationAlerts.length > 0; else noExpAlerts">
+              <div class="alert-item" *ngFor="let alert of expirationAlerts.slice(0,2)">
+                <div><strong>{{ alert.title }}</strong></div>
+                <div class="expiry-alert">{{ alert.message }}</div>
+              </div>
+            </ng-container>
+            <ng-template #noExpAlerts>
+              <div class="alert-item">No expiration alerts.</div>
+            </ng-template>
+          </ng-container>
+          <div *ngIf="loadingAlerts" class="alert-item">Loading alerts...</div>
         </mat-card>
       </div>
 

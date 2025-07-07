@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Chart, registerables } from 'chart.js';
 import {
@@ -19,6 +19,8 @@ import {
 import {MatButton} from '@angular/material/button';
 import {RouterLink} from '@angular/router';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import { AlertService } from '../../../alerts-and-notifications/services/alert.service';
+import { BackendAlert } from '../../../alerts-and-notifications/model/alert.entity';
 
 Chart.register(...registerables);
 
@@ -39,7 +41,7 @@ Chart.register(...registerables);
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements AfterViewInit {
+export class DashboardComponent implements AfterViewInit, OnInit {
   @ViewChild('chartHighRotation') chartHighRotation!: ElementRef<HTMLCanvasElement>;
   @ViewChild('chartLowRotation') chartLowRotation!: ElementRef<HTMLCanvasElement>;
 
@@ -62,6 +64,35 @@ export class DashboardComponent implements AfterViewInit {
       price: 20
     }
   ];
+
+  // Alerts integration
+  stockAlerts: BackendAlert[] = [];
+  expirationAlerts: BackendAlert[] = [];
+  loadingAlerts = false;
+
+  constructor(private alertService: AlertService) {}
+
+  ngOnInit(): void {
+    this.loadAlerts();
+  }
+
+  loadAlerts() {
+    const accountId = localStorage.getItem('accountId');
+    if (!accountId) return;
+    this.loadingAlerts = true;
+    this.alertService.getAlerts(accountId).subscribe({
+      next: (alerts) => {
+        this.stockAlerts = alerts.filter(a => a.type === 'PRODUCTLOWSTOCK');
+        this.expirationAlerts = alerts.filter(a => a.type === 'EXPIRATION_WARNING' && a.state === 'ACTIVE');
+        this.loadingAlerts = false;
+      },
+      error: () => {
+        this.stockAlerts = [];
+        this.expirationAlerts = [];
+        this.loadingAlerts = false;
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     this.renderChart(this.chartHighRotation.nativeElement, ['Producto A', 'Producto B', 'Producto C'], [70, 20, 10], ['#A5D6A7', '#EF9A9A', '#CE93D8']);
