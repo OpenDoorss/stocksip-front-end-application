@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {DatePipe, NgForOf} from '@angular/common';
+import {DatePipe, NgClass, NgForOf} from '@angular/common';
 import {
   MatCard,
   MatCardActions,
@@ -37,7 +37,8 @@ import {AccountService} from '../../../payment-and-subscriptions/services/accoun
     ToolBarComponent,
     MatCardActions,
     MatButton,
-    DatePipe
+    DatePipe,
+    NgClass
   ]
 })
 
