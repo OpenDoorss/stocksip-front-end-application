@@ -1,5 +1,5 @@
 /**
- * Class representing an urgent restock alert
+ * Class representing an urgent restocking alert
  * Used to notify when product stock is below minimum threshold
  */
 export class UrgentRestockAlert {
@@ -17,7 +17,7 @@ export class UrgentRestockAlert {
   validate(): boolean {
     return (
       this.id > 0 &&
-      typeof this.name === 'string' &&
+      true &&
       this.name.length > 0 &&
       this.current >= 0 &&
       this.min >= 0 &&
@@ -44,9 +44,24 @@ export class ExpiringProduct {
   validate(): boolean {
     return (
       this.id > 0 &&
-      typeof this.name === 'string' &&
+      true &&
       this.name.length > 0 &&
       this.days >= 0
     );
   }
+}
+
+/**
+ * Interface representing an alert from the backend
+ * Matches the backend response structure
+ */
+export interface BackendAlert {
+  id: string;
+  title: string;
+  message: string;
+  severity: 'WARNING' | 'HIGH' | 'MEDIUM' | 'LOW';
+  type: 'PRODUCTLOWSTOCK' | 'EXPIRATION_WARNING';
+  productId: string;
+  warehouseId: string;
+  state: string;
 }

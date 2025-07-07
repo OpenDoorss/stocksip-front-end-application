@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UrgentRestockAlert, ExpiringProduct } from '../../model/alert.entity';
+import { BackendAlert } from '../../model/alert.entity';
 import {MatDivider} from '@angular/material/divider';
 import {NgIf} from '@angular/common';
 
@@ -13,6 +13,9 @@ import {NgIf} from '@angular/common';
   styleUrls: ['./alert-item.component.css']
 })
 export class AlertItemComponent {
-  @Input() alert?: UrgentRestockAlert;
-  @Input() expiration?: ExpiringProduct;
+  @Input() alert!: BackendAlert;
+  @Input() getMinimumStock: (productId: string) => number | null = () => null;
+  @Input() getSeverityColor: (severity: string) => string = () => '#757575';
+  @Input() getSeverityIcon: (severity: string) => string = () => 'ℹ️';
+  expiration: any;
 }
