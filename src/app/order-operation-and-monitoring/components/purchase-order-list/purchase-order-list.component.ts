@@ -9,7 +9,7 @@ import {
   MatTable
 } from '@angular/material/table';
 import {MatCard, MatCardTitle} from '@angular/material/card';
-import {DatePipe} from '@angular/common';
+import {DatePipe, NgClass} from '@angular/common';
 import {PurchaseOrder} from '../../model/purchase-order.entity';
 
 @Component({
@@ -27,7 +27,8 @@ import {PurchaseOrder} from '../../model/purchase-order.entity';
     MatRow,
     MatHeaderRowDef,
     MatRowDef,
-    DatePipe
+    DatePipe,
+    NgClass
   ],
   templateUrl: './purchase-order-list.component.html',
   styleUrl: './purchase-order-list.component.css'

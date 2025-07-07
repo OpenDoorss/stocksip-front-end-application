@@ -2,6 +2,9 @@
   border: none;
   box-shadow: none;
   background-color: #f4ede3;
+  padding: 2rem;
+  border-radius: 1rem;
+
   .recent-orders {
     color: #2D3A3F;
     font-size: 2rem;
@@ -9,5 +12,60 @@
     font-weight: 600;
     margin-bottom: 2rem;
   }
-}
 
+  .status-badge {
+    transition: all 0.3s ease;
+  }
+
+  mat-header-cell, mat-cell {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #273238;
+    padding: 1rem;
+  }
+
+  mat-header-cell {
+    font-weight: bold;
+    background-color: #fff;
+    border-bottom: 2px solid #e0d6c5;
+  }
+
+  mat-cell {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &.received {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    &.in_process {
+      background-color: #d1ecf1;
+      color: #0c5460;
+    }
+
+    &.arrived {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    &.cancelled {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  }
+
+  .mat-elevation-z2 {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+}

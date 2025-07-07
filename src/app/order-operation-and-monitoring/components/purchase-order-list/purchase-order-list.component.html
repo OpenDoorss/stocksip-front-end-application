@@ -1,7 +1,7 @@
 <mat-card class="purchase-list-card">
   <mat-card-title class="recent-orders">Recent Orders</mat-card-title>
 
-  <mat-table [dataSource]="orders" class="mat-elevation-z1">
+  <mat-table [dataSource]="orders" class="mat-elevation-z2">
 
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
@@ -17,7 +17,11 @@
 
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-      <mat-cell *matCellDef="let order"> {{ order.status }} </mat-cell>
+      <mat-cell *matCellDef="let order">
+        <span class="status-badge" [ngClass]="order.status.toLowerCase()">
+          {{ order.status }}
+        </span>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="products">
@@ -26,7 +30,6 @@
         {{ order.totalItems }} products
       </mat-cell>
     </ng-container>
-
 
     <ng-container matColumnDef="total">
       <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
