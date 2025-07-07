@@ -21,6 +21,7 @@ import {RouterLink} from '@angular/router';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 import { AlertService } from '../../../alerts-and-notifications/services/alert.service';
 import { BackendAlert } from '../../../alerts-and-notifications/model/alert.entity';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 
 Chart.register(...registerables);
 
@@ -36,7 +37,8 @@ Chart.register(...registerables);
     MatTableModule,
     MatButton,
     RouterLink,
-    SideNavbarComponent
+    SideNavbarComponent,
+    ToolBarComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
