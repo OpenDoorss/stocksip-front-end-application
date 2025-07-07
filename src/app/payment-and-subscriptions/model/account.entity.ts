@@ -4,5 +4,5 @@ export interface Account {
   id: number;
   email: string;
   businessName: string;
-  role: string;
+  role        : 'Supplier' | 'Liquor Store Owner';
 }

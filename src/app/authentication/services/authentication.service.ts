@@ -71,11 +71,17 @@ export class AuthenticationService {
     const token = localStorage.getItem('token');
     const accountId = localStorage.getItem('accountId');
     const username = localStorage.getItem('username');
+    const accountRole = localStorage.getItem('accountRole');
 
     if (token && accountId) {
       this.signedIn.next(true);
       this.signedInUserId.next(Number(accountId));
       this.signedInUsername.next(username || '');
+
+      // Puedes loguear esto si lo necesitas
+      console.log('Usuario restaurado desde localStorage: ', {
+        username, accountId, accountRole
+      });
     }
   }
 
@@ -93,18 +99,18 @@ export class AuthenticationService {
    * @returns The {@link SignInResponse} object containing the user's id, username, and token.
    */
   signIn(signInRequest: SignInRequest) {
-    console.log(signInRequest);
     return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions)
       .subscribe({
         next: (response) => {
           this.signedIn.next(true);
           this.signedInUserId.next(response.id);
           this.signedInUsername.next(response.username);
+
           localStorage.setItem('token', response.token);
           localStorage.setItem('accountId', response.accountId.toString());
           localStorage.setItem('username', response.username);
+
           console.log(`Signed in as ${response.username} with token ${response.token}`);
-          console.log(`Account ID: ${response.accountId}`);
           this.router.navigate(['/dashboard']).then();
         },
         error: (error) => {
@@ -130,6 +136,15 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     localStorage.removeItem('accountId');
     this.router.navigate(['/sign-in']).then();
+  }
+
+  getCurrentUser() {
+    return {
+      token: localStorage.getItem('token'),
+      username: localStorage.getItem('username'),
+      accountId: Number(localStorage.getItem('accountId')),
+      accountRole: localStorage.getItem('accountRole')
+    };
   }
 
 }

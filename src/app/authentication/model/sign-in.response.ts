@@ -12,6 +12,7 @@ export class SignInResponse {
    * @param id The user id.
    * @param username The username.
    * @param token The generated token.
+   * @param accountId
    */
   constructor(id: number, username: string, token: string, accountId: number) {
     this.token = token;

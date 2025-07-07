@@ -45,7 +45,7 @@ export class UserService {
                       ...user,
                       profile,
                       account,
-                      role: account?.role || profile.role
+                      role: account?.role|| profile.role
                     };
 
                     localStorage.setItem('currentUser', JSON.stringify(this.currentUser));

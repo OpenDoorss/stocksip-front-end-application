@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { MatTableModule } from '@angular/material/table';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
 import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
-import {EMPTY, of, switchMap, tap} from 'rxjs';
+import {EMPTY, Observable, of, switchMap, tap} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -109,20 +109,31 @@ export class CatalogCreateAndEditComponent implements OnInit {
     this.showError = false;
 
     const currentUser = this.userService.getCurrentUser();
-    if (!currentUser?.account?.id) { /* … */ return; }
+    const accountId   = currentUser?.account?.id;         // ← debes tener esto definido
+    if (!accountId) { console.error('Cuenta sin ID'); return; }
 
-    const nameChanged = this.isEditMode && this.catalog.name !== this.prevName;
-    const update$ = nameChanged
-      ? this.catalogService.updateCatalogName(
-        this.catalog.id,
-        this.catalog.name.trim(),
-        this.catalog.accountId)
-      : of(this.catalog);
+    /* ----- 1) Crear o actualizar el catálogo ----- */
+    let catalog$: Observable<Catalog>;
 
+    if (!this.isEditMode) {
+      // Crear nuevo catálogo: asigna accountId y publica false
+      const newCatalog: Catalog = {
+        ...this.catalog,
+        accountId,
+        dateCreated: new Date().toISOString(),
+        isPublished: false
+      };
+      catalog$ = this.catalogService.createCatalog(newCatalog);
+    } else {
+      const nameChanged = this.catalog.name !== this.prevName;
+      catalog$ = nameChanged
+        ? this.catalogService.updateCatalogName(this.catalog.id, this.catalog.name.trim(), accountId)
+        : of(this.catalog);
+    }
 
-    update$.pipe(
+    catalog$.pipe(
       switchMap((cat: Catalog) => {
-        this.catalog = cat;
+        this.catalog = cat;                    // ← ahora tiene ID real
         const filled = Object.values(this.newProduct).some(v => v);
         if (!filled) return of(null);
 
@@ -146,15 +157,13 @@ export class CatalogCreateAndEditComponent implements OnInit {
     ).subscribe({
       next: () => {
         this.resetForm();
-        this.prevName = this.catalog.name;
+        this.prevName  = this.catalog.name;
+        this.isEditMode = true;               // ahora estamos en modo edición
         this.snackBar.open(
-          this.isEditMode
-            ? 'Catálogo actualizado y producto agregado'
-            : 'Catálogo creado y producto agregado',
+          'Catálogo guardado correctamente',
           'Cerrar',
           { duration: 4000 }
         );
-        this.isEditMode = true;
       },
       error: (err: any) => console.error('Error en guardado:', err)
     });

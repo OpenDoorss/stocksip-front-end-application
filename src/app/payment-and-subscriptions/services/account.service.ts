@@ -15,11 +15,11 @@ export interface UserAccount {
   providedIn: 'root',
 })
 export class AccountService {
-  private apiUrl = environment.apiUrl;
+  private apiUrl = environment.baseServerUrl;
 
   constructor(private http: HttpClient) {}
 
-  getAccountById(accountId: string): Observable<UserAccount> {
+  getAccountById(accountId: number): Observable<UserAccount> {
     const url = `${this.apiUrl}/accounts?accountId=${accountId}`;
     console.log('URL llamada API getAccountById:', url);
     return this.http.get<UserAccount[]>(url).pipe(
@@ -34,6 +34,10 @@ export class AccountService {
         return throwError(() => err);
       })
     );
+  }
+
+  getById(id: number): Observable<Account> {
+    return this.http.get<Account>(`${this.apiUrl}/accounts/${id}`);
   }
 
   editAccount(account: Account): Observable<Account> {
