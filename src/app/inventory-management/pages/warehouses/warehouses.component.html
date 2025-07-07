@@ -6,11 +6,15 @@
     <app-tool-bar [titleKey]="'warehouse.title'"></app-tool-bar>
 
     <div class="warehouse-content">
-      <div *ngIf="warehouses.length === 0" class="empty-message">
-        <p>No warehouses have been created yet.</p>
-      </div>
-      <div *ngIf="warehouses.length > 0">
-        <app-warehouse-list [warehouses]="warehouses"></app-warehouse-list>
+      <div class="warehouse-management-content">
+        <div *ngIf="warehouses.length === 0" class="empty-warehouses">
+          <h3 class="empty-title">{{ 'warehouse.emptyTitle' | translate }}</h3>
+          <p class="empty-description">{{ 'warehouse.emptyDescription' | translate }}</p>
+        </div>
+
+        <div *ngIf="warehouses.length > 0">
+          <app-warehouse-list [warehouses]="warehouses"></app-warehouse-list>
+        </div>
       </div>
 
       <button mat-fab extended
@@ -19,7 +23,7 @@
               (click)="navigateToCreate()"
               aria-label="Create a new Warehouse">
         <mat-icon>add</mat-icon>
-        New Warehouse
+        {{ 'warehouse.create' | translate }}
       </button>
     </div>
   </div>

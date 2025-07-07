@@ -13,6 +13,7 @@ import {
   PurchaseOrderComponent
 } from '../../../order-operation-and-monitoring/pages/purchase-order/purchase-order.component';
 import {SalesOrderComponent} from '../../../order-operation-and-monitoring/pages/sales-order/sales-order.component';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-warehouses',
@@ -23,6 +24,7 @@ import {SalesOrderComponent} from '../../../order-operation-and-monitoring/pages
     ToolBarComponent,
     SideNavbarComponent,
     NgIf,
+    TranslatePipe,
   ],
   templateUrl: './warehouses.component.html',
   styleUrl: './warehouses.component.css'

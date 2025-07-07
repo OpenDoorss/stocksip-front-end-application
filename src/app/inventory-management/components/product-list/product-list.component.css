@@ -1,12 +1,16 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
 }
-.product-list-container{
+
+.product-grid-tile {
   display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  transition: transform 0.3s ease;
 }
+
+.product-grid-tile:hover {
+  transform: translateY(-10px);
+}
+

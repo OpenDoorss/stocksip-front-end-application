@@ -1,6 +1,6 @@
-<div class="product-list-container">
-  @for (product of products; track product.id ) {
-    <div class="warehouse-item">
+<div class="product-grid">
+  @for (product of products; track product.id) {
+    <div class="product-grid-tile">
       <app-product-item [product]="product"></app-product-item>
     </div>
   }

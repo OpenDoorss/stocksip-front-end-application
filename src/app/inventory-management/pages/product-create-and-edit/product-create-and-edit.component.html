@@ -1,54 +1,75 @@
-<div class="dashboard-bg">
-  <app-side-navbar/>
+<div class="products-bg">
+  <app-side-navbar />
 
-  <div class="main-container-product-create-edit">
+  <div class="product-main">
 
-    <h1> CREATE AND EDIT PRODUCT</h1>
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" required/>
-      </mat-form-field>
+    <app-tool-bar/>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Brand</mat-label>
-        <mat-select formControlName="brandName" required>
-          <mat-option *ngFor="let brand of brands" [value]="brand">{{ brand }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="product-content">
+      <mat-card class="form-card">
+        <mat-card-content>
+          <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+            <h2 class="form-title">Create or Edit Product</h2>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Liquor Type</mat-label>
-        <mat-select formControlName="liquorType" required>
-          <mat-option *ngFor="let type of liquorTypes" [value]="type">{{ type }}</mat-option>
-        </mat-select>
-      </mat-form-field>
+            <div class="form-grid">
+              <!-- Name -->
+              <mat-form-field appearance="outline" class="form-group">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" placeholder="e.g., Whisky Jack Daniels" required />
+              </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Price</mat-label>
-        <input matInput type="number" formControlName="unitPriceAmount" required/>
-      </mat-form-field>
+              <!-- Brand -->
+              <mat-form-field appearance="outline" class="form-group">
+                <mat-label>Brand</mat-label>
+                <mat-select formControlName="brandName" required>
+                  <mat-option *ngFor="let brand of brands" [value]="brand">{{ brand }}</mat-option>
+                </mat-select>
+              </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Minimum Stock</mat-label>
-        <input matInput type="number" formControlName="minimumStock" required/>
-      </mat-form-field>
+              <!-- Liquor Type -->
+              <mat-form-field appearance="outline" class="form-group">
+                <mat-label>Liquor Type</mat-label>
+                <mat-select formControlName="liquorType" required>
+                  <mat-option *ngFor="let type of liquorTypes" [value]="type">{{ type }}</mat-option>
+                </mat-select>
+              </mat-form-field>
 
-      <div class="upload-section">
-        <button mat-button (click)="fileInput.click()" type="button">Upload file</button>
-        <input #fileInput type="file" (change)="onFileSelected($event)" hidden/>
-        <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
-      </div>
+              <!-- Price -->
+              <mat-form-field appearance="outline" class="form-group">
+                <mat-label>Price (S/)</mat-label>
+                <input matInput type="number" formControlName="unitPriceAmount" placeholder="e.g., 99.90" required />
+              </mat-form-field>
 
-      <button mat-raised-button color="red" type="submit">Save</button>
-    </form>
+              <!-- Minimum Stock -->
+              <mat-form-field appearance="outline" class="form-group">
+                <mat-label>Minimum Stock</mat-label>
+                <input matInput type="number" formControlName="minimumStock" placeholder="e.g., 20" required />
+              </mat-form-field>
+
+              <!-- Upload Image -->
+              <div class="form-group full-width image-section">
+                <label>Product Image</label>
+                <div class="image-upload-container">
+                  <input type="file" accept="image/*" hidden #fileInput (change)="onFileSelected($event)" />
+                  <button mat-raised-button type="button" (click)="fileInput.click()" class="upload-button">
+                    <mat-icon>upload</mat-icon>
+                    <span>Upload</span>
+                  </button>
+                  <span class="file-name">{{ selectedFile?.name || 'No file selected' }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+              <button mat-stroked-button type="button" class="cancel-button">Cancel</button>
+              <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="productForm.invalid">
+                Save
+              </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>
-<app-notification
-  *ngIf="showNotification"
-  [title]="notificationTitle"
-  [content]="notificationContent"
-  [type]="notificationType"
-  [showCloseButton]="true"
->
-</app-notification>

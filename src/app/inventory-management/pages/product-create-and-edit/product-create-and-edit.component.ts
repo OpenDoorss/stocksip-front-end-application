@@ -6,8 +6,10 @@ import {MatButton} from '@angular/material/button';
 import {MatSelect} from '@angular/material/select';
 import {CommonModule} from '@angular/common';
 import {MatOption} from '@angular/material/core';
-import {NotificationComponent} from '../../../public/components/notificacion/notification.component';
 import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
 
 @Component({
   selector: 'app-create-product',
@@ -21,9 +23,10 @@ import {SideNavbarComponent} from '../../../public/components/side-navbar/side-n
     MatLabel,
     MatSelect,
     MatOption,
-    NotificationComponent,
-    NotificationComponent,
     SideNavbarComponent,
+    MatCardModule,
+    MatIconModule,
+    ToolBarComponent,
   ],
   templateUrl: './product-create-and-edit.component.html',
   styleUrl: './product-create-and-edit.component.css',

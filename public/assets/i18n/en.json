@@ -81,7 +81,9 @@
       "minTemperature-required": "Min temperature is required",
       "capacity-required": "Capacity is required",
       "capacity-length": "Capacity must be a number greater than 0"
-    }
+    },
+    "emptyTitle": "No warehouses created",
+    "emptyDescription": "You can create a new warehouse by clicking the button below."
   },
   "dashboard": {
     "title": "Dashboard"

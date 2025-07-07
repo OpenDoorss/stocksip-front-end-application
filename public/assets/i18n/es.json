@@ -79,13 +79,15 @@
       "minTemperature-required": "La temperatura mínima es obligatoria",
       "capacity-required": "La capacidad es obligatoria",
       "capacity-length": "La capacidad debe ser mayor a 0"
-    }
+    },
+    "emptyTitle": "No se han creado almacenes",
+    "emptyDescription": "Puedes crear un nuevo almacén haciendo clic en el botón de abajo."
   },
   "dashboard": {
     "title": "Dasboard"
   },
   "storage": {
-    "title": "Productos almacenados",
+    "title": "Productos almacenados"
   },
   "subscription": {
     "title": "Planes de suscripción",

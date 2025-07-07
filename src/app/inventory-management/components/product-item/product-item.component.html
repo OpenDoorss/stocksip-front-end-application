@@ -1,7 +1,33 @@
-<div class="product-card" *ngIf="product">
-  <img [src]="product.imageUrl" [alt]="product.name" class="product-image">
-  <h2>{{ product.name }}</h2>
-  <p><strong>Categoría:</strong> {{ product.liquorType }}</p>
-  <p><strong>Precio:</strong> {{ product.unitPriceAmount }}</p>
-  <p><strong>Stock:</strong> {{ product.minimumStock }}</p>
-</div>
+<mat-card class="product-card" cdkDrag>
+  <!-- Imagen del producto -->
+  <div class="product-image-container">
+    <img [src]="product.imageUrl" alt="Product Image" class="product-img">
+  </div>
+
+  <!-- Contenido de texto -->
+  <div class="product-text-content">
+    <h3 class="product-name">{{ product.name }}</h3>
+    <p class="product-subtitle">{{ product.brandName }} - {{ product.liquorType }}</p>
+
+    <div class="product-details">
+      <div class="detail-item">
+        <span class="detail-label">Price</span>
+        <span class="detail-value">S/ {{ product.unitPriceAmount}}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Minimum Stock</span>
+        <span class="detail-value">{{ product.minimumStock }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="footer-buttons">
+    <button mat-icon-button class="edit-btn">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button class="delete-btn">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</mat-card>
