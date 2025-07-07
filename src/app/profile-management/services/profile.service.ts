@@ -5,13 +5,24 @@ import { environment } from '../../../environments/environment';
 import { Profile } from '../models/profile.entity';
 
 export interface UserProfile {
+  /** Id propio del perfil (tabla profiles) */
   profileId: number;
-  name: string;
-  email: string;
-  role: string;
-  businessName?: string;
+
+  /** Relación con la cuenta (tabla accounts) */
+  accountId?: number;
+  userOwnerId?: number;
+
+  /** Datos personales / comerciales */
+  name         : string;    // nombre de la persona
+  businessName?: string;    // nombre comercial
+  email        : string;
+  role         : string;
+
+  /** Información adicional */
   businessAddress?: string;
-  phone?: string;
+  phone?         : string;
+  createdAt?     : string;
+  status?        : string;  // INACTIVE, ACTIVE, etc.
 }
 
 @Injectable({
