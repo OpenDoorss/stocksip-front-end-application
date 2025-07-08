@@ -43,5 +43,9 @@ export class AccountService {
   editAccount(account: Account): Observable<Account> {
     return this.http.put<Account>(`${this.apiUrl}/accounts/${account.accountId}`, account);
   }
+
+  getAccountStatus(accountId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/accounts/${accountId}/status`);
+  }
 }
 

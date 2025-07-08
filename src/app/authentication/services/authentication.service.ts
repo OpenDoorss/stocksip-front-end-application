@@ -7,6 +7,7 @@ import {SignUpResponse} from '../model/sign-up.response';
 import {SignInResponse} from '../model/sign-in.response';
 import {SignInRequest} from '../model/sign-in.request';
 import {Injectable} from '@angular/core';
+import {AccountService} from '../../payment-and-subscriptions/services/account.service';
 
 /**
  * Service for handling authentication operations.
@@ -27,7 +28,7 @@ export class AuthenticationService {
    * @param router The router service.
    * @param http The HttpClient service.
    */
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private accountService: AccountService) {
     this.initializeAuthState();
   }
 
@@ -78,7 +79,6 @@ export class AuthenticationService {
       this.signedInUserId.next(Number(accountId));
       this.signedInUsername.next(username || '');
 
-      // Puedes loguear esto si lo necesitas
       console.log('Usuario restaurado desde localStorage: ', {
         username, accountId, accountRole
       });
@@ -99,26 +99,43 @@ export class AuthenticationService {
    * @returns The {@link SignInResponse} object containing the user's id, username, and token.
    */
   signIn(signInRequest: SignInRequest) {
-    return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions)
+    this.http.post<any>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions)
       .subscribe({
         next: (response) => {
+          const { id, username, token, accountId } = response;
+
           this.signedIn.next(true);
-          this.signedInUserId.next(response.id);
-          this.signedInUsername.next(response.username);
+          this.signedInUserId.next(id);
+          this.signedInUsername.next(username);
 
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('accountId', response.accountId.toString());
-          localStorage.setItem('username', response.username);
+          localStorage.setItem('token', token);
+          localStorage.setItem('accountId', accountId.toString());
+          localStorage.setItem('username', username);
 
-          console.log(`Signed in as ${response.username} with token ${response.token}`);
-          this.router.navigate(['/dashboard']).then();
+          // 🔁 Aquí llamas al servicio AccountService
+          this.accountService.getAccountStatus(accountId).subscribe({
+            next: (res) => {
+              const status = res.accountStatus;
+              console.log('✅ Account status:', status);
+
+              if (status === 'INACTIVE') {
+                this.router.navigate(['/subscription-choose']);
+              } else {
+                this.router.navigate(['/dashboard']);
+              }
+            },
+            error: (err) => {
+              console.error('❌ Error fetching account status:', err);
+              this.router.navigate(['/sign-in']);
+            }
+          });
         },
         error: (error) => {
           this.signedIn.next(false);
           this.signedInUserId.next(0);
           this.signedInUsername.next('');
-          console.error(`Error while signing in: ${error}`);
-          this.router.navigate(['/sign-in']).then();
+          console.error(`❌ Error while signing in:`, error);
+          this.router.navigate(['/sign-in']);
         }
       });
   }
