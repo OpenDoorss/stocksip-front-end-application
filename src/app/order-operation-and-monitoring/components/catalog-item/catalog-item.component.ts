@@ -80,7 +80,7 @@ export class CatalogItemComponent implements OnInit, OnChanges {
 
   deleteItem(id: string): void {
     const confirmed = window.confirm(
-      '¿Estás seguro de que deseas eliminar este producto del catálogo?'
+      'Are you sure you want to delete this product from the catalog?'
     );
     if (!confirmed) return;
 
@@ -93,8 +93,8 @@ export class CatalogItemComponent implements OnInit, OnChanges {
         this.dataSource.data = this.catalogItems;
 
         const snackRef = this.snackBar.open(
-          'Producto eliminado',
-          'Deshacer',
+          'Product deleted',
+          'Undo',
           { duration: 5000, panelClass: ['snackbar-error'] }
         );
 
@@ -105,10 +105,10 @@ export class CatalogItemComponent implements OnInit, OnChanges {
         });
       },
       error: err => {
-        console.error('Error al eliminar del backend:', err);
+        console.error('Error deleting from backend:', err);
         this.snackBar.open(
-          'Error al eliminar el producto',
-          'Cerrar',
+          'Error deleting the product',
+          'Close',
           { duration: 3000 }
         );
       }
@@ -134,8 +134,8 @@ export class CatalogItemComponent implements OnInit, OnChanges {
     const cat = this.catalog!;
     if (!cat.id) {
       this.snackBar.open(
-        'Catálogo incompleto. No se puede publicar.',
-        'Cerrar',
+        'Incomplete catalog. Cannot publish.',
+        'Close',
         { duration: 4000 }
       );
       return;
@@ -145,17 +145,16 @@ export class CatalogItemComponent implements OnInit, OnChanges {
       next: (published) => {
         this.catalog = published;
 
-        this.snackBar.open('Catálogo publicado con éxito', 'Cerrar', {
+        this.snackBar.open('Catalog published successfully', 'Close', {
           duration: 4000
         });
       },
       error: (err) => {
-        console.error('Error al publicar catálogo:', err);
-        this.snackBar.open('Error al publicar el catálogo', 'Cerrar', {
+        console.error('Error publishing catalog:', err);
+        this.snackBar.open('Error publishing the catalog', 'Close', {
           duration: 4000
         });
       }
     });
   }
-
 }

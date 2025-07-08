@@ -12,10 +12,10 @@ import { CommonModule } from '@angular/common';
 import { Catalog } from '../../model/catalog.entity';
 import { v4 as uuidv4 } from 'uuid';
 import { MatTableModule } from '@angular/material/table';
-import {SideNavbarComponent} from '../../../public/components/side-navbar/side-navbar.component';
-import {ToolBarComponent} from '../../../public/components/tool-bar/tool-bar.component';
-import {EMPTY, Observable, of, switchMap, tap} from 'rxjs';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { SideNavbarComponent } from '../../../public/components/side-navbar/side-navbar.component';
+import { ToolBarComponent } from '../../../public/components/tool-bar/tool-bar.component';
+import { EMPTY, Observable, of, switchMap, tap } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-catalog-create-and-edit',
@@ -52,8 +52,9 @@ export class CatalogCreateAndEditComponent implements OnInit {
     productType: string;
     content: number;
     brand: string;
-    unitPrice: number
+    unitPrice: number;
   }[] = [];
+
   isEditMode = false;
   showError = false;
   pageTitle = '';
@@ -80,7 +81,6 @@ export class CatalogCreateAndEditComponent implements OnInit {
       this.isEditMode = !!catalogId;
       this.pageTitle = this.isEditMode ? 'catalog.edit' : 'catalog.create';
 
-
       if (this.isEditMode) {
         this.catalogService.getCatalogById(catalogId).subscribe({
           next: catalog => {
@@ -105,18 +105,24 @@ export class CatalogCreateAndEditComponent implements OnInit {
   }
 
   onSave(): void {
-    if (!this.catalog.name.trim()) { this.showError = true; return; }
+    if (!this.catalog.name.trim()) {
+      this.showError = true;
+      return;
+    }
     this.showError = false;
 
     const currentUser = this.userService.getCurrentUser();
-    const accountId   = currentUser?.account?.id;         // ← debes tener esto definido
-    if (!accountId) { console.error('Cuenta sin ID'); return; }
+    const accountId = currentUser?.account?.id; // ← this should already be defined
+    if (!accountId) {
+      console.error('Account without ID');
+      return;
+    }
 
-    /* ----- 1) Crear o actualizar el catálogo ----- */
+    /* ----- 1) Create or update the catalog ----- */
     let catalog$: Observable<Catalog>;
 
     if (!this.isEditMode) {
-      // Crear nuevo catálogo: asigna accountId y publica false
+      // Create new catalog: assign accountId and set isPublished to false
       const newCatalog: Catalog = {
         ...this.catalog,
         accountId,
@@ -127,46 +133,53 @@ export class CatalogCreateAndEditComponent implements OnInit {
     } else {
       const nameChanged = this.catalog.name !== this.prevName;
       catalog$ = nameChanged
-        ? this.catalogService.updateCatalogName(this.catalog.id, this.catalog.name.trim(), accountId)
+        ? this.catalogService.updateCatalogName(
+          this.catalog.id,
+          this.catalog.name.trim(),
+          accountId
+        )
         : of(this.catalog);
     }
 
-    catalog$.pipe(
-      switchMap((cat: Catalog) => {
-        this.catalog = cat;                    // ← ahora tiene ID real
-        const filled = Object.values(this.newProduct).some(v => v);
-        if (!filled) return of(null);
+    catalog$
+      .pipe(
+        switchMap((cat: Catalog) => {
+          this.catalog = cat; // now it has a real ID
+          const filled = Object.values(this.newProduct).some(v => v);
+          if (!filled) return of(null);
 
-        const valid = Object.values(this.newProduct).every(v => v);
-        if (!valid) { this.showError = true; return EMPTY; }
+          const valid = Object.values(this.newProduct).every(v => v);
+          if (!valid) {
+            this.showError = true;
+            return EMPTY;
+          }
 
-        const newItem: CatalogItem = {
-          id: uuidv4(),
-          catalogId: this.catalog.id,
-          dateAdded: new Date().toISOString(),
-          name: this.newProduct.name,
-          productType: this.newProduct.productType,
-          brand: this.newProduct.brand,
-          content: +this.newProduct.content,
-          unitPrice: this.newProduct.price!
-        };
-        return this.catalogService.addCatalogItem(newItem).pipe(
-          tap(item => this.catalogItems.push(item))
-        );
-      })
-    ).subscribe({
-      next: () => {
-        this.resetForm();
-        this.prevName  = this.catalog.name;
-        this.isEditMode = true;               // ahora estamos en modo edición
-        this.snackBar.open(
-          'Catálogo guardado correctamente',
-          'Cerrar',
-          { duration: 4000 }
-        );
-      },
-      error: (err: any) => console.error('Error en guardado:', err)
-    });
+          const newItem: CatalogItem = {
+            id: uuidv4(),
+            catalogId: this.catalog.id,
+            dateAdded: new Date().toISOString(),
+            name: this.newProduct.name,
+            productType: this.newProduct.productType,
+            brand: this.newProduct.brand,
+            content: +this.newProduct.content,
+            unitPrice: this.newProduct.price!
+          };
+          return this.catalogService.addCatalogItem(newItem).pipe(
+            tap(item => this.catalogItems.push(item))
+          );
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.resetForm();
+          this.prevName = this.catalog.name;
+          this.isEditMode = true; // we are now in edit mode
+          this.snackBar.open('Catalog saved successfully', 'Close', {
+            duration: 4000
+          });
+        },
+        error: err => console.error('Error saving:', err)
+      });
   }
 
   resetForm(): void {
