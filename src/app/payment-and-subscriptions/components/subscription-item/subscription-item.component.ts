@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Plan} from '../../model/plan.entity';
 import {MatCardModule} from '@angular/material/card';
 import {NgIf} from '@angular/common';
+import {MatButton} from '@angular/material/button';
 
 const PLAN_RANK: Record<string, number> = {
   Free: 1,
@@ -14,7 +15,8 @@ const PLAN_RANK: Record<string, number> = {
   selector: 'app-subscription-item',
   imports: [
     MatCardModule,
-    NgIf
+    NgIf,
+    MatButton
   ],
   templateUrl: './subscription-item.component.html',
   styleUrl: './subscription-item.component.css'
