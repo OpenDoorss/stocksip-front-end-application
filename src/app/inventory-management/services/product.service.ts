@@ -33,7 +33,7 @@ export class ProductService {
     );
   }
 
-  createProduct(productData: any, imageFile: File): Observable<any> {
+  createProduct(productData: any, imageFile: File | null): Observable<any> {
     const accountId = localStorage.getItem('accountId');
     const endpoint = `${this.apiUrl}/accounts/${accountId}/products`;
 
@@ -43,9 +43,24 @@ export class ProductService {
     formData.append('brandName', productData.brandName);
     formData.append('unitPriceAmount', productData.unitPriceAmount.toString());
     formData.append('minimumStock', productData.minimumStock.toString());
-    formData.append('image', imageFile);
+    if (imageFile) {
+      formData.append('image', imageFile);
+    }
 
     return this.http.post(endpoint, formData);
+  }
+
+  deleteProduct(productId: string): Observable<void> {
+    const accountId = localStorage.getItem('accountId');
+    const endpoint = `${this.apiUrl}/products/${productId}`;
+
+    return this.http.delete<void>(endpoint).pipe(
+      tap(() => console.log(`Product with ID ${productId} deleted successfully.`)),
+      catchError(error => {
+        console.error('Error deleting product:', error);
+        throw error;
+      })
+    );
   }
 
 }

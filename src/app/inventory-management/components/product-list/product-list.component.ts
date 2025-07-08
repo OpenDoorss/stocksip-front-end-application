@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from '../../model/product.entity';
 import {ProductItemComponent} from '../product-item/product-item.component';
 
@@ -12,4 +12,16 @@ import {ProductItemComponent} from '../product-item/product-item.component';
 })
 export class ProductListComponent {
   @Input() products: Product[] = [];
+
+
+  @Output() editProduct = new EventEmitter<Product>();
+  @Output() deleteProduct = new EventEmitter<number>();
+
+  onEdit(product: Product) {
+    this.editProduct.emit(product);
+  }
+
+  onDelete(productId: number) {
+    this.deleteProduct.emit(productId);
+  }
 }

@@ -100,3 +100,12 @@
 .mat-mdc-form-field {
   width: 100%;
 }
+
+.image-preview {
+  margin-top: 10px;
+}
+.preview-img {
+  max-width: 200px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}

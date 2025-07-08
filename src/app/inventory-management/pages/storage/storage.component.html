@@ -10,7 +10,11 @@
       </div>
 
       <div *ngIf="products.length > 0" class="products-list-container">
-        <app-product-list [products]="products"></app-product-list>
+        <app-product-list
+          [products]="products"
+          (editProduct)="onEditProduct($event)"
+          (deleteProduct)="onDeleteProduct($event)">
+        </app-product-list>
       </div>
 
       <div class="new-product">

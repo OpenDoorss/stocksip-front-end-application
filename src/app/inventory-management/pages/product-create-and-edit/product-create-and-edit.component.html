@@ -8,7 +8,7 @@
     <div class="product-content">
       <mat-card class="form-card">
         <mat-card-content>
-          <form [formGroup]="productForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+          <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
             <h2 class="form-title">Create or Edit Product</h2>
 
             <div class="form-grid">
@@ -53,19 +53,25 @@
                   <input type="file" accept="image/*" hidden #fileInput (change)="onFileSelected($event)" />
                   <button mat-raised-button type="button" (click)="fileInput.click()" class="upload-button">
                     <mat-icon>upload</mat-icon>
-                    <span>Upload</span>
+                    <span>Select Image</span>
                   </button>
                   <span class="file-name">{{ selectedFile?.name || 'No file selected' }}</span>
+                </div>
+
+                <!-- Preview de imagen -->
+                <div *ngIf="imagePreviewUrl" class="image-preview">
+                  <img [src]="imagePreviewUrl" alt="Preview" class="preview-img" />
                 </div>
               </div>
             </div>
 
-            <!-- Actions -->
+            <!-- Submit y Cancel -->
             <div class="form-actions">
-              <button mat-stroked-button type="button" class="cancel-button">Cancel</button>
-              <button mat-raised-button color="primary" type="submit" class="submit-button" [disabled]="productForm.invalid">
-                Save
-              </button>
+              <button mat-stroked-button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
+
+              <button mat-raised-button color="primary" type="submit" class="submit-button"
+                      [disabled]="productForm.invalid || isSubmitting">Save</button>
+
             </div>
           </form>
         </mat-card-content>
