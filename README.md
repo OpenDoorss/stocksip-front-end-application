@@ -1,59 +1,72 @@
-# StocksipFrontEndApplication
+# Stocksip FrontEnd Application
+
+StockSip is a specialized inventory management solution designed specifically for liquor store owners and suppliers. Key features include:
+
+-  Detailed product care guidelines (storage, handling, and preservation).
+-  Smart stock tracking for wines, spirits, and beers.
+-  Built-in purchasing system (order directly to suppliers)
+
+## Summary
+
+This project is a front-end application for Stocksip, a 
+
+## Features
+
+Project features include:
+
+- CRUD operations for warehouses, reports and authentication.
+- Domain-Driven Design (DDD) principles.
+- Internationalization (i18n) support.
+- Integration with JSON Server Fake Api
+- In-app Navigation App
+- Environment configuration
+
+## Documentation
+
+The documentation is available in the docs' folder. It includes:
+
+- User Stories are available in the [docs/user-stories.md](/docs/user-stories.md) folder.
+- PlantUML Class diagram are available in the [docs/class-diagram.puml](/docs/class-diagram.puml) folder.
+- C4 Model Software Architecture are available in the [docs/software-architecture](/docs/software-architecture.dsl) folder.
+
+## Frameworks and Libraries
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
 
-## Development server
+It also uses the following dependencies:
 
-To start a local development server, run:
+- Angular Material (https://material.angular.dev/)
+- ngx-translate and ngx-translate/http-loader (https://github.com/ngx-translate/core)
+- JSON Server stable version (https://github.com/typicode/json-server/tree/v0)
+- JsPDF (https://www.npmjs.com/package/jspdf)
 
-```bash
-ng serve
+## Fake API start
+
+Run the following commands to start the fake API server:
+
+For windows:
+```
+ cd server
+ cmd start.cmd
+ start.cmd
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+For MacOS/Linux:
+```
+ cd server
+ sh start.sh
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The API endpoints should be access at `http://localhost:3000/api/v1`. The current API resource endpoints are:
 
-```bash
-ng generate --help
-```
+- `http://localhost:3000/api/v1/warehouses`
+- `http://localhost:3000/api/v1/products`
+- `http://localhost:3000/api/v1/reports`
+- `http://localhost:3000/api/v1/zones`   
+- `http://localhost:3000/api/v1/users`
 
-## Building
+## Build
 
-To build the project run:
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

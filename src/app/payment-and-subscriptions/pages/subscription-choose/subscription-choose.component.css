@@ -1,0 +1,10 @@
+.plan-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.plan-item {
+  flex: 0 1 320px;
+}

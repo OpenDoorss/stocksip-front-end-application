@@ -1,0 +1,148 @@
+{
+  "title": {
+    "title": "Guías de conservación",
+    "newtitle": "Nuevo guía",
+    "edit": "Editar guía",
+    "report": "Reportes"
+  },
+  "filter": "Tipo de productos",
+  "newguides": "Nuevo guía",
+  "edit": "Editar guía",
+  "history": "Historial de Reportes",
+  "product": "Productos con una guía",
+  "filter-product": {
+    "top": "Más alto",
+    "bottom": "Más bajo"
+  },
+  "info": {
+    "form": "Formulario de reporte de pérdidas",
+    "regist": "Registro"
+  },
+  "table": {
+    "title": "Nombre",
+    "type": "Tipo",
+    "description": "Descripción"
+  },
+  "search": {
+    "search": "Buscar",
+    "search-text": "Ingrese el texto a buscar"
+  },
+  "enter": {
+    "Name": "Nombre",
+    "type": "Tipo",
+    "description": "Descripción",
+    "product": "Nombre del producto",
+    "prices": "Precio",
+    "total": "Cantidad",
+    "date": "Fecha",
+    "lost": "Total de costo perdido"
+  },
+  "img": {
+    "title": "Insertar imagen"
+  },
+  "button": {
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "internal": "Remisión Interna",
+    "loss": "Remisión por pérdidas",
+    "conservation": "Conservación",
+    "report": "Generar reporte"
+  },
+  "warehouse": {
+    "title": "Almacenes",
+    "create": "Nuevo almacén",
+    "edit": "Editar almacén",
+    "card": {
+      "address": "Dirección",
+      "capacity": "Capacidad"
+    },
+    "form": {
+      "name": "Nombre",
+      "street": "Calle",
+      "city": "Ciudad",
+      "district": "Distrito",
+      "postalCode": "Código postal",
+      "country": "País",
+      "maxTemperature": "Temperatura máxima",
+      "minTemperature": "Temperatura mínima",
+      "capacity": "Capacidad",
+      "image": "Imagen del almacén",
+      "name-required": "El nombre es obligatorio",
+      "street-required": "La calle es obligatoria",
+      "city-required": "La ciudad es obligatoria",
+      "district-required": "El distrito es obligatorio",
+      "postalCode-required": "El código postal es obligatorio",
+      "postalCode-length": "El código postal debe tener 5 caracteres",
+      "country-required": "El país es obligatorio",
+      "maxTemperature-required": "La temperatura máxima es obligatoria",
+      "minTemperature-required": "La temperatura mínima es obligatoria",
+      "capacity-required": "La capacidad es obligatoria",
+      "capacity-length": "La capacidad debe ser mayor a 0"
+    },
+    "emptyTitle": "No se han creado almacenes",
+    "emptyDescription": "Puedes crear un nuevo almacén haciendo clic en el botón de abajo."
+  },
+  "dashboard": {
+    "title": "Dasboard"
+  },
+  "storage": {
+    "title": "Productos almacenados"
+  },
+  "subscription": {
+    "title": "Planes de suscripción",
+    "plan-free": {
+      "title": "Plan gratuito",
+      "description": "Este plan es gratuito y tiene algunas limitaciones. Es ideal para empresas pequeñas que quieren probar la aplicación.",
+      "benefit1": "Gestionar hasta 10 productos",
+      "benefit2": "Almacenes limitados",
+      "benefit3": "Alertas básicas",
+      "benefit4": "Soporte básico",
+      "benefit5": "Informes limitados",
+      "benefit6": "Almacenes limitados",
+      "price": "Gratis"
+    },
+    "plan-premium": {
+      "title": "Plan Premium",
+      "description": "Este plan es ideal para empresas que necesitan más funcionalidades y soporte. Ofrece una experiencia completa con todas las características de la aplicación.",
+      "benefit1": "Almacena hasta 100 productos",
+      "benefit2": "Ilimitado número de almacenes",
+      "benefit3": "Alertas personalizadas",
+      "benefit4": "Soporte prioritario",
+      "benefit5": "Informes avanzados",
+      "benefit6": "Acceso a todas las funcionalidades",
+      "price": "S/. 19.90 per month"
+    }
+  },
+  "components": {
+    "edit": "Editar",
+    "show": "Mostrar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "upload": "Subir imagen",
+    "no-file": "No hay archivo seleccionado",
+    "complete": "Completa todos los campos del formulario"
+  },
+  "reports": {
+    "care-guide-list": {
+      "title": "Guías de conservación",
+      "create": "Crear guía de conservación",
+      "edit": "Editar guía de conservación"
+    },
+    "title": "Reportes"
+  },
+  "profile": {
+    "title": "Perfil"
+  },
+  "alerts": {
+    "title": "Alertas"
+  },
+  "catalog": {
+    "title": "Catálogo",
+    "create": "Nuevo catálogo",
+    "edit": "Editar catálogo"
+  },
+  "products": {
+    "title": "Productos"
+  }
+}

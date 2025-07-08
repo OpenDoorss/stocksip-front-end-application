@@ -1,0 +1,109 @@
+.product-card {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  width: 280px;
+  background-color: #fff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+}
+
+.product-card:active {
+  cursor: grabbing;
+}
+
+.product-card:hover {
+  box-shadow: 0 5px 15px rgba(90, 3, 58, 0.2);
+  transform: translateY(-3px);
+}
+
+.product-image-container {
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.product-img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+}
+
+.product-text-content {
+  padding: 1rem;
+}
+
+.product-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #5A033A;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.product-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.product-details {
+  margin-top: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.detail-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.detail-item:first-child .detail-value {
+  color: #5A033A;
+}
+
+.footer-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0 1rem 1rem;
+  margin-top: auto;
+}
+
+.edit-btn {
+  color: #5A033A;
+}
+
+.delete-btn {
+  color: #d32f2f;
+}
+
+/* Efecto de arrastre */
+.cdk-drag-preview {
+  box-shadow: 0 10px 20px rgba(90, 3, 58, 0.3) !important;
+  opacity: 0.9;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}

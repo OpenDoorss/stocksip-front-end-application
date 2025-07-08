@@ -1,0 +1,12 @@
+<ng-container *ngIf="isSupplier()">
+  <app-sales-order></app-sales-order>
+</ng-container>
+
+<ng-container *ngIf="isLiquorStoreOwner()">
+  <app-purchase-order></app-purchase-order>
+</ng-container>
+
+<ng-container *ngIf="!isSupplier() && !isLiquorStoreOwner()">
+  <p class="unauthorized-message">No tienes acceso a esta sección.</p>
+</ng-container>
+

@@ -1,0 +1,82 @@
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  mat-card-title {
+    font-size: 2rem;
+    color: #8E24AA;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+.catalog-container {
+  padding: 2rem;
+  background-color: #f5f0eb;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.catalog-header-card {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.catalog-info {
+  font-size: 1.5rem;
+  color: #263238;
+  margin-bottom: 2rem;
+}
+
+.actions {
+  margin-left: 0.5rem;
+  margin-bottom: 2rem;
+  .edit {
+    background-color: #890E4F;
+    color: white;
+    font-size: 1.2rem;
+  }
+  .publish {
+    background-color: white;
+    color: #890E4F;
+    font-size: 1.2rem;
+    border: #890E4F 4px solid;
+  }
+}
+
+.new-catalog-button {
+  background-color: #9c27b0;
+  color: white;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+::ng-deep .snackbar-error {
+  background-color: #f44336 !important; /* Rojo */
+  color: #fff;
+}
+

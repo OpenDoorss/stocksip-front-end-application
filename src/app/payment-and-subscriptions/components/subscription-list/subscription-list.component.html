@@ -1,0 +1,7 @@
+<div class="plan-grid">
+  @for (plan of plans; track plan.planId) {
+    <div class="plan-item">
+      <app-subscription-item [plan]="plan"></app-subscription-item>
+    </div>
+  }
+</div>

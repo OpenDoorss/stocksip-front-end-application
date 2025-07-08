@@ -1,0 +1,11 @@
+<div class="plan-grid">
+  <ng-container *ngFor="let plan of plans; trackBy: trackByPlanId">
+    <div class="plan-item">
+      <app-subscription-item
+        [plan]="plan"
+        [currentPlanType]="currentPlanType"
+        (choose)="onChoosePlan($event)">
+      </app-subscription-item>
+    </div>
+  </ng-container>
+</div>

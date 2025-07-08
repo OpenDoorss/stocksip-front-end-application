@@ -1,0 +1,72 @@
+<div class="dashboard-bg">
+
+  <app-side-navbar/>
+
+
+  <div class="dashboard-main">
+    <app-tool-bar [titleKey]="'Dashboard'"></app-tool-bar>
+    <div class="dashboard-content">
+      <div class="summary-alerts-container">
+
+        <mat-card class="summary-card">
+          <div class="summary-title">General Summary</div>
+          <div class="summary-item"><span>🛒 Sales Today:</span> S/. 450.00</div>
+          <div class="summary-item"><span>📄 Last invoice:</span> 24/04/2025</div>
+          <div class="summary-item"><span>📦 Products in stock:</span> 142</div>
+          <div class="summary-item"><span>⚠️ Products with low stock:</span> {{ stockAlerts.length }}</div>
+          <div class="summary-item"><span>⏳ Products to expire:</span> {{ expirationAlerts.length }}</div>
+        </mat-card>
+
+        <mat-card class="alerts-card">
+          <div class="summary-title">Important Alerts</div>
+          <ng-container *ngIf="!loadingAlerts">
+            <ng-container *ngIf="stockAlerts.length > 0; else noStockAlerts">
+              <div class="alert-item" *ngFor="let alert of stockAlerts.slice(0,2)">
+                <div><strong>{{ alert.title }}</strong></div>
+                <div class="low-stock">{{ alert.message }}</div>
+              </div>
+            </ng-container>
+            <ng-template #noStockAlerts>
+              <div class="alert-item">No urgent restock alerts.</div>
+            </ng-template>
+            <hr>
+            <ng-container *ngIf="expirationAlerts.length > 0; else noExpAlerts">
+              <div class="alert-item" *ngFor="let alert of expirationAlerts.slice(0,2)">
+                <div><strong>{{ alert.title }}</strong></div>
+                <div class="expiry-alert">{{ alert.message }}</div>
+              </div>
+            </ng-container>
+            <ng-template #noExpAlerts>
+              <div class="alert-item">No expiration alerts.</div>
+            </ng-template>
+          </ng-container>
+          <div *ngIf="loadingAlerts" class="alert-item">Loading alerts...</div>
+        </mat-card>
+      </div>
+
+      <mat-card class="quick-access-card">
+        <div class="summary-title">Quick Access</div>
+        <div class="quick-access-buttons">
+          <button mat-raised-button class="access-button" [routerLink]="['/inventory']">
+            Inventory
+          </button>
+          <button mat-raised-button class="access-button" [routerLink]="['/orders']">
+            Orders
+          </button>
+          <button mat-raised-button class="access-button" [routerLink]="['/catalog']">
+            Catalog
+          </button>
+          <button mat-raised-button class="access-button">
+            Discounts
+          </button>
+          <button mat-raised-button class="access-button">
+            Billing
+          </button>
+        </div>
+      </mat-card>
+    </div>
+
+  </div>
+
+
+</div>

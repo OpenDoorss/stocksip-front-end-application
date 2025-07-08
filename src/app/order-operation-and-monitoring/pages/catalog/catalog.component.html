@@ -1,0 +1,22 @@
+<ng-container *ngIf="isSupplier()">
+  <div class="catalog-for-supplier">
+    <app-side-navbar/>
+    <div class="catalog-main">
+      <app-tool-bar [titleKey]="'Catalogs'"></app-tool-bar>
+      <div class="add-catalog-btn">
+        <button mat-raised-button color="primary" [routerLink]="['/catalog/new']">
+          New Catalog
+        </button>
+      </div>
+      <app-catalog-list [catalogs]="catalogs"></app-catalog-list>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isLiquorStoreOwner()">
+  <app-catalog-for-orders [catalogCards]="catalogs"></app-catalog-for-orders>
+</ng-container>
+
+<ng-container *ngIf="!isSupplier() && !isLiquorStoreOwner()">
+  <p>No tienes acceso a esta sección.</p>
+</ng-container>

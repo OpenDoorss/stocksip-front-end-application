@@ -1,0 +1,90 @@
+<div class="reports-bg">
+
+  <app-side-navbar/>
+
+  <div class="reports-main">
+
+    <app-tool-bar [titleKey]="'reports.title'"></app-tool-bar>
+
+    <div class="button-bar">
+      <button mat-flat-button (click)="navigate(' ')">{{ 'button.internal' | translate }}</button>
+      <button mat-flat-button (click)="navigate('report-list')">{{ 'button.loss' | translate }}</button>
+      <button mat-flat-button (click)="navigate('care-guide-list')">{{ 'button.conservation' | translate }}</button>
+    </div>
+    <div class="from-header">
+      <div class="text-reg">
+        <p>{{ 'info.form' | translate }}</p>
+        <p>{{ 'info.regist' | translate }}</p>
+      </div>
+      <app-report-create-and-edit></app-report-create-and-edit>
+    </div>
+    <div class="main-content">
+      <div class="form-section">
+        <div class="enter-information-product">
+          <mat-form-field class="search-bar" appearance="outline">
+            <mat-label>{{ 'enter.product' | translate }}</mat-label>
+            <input matInput placeholder="" [(ngModel)]="searchTextProduct">
+            <button mat-icon-button matSuffix aria-label="Search">
+            </button>
+          </mat-form-field>
+          <form class="lost-form">
+            <mat-form-field class="lost-full-width">
+              <mat-label>{{ 'enter.lost' | translate }}</mat-label>
+              <input type="number" matInput [formControl]="Control" [errorStateMatcher]="matcher"
+                     placeholder="S/. ">
+              @if (Control.hasError('number') && !Control.hasError('required')) {
+                <mat-error>Please enter a valid number</mat-error>
+              }
+              @if (Control.hasError('required')) {
+                <mat-error>Number is <strong>required</strong></mat-error>
+              }
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="enter-information-products">
+          <mat-form-field appearance="outline" class="search-bar">
+            <mat-label>{{ 'enter.type' | translate }}</mat-label>
+            <input matInput placeholder="" [(ngModel)]="searchTextType">
+            <button mat-icon-button matSuffix aria-label="Search">
+            </button>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="search-bar">
+            <mat-label>{{ 'enter.prices' | translate }}</mat-label>
+            <input matInput placeholder="" [(ngModel)]="searchTextPrices">
+            <button mat-icon-button matSuffix aria-label="Search">
+            </button>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="search-bar">
+            <mat-label>{{ 'enter.total' | translate }}</mat-label>
+            <input matInput placeholder="" [(ngModel)]="searchTextTotal">
+            <button mat-icon-button matSuffix aria-label="Search">
+            </button>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{ 'enter.date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="save-cancel-button">
+          <button mat-flat-button color="primary" (click)="onSave()">{{ 'button.save' | translate }}</button>
+          <button mat-flat-button>{{ 'button.cancel' | translate }}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reports-list">
+      <h2>{{ 'history' | translate }}</h2>
+      <div class="reports-grid">
+        @for (report of reports; track report.id) {
+          <app-report-item [report]="report"></app-report-item>
+        }
+      </div>
+    </div>
+  </div>
+
+
+</div>

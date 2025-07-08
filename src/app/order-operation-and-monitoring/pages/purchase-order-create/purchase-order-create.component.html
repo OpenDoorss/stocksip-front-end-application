@@ -1,0 +1,57 @@
+<div class="purchase-order-create-bg">
+
+  <app-side-navbar/>
+
+  <div class="purchase-order-create-main">
+
+    <app-tool-bar [titleKey]="'New Order'"></app-tool-bar>
+
+    <mat-card class="purchase-card">
+      <h2>Select products for the order</h2>
+
+      <table mat-table [dataSource]="catalogItems" class="mat-elevation-z1">
+
+        <ng-container class="table-purchase" matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>Select</th>
+          <td mat-cell *matCellDef="let item">
+            <mat-checkbox [(ngModel)]="selectedItems[item.id]"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container class="table-purchase" matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let item">{{ item.name }}</td>
+        </ng-container>
+
+        <ng-container class="table-purchase" matColumnDef="brand">
+          <th mat-header-cell *matHeaderCellDef>Brand</th>
+          <td mat-cell *matCellDef="let item">{{ item.brand }}</td>
+        </ng-container>
+
+        <ng-container class="table-purchase" matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let item">{{ formatPrice(item.unitPrice) }}</td>
+        </ng-container>
+
+        <ng-container class="table-purchase" matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let item">
+            <input matInput type="number" min="1"
+                   placeholder="e.g. 2"
+                   [(ngModel)]="quantities[item.id]"
+                   [disabled]="!selectedItems[item.id]" />
+
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="['select', 'name', 'brand', 'price', 'quantity']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['select', 'name', 'brand', 'price', 'quantity'];"></tr>
+      </table>
+
+      <button mat-raised-button class="mt-4" (click)="createOrder()">
+        Save
+      </button>
+    </mat-card>
+  </div>
+</div>
