@@ -93,7 +93,6 @@ export class ProfileEditComponent {
       },
       error: (err) => {
         console.error('Error loading profile:', err);
-        this.snackBar.open('Error al cargar el perfil', 'Cerrar', { duration: 3000 });
       }
     });
   }
