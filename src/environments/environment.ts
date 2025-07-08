@@ -14,5 +14,14 @@ export const environment = {
 
   accountWarehousesEndpointPath: '/accounts/{accountId}/warehouses',
   accountProductsEndpointPath: '/accounts/{accountId}/products',
+
+  plansEndpointPath: '/plans',
+  accountCurrentPlanEndpointPath: '/accounts/{accountId}/subscriptions/current-plan',
+  accountStatusEndpointPath: '/accounts/{accountId}/status',
+
+  subscriptionNewEndpointPath: '/subscriptions/new',
+  subscriptionCompleteEndpointPath: '/subscriptions/complete',
+  subscriptionsUpgradeEndpointPath: '/subscriptions/upgrade',
+  subscriptionsUpgradeCompleteEndpointPath: '/subscriptions/upgrade-complete',
 };
 

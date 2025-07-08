@@ -30,7 +30,6 @@ import {TranslatePipe} from '@ngx-translate/core';
   styleUrl: './warehouses.component.css'
 })
 export class WarehousesComponent implements OnInit {
-  profileId: number = 0;
   warehouses: Warehouse[] = [];
 
   constructor(private route: ActivatedRoute, private warehouseService: WarehouseService, private router: Router, private userService: UserService) {}

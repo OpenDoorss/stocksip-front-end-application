@@ -30,6 +30,12 @@ const PurchaseOrderComponent = () => import ('./order-operation-and-monitoring/p
 const ProductCreateEdit = () => import ('./inventory-management/pages/product-create-and-edit/product-create-and-edit.component').then(m => m.ProductCreateAndEditComponent);
 const SubscriptionPlanComponent = () => import ( './payment-and-subscriptions/pages/subscription-plan/subscription-plan.component').then(m => m.SubscriptionPlanComponent);
 const OrderComponent = () => import ('./order-operation-and-monitoring/pages/orders/orders.component').then(m => m.OrdersComponent);
+
+const PaymentConfirmationComponent = () => import ('./payment-and-subscriptions/pages/payment-confirmed/payment-confirmed.component').then(m => m.PaymentConfirmedComponent);
+const PaymentCancelledComponent = () => import ('./payment-and-subscriptions/pages/payment-cancelled/payment-cancelled.component').then(m => m.PaymentCancelledComponent);
+const SubscriptionChooseComponent = () => import ('./payment-and-subscriptions/pages/subscription-choose/subscription-choose.component').then(m => m.SubscriptionChooseComponent);
+const PaymentUpgradeConfirmedComponent = () => import ('./payment-and-subscriptions/pages/payment-upgrade-confirmed/payment-upgrade-confirmed.component').then(m => m.PaymentUpgradeConfirmedComponent);
+
 export const routes: Routes = [
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
   { path: 'sign-in',              component: SignInComponent },
@@ -40,6 +46,12 @@ export const routes: Routes = [
   {path: 'warehouses',          loadComponent: WarehouseComponent,              data: {title: 'Warehouses'},        canActivate: [authenticationGuard]},
   {path: 'warehouses/new',      loadComponent: CreateAndEditWarehouseComponent, data: {title: 'New Warehouse'},     canActivate: [authenticationGuard]},
   {path: 'subscription-plan',   loadComponent: SubscriptionPlanComponent,       data: {title: 'Subscription Plan'}, canActivate: [authenticationGuard]},
+
+  {path: 'payments-success', loadComponent: PaymentConfirmationComponent, data: { title: 'Payment Confirmed' }, canActivate: [authenticationGuard] },
+  {path: 'payments-upgrade-success' , loadComponent: PaymentUpgradeConfirmedComponent, data: { title: 'Payment Upgrade Confirmed' }, canActivate: [authenticationGuard] },
+  {path: 'payments-cancel', loadComponent: PaymentCancelledComponent, data: { title: 'Payment Cancelled' }, canActivate: [authenticationGuard] },
+  {path: 'subscription-choose', loadComponent: SubscriptionChooseComponent, data: { title: 'Choose Subscription' }, canActivate: [authenticationGuard] },
+
   {path: 'product/new', loadComponent: ProductCreateEdit, data: { title: 'New Product' }, canActivate: [authenticationGuard] },
   { path: 'warehouses/edit/:warehouseId',     loadComponent: CreateAndEditWarehouseComponent,     data: { title: 'Edit Warehouse' },        canActivate: [authenticationGuard] },
   { path: 'storage',                          loadComponent: StorageComponent,                    data: { title: 'Storage' },               canActivate: [authenticationGuard] },

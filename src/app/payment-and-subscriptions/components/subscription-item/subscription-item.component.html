@@ -1,0 +1,24 @@
+<mat-card class="subscription-card">
+  <mat-card-header>
+    <mat-card-title class="center-text">{{ plan.description }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p><strong>Plan Type:</strong> {{ plan.planType }}</p>
+    <p><strong>Max Warehouses:</strong> {{ plan.maxWarehouses }}</p>
+    <p><strong>Price:</strong> {{ plan.price }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!canChoose"
+      (click)="choosePlan()"
+    >
+      <ng-container *ngIf="isCurrentPlan">Current Plan</ng-container>
+      <ng-container *ngIf="!isCurrentPlan && !canChoose">Unavailable</ng-container>
+      <ng-container *ngIf="canChoose">Choose</ng-container>
+    </button>
+  </mat-card-actions>
+</mat-card>

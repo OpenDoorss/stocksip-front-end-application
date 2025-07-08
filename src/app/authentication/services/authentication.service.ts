@@ -146,5 +146,11 @@ export class AuthenticationService {
       accountRole: localStorage.getItem('accountRole')
     };
   }
-
 }
+
+// auth-utils.ts
+export function getAccountIdFromStorage(): number | null {
+  const id = localStorage.getItem('accountId');
+  return id ? Number(id) : null;
+}
+
